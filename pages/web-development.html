@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Development Services – NeuroDesk | Full-Stack & Frontend Developer for Hire</title>
+  <meta name="description" content="Professional web development services — responsive websites, landing pages, full-stack web apps, e-commerce, and API integrations. Fast, modern, SEO-optimized. Starting from $40." />
+  <meta name="keywords" content="hire web developer Kenya, full stack developer freelancer, responsive website design, landing page design, React developer, Node.js developer, e-commerce website, web app development" />
+  <meta property="og:title" content="Web Development Services – NeuroDesk" />
+  <meta property="og:description" content="Modern, responsive, and performant web development. Landing pages to full-stack web applications — crafted with precision." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .service-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: all var(--transition);
+    }
+    .service-card:hover {
+      border-color: var(--color-accent-cyan);
+      transform: translateY(-4px);
+    }
+    .service-card__price {
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: var(--color-accent-cyan);
+      font-weight: 600;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    @media (max-width: 1024px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .services-grid { grid-template-columns: 1fr; } }
+
+    .tech-stack-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    @media (max-width: 1024px) { .tech-stack-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .tech-stack-grid { grid-template-columns: 1fr; } }
+
+    .tech-category {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+    .tech-category__label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--color-accent-violet);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tech-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tech-pill {
+      background: rgba(0,212,255,0.1);
+      border: 1px solid rgba(0,212,255,0.2);
+      color: var(--color-accent-cyan);
+      border-radius: 16px;
+      padding: 4px 12px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .process-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-top: 56px;
+    }
+    @media (max-width: 1024px) { .process-row { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 640px) { .process-row { grid-template-columns: 1fr; } }
+
+    .process-step {
+      text-align: center;
+      padding: 24px 14px;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+    }
+    .process-step__num {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-violet));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+    .process-step__title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; margin-bottom: 8px; font-size: 0.95rem; }
+    .process-step__text { font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.6; }
+
+    .feature-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    @media (max-width: 768px) { .feature-row { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .feature-row { grid-template-columns: 1fr; } }
+    .feature-item {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      align-items: flex-start;
+    }
+    .feature-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, rgba(123,47,190,0.2), rgba(0,212,255,0.2));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .feature-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 6px; }
+    .feature-text { font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.6; }
+  </style>
+</head>
+<body>
+<div class="page-loader"><div class="page-loader__logo">NeuroDesk</div></div>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__logo">
+      <div class="navbar__logo-icon">🧠</div>
+      <div class="navbar__logo-text">Neuro<span>Desk</span></div>
+    </a>
+    <div class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <div class="navbar__cta">
+      <a href="contact.html" class="btn btn-primary btn-sm"><i class="fas fa-paper-plane"></i> Hire Me</a>
+    </div>
+    <div class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="navbar__mobile" id="mobile-menu">
+  <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="services.html" class="active"><i class="fas fa-layer-group"></i> Services</a>
+  <a href="portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a>
+  <a href="pricing.html"><i class="fas fa-tags"></i> Pricing</a>
+  <a href="about.html"><i class="fas fa-user"></i> About</a>
+  <a href="../blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a>
+  <a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+  <div class="navbar__mobile-cta">
+    <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Hire Me Now</a>
+    <a href="https://wa.me/254700000000" class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero__bg">
+    <div class="page-hero__bg-orb page-hero__bg-orb--1"></div>
+    <div class="page-hero__bg-orb page-hero__bg-orb--2"></div>
+  </div>
+  <div class="container">
+    <div class="page-hero__content">
+      <div class="breadcrumb" style="justify-content:center;">
+        <a href="../index.html">Home</a><span>/</span><a href="services.html">Services</a><span>/</span><span>Web Development</span>
+      </div>
+      <div class="section-label" style="justify-content:center;"><i class="fas fa-code"></i> Pillar 03</div>
+      <h1 class="page-hero__title">Web <span style="background:linear-gradient(135deg,var(--color-accent-cyan),var(--color-accent-violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Development</span> Services</h1>
+      <p class="page-hero__subtitle">Fast, modern, and responsive websites and web applications — built from scratch with clean code, performance optimization, and pixel-perfect design. Your digital presence, perfected.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px;">
+        <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Get a Free Quote</a>
+        <a href="https://wa.me/254700000000?text=Hi%20NeuroDesk!%20I%20need%20a%20website%20built." class="btn btn-whatsapp btn-lg" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES GRID -->
+<section class="section">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label">What We Build</div>
+      <h2 class="section-title">All Web Development <span>Services</span></h2>
+      <p class="section-subtitle">From a sleek landing page to a data-integrated full-stack web application — every build is responsive, fast, and purpose-driven.</p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Landing Pages -->
+      <div class="service-card reveal reveal-delay-1">
+        <div style="font-size:36px;margin-bottom:16px;">🚀</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Landing Pages & Microsites</h4>
+        <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Conversion-focused landing pages for products, campaigns, and lead generation. Mobile-first, lightning-fast, and built for results. Includes basic SEO setup.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">HTML/CSS/JS</span>
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">CRO Optimized</span>
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Fast Delivery</span>
+        </div>
+        <div class="service-card__price">Starting from $40</div>
+      </div>
+
+      <!-- Business Websites -->
+      <div class="service-card reveal reveal-delay-2">
+        <div style="font-size:36px;margin-bottom:16px;">🌐</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Business Websites</h4>
+        <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Multi-page business websites with custom design, contact forms, service pages, SEO metadata, Google Analytics integration, and social proof sections.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Multi-page</span>
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">SEO-Ready</span>
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Analytics</span>
+        </div>
+        <div class="service-card__price">Starting from $80</div>
+      </div>
+
+      <!-- Portfolio & Personal Brand -->
+      <div class="service-card reveal reveal-delay-3">
+        <div style="font-size:36px;margin-bottom:16px;">🎨</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Portfolio & Personal Brand Sites</h4>
+        <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Stunning portfolio sites for creatives, developers, designers, and freelancers. Custom animations, project showcases, and personal branding that makes you unforgettable.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Custom Animations</span>
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Mobile-First</span>
+        </div>
+        <div class="service-card__price">Starting from $60</div>
+      </div>
+
+      <!-- E-Commerce -->
+      <div class="service-card reveal reveal-delay-1">
+        <div style="font-size:36px;margin-bottom:16px;">🛒</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">E-Commerce Stores</h4>
+        <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Full-featured online stores with product catalogs, cart functionality, payment gateway integration (M-Pesa, Stripe, PayPal), order tracking, and admin dashboards.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">M-Pesa Ready</span>
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Admin Panel</span>
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Inventory</span>
+        </div>
+        <div class="service-card__price">Starting from $200</div>
+      </div>
+
+      <!-- Web Apps & Dashboards -->
+      <div class="service-card reveal reveal-delay-2">
+        <div style="font-size:36px;margin-bottom:16px;">📊</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Web Apps & Data Dashboards</h4>
+        <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Interactive web apps and data dashboards that connect to APIs, databases, and live data sources — perfect for business intelligence, KPI tracking, and reporting.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Charts.js / D3</span>
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">REST APIs</span>
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Real-Time</span>
+        </div>
+        <div class="service-card__price">Starting from $150</div>
+      </div>
+
+      <!-- Maintenance & Optimization -->
+      <div class="service-card reveal reveal-delay-3">
+        <div style="font-size:36px;margin-bottom:16px;">⚡</div>
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Speed & SEO Optimization</h4>
+        <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Audit and optimize existing websites — Lighthouse score improvement, Core Web Vitals fixes, image compression, lazy loading, caching, and on-page SEO improvements.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Lighthouse 95+</span>
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Core Web Vitals</span>
+          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">On-Page SEO</span>
+        </div>
+        <div class="service-card__price">Starting from $35</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;" class="reveal">
+      <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Discuss Your Web Project</a>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="section--sm" style="background:var(--color-bg-secondary);">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label">Technology Stack</div>
+      <h2 class="section-title">Tools & Technologies <span>We Use</span></h2>
+      <p class="section-subtitle">A modern, battle-tested tech stack for every project type — chosen for performance, scalability, and maintainability.</p>
+    </div>
+    <div class="tech-stack-grid">
+      <div class="tech-category reveal reveal-delay-1">
+        <div class="tech-category__label"><i class="fas fa-paint-brush"></i> Frontend</div>
+        <div class="tech-pills">
+          <span class="tech-pill">HTML5</span>
+          <span class="tech-pill">CSS3</span>
+          <span class="tech-pill">JavaScript (ES6+)</span>
+          <span class="tech-pill">React.js</span>
+          <span class="tech-pill">Tailwind CSS</span>
+          <span class="tech-pill">Bootstrap 5</span>
+          <span class="tech-pill">GSAP Animations</span>
+        </div>
+      </div>
+      <div class="tech-category reveal reveal-delay-2">
+        <div class="tech-category__label"><i class="fas fa-server"></i> Backend</div>
+        <div class="tech-pills">
+          <span class="tech-pill">Node.js</span>
+          <span class="tech-pill">Express.js</span>
+          <span class="tech-pill">Python Flask</span>
+          <span class="tech-pill">REST APIs</span>
+          <span class="tech-pill">Firebase</span>
+          <span class="tech-pill">Supabase</span>
+        </div>
+      </div>
+      <div class="tech-category reveal reveal-delay-3">
+        <div class="tech-category__label"><i class="fas fa-database"></i> Database</div>
+        <div class="tech-pills">
+          <span class="tech-pill">PostgreSQL</span>
+          <span class="tech-pill">MySQL</span>
+          <span class="tech-pill">MongoDB</span>
+          <span class="tech-pill">SQLite</span>
+          <span class="tech-pill">Firebase Firestore</span>
+        </div>
+      </div>
+      <div class="tech-category reveal reveal-delay-4">
+        <div class="tech-category__label"><i class="fas fa-cloud"></i> Deployment</div>
+        <div class="tech-pills">
+          <span class="tech-pill">Vercel</span>
+          <span class="tech-pill">Netlify</span>
+          <span class="tech-pill">Cloudflare Pages</span>
+          <span class="tech-pill">GitHub Pages</span>
+          <span class="tech-pill">Render.com</span>
+          <span class="tech-pill">VPS / cPanel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY FEATURES -->
+<section class="section">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label">What You Get</div>
+      <h2 class="section-title">Every Site Comes <span>Standard With</span></h2>
+      <p class="section-subtitle">No add-on fees. These are non-negotiable quality standards built into every single project.</p>
+    </div>
+    <div class="feature-row">
+      <div class="feature-item reveal reveal-delay-1">
+        <div class="feature-icon">📱</div>
+        <div>
+          <div class="feature-title">100% Responsive Design</div>
+          <p class="feature-text">Pixel-perfect on every device — phones, tablets, laptops, 4K monitors. Tested on real devices.</p>
+        </div>
+      </div>
+      <div class="feature-item reveal reveal-delay-2">
+        <div class="feature-icon">⚡</div>
+        <div>
+          <div class="feature-title">Lighthouse 95+ Score</div>
+          <p class="feature-text">Optimized images, minified code, lazy loading, and caching for FCP under 1.5s.</p>
+        </div>
+      </div>
+      <div class="feature-item reveal reveal-delay-3">
+        <div class="feature-icon">🔍</div>
+        <div>
+          <div class="feature-title">SEO Foundation</div>
+          <p class="feature-text">Meta tags, Open Graph, JSON-LD schema, sitemap.xml, robots.txt, and semantic HTML out of the box.</p>
+        </div>
+      </div>
+      <div class="feature-item reveal reveal-delay-1">
+        <div class="feature-icon">🔐</div>
+        <div>
+          <div class="feature-title">HTTPS & Security Headers</div>
+          <p class="feature-text">SSL setup, Content Security Policy, HSTS, X-Frame-Options, and input sanitization where applicable.</p>
+        </div>
+      </div>
+      <div class="feature-item reveal reveal-delay-2">
+        <div class="feature-icon">♿</div>
+        <div>
+          <div class="feature-title">Accessibility (WCAG 2.1)</div>
+          <p class="feature-text">ARIA labels, keyboard navigation, color contrast compliance, and screen reader compatibility.</p>
+        </div>
+      </div>
+      <div class="feature-item reveal reveal-delay-3">
+        <div class="feature-icon">📦</div>
+        <div>
+          <div class="feature-title">Clean Code Handover</div>
+          <p class="feature-text">Well-commented, version-controlled code on GitHub. You own it 100% — no licensing restrictions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section--sm" style="background:var(--color-bg-secondary);">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label">The Build Process</div>
+      <h2 class="section-title">How We Build Your <span>Website</span></h2>
+      <p class="section-subtitle">A professional, collaborative workflow that keeps you informed and in control at every stage.</p>
+    </div>
+    <div class="process-row">
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-step__num">01</div>
+        <div class="process-step__title">Discovery Call</div>
+        <p class="process-step__text">We discuss your goals, target audience, design preferences, and technical requirements.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-step__num">02</div>
+        <div class="process-step__title">Wireframe & Proposal</div>
+        <p class="process-step__text">Site architecture, page layout sketches, and a transparent project quote with timeline.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-step__num">03</div>
+        <div class="process-step__title">Design & Build</div>
+        <p class="process-step__text">Pixel-perfect implementation with regular preview links for your feedback at key milestones.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-4">
+        <div class="process-step__num">04</div>
+        <div class="process-step__title">Testing & QA</div>
+        <p class="process-step__text">Cross-browser, cross-device testing. Performance audit, SEO check, and security review.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-5">
+        <div class="process-step__num">05</div>
+        <div class="process-step__title">Launch & Handover</div>
+        <p class="process-step__text">Deployment to your hosting, domain setup, and full code handover with documentation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="section--sm" style="padding-top:0;">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div class="cta-banner__content">
+        <h2 class="cta-banner__title">Ready to Build Something Remarkable?</h2>
+        <p class="cta-banner__subtitle">Whether you need a quick landing page or a full-featured web application, let's create something your users will love — and your competitors will envy.</p>
+        <div class="cta-banner__actions">
+          <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Start Your Project</a>
+          <a href="https://wa.me/254700000000?text=Hi%20NeuroDesk!%20I%20want%20to%20build%20a%20website." class="btn btn-whatsapp btn-lg" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="../index.html" class="navbar__logo" style="margin-bottom:16px;display:inline-flex;">
+          <div class="navbar__logo-icon">🧠</div>
+          <div class="navbar__logo-text">Neuro<span>Desk</span></div>
+        </a>
+        <p>Intelligence at Your Service.</p>
+        <div class="footer__socials">
+          <a href="https://linkedin.com/in/stephenmuema" class="footer__social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://wa.me/254700000000" class="footer__social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:hello@neurodesk.com" class="footer__social-link"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title">Services</h4>
+        <ul class="footer__col-links">
+          <li><a href="data-science.html">Data Science</a></li>
+          <li><a href="academic-writing.html">Academic Writing</a></li>
+          <li><a href="web-development.html">Web Dev</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title">Company</h4>
+        <ul class="footer__col-links">
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="../blog/index.html">Blog</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title">Contact</h4>
+        <ul class="footer__col-links">
+          <li><a href="mailto:hello@neurodesk.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Email</a></li>
+          <li><a href="https://wa.me/254700000000" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2025 NeuroDesk. All rights reserved.</p>
+      <div class="footer__bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="whatsapp-float">
+  <span class="whatsapp-float__tooltip">Let's build your website!</span>
+  <a href="https://wa.me/254700000000?text=Hi%20NeuroDesk!%20I%20need%20a%20website%20built." class="whatsapp-float__btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+</div>
+<button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
+<script src="../js/main.js"></script>
+</body>
+</html>

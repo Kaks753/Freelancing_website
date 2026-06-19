@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio – NeuroDesk | Data Science, Web Dev & Academic Projects</title>
+  <meta name="description" content="Browse NeuroDesk's portfolio of completed data science, machine learning, web development, and academic writing projects. Real results, real impact." />
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<div class="page-loader"><div class="page-loader__logo">NeuroDesk</div></div>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__logo"><div class="navbar__logo-icon">🧠</div><div class="navbar__logo-text">Neuro<span>Desk</span></div></a>
+    <div class="navbar__links">
+      <a href="../index.html">Home</a><a href="services.html">Services</a><a href="portfolio.html" class="active">Portfolio</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="../blog/index.html">Blog</a><a href="faq.html">FAQ</a>
+    </div>
+    <div class="navbar__cta"><a href="contact.html" class="btn btn-primary btn-sm"><i class="fas fa-paper-plane"></i> Hire Me</a></div>
+    <div class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="navbar__mobile" id="mobile-menu">
+  <a href="../index.html"><i class="fas fa-home"></i> Home</a><a href="services.html"><i class="fas fa-layer-group"></i> Services</a><a href="portfolio.html" class="active"><i class="fas fa-briefcase"></i> Portfolio</a><a href="pricing.html"><i class="fas fa-tags"></i> Pricing</a><a href="about.html"><i class="fas fa-user"></i> About</a><a href="../blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+  <div class="navbar__mobile-cta"><a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Hire Me Now</a><a href="https://wa.me/254700000000" class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero__bg"><div class="page-hero__bg-orb page-hero__bg-orb--1"></div><div class="page-hero__bg-orb page-hero__bg-orb--2"></div></div>
+  <div class="container">
+    <div class="page-hero__content">
+      <div class="breadcrumb" style="justify-content:center;"><a href="../index.html">Home</a><span>/</span><span>Portfolio</span></div>
+      <div class="section-label" style="justify-content:center;">Our Work</div>
+      <h1 class="page-hero__title">Projects That <span style="background:linear-gradient(135deg,var(--color-accent-violet),var(--color-accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Delivered Results</span></h1>
+      <p class="page-hero__subtitle">A showcase of real-world data science, machine learning, web development, and academic writing projects — each built to solve a specific problem.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <!-- Filters -->
+    <div class="portfolio-filters reveal">
+      <button class="portfolio-filter active" data-filter="all">All Projects</button>
+      <button class="portfolio-filter" data-filter="data-science">Data Science & ML</button>
+      <button class="portfolio-filter" data-filter="academic">Academic Writing</button>
+      <button class="portfolio-filter" data-filter="web-dev">Web Development</button>
+    </div>
+
+    <!-- Portfolio Grid -->
+    <div class="portfolio-grid">
+
+      <div class="portfolio-item reveal reveal-delay-1" data-category="data-science">
+        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(123,47,190,0.4),rgba(26,26,46,0.9));">🤖</div>
+        <div class="portfolio-item__thumb-overlay">
+          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
+        </div>
+        <div class="portfolio-item__body">
+          <div class="portfolio-item__cat">Machine Learning</div>
+          <h3 class="portfolio-item__title">Customer Churn Prediction System</h3>
+          <p class="portfolio-item__desc">Built an XGBoost churn prediction model for a telecoms company. Reduced churn by 23% in the first quarter post-deployment.</p>
+          <div class="portfolio-item__tags">
+            <span class="portfolio-item__tag">Python</span>
+            <span class="portfolio-item__tag">XGBoost</span>
+            <span class="portfolio-item__tag">Scikit-Learn</span>
+            <span class="portfolio-item__tag">Pandas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item reveal reveal-delay-2" data-category="data-science">
+        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(0,212,255,0.3),rgba(26,26,46,0.9));">📊</div>
+        <div class="portfolio-item__thumb-overlay">
+          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
+        </div>
+        <div class="portfolio-item__body">
+          <div class="portfolio-item__cat">Business Intelligence</div>
+          <h3 class="portfolio-item__title">Real-Time Sales KPI Dashboard</h3>
+          <p class="portfolio-item__desc">Interactive Power BI dashboard tracking 12 KPIs across 5 sales regions. Automated data refresh every 4 hours.</p>
+          <div class="portfolio-item__tags">
+            <span class="portfolio-item__tag">Power BI</span>
+            <span class="portfolio-item__tag">SQL</span>
+            <span class="portfolio-item__tag">DAX</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item reveal reveal-delay-3" data-category="data-science">
+        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(0,229,160,0.3),rgba(26,26,46,0.9));">💬</div>
+        <div class="portfolio-item__thumb-overlay">
+          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
+        </div>
+        <div class="portfolio-item__body">
+          <div class="portfolio-item__cat">NLP & Text Analysis</div>
+          <h3 class="portfolio-item__title">Twitter Sentiment Analyzer</h3>
+          <p class="portfolio-item__desc">NLP model analyzing brand sentiment from 50K+ tweets using BERT. Deployed as a Flask web API for real-time analysis.</p>
+          <div class="portfolio-item__tags">
+            <span class="portfolio-item__tag">BERT</span>
+            <span class="portfolio-item__tag">Python</span>
+            <span class="portfolio-item__tag">Flask</span>
+            <span class="portfolio-item__tag">NLP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item reveal reveal-delay-1" data-category="data-science">
+        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(123,47,190,0.3),rgba(0,212,255,0.2));">📈</div>
+        <div class="portfolio-item__thumb-overlay">
+          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
+        </div>
+        <div class="portfolio-item__body">
+          <div class="portfolio-item__cat">Predictive Analytics</div>
+          <h3 class="portfolio-item__title">Retail Sales Forecasting Model</h3>
+          <p class="portfolio-item__desc">ARIMA + LSTM ensemble forecasting model for a retail chain — 91% accuracy on 6-month sales predictions.</p>
+          <div class="portfolio-item__tags">
+            <span class="portfolio-item__tag">ARIMA</span>
+            <span class="portfolio-item__tag">LSTM</span>
+            <span class="portfolio-item__tag">TensorFlow</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item reveal reveal-delay-2" data-category="academic">
+        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(0,212,255,0.4),rgba(26,26,46,0.9));">📜</div>
+        <div class="portfolio-item__thumb-overlay">
+          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
+        </div>
+        <div class="portfolio-item__body">
+          <div class="portfolio-item__cat">Dissertation</div>
+          <h3 class="portfolio-item__title">MBA Dissertation: AI in Supply Chain Optimization</h3>
+          <p class="portfolio-item__desc">85-page MBA dissertation with quantitative research, regression analysis, and literature review. Grade: Distinction.</p>
+          <div class="portfolio-item__tags">
+            <span class="portfolio-item__tag">SPSS</span>
+            <span class="portfolio-item__tag">APA 7</span>
+            <span class="portfolio-item__tag">Quantitative</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item reveal reveal-delay-3" data-category="academic">
+        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(255,107,107,0.3),rgba(26,26,46,0.9));">✍️</div>
+        <div class="portfolio-item__thumb-overlay">
+          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
+        </div>
+        <div class="portfolio-item__body">
+          <div class="portfolio-item__cat">Research Paper</div>
+          <h3 class="portfolio-item__title">Machine Learning in Healthcare: A Systematic Review</h3>
+          <p class="portfolio-item__desc">35-page systematic literature review across 80+ peer-reviewed sources. Published-ready quality with proper citation and structure.</p>
+          <div class="portfolio-item__tags">
+            <span class="portfolio-item__tag">Literature Review</span>
+            <span class="portfolio-item__tag">APA</span>
+            <span class="portfolio-item__tag">Healthcare</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item reveal reveal-delay-1" data-category="academic">
+        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(123,47,190,0.3),rgba(0,229,160,0.2));">📊</div>
+        <div class="portfolio-item__thumb-overlay">
+          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
+        </div>
+        <div class="portfolio-item__body">
+          <div class="portfolio-item__cat">Statistical Analysis</div>
+          <h3 class="portfolio-item__title">PhD Data Analysis — Socioeconomic Factors Study</h3>
+          <p class="portfolio-item__desc">Full statistical analysis using SPSS for a PhD candidate: descriptive stats, regression, ANOVA, and interpretation chapter.</p>
+          <div class="portfolio-item__tags">
+            <span class="portfolio-item__tag">SPSS</span>
+            <span class="portfolio-item__tag">R</span>
+            <span class="portfolio-item__tag">Regression</span>
+            <span class="portfolio-item__tag">ANOVA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item reveal reveal-delay-2" data-category="web-dev">
+        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(255,107,107,0.4),rgba(26,26,46,0.9));">🌐</div>
+        <div class="portfolio-item__thumb-overlay">
+          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
+        </div>
+        <div class="portfolio-item__body">
+          <div class="portfolio-item__cat">Web Development</div>
+          <h3 class="portfolio-item__title">Real Estate Analytics Platform</h3>
+          <p class="portfolio-item__desc">Full-stack web app with React frontend + Python FastAPI backend, connected to a property database with ML-powered pricing predictions.</p>
+          <div class="portfolio-item__tags">
+            <span class="portfolio-item__tag">React</span>
+            <span class="portfolio-item__tag">FastAPI</span>
+            <span class="portfolio-item__tag">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item reveal reveal-delay-3" data-category="web-dev">
+        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(0,212,255,0.3),rgba(255,107,107,0.2));">🛒</div>
+        <div class="portfolio-item__thumb-overlay">
+          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
+        </div>
+        <div class="portfolio-item__body">
+          <div class="portfolio-item__cat">Web Development</div>
+          <h3 class="portfolio-item__title">SME E-Commerce Store + Analytics</h3>
+          <p class="portfolio-item__desc">Built a complete online store for a Nairobi SME with integrated Google Analytics dashboard and inventory management system.</p>
+          <div class="portfolio-item__tags">
+            <span class="portfolio-item__tag">HTML/CSS/JS</span>
+            <span class="portfolio-item__tag">Node.js</span>
+            <span class="portfolio-item__tag">MongoDB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:56px;" class="reveal">
+      <p style="font-size:0.9rem;color:var(--color-text-muted);margin-bottom:20px;">Have a project in mind? Let's discuss how we can build something similar for you.</p>
+      <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Start Your Project</a>
+    </div>
+  </div>
+</section>
+
+<section class="section--sm" style="background:var(--color-bg-secondary);">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div class="cta-banner__content">
+        <h2 class="cta-banner__title">Your Project Could Be Next</h2>
+        <p class="cta-banner__subtitle">Join our growing list of satisfied clients. Get expert work, fast delivery, and measurable results.</p>
+        <div class="cta-banner__actions">
+          <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Get a Free Quote</a>
+          <a href="https://wa.me/254700000000" class="btn btn-whatsapp btn-lg" target="_blank"><i class="fab fa-whatsapp"></i> Chat Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand"><a href="../index.html" class="navbar__logo" style="margin-bottom:16px;display:inline-flex;"><div class="navbar__logo-icon">🧠</div><div class="navbar__logo-text">Neuro<span>Desk</span></div></a><p>Intelligence at Your Service.</p><div class="footer__socials"><a href="https://linkedin.com" class="footer__social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a><a href="https://github.com" class="footer__social-link" target="_blank"><i class="fab fa-github"></i></a><a href="https://wa.me/254700000000" class="footer__social-link" target="_blank"><i class="fab fa-whatsapp"></i></a><a href="mailto:hello@neurodesk.com" class="footer__social-link"><i class="fas fa-envelope"></i></a></div></div>
+      <div class="footer__col"><h4 class="footer__col-title">Services</h4><ul class="footer__col-links"><li><a href="data-science.html">Data Science</a></li><li><a href="academic-writing.html">Academic Writing</a></li><li><a href="web-development.html">Web Dev</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+      <div class="footer__col"><h4 class="footer__col-title">Company</h4><ul class="footer__col-links"><li><a href="about.html">About</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="../blog/index.html">Blog</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+      <div class="footer__col"><h4 class="footer__col-title">Contact</h4><ul class="footer__col-links"><li><a href="mailto:hello@neurodesk.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Email</a></li><li><a href="https://wa.me/254700000000" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><p class="footer__copyright">© 2025 NeuroDesk. All rights reserved.</p><div class="footer__bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+<div class="whatsapp-float"><span class="whatsapp-float__tooltip">Chat with us!</span><a href="https://wa.me/254700000000" class="whatsapp-float__btn" target="_blank"><i class="fab fa-whatsapp"></i></a></div>
+<button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
+<script src="../js/main.js"></script>
+</body>
+</html>

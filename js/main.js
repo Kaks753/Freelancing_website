@@ -1,0 +1,437 @@
+/* ============================================================
+   NeuroDesk - Main JavaScript
+   Intelligence at Your Service
+   ============================================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ============================================================
+     PAGE LOADER
+  ============================================================ */
+  const loader = document.querySelector('.page-loader');
+  if (loader) {
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        loader.classList.add('hidden');
+      }, 600);
+    });
+  }
+
+  /* ============================================================
+     NAVBAR - Scroll behavior + Active state
+  ============================================================ */
+  const navbar = document.querySelector('.navbar');
+  const hamburger = document.querySelector('.navbar__hamburger');
+  const mobileMenu = document.querySelector('.navbar__mobile');
+
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  }
+
+  // Hamburger menu toggle
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+
+    // Close on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!navbar.contains(e.target) && mobileMenu.classList.contains('open')) {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // Set active nav link
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.navbar__links a, .navbar__mobile a').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPage || (currentPage === '' && href === 'index.html') || href === './' + currentPage) {
+      link.classList.add('active');
+    }
+  });
+
+  /* ============================================================
+     HERO TYPING ANIMATION
+  ============================================================ */
+  const typingEl = document.querySelector('.hero__typing');
+  if (typingEl) {
+    const words = ['Data Scientist', 'ML Engineer', 'Web Developer', 'Academic Writer', 'Research Expert'];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+      const current = words[wordIndex];
+      if (isDeleting) {
+        typingEl.textContent = current.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typingEl.textContent = current.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      let speed = isDeleting ? 60 : 100;
+
+      if (!isDeleting && charIndex === current.length) {
+        speed = 2000;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        speed = 300;
+      }
+
+      setTimeout(type, speed);
+    }
+
+    type();
+  }
+
+  /* ============================================================
+     COUNTER ANIMATION
+  ============================================================ */
+  function animateCounter(el) {
+    const target = parseInt(el.getAttribute('data-count'));
+    const duration = 2000;
+    const suffix = el.getAttribute('data-suffix') || '';
+    const start = performance.now();
+
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // Ease out cubic
+      const value = Math.floor(eased * target);
+      el.textContent = value.toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  const counters = document.querySelectorAll('[data-count]');
+  if (counters.length) {
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+          entry.target.classList.add('counted');
+          animateCounter(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(el => counterObserver.observe(el));
+  }
+
+  /* ============================================================
+     SCROLL REVEAL ANIMATION
+  ============================================================ */
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => revealObserver.observe(el));
+  }
+
+  /* ============================================================
+     SKILL BAR ANIMATION
+  ============================================================ */
+  const skillBars = document.querySelectorAll('.skill-bar__fill');
+  if (skillBars.length) {
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+          skillObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    skillBars.forEach(el => skillObserver.observe(el));
+  }
+
+  /* ============================================================
+     FAQ ACCORDION
+  ============================================================ */
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+
+    if (question && answer) {
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        // Close all
+        faqItems.forEach(i => {
+          i.classList.remove('open');
+          const a = i.querySelector('.faq-answer');
+          if (a) a.classList.remove('open');
+        });
+        // Open clicked if was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.classList.add('open');
+        }
+      });
+    }
+  });
+
+  /* ============================================================
+     PORTFOLIO FILTER
+  ============================================================ */
+  const filterBtns = document.querySelectorAll('.portfolio-filter');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+
+      portfolioItems.forEach(item => {
+        const cat = item.getAttribute('data-category');
+        if (filter === 'all' || cat === filter) {
+          item.style.display = 'block';
+          item.style.animation = 'fadeIn 0.4s ease';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  /* ============================================================
+     CONTACT FORM
+  ============================================================ */
+  const contactForm = document.querySelector('#contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = contactForm.querySelector('[type="submit"]');
+      const originalText = btn.innerHTML;
+
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      btn.disabled = true;
+
+      // Simulate send (in real app, you'd use EmailJS or Formspree)
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+        btn.style.background = 'linear-gradient(135deg, #00E5A0, #00B87D)';
+        showToast('Message Sent!', 'We\'ll get back to you within 24 hours.');
+        contactForm.reset();
+
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+          btn.style.background = '';
+        }, 4000);
+      }, 1800);
+    });
+  }
+
+  /* ============================================================
+     TOAST NOTIFICATION
+  ============================================================ */
+  function showToast(title, message) {
+    const toast = document.querySelector('.toast');
+    if (toast) {
+      const toastTitle = toast.querySelector('strong');
+      const toastMsg = toast.querySelector('span');
+      if (toastTitle) toastTitle.textContent = title;
+      if (toastMsg) toastMsg.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+  }
+  window.showToast = showToast;
+
+  /* ============================================================
+     SCROLL TO TOP
+  ============================================================ */
+  const scrollTopBtn = document.querySelector('.scroll-top');
+  if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ============================================================
+     PRICING CALCULATOR (if on pricing page)
+  ============================================================ */
+  const calcForm = document.querySelector('#price-calculator');
+  if (calcForm) {
+    const serviceSelect = calcForm.querySelector('#calc-service');
+    const complexitySelect = calcForm.querySelector('#calc-complexity');
+    const deadlineSelect = calcForm.querySelector('#calc-deadline');
+    const resultDiv = calcForm.querySelector('#calc-result');
+
+    const basePrices = {
+      'data-analysis':     { basic: 30, standard: 80, premium: 200 },
+      'ml-model':          { basic: 80, standard: 200, premium: 500 },
+      'dashboard':         { basic: 50, standard: 120, premium: 300 },
+      'dissertation':      { basic: 60, standard: 150, premium: 350 },
+      'assignment':        { basic: 15, standard: 30,  premium: 60  },
+      'research-paper':    { basic: 40, standard: 100, premium: 250 },
+      'website':           { basic: 80, standard: 200, premium: 500 },
+      'landing-page':      { basic: 40, standard: 100, premium: 200 },
+    };
+
+    const deadlineMultiplier = {
+      'flexible': 1,
+      'standard': 1.2,
+      'urgent': 1.6,
+      'rush': 2.0,
+    };
+
+    function calcEstimate() {
+      const service = serviceSelect ? serviceSelect.value : '';
+      const complexity = complexitySelect ? complexitySelect.value : 'basic';
+      const deadline = deadlineSelect ? deadlineSelect.value : 'standard';
+
+      if (!service || !basePrices[service]) return;
+
+      const base = basePrices[service][complexity] || basePrices[service]['basic'];
+      const multiplier = deadlineMultiplier[deadline] || 1;
+      const estimate = Math.round(base * multiplier);
+      const estimateMax = Math.round(estimate * 1.4);
+
+      if (resultDiv) {
+        resultDiv.innerHTML = `
+          <div class="calc-result-inner">
+            <div class="calc-result-label">Estimated Range</div>
+            <div class="calc-result-price">$${estimate} – $${estimateMax}</div>
+            <div class="calc-result-note">Final price depends on specific requirements. <a href="contact.html" class="text-cyan">Get exact quote →</a></div>
+          </div>
+        `;
+        resultDiv.style.display = 'block';
+      }
+    }
+
+    [serviceSelect, complexitySelect, deadlineSelect].forEach(el => {
+      if (el) el.addEventListener('change', calcEstimate);
+    });
+  }
+
+  /* ============================================================
+     SMOOTH HOVER EFFECTS — Service Cards
+  ============================================================ */
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transition = 'all 0.3s cubic-bezier(0.4,0,0.2,1)';
+    });
+  });
+
+  /* ============================================================
+     PARALLAX for Hero orbs (subtle)
+  ============================================================ */
+  const orbs = document.querySelectorAll('.hero__orb');
+  if (orbs.length) {
+    window.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      orbs.forEach((orb, i) => {
+        const factor = (i + 1) * 0.5;
+        orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+      });
+    }, { passive: true });
+  }
+
+  /* ============================================================
+     INIT NAVBAR STATE
+  ============================================================ */
+  if (window.scrollY > 20 && navbar) {
+    navbar.classList.add('scrolled');
+  }
+
+});
+
+/* ============================================================
+   NAVBAR HTML GENERATOR (shared)
+============================================================ */
+function generateNavbar(activePage) {
+  return `
+  <div class="page-loader"><div class="page-loader__logo">NeuroDesk</div></div>
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="../index.html" class="navbar__logo">
+        <div class="navbar__logo-icon">🧠</div>
+        <div class="navbar__logo-text">Neuro<span>Desk</span></div>
+      </a>
+
+      <div class="navbar__links">
+        <a href="../index.html" ${activePage==='home'?'class="active"':''}>Home</a>
+        <a href="../pages/services.html" ${activePage==='services'?'class="active"':''}>Services</a>
+        <a href="../pages/portfolio.html" ${activePage==='portfolio'?'class="active"':''}>Portfolio</a>
+        <a href="../pages/pricing.html" ${activePage==='pricing'?'class="active"':''}>Pricing</a>
+        <a href="../pages/about.html" ${activePage==='about'?'class="active"':''}>About</a>
+        <a href="../blog/index.html" ${activePage==='blog'?'class="active"':''}>Blog</a>
+        <a href="../pages/faq.html" ${activePage==='faq'?'class="active"':''}>FAQ</a>
+      </div>
+
+      <div class="navbar__cta">
+        <a href="../pages/contact.html" class="btn btn-primary btn-sm">
+          <i class="fas fa-paper-plane"></i> Hire Me
+        </a>
+      </div>
+
+      <div class="navbar__hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="navbar__mobile" id="mobile-menu">
+    <a href="../index.html" ${activePage==='home'?'class="active"':''}><i class="fas fa-home"></i> Home</a>
+    <a href="../pages/services.html" ${activePage==='services'?'class="active"':''}><i class="fas fa-layer-group"></i> Services</a>
+    <a href="../pages/portfolio.html" ${activePage==='portfolio'?'class="active"':''}><i class="fas fa-briefcase"></i> Portfolio</a>
+    <a href="../pages/pricing.html" ${activePage==='pricing'?'class="active"':''}><i class="fas fa-tags"></i> Pricing</a>
+    <a href="../pages/about.html" ${activePage==='about'?'class="active"':''}><i class="fas fa-user"></i> About</a>
+    <a href="../blog/index.html" ${activePage==='blog'?'class="active"':''}><i class="fas fa-pen-nib"></i> Blog</a>
+    <a href="../pages/faq.html" ${activePage==='faq'?'class="active"':''}><i class="fas fa-question-circle"></i> FAQ</a>
+    <div class="navbar__mobile-cta">
+      <a href="../pages/contact.html" class="btn btn-primary" style="width:100%;justify-content:center">
+        <i class="fas fa-paper-plane"></i> Hire Me Now
+      </a>
+      <a href="https://wa.me/254700000000?text=Hi%20NeuroDesk!%20I'd%20like%20to%20discuss%20a%20project." class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+  </div>
+  `;
+}

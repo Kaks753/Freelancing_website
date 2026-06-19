@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuroDesk – Intelligence at Your Service | Data Science, Web Dev & Academic Writing</title>
+  <meta name="description" content="NeuroDesk is your elite freelance hub for Data Science, Machine Learning, Web Development, and Academic Writing. Expert solutions for students, businesses and startups. Get a free quote today." />
+  <meta name="keywords" content="data scientist freelancer, machine learning expert, academic writing help, dissertation writing, hire web developer, data analysis, research paper writing, Python ML, data visualization, hire data scientist" />
+  <meta name="author" content="NeuroDesk" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="NeuroDesk – Intelligence at Your Service" />
+  <meta property="og:description" content="Elite freelance services: Data Science, ML Engineering, Web Development & Academic Writing. Built for students and businesses." />
+  <meta property="og:url" content="https://neurodesk.vercel.app" />
+  <meta property="og:image" content="images/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NeuroDesk – Intelligence at Your Service" />
+  <meta name="twitter:description" content="Expert Data Science, ML, Web Dev & Academic Writing services." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://neurodesk.vercel.app" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "NeuroDesk",
+    "description": "Elite freelance services in Data Science, Machine Learning, Web Development, and Academic Writing",
+    "url": "https://neurodesk.vercel.app",
+    "serviceType": ["Data Science", "Machine Learning", "Web Development", "Academic Writing"],
+    "areaServed": "Worldwide",
+    "priceRange": "$$"
+  }
+  </script>
+</head>
+<body>
+
+<!-- Page Loader -->
+<div class="page-loader"><div class="page-loader__logo">NeuroDesk</div></div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <div class="navbar__logo-icon">🧠</div>
+      <div class="navbar__logo-text">Neuro<span>Desk</span></div>
+    </a>
+    <div class="navbar__links">
+      <a href="index.html" class="active">Home</a>
+      <a href="pages/services.html">Services</a>
+      <a href="pages/portfolio.html">Portfolio</a>
+      <a href="pages/pricing.html">Pricing</a>
+      <a href="pages/about.html">About</a>
+      <a href="blog/index.html">Blog</a>
+      <a href="pages/faq.html">FAQ</a>
+    </div>
+    <div class="navbar__cta">
+      <a href="pages/contact.html" class="btn btn-primary btn-sm">
+        <i class="fas fa-paper-plane"></i> Hire Me
+      </a>
+    </div>
+    <div class="navbar__hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="navbar__mobile" id="mobile-menu">
+  <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
+  <a href="pages/services.html"><i class="fas fa-layer-group"></i> Services</a>
+  <a href="pages/portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a>
+  <a href="pages/pricing.html"><i class="fas fa-tags"></i> Pricing</a>
+  <a href="pages/about.html"><i class="fas fa-user"></i> About</a>
+  <a href="blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a>
+  <a href="pages/faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+  <div class="navbar__mobile-cta">
+    <a href="pages/contact.html" class="btn btn-primary" style="width:100%;justify-content:center">
+      <i class="fas fa-paper-plane"></i> Hire Me Now
+    </a>
+    <a href="https://wa.me/254700000000?text=Hi%20NeuroDesk!%20I'd%20like%20to%20discuss%20a%20project." class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- ============================================================
+     HERO SECTION
+============================================================ -->
+<section class="hero" id="home">
+  <div class="hero__bg">
+    <div class="hero__grid"></div>
+    <div class="hero__orb hero__orb--1"></div>
+    <div class="hero__orb hero__orb--2"></div>
+    <div class="hero__orb hero__orb--3"></div>
+  </div>
+
+  <div class="hero__content">
+    <!-- Left -->
+    <div class="hero__left">
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        Available for Projects · Worldwide
+      </div>
+
+      <h1 class="hero__title">
+        <span class="line">Where Intelligence</span>
+        <span class="line gradient-text">Meets Execution</span>
+      </h1>
+
+      <div class="hero__typing-wrapper" style="font-family:'Space Grotesk',sans-serif; font-size:clamp(1.2rem,2.5vw,1.6rem); font-weight:700; margin-bottom: 16px;">
+        Expert <span class="hero__typing" style="color:var(--color-accent-cyan)">Data Scientist</span><span class="hero__cursor"></span>
+      </div>
+
+      <p class="hero__desc">
+        NeuroDesk delivers data-driven solutions, powerful web applications, and top-tier academic writing — all from one trusted expert. Whether you're a student, startup, or enterprise, we turn your complex challenges into clear results.
+      </p>
+
+      <div class="hero__actions">
+        <a href="pages/services.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-rocket"></i> Explore Services
+        </a>
+        <a href="pages/portfolio.html" class="btn btn-secondary btn-lg">
+          <i class="fas fa-eye"></i> View Portfolio
+        </a>
+        <a href="https://wa.me/254700000000?text=Hi%20NeuroDesk!%20I'd%20like%20to%20discuss%20a%20project." class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <span class="hero__stat-num"><span data-count="50" data-suffix="+">0+</span></span>
+          <span class="hero__stat-label">Projects Done</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num"><span data-count="40" data-suffix="+">0+</span></span>
+          <span class="hero__stat-label">Happy Clients</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num"><span data-count="3" data-suffix="">0</span></span>
+          <span class="hero__stat-label">Service Areas</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num"><span data-count="5" data-suffix="★">0★</span></span>
+          <span class="hero__stat-label">Avg. Rating</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Profile Card -->
+    <div class="hero__visual">
+      <div class="hero__card-stack">
+        <div class="hero__profile-card">
+          <div class="hero__profile-top">
+            <div class="hero__avatar">SM</div>
+            <div class="hero__profile-info">
+              <h3>Stephen Muema</h3>
+              <p>NeuroDesk · Founder & Lead Expert</p>
+            </div>
+          </div>
+
+          <div class="hero__available">Available for hire</div>
+
+          <div class="hero__skills-tags">
+            <span class="hero__skill-tag">Python</span>
+            <span class="hero__skill-tag">Machine Learning</span>
+            <span class="hero__skill-tag">TensorFlow</span>
+            <span class="hero__skill-tag">SQL</span>
+            <span class="hero__skill-tag">React</span>
+            <span class="hero__skill-tag">Academic Writing</span>
+            <span class="hero__skill-tag">SPSS</span>
+            <span class="hero__skill-tag">Power BI</span>
+          </div>
+
+          <div class="hero__rating">
+            <span class="hero__stars">★★★★★</span>
+            <span>5.0 · 40+ satisfied clients</span>
+          </div>
+        </div>
+
+        <!-- Floating Badges -->
+        <div class="hero__float-badge hero__float-badge--1">
+          <div class="hero__float-icon hero__float-icon--violet">📊</div>
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:700">ML Model</div>
+            <div style="font-size:0.72rem;color:var(--color-text-muted)">95% accuracy</div>
+          </div>
+        </div>
+
+        <div class="hero__float-badge hero__float-badge--2">
+          <div class="hero__float-icon hero__float-icon--cyan">✍️</div>
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:700">Dissertation</div>
+            <div style="font-size:0.72rem;color:var(--color-text-muted)">Delivered · A Grade</div>
+          </div>
+        </div>
+
+        <div class="hero__float-badge hero__float-badge--3">
+          <div class="hero__float-icon hero__float-icon--green">🌐</div>
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:700">Web App</div>
+            <div style="font-size:0.72rem;color:var(--color-text-muted)">Deployed Live</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TRUST BAR
+============================================================ -->
+<div class="divider"></div>
+<section class="section--sm" style="padding: 32px 0;">
+  <div class="container">
+    <div style="display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; opacity:0.6;">
+      <span style="font-size:0.8rem; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:1.5px; font-weight:600;">Trusted Tools & Platforms</span>
+      <div style="height:1px; width:40px; background:var(--color-border);"></div>
+      <span style="font-size:0.85rem; color:var(--color-text-secondary); font-weight:500;">Python</span>
+      <span style="color:var(--color-text-muted)">·</span>
+      <span style="font-size:0.85rem; color:var(--color-text-secondary); font-weight:500;">TensorFlow</span>
+      <span style="color:var(--color-text-muted)">·</span>
+      <span style="font-size:0.85rem; color:var(--color-text-secondary); font-weight:500;">Power BI</span>
+      <span style="color:var(--color-text-muted)">·</span>
+      <span style="font-size:0.85rem; color:var(--color-text-secondary); font-weight:500;">SQL / Postgres</span>
+      <span style="color:var(--color-text-muted)">·</span>
+      <span style="font-size:0.85rem; color:var(--color-text-secondary); font-weight:500;">Tableau</span>
+      <span style="color:var(--color-text-muted)">·</span>
+      <span style="font-size:0.85rem; color:var(--color-text-secondary); font-weight:500;">React.js</span>
+      <span style="color:var(--color-text-muted)">·</span>
+      <span style="font-size:0.85rem; color:var(--color-text-secondary); font-weight:500;">SPSS / R</span>
+      <span style="color:var(--color-text-muted)">·</span>
+      <span style="font-size:0.85rem; color:var(--color-text-secondary); font-weight:500;">Scikit-Learn</span>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- ============================================================
+     SERVICES OVERVIEW
+============================================================ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Three Pillars of <span>Expert Service</span></h2>
+      <p class="section-subtitle">From raw data to production models, from concept to live websites, from research topic to graded dissertation — we cover it all.</p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Data Science -->
+      <a href="pages/data-science.html" class="service-card reveal reveal-delay-1">
+        <div class="service-card__icon service-card__icon--violet">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3 class="service-card__title">Data Science & ML</h3>
+        <p class="service-card__desc">Transform your raw data into powerful insights and predictive models that drive real business decisions.</p>
+        <ul class="service-card__list">
+          <li>Machine Learning Model Development</li>
+          <li>Data Analysis & Visualization</li>
+          <li>Predictive Analytics</li>
+          <li>Statistical Modeling & NLP</li>
+          <li>Business Intelligence Dashboards</li>
+        </ul>
+        <span class="service-card__cta">Explore Service <i class="fas fa-arrow-right"></i></span>
+      </a>
+
+      <!-- Academic Writing -->
+      <a href="pages/academic-writing.html" class="service-card reveal reveal-delay-2">
+        <div class="service-card__icon service-card__icon--cyan">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3 class="service-card__title">Academic Writing</h3>
+        <p class="service-card__desc">High-quality academic work — dissertations, research papers, assignments — backed by rigorous scholarship and strict deadlines.</p>
+        <ul class="service-card__list">
+          <li>Dissertations & Theses</li>
+          <li>Research Papers & Essays</li>
+          <li>Data Analysis (SPSS, R, Python)</li>
+          <li>Literature Reviews & Proposals</li>
+          <li>Proofreading & Editing</li>
+        </ul>
+        <span class="service-card__cta">Explore Service <i class="fas fa-arrow-right"></i></span>
+      </a>
+
+      <!-- Web Development -->
+      <a href="pages/web-development.html" class="service-card reveal reveal-delay-3">
+        <div class="service-card__icon service-card__icon--pink">
+          <i class="fas fa-code"></i>
+        </div>
+        <h3 class="service-card__title">Web Development</h3>
+        <p class="service-card__desc">Modern, fast, and responsive web applications and sites that make your brand look elite from day one.</p>
+        <ul class="service-card__list">
+          <li>Business & Portfolio Websites</li>
+          <li>Data Dashboard Web Apps</li>
+          <li>Landing Pages & Sales Funnels</li>
+          <li>API Development & Integration</li>
+          <li>SEO-optimized & Mobile-first</li>
+        </ul>
+        <span class="service-card__cta">Explore Service <i class="fas fa-arrow-right"></i></span>
+      </a>
+    </div>
+
+    <div style="text-align:center; margin-top:40px;" class="reveal">
+      <a href="pages/services.html" class="btn btn-secondary btn-lg">
+        <i class="fas fa-th-large"></i> View All Services
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STATS SECTION
+============================================================ -->
+<div class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-item__num"><span data-count="50" data-suffix="+">0+</span></div>
+        <div class="stat-item__label">Projects Completed</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-item__num"><span data-count="40" data-suffix="+">0+</span></div>
+        <div class="stat-item__label">Happy Clients</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-item__num"><span data-count="100" data-suffix="%">0%</span></div>
+        <div class="stat-item__label">On-Time Delivery</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-item__num"><span data-count="3" data-suffix=" yrs">0 yrs</span></div>
+        <div class="stat-item__label">Experience</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     HOW IT WORKS
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label">The Process</div>
+      <h2 class="section-title">How <span>NeuroDesk Works</span></h2>
+      <p class="section-subtitle">A simple, streamlined process designed to get you results fast — without the back-and-forth confusion.</p>
+    </div>
+
+    <div class="process-steps">
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-step__num">01</div>
+        <h4 class="process-step__title">Share Your Brief</h4>
+        <p class="process-step__desc">Tell us your project type, goals, deadline, and budget via our contact form or WhatsApp. No lengthy sign-up needed.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-step__num">02</div>
+        <h4 class="process-step__title">Get a Custom Quote</h4>
+        <p class="process-step__desc">We review your requirements and provide a detailed, transparent quote within 2–6 hours — no hidden fees.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-step__num">03</div>
+        <h4 class="process-step__title">We Deliver Excellence</h4>
+        <p class="process-step__desc">Our expert begins work immediately with regular progress updates and milestone reviews throughout.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-4">
+        <div class="process-step__num">04</div>
+        <h4 class="process-step__title">Review & Approve</h4>
+        <p class="process-step__desc">Review the deliverables. We offer free revisions until you're 100% satisfied. Then we deliver the final files.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURED TESTIMONIALS
+============================================================ -->
+<section class="section" style="background: var(--color-bg-secondary);">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label">Client Stories</div>
+      <h2 class="section-title">What Clients <span>Say About NeuroDesk</span></h2>
+      <p class="section-subtitle">Real feedback from students, businesses, and professionals who trusted us with their most important work.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-card__quote">"</div>
+        <p class="testimonial-card__text">NeuroDesk built a full machine learning pipeline for our e-commerce platform. The model improved our sales predictions by 34%. Absolutely professional, delivered ahead of schedule!</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">JK</div>
+          <div>
+            <div class="testimonial-card__name">James Kamau</div>
+            <div class="testimonial-card__role">E-Commerce Startup CEO, Nairobi</div>
+            <div class="testimonial-card__stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-card__quote">"</div>
+        <p class="testimonial-card__text">My dissertation was a nightmare until I contacted NeuroDesk. The data analysis, methodology, and writing quality were outstanding. I got a Distinction grade. Highly recommended!</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">AM</div>
+          <div>
+            <div class="testimonial-card__name">Amelia Mwangi</div>
+            <div class="testimonial-card__role">MBA Student, University of Nairobi</div>
+            <div class="testimonial-card__stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-3">
+        <div class="testimonial-card__quote">"</div>
+        <p class="testimonial-card__text">We needed a business dashboard to track KPIs in real-time. NeuroDesk delivered a beautiful Power BI solution in 4 days. Our team can now make faster, data-informed decisions.</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">BO</div>
+          <div>
+            <div class="testimonial-card__name">Brian Otieno</div>
+            <div class="testimonial-card__role">Operations Manager, TechStart Ltd</div>
+            <div class="testimonial-card__stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;" class="reveal">
+      <a href="pages/about.html#testimonials" class="btn btn-secondary">
+        <i class="fas fa-comments"></i> Read More Reviews
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SPECIALTIES HIGHLIGHT
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
+      <div class="reveal">
+        <div class="section-label">Why NeuroDesk</div>
+        <h2 class="section-title">A Smarter Way to Get <span>Expert Help</span></h2>
+        <p class="section-subtitle" style="margin-bottom:32px;">Not a marketplace. Not an agency. A dedicated expert who knows your project personally and delivers like it's their own.</p>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:10px;background:rgba(123,47,190,0.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">⚡</div>
+            <div>
+              <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:4px;">Fast Turnaround</h4>
+              <p style="font-size:0.88rem;color:var(--color-text-secondary);">Same-day responses. Clear timelines. No waiting weeks for a reply.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:10px;background:rgba(0,212,255,0.15);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🎯</div>
+            <div>
+              <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:4px;">Quality-First Approach</h4>
+              <p style="font-size:0.88rem;color:var(--color-text-secondary);">Every deliverable is checked, refined, and tested before it reaches you.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:10px;background:rgba(0,229,160,0.15);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🔒</div>
+            <div>
+              <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:4px;">100% Confidential</h4>
+              <p style="font-size:0.88rem;color:var(--color-text-secondary);">Your data, your work, your intellectual property — always protected.</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:44px;height:44px;border-radius:10px;background:rgba(255,107,107,0.15);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🔄</div>
+            <div>
+              <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:4px;">Free Revisions</h4>
+              <p style="font-size:0.88rem;color:var(--color-text-secondary);">Not satisfied? We revise until you are. Your success is our success.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="pages/contact.html" class="btn btn-primary">Get Started Today</a>
+          <a href="pages/pricing.html" class="btn btn-secondary">View Pricing</a>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <div style="background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:36px;box-shadow:var(--shadow-card);">
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:24px;">Quick Estimate Calculator</h3>
+          <form id="price-calculator">
+            <div class="form-group">
+              <label class="form-label">Service Type</label>
+              <select class="form-select" id="calc-service">
+                <option value="">Select a service...</option>
+                <optgroup label="Data Science">
+                  <option value="data-analysis">Data Analysis & Visualization</option>
+                  <option value="ml-model">Machine Learning Model</option>
+                  <option value="dashboard">BI Dashboard</option>
+                </optgroup>
+                <optgroup label="Academic Writing">
+                  <option value="dissertation">Dissertation / Thesis</option>
+                  <option value="research-paper">Research Paper</option>
+                  <option value="assignment">Assignment / Essay</option>
+                </optgroup>
+                <optgroup label="Web Development">
+                  <option value="website">Business Website</option>
+                  <option value="landing-page">Landing Page</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Complexity Level</label>
+              <select class="form-select" id="calc-complexity">
+                <option value="basic">Basic</option>
+                <option value="standard" selected>Standard</option>
+                <option value="premium">Premium / Advanced</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Deadline</label>
+              <select class="form-select" id="calc-deadline">
+                <option value="flexible">Flexible (2+ weeks)</option>
+                <option value="standard" selected>Standard (1 week)</option>
+                <option value="urgent">Urgent (3–5 days)</option>
+                <option value="rush">Rush (24–48 hrs)</option>
+              </select>
+            </div>
+            <div id="calc-result" style="display:none;margin-bottom:16px;">
+            </div>
+            <a href="pages/contact.html" class="btn btn-primary" style="width:100%;justify-content:center">
+              <i class="fas fa-paper-plane"></i> Get Exact Quote — Free
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BLOG PREVIEW
+============================================================ -->
+<section class="section" style="background:var(--color-bg-secondary);">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label">Knowledge Hub</div>
+      <h2 class="section-title">Latest from the <span>NeuroDesk Blog</span></h2>
+      <p class="section-subtitle">Insights on data science, academic success, and digital business growth — straight from the expert.</p>
+    </div>
+
+    <div class="blog-grid">
+      <a href="blog/freelancer-vs-agency.html" class="blog-card reveal reveal-delay-1">
+        <div class="blog-card__thumb" style="background:linear-gradient(135deg,rgba(123,47,190,0.3),rgba(26,26,46,0.8));">📊</div>
+        <div class="blog-card__body">
+          <div class="blog-card__cat">Data Science</div>
+          <h3 class="blog-card__title">Freelancer vs Agency: Who Should Handle Your Data Project?</h3>
+          <p class="blog-card__excerpt">Understand the tradeoffs between hiring a freelance data scientist and a full agency, and how to make the right choice for your budget.</p>
+          <div class="blog-card__meta">
+            <span>June 2025</span>
+            <span class="blog-card__read-time"><i class="fas fa-clock"></i> 5 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="blog/dissertation-guide.html" class="blog-card reveal reveal-delay-2">
+        <div class="blog-card__thumb" style="background:linear-gradient(135deg,rgba(0,212,255,0.25),rgba(26,26,46,0.8));">✍️</div>
+        <div class="blog-card__body">
+          <div class="blog-card__cat">Academic Writing</div>
+          <h3 class="blog-card__title">The Ultimate Dissertation Survival Guide: From Topic to Submission</h3>
+          <p class="blog-card__excerpt">A complete roadmap for navigating your dissertation from choosing a topic to your final submission — with expert tips at every stage.</p>
+          <div class="blog-card__meta">
+            <span>May 2025</span>
+            <span class="blog-card__read-time"><i class="fas fa-clock"></i> 8 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="blog/web-presence.html" class="blog-card reveal reveal-delay-3">
+        <div class="blog-card__thumb" style="background:linear-gradient(135deg,rgba(255,107,107,0.25),rgba(26,26,46,0.8));">🌐</div>
+        <div class="blog-card__body">
+          <div class="blog-card__cat">Web Development</div>
+          <h3 class="blog-card__title">Why Your Business Needs a Web Presence in 2025 (And How to Build One)</h3>
+          <p class="blog-card__excerpt">In 2025, not having a website is not an option. Here's why digital presence is crucial and exactly how to get started affordably.</p>
+          <div class="blog-card__meta">
+            <span>April 2025</span>
+            <span class="blog-card__read-time"><i class="fas fa-clock"></i> 6 min read</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;" class="reveal">
+      <a href="blog/index.html" class="btn btn-secondary">
+        <i class="fas fa-pen-nib"></i> Read All Articles
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div class="cta-banner__content">
+        <div class="section-label" style="justify-content:center;">Ready to Start?</div>
+        <h2 class="cta-banner__title">Let's Build Something <span style="background:linear-gradient(135deg,var(--color-accent-violet),var(--color-accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Extraordinary</span></h2>
+        <p class="cta-banner__subtitle">Whether it's a data model, a research paper, or a full website — we're ready to deliver. No project too complex, no deadline too tight.</p>
+        <div class="cta-banner__actions">
+          <a href="pages/contact.html" class="btn btn-primary btn-lg">
+            <i class="fas fa-paper-plane"></i> Start Your Project
+          </a>
+          <a href="https://wa.me/254700000000?text=Hi%20NeuroDesk!%20I'd%20like%20to%20discuss%20a%20project." class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="navbar__logo" style="margin-bottom:16px;display:inline-flex;">
+          <div class="navbar__logo-icon">🧠</div>
+          <div class="navbar__logo-text">Neuro<span>Desk</span></div>
+        </a>
+        <p>Intelligence at Your Service. Expert Data Science, Academic Writing, and Web Development — delivered with precision.</p>
+        <div class="footer__socials">
+          <a href="https://linkedin.com" class="footer__social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com" class="footer__social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://wa.me/254700000000" class="footer__social-link" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:hello@neurodesk.com" class="footer__social-link" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4 class="footer__col-title">Services</h4>
+        <ul class="footer__col-links">
+          <li><a href="pages/data-science.html">Data Science & ML</a></li>
+          <li><a href="pages/academic-writing.html">Academic Writing</a></li>
+          <li><a href="pages/web-development.html">Web Development</a></li>
+          <li><a href="pages/services.html">All Services</a></li>
+          <li><a href="pages/pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4 class="footer__col-title">Company</h4>
+        <ul class="footer__col-links">
+          <li><a href="pages/about.html">About NeuroDesk</a></li>
+          <li><a href="pages/portfolio.html">Portfolio</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
+          <li><a href="pages/faq.html">FAQ</a></li>
+          <li><a href="pages/contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4 class="footer__col-title">Contact</h4>
+        <ul class="footer__col-links">
+          <li><a href="mailto:hello@neurodesk.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i> hello@neurodesk.com</a></li>
+          <li><a href="https://wa.me/254700000000" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i> WhatsApp Chat</a></li>
+          <li><a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in" style="margin-right:6px;color:#0A66C2"></i> LinkedIn</a></li>
+          <li><a href="pages/contact.html"><i class="fas fa-paper-plane" style="margin-right:6px;color:var(--color-accent-cyan)"></i> Send a Message</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2025 NeuroDesk. All rights reserved. Intelligence at Your Service.</p>
+      <div class="footer__bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<div class="whatsapp-float">
+  <span class="whatsapp-float__tooltip">Chat with us now!</span>
+  <a href="https://wa.me/254700000000?text=Hi%20NeuroDesk!%20I'd%20like%20to%20discuss%20a%20project." class="whatsapp-float__btn" target="_blank" rel="noopener" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <span class="toast__icon">✅</span>
+  <div class="toast__text">
+    <strong>Success!</strong>
+    <span>Your message has been sent.</span>
+  </div>
+</div>
+
+<!-- Scroll to top -->
+<button class="scroll-top" id="scrollTop" title="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- Calc result style -->
+<style>
+.calc-result-inner {
+  background: rgba(0,229,160,0.1);
+  border: 1px solid rgba(0,229,160,0.3);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.calc-result-label {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.calc-result-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-accent-green);
+  margin-bottom: 8px;
+}
+.calc-result-note {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+.text-cyan { color: var(--color-accent-cyan); }
+
+/* WHY section responsive */
+@media (max-width: 768px) {
+  .section > .container > div[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
+
+<script src="js/main.js"></script>
+</body>
+</html>
