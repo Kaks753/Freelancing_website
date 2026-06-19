@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Price Your Freelance Services as a Developer or Data Scientist in Kenya – NeuroDesk Blog</title>
+  <meta name="description" content="A no-nonsense guide to pricing your freelance dev and data science services in Kenya — covering hourly rates, project pricing, value-based models, and how to handle client pushback." />
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .article-hero-img { width:100%; height:420px; object-fit:cover; border-radius:var(--radius-xl); margin-bottom:32px; display:block; }
+    .article-body { max-width:760px; margin:0 auto; }
+    .article-body h2 { font-family:'Space Grotesk',sans-serif; font-size:1.45rem; font-weight:700; margin:32px 0 12px; color:white; }
+    .article-body h3 { font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:700; margin:24px 0 10px; color:var(--color-accent-cyan); }
+    .article-body p { color:var(--color-text-secondary); line-height:1.9; margin-bottom:16px; }
+    .article-body ul, .article-body ol { margin:0 0 18px 22px; }
+    .article-body ul li, .article-body ol li { color:var(--color-text-secondary); line-height:1.8; margin-bottom:8px; }
+    .article-body strong { color:white; }
+    .article-body blockquote { border-left:3px solid var(--color-accent-violet); padding:16px 24px; margin:24px 0; background:rgba(123,47,190,0.08); border-radius:0 var(--radius-md) var(--radius-md) 0; font-style:italic; color:var(--color-text-secondary); }
+    .stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:24px 0; }
+    .stat-box { background:var(--color-bg-card); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:20px; text-align:center; }
+    .stat-box__num { font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:700; color:var(--color-accent-violet); display:block; }
+    .stat-box__label { font-size:0.8rem; color:var(--color-text-muted); margin-top:4px; }
+    .price-table { width:100%; border-collapse:collapse; margin:24px 0; }
+    .price-table th { background:rgba(123,47,190,0.15); color:white; font-family:'Space Grotesk',sans-serif; font-size:0.9rem; padding:12px 16px; text-align:left; border:1px solid var(--color-border); }
+    .price-table td { padding:12px 16px; border:1px solid var(--color-border); color:var(--color-text-secondary); font-size:0.9rem; }
+    .price-table tr:nth-child(even) td { background:rgba(255,255,255,0.02); }
+    .price-tag { display:inline-block; background:rgba(0,229,160,0.12); border:1px solid rgba(0,229,160,0.3); color:var(--color-accent-green); padding:3px 10px; border-radius:40px; font-size:0.8rem; font-weight:600; }
+    .tip-box { background:rgba(0,212,255,0.06); border:1px solid rgba(0,212,255,0.2); border-radius:var(--radius-md); padding:18px 22px; margin:24px 0; }
+    .tip-box__label { font-family:'Space Grotesk',sans-serif; font-size:0.78rem; font-weight:700; color:var(--color-accent-cyan); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+    .tip-box p { margin-bottom:0; color:var(--color-text-secondary); font-size:0.93rem; }
+    .cta-box { background:linear-gradient(135deg,rgba(123,47,190,0.18),rgba(0,212,255,0.1)); border:1px solid rgba(123,47,190,0.35); border-radius:var(--radius-xl); padding:36px 32px; text-align:center; margin:40px 0 0; }
+    .cta-box h3 { font-family:'Space Grotesk',sans-serif; font-size:1.5rem; font-weight:700; margin-bottom:12px; }
+    .cta-box p { color:var(--color-text-muted); font-size:0.93rem; margin-bottom:24px; }
+    @media(max-width:600px){ .stat-row{grid-template-columns:1fr 1fr;} .article-hero-img{height:220px;} }
+  </style>
+</head>
+<body>
+<div class="page-loader"><div class="page-loader__logo">NeuroDesk</div></div>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__logo"><div class="navbar__logo-icon">🧠</div><div class="navbar__logo-text">Neuro<span>Desk</span></div></a>
+    <div class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../pages/services.html">Services</a>
+      <a href="../pages/portfolio.html">Portfolio</a>
+      <a href="../pages/pricing.html">Pricing</a>
+      <a href="../pages/about.html">About</a>
+      <a href="index.html" class="active">Blog</a>
+      <a href="../pages/faq.html">FAQ</a>
+    </div>
+    <div class="navbar__cta"><a href="../pages/contact.html" class="btn btn-primary btn-sm"><i class="fas fa-paper-plane"></i> Hire Me</a></div>
+    <div class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="navbar__mobile" id="mobile-menu">
+  <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="../pages/services.html"><i class="fas fa-layer-group"></i> Services</a>
+  <a href="../pages/portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a>
+  <a href="../pages/pricing.html"><i class="fas fa-tags"></i> Pricing</a>
+  <a href="../pages/about.html"><i class="fas fa-user"></i> About</a>
+  <a href="index.html" class="active"><i class="fas fa-pen-nib"></i> Blog</a>
+  <a href="../pages/faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+  <div class="navbar__mobile-cta">
+    <a href="../pages/contact.html" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Hire Me Now</a>
+    <a href="https://wa.me/254740624253" class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+</div>
+
+<section class="page-hero" style="padding-bottom:20px;">
+  <div class="page-hero__bg"><div class="page-hero__bg-orb page-hero__bg-orb--1"></div><div class="page-hero__bg-orb page-hero__bg-orb--2"></div></div>
+  <div class="container">
+    <div class="page-hero__content">
+      <div class="section-label" style="justify-content:center;">Freelance Strategy</div>
+      <h1 class="page-hero__title" style="font-size:clamp(1.8rem,4vw,2.8rem);">How to Price Your Freelance Services as a Developer or Data Scientist in Kenya</h1>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:0.85rem;color:var(--color-text-muted);">
+        <span><i class="fas fa-user" style="margin-right:4px;color:var(--color-accent-cyan)"></i>Stephen Muema</span>
+        <span><i class="fas fa-calendar" style="margin-right:4px;color:var(--color-accent-violet)"></i>June 2025</span>
+        <span><i class="fas fa-clock" style="margin-right:4px;color:var(--color-accent-green)"></i>10 min read</span>
+        <span><i class="fas fa-tag" style="margin-right:4px;color:var(--color-accent-pink)"></i>Freelance Strategy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:20px;">
+  <div class="container">
+    <div class="article-body">
+
+      <img src="../images/blog/cover-freelance-pricing.jpg" alt="How to Price Your Freelance Services in Kenya" class="article-hero-img" loading="lazy" />
+
+      <p><strong>Pricing is the conversation that every Kenyan freelancer dreads but can't avoid.</strong> Set it too low and you'll attract clients who don't respect your time. Set it too high without the right positioning and you'll hear crickets. Get it right, and you build a sustainable, growing income — on your own terms.</p>
+
+      <p>I've been freelancing in data science, web development, and academic writing for several years. I've made every pricing mistake in the book — from giving away work for free "to build the portfolio," to wildly undercharging relative to the value I delivered. This guide is what I wish I'd had at the beginning.</p>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <span class="stat-box__num">KES 800</span>
+          <div class="stat-box__label">Avg. local hourly floor for junior dev work (2025)</div>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box__num">$15–$45</span>
+          <div class="stat-box__label">Upwork/Fiverr hourly range for KE data scientists</div>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box__num">3×</span>
+          <div class="stat-box__label">Typical value-based markup over time-based pricing</div>
+        </div>
+      </div>
+
+      <h2>Why Pricing Is So Hard in Kenya (and East Africa)</h2>
+      <p>The Kenyan freelance market operates at the intersection of two very different economies: local clients with local budgets, and international clients with international expectations. That creates a real tension.</p>
+
+      <p>Local clients — SMEs, NGOs, startups, university departments — often have tight budgets and will anchor to what they imagine things "should" cost. Many have no reference point for what a machine learning pipeline or a custom web app actually involves. They'll compare your quote to a Fiverr gig they saw for $30 without understanding the scope difference.</p>
+
+      <p>International clients (via platforms like Upwork, direct LinkedIn outreach, or referrals from the diaspora) benchmark you against what they'd pay developers in Eastern Europe or Southeast Asia — and will often try to pay below that because "you're in Africa."</p>
+
+      <p>Navigating both markets requires a clear, principled pricing strategy. Here's how to build one.</p>
+
+      <h2>Step 1 — Know Your Floor Before You Quote Anything</h2>
+      <p>Your <strong>floor rate</strong> is the minimum you must charge to make freelancing financially viable. Calculate it like this:</p>
+      <ol>
+        <li><strong>Monthly expenses:</strong> Rent, food, transport, internet, electricity, subscriptions, savings target.</li>
+        <li><strong>Monthly overhead:</strong> Software tools, hardware depreciation, professional development.</li>
+        <li><strong>Billable hours:</strong> Not all work hours are billable. Admin, proposals, client calls, learning — estimate 50–60% of your 40-hr week as truly billable.</li>
+        <li><strong>Buffer:</strong> Add 30% for irregular income months, taxes, and unexpected expenses.</li>
+      </ol>
+
+      <div class="tip-box">
+        <div class="tip-box__label"><i class="fas fa-calculator"></i> Quick Floor Rate Formula</div>
+        <p>Floor Hourly Rate = (Monthly Expenses + Overhead + 30% Buffer) ÷ Monthly Billable Hours.<br><br>
+        Example: (KES 45,000 expenses + KES 8,000 overhead) × 1.3 ÷ 80 billable hours = <strong>≈ KES 872/hr</strong>. Round up to KES 900. Never go below this.</p>
+      </div>
+
+      <h2>Step 2 — Understand the Three Pricing Models</h2>
+
+      <h3>1. Hourly Rate</h3>
+      <p>Best for: exploratory projects, consulting, ongoing retainers, or when scope is genuinely unclear.</p>
+      <ul>
+        <li>Transparent and easy to track for both parties.</li>
+        <li>Protects you when projects expand unexpectedly.</li>
+        <li>Weakness: penalizes you for being fast and experienced. As you get better, you earn less per task.</li>
+        <li>Local market: KES 800–2,500/hr for dev work. Data science: KES 1,500–4,000/hr.</li>
+        <li>International market: $15–$45/hr for data science; $12–$35/hr for web dev (depending on tech stack).</li>
+      </ul>
+
+      <h3>2. Project-Based (Fixed Price)</h3>
+      <p>Best for: well-defined deliverables with clear scope — e.g., "Build a 5-page portfolio website," "Create a sales dashboard in Power BI."</p>
+      <ul>
+        <li>Clients love certainty. No surprise invoices.</li>
+        <li>You earn more per hour if you're efficient.</li>
+        <li>Critical: Always define scope in writing. Add 20–30% to your time estimate, then price it.</li>
+        <li>Build a change-request clause: additional features = additional invoice.</li>
+      </ul>
+
+      <h3>3. Value-Based Pricing</h3>
+      <p>Best for: high-impact work where you can quantify business outcomes — revenue generated, cost savings, time saved, risk reduced.</p>
+      <ul>
+        <li>Example: "This churn model will help you retain 5% more customers. At KES 20,000 average lifetime value per customer, retaining 100 customers = KES 2M. We'll charge KES 180,000 for this project." That's 9% of the expected value — extremely reasonable.</li>
+        <li>Requires client education and strong discovery conversations.</li>
+        <li>This is where top-tier freelancers operate. It's 3–5× what you'd earn hourly for the same work.</li>
+      </ul>
+
+      <blockquote>"Stop selling time. Start selling outcomes. A client doesn't want a data model — they want fewer customer churn events. Price the outcome, not the spreadsheet."</blockquote>
+
+      <h2>Step 3 — Benchmark Against the Market (Realistically)</h2>
+      <p>Reference ranges for Kenya-based tech freelancers in 2025:</p>
+
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Local (KES)</th>
+            <th>International (USD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Landing page / portfolio site (HTML/CSS/JS)</td>
+            <td>8,000 – 20,000</td>
+            <td>$200 – $600</td>
+          </tr>
+          <tr>
+            <td>Full business website (5–8 pages, CMS)</td>
+            <td>25,000 – 70,000</td>
+            <td>$700 – $2,500</td>
+          </tr>
+          <tr>
+            <td>E-commerce site (product catalog, payments)</td>
+            <td>50,000 – 150,000</td>
+            <td>$1,500 – $5,000</td>
+          </tr>
+          <tr>
+            <td>Data analysis report (Python/R, 1 dataset)</td>
+            <td>5,000 – 15,000</td>
+            <td>$150 – $500</td>
+          </tr>
+          <tr>
+            <td>ML model (classification/regression, full pipeline)</td>
+            <td>25,000 – 80,000</td>
+            <td>$800 – $3,500</td>
+          </tr>
+          <tr>
+            <td>Dashboard (Power BI / Tableau / custom)</td>
+            <td>12,000 – 40,000</td>
+            <td>$400 – $1,500</td>
+          </tr>
+          <tr>
+            <td>Academic dissertation (full project support)</td>
+            <td>8,000 – 35,000</td>
+            <td>$250 – $1,200</td>
+          </tr>
+          <tr>
+            <td>Hourly consulting (strategy / review)</td>
+            <td>1,200 – 3,500/hr</td>
+            <td>$25 – $75/hr</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tip-box">
+        <div class="tip-box__label"><i class="fas fa-lightbulb"></i> Pro Tip</div>
+        <p>These are ranges, not ceilings. A senior specialist with a strong portfolio and testimonials can charge 2–3× the upper range on international platforms. Build your portfolio aggressively in year one, then raise rates every 6 months.</p>
+      </div>
+
+      <h2>Step 4 — Structure Your Quotes to Win</h2>
+      <p>How you present a price matters as much as the number itself. A quote that reads "KES 30,000 for website" loses to one that reads:</p>
+      <ul>
+        <li><strong>Discovery &amp; Strategy:</strong> Requirements gathering, competitor audit, wireframe — 5 hrs × KES 1,500 = KES 7,500</li>
+        <li><strong>Design &amp; Development:</strong> 5-page responsive site, mobile-optimized — KES 16,000</li>
+        <li><strong>Testing &amp; QA:</strong> Cross-browser, speed, accessibility check — KES 3,500</li>
+        <li><strong>Launch + 30-day support:</strong> DNS, hosting setup, minor tweaks — KES 3,000</li>
+        <li><strong>Total: KES 30,000</strong></li>
+      </ul>
+      <p>Same number. Completely different perception of value. Itemized quotes reduce price sensitivity because clients see what they're getting at each line, not one scary lump sum.</p>
+
+      <h2>Step 5 — Handle the "That's Too Expensive" Objection</h2>
+      <p>You'll hear this. Here's how to respond without panicking and slashing your rate:</p>
+
+      <h3>Don't apologize. Anchor to value.</h3>
+      <p>"I understand budget is a real concern. Let me ask — what's the cost of not having this done, or done poorly? A slow, buggy website loses customers every week. A flawed data model gives you bad decisions for months. The price I've quoted reflects the level of quality that avoids those costs."</p>
+
+      <h3>Offer a scope reduction, not a rate reduction.</h3>
+      <p>"If budget is tight, here's what we can do: I can deliver the core 3 pages now for KES 16,000, and we add the remaining pages in Phase 2 when budget allows. My rate stays the same — we just break the project into pieces."</p>
+
+      <h3>Walk away gracefully if needed.</h3>
+      <p>Some clients will never pay what your work is worth. That's okay. Politely decline: "I appreciate the opportunity, but at that rate I wouldn't be able to deliver the quality I commit to every project. I'd rather refer you to someone whose pricing fits your budget." Then move on. Your time is finite.</p>
+
+      <h2>Step 6 — Build Retainer Relationships for Stable Income</h2>
+      <p>Project income is volatile. One month you have four clients; the next, none. Retainers fix this.</p>
+
+      <p>A <strong>retainer</strong> is a monthly fee a client pays to have guaranteed access to a set number of hours or deliverables. Example: "KES 15,000/month for 10 hours of data analysis support, 1 monthly report, and priority turnaround."</p>
+
+      <p>Benefits:</p>
+      <ul>
+        <li>Predictable income — you can plan your life.</li>
+        <li>Deeper client relationships and trust.</li>
+        <li>Lower marketing effort — you're not always hunting for new projects.</li>
+        <li>Clients value you more because they have a dedicated relationship, not a transactional one.</li>
+      </ul>
+
+      <div class="tip-box">
+        <div class="tip-box__label"><i class="fas fa-handshake"></i> Retainer Pitch</div>
+        <p>After completing a successful project, say: "I'd love to keep working with you. Many of my clients find it easier to have a monthly arrangement — it gives you priority access to my schedule and keeps your project momentum going. Would you be open to a small monthly retainer?" Most satisfied clients say yes.</p>
+      </div>
+
+      <h2>Step 7 — Raise Your Rates (Without Losing Clients)</h2>
+      <p>If you haven't raised your rates in 12 months, you've effectively taken a pay cut due to inflation and skill growth. Here's a simple process:</p>
+      <ol>
+        <li><strong>Give notice:</strong> "From [date], my rates will increase by 20%. Your current project is unaffected — this applies to new engagements."</li>
+        <li><strong>Justify with growth:</strong> "Over the past year, I've expanded my skills in [X], delivered [Y] projects, and improved my processes. This rate reflects that growth."</li>
+        <li><strong>Grandfather loyal clients temporarily:</strong> Offer a 3–6 month grace period at the old rate for your best clients. They'll appreciate it — and most will accept the new rate when the grace period ends.</li>
+        <li><strong>Raise for new clients immediately.</strong> No negotiating. New clients have no reference to your old rate, so the new one is just your rate.</li>
+      </ol>
+
+      <h2>Common Pricing Mistakes to Avoid</h2>
+      <ul>
+        <li><strong>Working for "exposure":</strong> Exposure doesn't pay rent. Your portfolio needs 2–3 strong projects — build those for friends or non-profits if needed, then stop discounting for everyone claiming to be a good reference.</li>
+        <li><strong>Charging less for local clients without good reason:</strong> Local clients have real budgets. Many Kenyan businesses spend millions on marketing but balk at KES 30,000 for a website because they don't understand its ROI. Educate, don't discount.</li>
+        <li><strong>No payment terms:</strong> Always take 40–50% upfront. Non-negotiable. Clients who won't pay a deposit won't pay at all, or will disappear after delivery.</li>
+        <li><strong>Scope creep without extra billing:</strong> Every add-on, every "small change," every "can you also add…" is a billable event. Track scope and enforce it kindly but firmly.</li>
+        <li><strong>Competing on price:</strong> There will always be someone cheaper. Compete on reliability, quality, communication, and outcomes. Be the premium option, not the cheapest.</li>
+      </ul>
+
+      <h2>Quick-Start Checklist: Setting Up Your Pricing System</h2>
+      <ul>
+        <li>☑ Calculate your monthly floor rate using the formula above</li>
+        <li>☑ Define your three tiers: starter, standard, premium (see NeuroDesk <a href="../pages/pricing.html" style="color:var(--color-accent-cyan);">pricing page</a> for an example)</li>
+        <li>☑ Create an itemized proposal template in Google Docs or Notion</li>
+        <li>☑ Add a payment terms section to all proposals: 40–50% upfront, remainder on delivery</li>
+        <li>☑ Set a calendar reminder every 6 months to review and raise rates</li>
+        <li>☑ Identify 2–3 of your best current clients to pitch retainer arrangements</li>
+        <li>☑ Practice your value-anchoring response to "that's too expensive" in the mirror</li>
+      </ul>
+
+      <div class="cta-box reveal">
+        <h3>Ready to Work with a Freelancer Who Prices Fairly?</h3>
+        <p>Every quote from NeuroDesk is itemized, transparent, and tied to real value. No inflated estimates. No surprise fees. See the standard packages or reach out for a custom quote.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
+          <a href="../pages/pricing.html" class="btn btn-primary"><i class="fas fa-tags"></i> View Pricing</a>
+          <a href="https://wa.me/254740624253?text=Hi%20Stephen%2C%20I%27d%20like%20a%20quote%20for%20my%20project." class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Get a Quote on WhatsApp</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="../index.html" class="navbar__logo" style="margin-bottom:16px;display:inline-flex;"><div class="navbar__logo-icon">🧠</div><div class="navbar__logo-text">Neuro<span>Desk</span></div></a>
+        <p>Intelligence at Your Service.</p>
+        <div class="footer__socials">
+          <a href="https://www.linkedin.com/in/stephen-muema-617339359" class="footer__social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/Kaks753" class="footer__social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://wa.me/254740624253" class="footer__social-link" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:musyokas753@gmail.com" class="footer__social-link" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer__col"><h4 class="footer__col-title">Services</h4><ul class="footer__col-links"><li><a href="../pages/data-science.html">Data Science</a></li><li><a href="../pages/academic-writing.html">Academic Writing</a></li><li><a href="../pages/web-development.html">Web Dev</a></li><li><a href="../pages/pricing.html">Pricing</a></li></ul></div>
+      <div class="footer__col"><h4 class="footer__col-title">Company</h4><ul class="footer__col-links"><li><a href="../pages/about.html">About</a></li><li><a href="../pages/portfolio.html">Portfolio</a></li><li><a href="index.html">Blog</a></li><li><a href="../pages/faq.html">FAQ</a></li></ul></div>
+      <div class="footer__col"><h4 class="footer__col-title">Contact</h4><ul class="footer__col-links"><li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Email Us</a></li><li><a href="https://wa.me/254740624253" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li><li><a href="https://www.linkedin.com/in/stephen-muema-617339359" target="_blank"><i class="fab fa-linkedin-in" style="margin-right:6px;color:var(--color-accent-cyan)"></i>LinkedIn</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><p class="footer__copyright">© 2025 NeuroDesk. All rights reserved.</p><div class="footer__bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+
+<div class="whatsapp-float"><span class="whatsapp-float__tooltip">Chat with us!</span><a href="https://wa.me/254740624253" class="whatsapp-float__btn" target="_blank"><i class="fab fa-whatsapp"></i></a></div>
+<div class="toast" id="toast"></div>
+<button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
+<script src="../js/main.js"></script>
+</body>
+</html>

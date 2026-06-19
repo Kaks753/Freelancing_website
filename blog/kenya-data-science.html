@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Science in Kenya: A Practical Guide to Breaking In – NeuroDesk Blog</title>
+  <meta name="description" content="A candid guide to breaking into data science in Kenya — from the best learning paths and local datasets to building a portfolio that actually gets you hired." />
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .article-hero-img { width:100%; height:420px; object-fit:cover; border-radius:var(--radius-xl); margin-bottom:32px; display:block; }
+    .article-body { max-width:760px; margin:0 auto; }
+    .article-body h2 { font-family:'Space Grotesk',sans-serif; font-size:1.45rem; font-weight:700; margin:32px 0 12px; color:white; }
+    .article-body h3 { font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:700; margin:24px 0 10px; color:var(--color-accent-cyan); }
+    .article-body p { color:var(--color-text-secondary); line-height:1.9; margin-bottom:16px; }
+    .article-body ul, .article-body ol { margin:0 0 18px 22px; }
+    .article-body ul li, .article-body ol li { color:var(--color-text-secondary); line-height:1.8; margin-bottom:8px; }
+    .article-body strong { color:white; }
+    .article-body blockquote { border-left:3px solid var(--color-accent-cyan); padding:16px 24px; margin:24px 0; background:rgba(0,212,255,0.07); border-radius:0 var(--radius-md) var(--radius-md) 0; font-style:italic; color:var(--color-text-secondary); }
+    .stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:24px 0; }
+    .stat-box { background:var(--color-bg-card); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:20px; text-align:center; }
+    .stat-box__num { font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:700; color:var(--color-accent-cyan); display:block; }
+    .stat-box__label { font-size:0.8rem; color:var(--color-text-muted); margin-top:4px; }
+    .resource-card { background:var(--color-bg-card); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:18px 20px; margin-bottom:12px; display:flex; align-items:flex-start; gap:14px; }
+    .resource-card__icon { font-size:22px; flex-shrink:0; margin-top:2px; }
+    .resource-card__title { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:0.95rem; color:white; margin-bottom:4px; }
+    .resource-card__desc { font-size:0.83rem; color:var(--color-text-muted); }
+    @media(max-width:600px){ .stat-row{grid-template-columns:1fr 1fr;} }
+  </style>
+</head>
+<body>
+<div class="page-loader"><div class="page-loader__logo">NeuroDesk</div></div>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__logo"><div class="navbar__logo-icon">🧠</div><div class="navbar__logo-text">Neuro<span>Desk</span></div></a>
+    <div class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../pages/services.html">Services</a>
+      <a href="../pages/portfolio.html">Portfolio</a>
+      <a href="../pages/pricing.html">Pricing</a>
+      <a href="../pages/about.html">About</a>
+      <a href="index.html" class="active">Blog</a>
+      <a href="../pages/faq.html">FAQ</a>
+    </div>
+    <div class="navbar__cta"><a href="../pages/contact.html" class="btn btn-primary btn-sm"><i class="fas fa-paper-plane"></i> Hire Me</a></div>
+    <div class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="navbar__mobile" id="mobile-menu">
+  <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="../pages/services.html"><i class="fas fa-layer-group"></i> Services</a>
+  <a href="../pages/portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a>
+  <a href="../pages/pricing.html"><i class="fas fa-tags"></i> Pricing</a>
+  <a href="../pages/about.html"><i class="fas fa-user"></i> About</a>
+  <a href="index.html" class="active"><i class="fas fa-pen-nib"></i> Blog</a>
+  <a href="../pages/faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+  <div class="navbar__mobile-cta">
+    <a href="../pages/contact.html" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Hire Me Now</a>
+    <a href="https://wa.me/254740624253" class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+</div>
+
+<section class="page-hero" style="padding-bottom:20px;">
+  <div class="page-hero__bg"><div class="page-hero__bg-orb page-hero__bg-orb--1"></div><div class="page-hero__bg-orb page-hero__bg-orb--2"></div></div>
+  <div class="container">
+    <div class="page-hero__content">
+      <div class="section-label" style="justify-content:center;">Data Science</div>
+      <h1 class="page-hero__title" style="font-size:clamp(1.8rem,4vw,2.8rem);">Data Science in Kenya: A Practical Guide to Breaking In</h1>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:16px;font-size:0.85rem;color:var(--color-text-muted);">
+        <span><i class="fas fa-user" style="margin-right:4px;color:var(--color-accent-cyan)"></i>Stephen Muema</span>
+        <span><i class="fas fa-calendar" style="margin-right:4px;color:var(--color-accent-violet)"></i>June 2025</span>
+        <span><i class="fas fa-clock" style="margin-right:4px;color:var(--color-accent-green)"></i>9 min read</span>
+        <span><i class="fas fa-tag" style="margin-right:4px;color:var(--color-accent-pink)"></i>Data Science</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:24px;">
+  <div class="container">
+    <div class="article-body">
+
+      <img src="../images/blog/cover-kenya-data-science.jpg" alt="Data Science in Kenya" class="article-hero-img" loading="lazy" />
+
+      <p><strong>Kenya is having a data moment.</strong> M-Pesa generates billions of transactions. Safaricom runs one of Africa's most sophisticated telecoms networks. The Nairobi Securities Exchange, KNBS, World Bank Kenya offices, and dozens of fintech startups are all sitting on mountains of data — and desperately need people who can make sense of it.</p>
+      <p>I went through this journey myself — Mathematics degree, Moringa School data science bootcamp, DrivenData competitions, building real projects with Kenyan data. Here's the honest, unfiltered guide I wish I'd had when I started.</p>
+
+      <div class="stat-row">
+        <div class="stat-box"><span class="stat-box__num">47%</span><div class="stat-box__label">Projected growth in Kenya tech jobs by 2027 (Jobberman Africa)</div></div>
+        <div class="stat-box"><span class="stat-box__num">KES 120K+</span><div class="stat-box__label">Average monthly salary for mid-level data scientists in Nairobi</div></div>
+        <div class="stat-box"><span class="stat-box__num">3–6 mo</span><div class="stat-box__label">Time to land first paid project with the right portfolio</div></div>
+      </div>
+
+      <h2>Step 1: Get the Foundations Right (Don't Skip This)</h2>
+      <p>Every successful data scientist I know has three things in common: strong Python fundamentals, solid statistics knowledge, and the habit of working with real data from day one. Everything else — deep learning, MLOps, Spark — comes later.</p>
+      <p>Your non-negotiable foundation:</p>
+      <ul>
+        <li><strong>Python:</strong> pandas, NumPy, matplotlib, scikit-learn. Know these like your native language.</li>
+        <li><strong>Statistics:</strong> hypothesis testing, distributions, p-values, regression. Read <em>Statistics Without Tears</em> by Rowntree first, then go deeper.</li>
+        <li><strong>SQL:</strong> Every company has a database. If you can't query it, you can't work with the data.</li>
+        <li><strong>Git:</strong> Version control isn't optional. It's how you prove your work exists.</li>
+      </ul>
+
+      <h2>Step 2: Use Kenyan Data — It's Your Unfair Advantage</h2>
+      <p>Most beginner data scientists practice on the Titanic dataset and the Iris flowers. That's fine for learning, but your <strong>portfolio will be forgettable</strong>. Here's the move: build projects with Kenyan and African data. You'll stand out immediately — to local companies and to international clients who want "on-the-ground" expertise.</p>
+
+      <h3>Where to Find Real Kenyan Data</h3>
+      <div class="resource-card">
+        <div class="resource-card__icon">🌍</div>
+        <div><div class="resource-card__title">Kenya Open Data Portal — opendata.go.ke</div><div class="resource-card__desc">Official government datasets: census, health, education, agriculture. Goldmine for public sector analysis.</div></div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-card__icon">🏦</div>
+        <div><div class="resource-card__title">Central Bank of Kenya — cbk.go.ke</div><div class="resource-card__desc">Monetary policy reports, bank supervision data, forex rates — great for financial analysis projects.</div></div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-card__icon">📊</div>
+        <div><div class="resource-card__title">KNBS — knbs.or.ke</div><div class="resource-card__desc">Kenya National Bureau of Statistics: consumer price index, trade data, GDP quarterly reports.</div></div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-card__icon">💧</div>
+        <div><div class="resource-card__title">WFP Data — data.humdata.org</div><div class="resource-card__desc">Food prices, humanitarian data across East Africa. My Tanzania Water Wells project came from here.</div></div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-card__icon">📈</div>
+        <div><div class="resource-card__title">NSE Data — nse.co.ke</div><div class="resource-card__desc">Nairobi Securities Exchange historical prices. Perfect for financial ML and clustering projects.</div></div>
+      </div>
+
+      <h2>Step 3: Build a Portfolio That Proves You Can Do the Job</h2>
+      <p>Certificates are table stakes. What actually gets you hired — or gets clients to trust you — is a public portfolio of real projects that solves real problems.</p>
+      <blockquote>"Anyone can complete an online course. Not everyone can build a working Streamlit dashboard that analyses 47 Kenyan counties using World Bank API data."</blockquote>
+      <p>Structure your portfolio around <strong>three project types</strong>:</p>
+      <ol>
+        <li><strong>An EDA + insights project</strong> — pick a real dataset, explore it deeply, tell a data story. Blog post format works great.</li>
+        <li><strong>A predictive ML project</strong> — train a model, evaluate it properly, deploy it. Streamlit makes deployment accessible and free.</li>
+        <li><strong>A competition entry</strong> — DrivenData and Zindi (Africa-focused!) have Kenyan/African datasets and leaderboards. Even placing top 30% is portfolio-worthy.</li>
+      </ol>
+
+      <h2>Step 4: The Kenyan Job Market Reality</h2>
+      <p>Here's what nobody tells you: the biggest data science opportunities in Kenya right now aren't in traditional employment — they're in <strong>freelancing and consulting</strong>.</p>
+      <p>Companies like M-KOPA, Cellulant, Twiga Foods, and Kenya Re all need data work, but many are not ready to hire a full-time data scientist. They will, however, pay a consultant KES 50,000–120,000 for a well-scoped project. That's where you can start — building a reputation, references, and income simultaneously.</p>
+      <p>Where to find opportunities:</p>
+      <ul>
+        <li><strong>Upwork & Fiverr</strong> — niche yourself as "East Africa data analyst" or "Kenyan fintech ML specialist"</li>
+        <li><strong>LinkedIn</strong> — most Nairobi hiring managers are active here; your portfolio posts will get views</li>
+        <li><strong>Zindi.africa</strong> — Africa's ML competition platform; winners get real visibility</li>
+        <li><strong>BrighterMonday & Fuzu</strong> — for local employment; data roles are growing fast</li>
+      </ul>
+
+      <h2>Step 5: The Learning Path That Actually Works</h2>
+      <p>From my own experience and mentoring others, here's what 6 months of focused effort looks like:</p>
+      <ul>
+        <li><strong>Month 1–2:</strong> Python fundamentals + statistics. Complete Python for Data Science (Kaggle free course). Read one statistics book cover to cover.</li>
+        <li><strong>Month 3:</strong> pandas, visualization (matplotlib, seaborn, plotly). Build one EDA project on Kenyan data. Put it on GitHub.</li>
+        <li><strong>Month 4:</strong> Machine learning with scikit-learn. Classification, regression, model evaluation. Enter one Zindi competition.</li>
+        <li><strong>Month 5:</strong> Deploy something. Build a Streamlit app. Put it on the internet. Share it on LinkedIn.</li>
+        <li><strong>Month 6:</strong> Land your first paid project. Yes, by month six. If your portfolio is strong enough and you've been consistent on LinkedIn, this is realistic.</li>
+      </ul>
+
+      <h2>The Honest Truth</h2>
+      <p>Data science in Kenya is genuinely exciting right now. The market is early enough that specialists are rare and valued, but mature enough that there are real, paying opportunities. The only thing standing between most Kenyan aspiring data scientists and a paid career is <strong>consistent output of real work</strong>.</p>
+      <p>No more tutorial loops. No more waiting until you feel "ready." Build something with Kenyan data, put it on GitHub, write about it on LinkedIn, and get it in front of people who have problems to solve. That's the whole playbook.</p>
+
+      <div style="margin-top:28px;padding:24px;background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.2);border-radius:var(--radius-lg);">
+        <h3 style="color:white!important;margin-top:0;">Need Help With a Data Science Project?</h3>
+        <p>Whether you're a student who needs statistical analysis, a startup that needs an ML model, or a business that needs a data dashboard — NeuroDesk delivers production-grade results at freelancer rates.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;">
+          <a href="../pages/data-science.html" class="btn btn-primary"><i class="fas fa-brain"></i> View Data Science Services</a>
+          <a href="https://wa.me/254740624253?text=Hi%20Stephen!%20I%20read%20your%20Kenya%20data%20science%20blog%20and%20need%20help." class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Me</a>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;text-align:center;">
+        <a href="index.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="../index.html" class="navbar__logo" style="margin-bottom:16px;display:inline-flex;"><div class="navbar__logo-icon">🧠</div><div class="navbar__logo-text">Neuro<span>Desk</span></div></a>
+        <p>Intelligence at Your Service.</p>
+        <div class="footer__socials"><a href="https://www.linkedin.com/in/stephen-muema-617339359" class="footer__social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://github.com/Kaks753" class="footer__social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a><a href="https://wa.me/254740624253" class="footer__social-link" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="mailto:musyokas753@gmail.com" class="footer__social-link" title="Email"><i class="fas fa-envelope"></i></a></div>
+      </div>
+      <div class="footer__col"><h4 class="footer__col-title">Services</h4><ul class="footer__col-links"><li><a href="../pages/data-science.html">Data Science</a></li><li><a href="../pages/academic-writing.html">Academic Writing</a></li><li><a href="../pages/web-development.html">Web Dev</a></li><li><a href="../pages/pricing.html">Pricing</a></li></ul></div>
+      <div class="footer__col"><h4 class="footer__col-title">Quick Links</h4><ul class="footer__col-links"><li><a href="../pages/about.html">About</a></li><li><a href="../pages/portfolio.html">Portfolio</a></li><li><a href="index.html">Blog</a></li><li><a href="../pages/contact.html">Contact</a></li></ul></div>
+      <div class="footer__col"><h4 class="footer__col-title">Contact</h4><ul class="footer__col-links"><li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Email</a></li><li><a href="https://wa.me/254740624253" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><p class="footer__copyright">© 2025 NeuroDesk. All rights reserved.</p><div class="footer__bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+<div class="whatsapp-float"><span class="whatsapp-float__tooltip">Chat on WhatsApp</span><a href="https://wa.me/254740624253" class="whatsapp-float__btn" target="_blank"><i class="fab fa-whatsapp"></i></a></div>
+<button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
+<script src="../js/main.js"></script>
+</body>
+</html>

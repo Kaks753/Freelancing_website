@@ -52,6 +52,8 @@
       align-items: center;
       gap: 6px;
     }
+    .article-hero-img { width:100%; height:420px; object-fit:cover; border-radius:var(--radius-xl); margin-bottom:32px; display:block; }
+    @media(max-width:600px){ .article-hero-img{height:220px;} }
     .tip-box p { margin-bottom: 0; }
     .timeline-item {
       display: flex;
@@ -101,7 +103,11 @@
 <div class="navbar__mobile" id="mobile-menu">
   <a href="../index.html"><i class="fas fa-home"></i> Home</a>
   <a href="../pages/services.html"><i class="fas fa-layer-group"></i> Services</a>
+  <a href="../pages/portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a>
+  <a href="../pages/pricing.html"><i class="fas fa-tags"></i> Pricing</a>
+  <a href="../pages/about.html"><i class="fas fa-user"></i> About</a>
   <a href="index.html" class="active"><i class="fas fa-pen-nib"></i> Blog</a>
+  <a href="../pages/faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
   <div class="navbar__mobile-cta">
     <a href="../pages/contact.html" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Hire Me Now</a>
     <a href="https://wa.me/254740624253" class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
@@ -132,6 +138,7 @@
 <section class="section" style="padding-top:20px;">
   <div class="container">
     <div class="article-body">
+      <img src="../images/blog/cover-dissertation-guide.jpg" alt="The Ultimate Dissertation Survival Guide" class="article-hero-img" loading="lazy" />
 
       <p><strong>Let's be honest: writing a dissertation is one of the most stressful academic experiences of your life.</strong> It's the longest, most complex piece of writing most students will ever attempt — and it counts for a huge chunk of your final grade.</p>
       <p>I've helped dozens of students navigate this process, from confused undergraduates picking their first research topic to PhD candidates preparing their final chapters. This guide distills everything I've learned into a practical, stage-by-stage roadmap you can actually follow.</p>
@@ -317,42 +324,25 @@
           <div class="navbar__logo-text">Neuro<span>Desk</span></div>
         </a>
         <p>Intelligence at Your Service.</p>
+        <div class="footer__socials">
+          <a href="https://www.linkedin.com/in/stephen-muema-617339359" class="footer__social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/Kaks753" class="footer__social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://wa.me/254740624253" class="footer__social-link" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:musyokas753@gmail.com" class="footer__social-link" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
       </div>
-      <div class="footer__col">
-        <h4 class="footer__col-title">Services</h4>
-        <ul class="footer__col-links">
-          <li><a href="../pages/data-science.html">Data Science</a></li>
-          <li><a href="../pages/academic-writing.html">Academic Writing</a></li>
-          <li><a href="../pages/web-development.html">Web Dev</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h4 class="footer__col-title">Quick Links</h4>
-        <ul class="footer__col-links">
-          <li><a href="../pages/about.html">About</a></li>
-          <li><a href="../pages/portfolio.html">Portfolio</a></li>
-          <li><a href="index.html">Blog</a></li>
-          <li><a href="../pages/contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h4 class="footer__col-title">Contact</h4>
-        <ul class="footer__col-links">
-          <li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Email</a></li>
-          <li><a href="https://wa.me/254740624253" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li>
-        </ul>
-      </div>
+      <div class="footer__col"><h4 class="footer__col-title">Services</h4><ul class="footer__col-links"><li><a href="../pages/data-science.html">Data Science</a></li><li><a href="../pages/academic-writing.html">Academic Writing</a></li><li><a href="../pages/web-development.html">Web Dev</a></li><li><a href="../pages/pricing.html">Pricing</a></li></ul></div>
+      <div class="footer__col"><h4 class="footer__col-title">Company</h4><ul class="footer__col-links"><li><a href="../pages/about.html">About</a></li><li><a href="../pages/portfolio.html">Portfolio</a></li><li><a href="index.html">Blog</a></li><li><a href="../pages/faq.html">FAQ</a></li></ul></div>
+      <div class="footer__col"><h4 class="footer__col-title">Contact</h4><ul class="footer__col-links"><li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Email Us</a></li><li><a href="https://wa.me/254740624253" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li><li><a href="https://www.linkedin.com/in/stephen-muema-617339359" target="_blank"><i class="fab fa-linkedin-in" style="margin-right:6px;color:var(--color-accent-cyan)"></i>LinkedIn</a></li></ul></div>
     </div>
     <div class="footer__bottom">
-      <p class="footer__copyright">© 2025 NeuroDesk. All rights reserved.</p>
+      <p class="footer__copyright">© 2025 NeuroDesk. All rights reserved.</p><div class="footer__bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
     </div>
   </div>
 </footer>
 
-<div class="whatsapp-float">
-  <span class="whatsapp-float__tooltip">Need dissertation help?</span>
-  <a href="https://wa.me/254740624253?text=Hi%20NeuroDesk!%20I%20need%20dissertation%20help." class="whatsapp-float__btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
-</div>
+<div class="whatsapp-float"><span class="whatsapp-float__tooltip">Chat with us!</span><a href="https://wa.me/254740624253" class="whatsapp-float__btn" target="_blank"><i class="fab fa-whatsapp"></i></a></div>
+<div class="toast" id="toast"></div>
 <button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
 <script src="../js/main.js"></script>
 </body>

@@ -5,12 +5,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog – NeuroDesk | Data Science, Academic Writing & Web Dev Insights</title>
   <meta name="description" content="Expert articles on Data Science, Machine Learning, Academic Writing, and Web Development from the NeuroDesk team. Learn, grow, and make smarter decisions." />
-  <meta name="keywords" content="data science blog, machine learning tutorials, academic writing tips, dissertation guide, web development articles, freelance data scientist" />
+  <meta name="keywords" content="data science blog, machine learning tutorials, academic writing tips, dissertation guide, web development articles, freelance data scientist Kenya" />
   <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── Featured Hero ── */
+    .blog-featured {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      margin-bottom: 36px;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .blog-featured:hover { border-color: var(--color-accent-violet); transform: translateY(-2px); }
+    .blog-featured__img { width: 100%; height: 100%; min-height: 300px; object-fit: cover; display: block; }
+    .blog-featured__body { padding: 40px 36px; display: flex; flex-direction: column; justify-content: center; }
+    .blog-featured__tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .blog-featured__title { font-family: 'Space Grotesk', sans-serif; font-size: 1.55rem; font-weight: 700; margin-bottom: 14px; line-height: 1.35; color: white; }
+    .blog-featured__title a { color: inherit; text-decoration: none; }
+    .blog-featured__title a:hover { color: var(--color-accent-violet); }
+    .blog-featured__excerpt { color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.75; margin-bottom: 24px; }
+    .blog-featured__meta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .blog-featured__meta-info { display: flex; align-items: center; gap: 14px; font-size: 0.82rem; color: var(--color-text-muted); }
+
+    /* ── Category Filter ── */
+    .blog-filter { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 40px;
+      border: 1px solid var(--color-border);
+      background: transparent;
+      color: var(--color-text-secondary);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--color-accent-violet); color: white; }
+    .filter-btn.active { background: var(--color-accent-violet); border-color: var(--color-accent-violet); color: white; }
+
+    /* ── Blog Grid ── */
+    .blog-grid-6 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .blog-card-v2 {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color var(--transition), transform var(--transition);
+      text-decoration: none;
+      color: inherit;
+    }
+    .blog-card-v2:hover { border-color: var(--color-accent-violet); transform: translateY(-3px); }
+    .blog-card-v2__img { width: 100%; height: 190px; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .blog-card-v2:hover .blog-card-v2__img { transform: scale(1.04); }
+    .blog-card-v2__img-wrap { overflow: hidden; }
+    .blog-card-v2__body { padding: 22px 20px; display: flex; flex-direction: column; flex: 1; }
+    .blog-card-v2__cat { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .blog-card-v2__cat--data { color: var(--color-accent-cyan); }
+    .blog-card-v2__cat--academic { color: var(--color-accent-violet); }
+    .blog-card-v2__cat--web { color: var(--color-accent-pink); }
+    .blog-card-v2__cat--freelance { color: var(--color-accent-green); }
+    .blog-card-v2__title { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700; color: white; margin-bottom: 10px; line-height: 1.4; }
+    .blog-card-v2__excerpt { color: var(--color-text-muted); font-size: 0.83rem; line-height: 1.65; margin-bottom: 16px; flex: 1; }
+    .blog-card-v2__meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--color-text-muted); border-top: 1px solid var(--color-border); padding-top: 12px; margin-top: auto; }
+    .blog-card-v2__read { color: var(--color-accent-cyan); font-weight: 600; font-size: 0.78rem; white-space: nowrap; }
+
+    /* ── Newsletter ── */
+    .newsletter-box {
+      background: linear-gradient(135deg, rgba(123,47,190,0.12), rgba(0,212,255,0.06));
+      border: 1px solid rgba(123,47,190,0.25);
+      border-radius: var(--radius-xl);
+      padding: 44px 40px;
+      text-align: center;
+      margin-top: 52px;
+    }
+    .newsletter-box h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; }
+    .newsletter-box p { color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 26px; }
+    .newsletter-form { display: flex; gap: 12px; max-width: 460px; margin: 0 auto; flex-wrap: wrap; }
+    .newsletter-form .form-input { flex: 1; min-width: 180px; }
+
+    /* ── Hidden cards for filter ── */
+    .blog-card-v2[data-cat].hidden { display: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) { .blog-grid-6 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) {
+      .blog-featured { grid-template-columns: 1fr; }
+      .blog-featured__img { height: 220px; }
+      .blog-featured__body { padding: 24px 20px; }
+      .blog-grid-6 { grid-template-columns: 1fr; }
+      .newsletter-box { padding: 28px 20px; }
+    }
+  </style>
 </head>
 <body>
 <div class="page-loader"><div class="page-loader__logo">NeuroDesk</div></div>
@@ -18,21 +117,37 @@
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
     <a href="../index.html" class="navbar__logo"><div class="navbar__logo-icon">🧠</div><div class="navbar__logo-text">Neuro<span>Desk</span></div></a>
-    <div class="navbar__links"><a href="../index.html">Home</a><a href="../pages/services.html">Services</a><a href="../pages/portfolio.html">Portfolio</a><a href="../pages/pricing.html">Pricing</a><a href="../pages/about.html">About</a><a href="index.html" class="active">Blog</a><a href="../pages/faq.html">FAQ</a></div>
+    <div class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../pages/services.html">Services</a>
+      <a href="../pages/portfolio.html">Portfolio</a>
+      <a href="../pages/pricing.html">Pricing</a>
+      <a href="../pages/about.html">About</a>
+      <a href="index.html" class="active">Blog</a>
+      <a href="../pages/faq.html">FAQ</a>
+    </div>
     <div class="navbar__cta"><a href="../pages/contact.html" class="btn btn-primary btn-sm"><i class="fas fa-paper-plane"></i> Hire Me</a></div>
     <div class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </div>
 </nav>
 <div class="navbar__mobile" id="mobile-menu">
-  <a href="../index.html"><i class="fas fa-home"></i> Home</a><a href="../pages/services.html"><i class="fas fa-layer-group"></i> Services</a><a href="../pages/portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a><a href="../pages/pricing.html"><i class="fas fa-tags"></i> Pricing</a><a href="../pages/about.html"><i class="fas fa-user"></i> About</a><a href="index.html" class="active"><i class="fas fa-pen-nib"></i> Blog</a><a href="../pages/faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
-  <div class="navbar__mobile-cta"><a href="../pages/contact.html" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Hire Me Now</a><a href="https://wa.me/254740624253" class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="../pages/services.html"><i class="fas fa-layer-group"></i> Services</a>
+  <a href="../pages/portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a>
+  <a href="../pages/pricing.html"><i class="fas fa-tags"></i> Pricing</a>
+  <a href="../pages/about.html"><i class="fas fa-user"></i> About</a>
+  <a href="index.html" class="active"><i class="fas fa-pen-nib"></i> Blog</a>
+  <a href="../pages/faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+  <div class="navbar__mobile-cta">
+    <a href="../pages/contact.html" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Hire Me Now</a>
+    <a href="https://wa.me/254740624253" class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
 </div>
 
-<section class="page-hero">
+<section class="page-hero" style="padding-bottom:24px;">
   <div class="page-hero__bg"><div class="page-hero__bg-orb page-hero__bg-orb--1"></div><div class="page-hero__bg-orb page-hero__bg-orb--2"></div></div>
   <div class="container">
     <div class="page-hero__content">
-      
       <div class="section-label" style="justify-content:center;">Knowledge Hub</div>
       <h1 class="page-hero__title">The <span style="background:linear-gradient(135deg,var(--color-accent-violet),var(--color-accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">NeuroDesk Blog</span></h1>
       <p class="page-hero__subtitle">Practical insights on Data Science, Academic Writing, and Web Development — from a practitioner who does this every day.</p>
@@ -40,85 +155,199 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" style="padding-top:20px;">
   <div class="container">
-    <!-- Featured Post -->
-    <div style="background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:28px;display:grid;grid-template-columns:1fr 1.5fr;transition:all var(--transition);" class="reveal" onmouseenter="this.style.borderColor='var(--color-accent-violet)'" onmouseleave="this.style.borderColor='var(--color-border)'">
-      <div style="background:linear-gradient(135deg,rgba(123,47,190,0.5),rgba(0,212,255,0.3));display:flex;align-items:center;justify-content:center;font-size:80px;min-height:280px;">📊</div>
-      <div style="padding:40px;">
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;"><span class="tag tag--violet">Featured</span><span class="tag tag--cyan">Data Science</span></div>
-        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;margin-bottom:16px;line-height:1.3;"><a href="freelancer-vs-agency.html" style="color:inherit;">Freelancer vs Agency: Who Should Handle Your Data Science Project?</a></h2>
-        <p style="color:var(--color-text-secondary);font-size:0.95rem;line-height:1.7;margin-bottom:24px;">An honest breakdown of the tradeoffs between hiring a freelance data scientist and a full-service agency — based on budget, complexity, timeline, and trust.</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-          <div style="display:flex;align-items:center;gap:12px;font-size:0.82rem;color:var(--color-text-muted);">
-            <span><i class="fas fa-calendar" style="margin-right:4px;"></i> June 2025</span>
-            <span><i class="fas fa-clock" style="margin-right:4px;"></i> 5 min read</span>
+
+    <!-- ── Featured Article ── -->
+    <a href="freelancer-vs-agency.html" class="blog-featured reveal" style="display:grid;text-decoration:none;color:inherit;">
+      <img src="../images/blog/cover-freelancer-vs-agency.jpg" alt="Freelancer vs Agency" class="blog-featured__img" loading="eager" />
+      <div class="blog-featured__body">
+        <div class="blog-featured__tags">
+          <span class="tag tag--violet">Featured</span>
+          <span class="tag tag--cyan">Data Science</span>
+        </div>
+        <h2 class="blog-featured__title">Freelancer vs Agency: Who Should Handle Your Data Science Project?</h2>
+        <p class="blog-featured__excerpt">An honest breakdown of the tradeoffs between hiring a freelance data scientist and a full-service agency — based on budget, complexity, timeline, and trust.</p>
+        <div class="blog-featured__meta">
+          <div class="blog-featured__meta-info">
+            <span><i class="fas fa-calendar" style="margin-right:5px;color:var(--color-accent-violet)"></i>June 2025</span>
+            <span><i class="fas fa-clock" style="margin-right:5px;color:var(--color-accent-cyan)"></i>6–8 min read</span>
           </div>
-          <a href="freelancer-vs-agency.html" class="btn btn-primary btn-sm">Read Article <i class="fas fa-arrow-right"></i></a>
+          <span class="btn btn-primary btn-sm">Read Article <i class="fas fa-arrow-right"></i></span>
         </div>
+      </div>
+    </a>
+
+    <!-- ── Filter Bar ── -->
+    <div class="blog-filter">
+      <button class="filter-btn active" data-filter="all">All Articles</button>
+      <button class="filter-btn" data-filter="data">Data Science</button>
+      <button class="filter-btn" data-filter="academic">Academic Writing</button>
+      <button class="filter-btn" data-filter="web">Web Dev</button>
+      <button class="filter-btn" data-filter="freelance">Freelance Strategy</button>
+    </div>
+
+    <!-- ── 6-Article Grid ── -->
+    <div class="blog-grid-6" id="blogGrid">
+
+      <!-- 1 Dissertation Guide -->
+      <a href="dissertation-guide.html" class="blog-card-v2 reveal reveal-delay-1" data-cat="academic">
+        <div class="blog-card-v2__img-wrap">
+          <img src="../images/blog/cover-dissertation-guide.jpg" alt="Dissertation Survival Guide" class="blog-card-v2__img" loading="lazy" />
+        </div>
+        <div class="blog-card-v2__body">
+          <div class="blog-card-v2__cat blog-card-v2__cat--academic">Academic Writing</div>
+          <h3 class="blog-card-v2__title">The Ultimate Dissertation Survival Guide: From Topic to Submission</h3>
+          <p class="blog-card-v2__excerpt">A stage-by-stage roadmap for undergrad and postgraduate students — from choosing the right topic to nailing your viva defence.</p>
+          <div class="blog-card-v2__meta">
+            <span><i class="fas fa-calendar" style="margin-right:4px;"></i>May 2025</span>
+            <span class="blog-card-v2__read"><i class="fas fa-clock" style="margin-right:4px;"></i>10–12 min</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 2 Web Presence -->
+      <a href="web-presence.html" class="blog-card-v2 reveal reveal-delay-2" data-cat="web">
+        <div class="blog-card-v2__img-wrap">
+          <img src="../images/blog/cover-web-presence.jpg" alt="Why Your Business Needs a Web Presence in 2025" class="blog-card-v2__img" loading="lazy" />
+        </div>
+        <div class="blog-card-v2__body">
+          <div class="blog-card-v2__cat blog-card-v2__cat--web">Web Development</div>
+          <h3 class="blog-card-v2__title">Why Your Business Needs a Web Presence in 2025 (And How to Build One)</h3>
+          <p class="blog-card-v2__excerpt">Not having a website in 2025 is costing you customers every single day. Here's why it matters and how to fix it affordably.</p>
+          <div class="blog-card-v2__meta">
+            <span><i class="fas fa-calendar" style="margin-right:4px;"></i>April 2025</span>
+            <span class="blog-card-v2__read"><i class="fas fa-clock" style="margin-right:4px;"></i>6 min</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 3 AI vs Human -->
+      <a href="ai-vs-human.html" class="blog-card-v2 reveal reveal-delay-3" data-cat="data">
+        <div class="blog-card-v2__img-wrap">
+          <img src="../images/blog/cover-ai-vs-human.jpg" alt="AI vs Human Writers" class="blog-card-v2__img" loading="lazy" />
+        </div>
+        <div class="blog-card-v2__body">
+          <div class="blog-card-v2__cat blog-card-v2__cat--data">Data Science &amp; AI</div>
+          <h3 class="blog-card-v2__title">AI vs Human Writers: What AI Can't Do (Yet) in Academic &amp; Data Work</h3>
+          <p class="blog-card-v2__excerpt">ChatGPT is impressive — but it's not replacing expert human judgment in data science and academic writing anytime soon. Here's the honest truth.</p>
+          <div class="blog-card-v2__meta">
+            <span><i class="fas fa-calendar" style="margin-right:4px;"></i>March 2025</span>
+            <span class="blog-card-v2__read"><i class="fas fa-clock" style="margin-right:4px;"></i>7 min</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 4 Kenya Data Science -->
+      <a href="kenya-data-science.html" class="blog-card-v2 reveal reveal-delay-1" data-cat="data">
+        <div class="blog-card-v2__img-wrap">
+          <img src="../images/blog/cover-kenya-data-science.jpg" alt="Data Science in Kenya" class="blog-card-v2__img" loading="lazy" />
+        </div>
+        <div class="blog-card-v2__body">
+          <div class="blog-card-v2__cat blog-card-v2__cat--data">Data Science</div>
+          <h3 class="blog-card-v2__title">Data Science in Kenya: A Practical Guide to Breaking In</h3>
+          <p class="blog-card-v2__excerpt">From the best learning paths and local datasets to building a portfolio that actually gets you hired in the Kenyan and East African market.</p>
+          <div class="blog-card-v2__meta">
+            <span><i class="fas fa-calendar" style="margin-right:4px;"></i>June 2025</span>
+            <span class="blog-card-v2__read"><i class="fas fa-clock" style="margin-right:4px;"></i>9 min</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 5 Freelance Pricing -->
+      <a href="freelance-pricing.html" class="blog-card-v2 reveal reveal-delay-2" data-cat="freelance">
+        <div class="blog-card-v2__img-wrap">
+          <img src="../images/blog/cover-freelance-pricing.jpg" alt="How to Price Your Freelance Services in Kenya" class="blog-card-v2__img" loading="lazy" />
+        </div>
+        <div class="blog-card-v2__body">
+          <div class="blog-card-v2__cat blog-card-v2__cat--freelance">Freelance Strategy</div>
+          <h3 class="blog-card-v2__title">How to Price Your Freelance Services as a Developer or Data Scientist in Kenya</h3>
+          <p class="blog-card-v2__excerpt">Stop undercharging. A no-nonsense guide to hourly rates, project pricing, value-based models, and handling client pushback in the Kenyan market.</p>
+          <div class="blog-card-v2__meta">
+            <span><i class="fas fa-calendar" style="margin-right:4px;"></i>June 2025</span>
+            <span class="blog-card-v2__read"><i class="fas fa-clock" style="margin-right:4px;"></i>10 min</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 6 Freelancer vs Agency (grid duplicate — smaller format) -->
+      <a href="freelancer-vs-agency.html" class="blog-card-v2 reveal reveal-delay-3" data-cat="data">
+        <div class="blog-card-v2__img-wrap">
+          <img src="../images/blog/cover-freelancer-vs-agency.jpg" alt="Freelancer vs Agency" class="blog-card-v2__img" loading="lazy" />
+        </div>
+        <div class="blog-card-v2__body">
+          <div class="blog-card-v2__cat blog-card-v2__cat--data">Data Science</div>
+          <h3 class="blog-card-v2__title">Freelancer vs Agency: Who Should Handle Your Data Science Project?</h3>
+          <p class="blog-card-v2__excerpt">Budget, speed, direct access to the expert doing the work — why a specialized freelancer wins for most data science projects.</p>
+          <div class="blog-card-v2__meta">
+            <span><i class="fas fa-calendar" style="margin-right:4px;"></i>June 2025</span>
+            <span class="blog-card-v2__read"><i class="fas fa-clock" style="margin-right:4px;"></i>6 min</span>
+          </div>
+        </div>
+      </a>
+
+    </div><!-- /blog-grid-6 -->
+
+    <!-- ── Newsletter ── -->
+    <div class="newsletter-box reveal">
+      <h3>Get Expert Tips in Your Inbox</h3>
+      <p>New articles on Data Science, academic tips, and web dev — delivered once a month. No spam, ever.</p>
+      <div class="newsletter-form">
+        <input type="email" class="form-input" placeholder="your@email.com" />
+        <button class="btn btn-primary" onclick="window.showToast && window.showToast('Subscribed! Welcome to the NeuroDesk community.')">Subscribe</button>
       </div>
     </div>
 
-    <!-- Blog Grid -->
-    <div class="blog-grid">
-      <a href="dissertation-guide.html" class="blog-card reveal reveal-delay-1">
-        <div class="blog-card__thumb" style="background:linear-gradient(135deg,rgba(0,212,255,0.35),rgba(26,26,46,0.9));">✍️</div>
-        <div class="blog-card__body">
-          <div class="blog-card__cat">Academic Writing</div>
-          <h3 class="blog-card__title">The Ultimate Dissertation Survival Guide: From Topic to Submission</h3>
-          <p class="blog-card__excerpt">Navigate your dissertation journey with confidence — from choosing the right topic to nailing your defense. A step-by-step guide by an expert writer.</p>
-          <div class="blog-card__meta"><span><i class="fas fa-calendar" style="margin-right:4px;"></i>May 2025</span><span class="blog-card__read-time"><i class="fas fa-clock"></i> 8 min read</span></div>
-        </div>
-      </a>
-
-      <a href="web-presence.html" class="blog-card reveal reveal-delay-2">
-        <div class="blog-card__thumb" style="background:linear-gradient(135deg,rgba(255,107,107,0.35),rgba(26,26,46,0.9));">🌐</div>
-        <div class="blog-card__body">
-          <div class="blog-card__cat">Web Development</div>
-          <h3 class="blog-card__title">Why Your Business Needs a Web Presence in 2025 (And How to Build One)</h3>
-          <p class="blog-card__excerpt">In 2025, not having a website isn't an option. Here's exactly why digital presence is critical and how to get started affordably and effectively.</p>
-          <div class="blog-card__meta"><span><i class="fas fa-calendar" style="margin-right:4px;"></i>April 2025</span><span class="blog-card__read-time"><i class="fas fa-clock"></i> 6 min read</span></div>
-        </div>
-      </a>
-
-      <a href="ai-vs-human.html" class="blog-card reveal reveal-delay-3">
-        <div class="blog-card__thumb" style="background:linear-gradient(135deg,rgba(0,229,160,0.35),rgba(26,26,46,0.9));">🤖</div>
-        <div class="blog-card__body">
-          <div class="blog-card__cat">Data Science & AI</div>
-          <h3 class="blog-card__title">AI vs Human Intelligence: What Data Science Can (And Can't) Do</h3>
-          <p class="blog-card__excerpt">The honest truth about AI's capabilities and limitations in 2025. What tasks require human expertise, and where does machine intelligence genuinely win?</p>
-          <div class="blog-card__meta"><span><i class="fas fa-calendar" style="margin-right:4px;"></i>March 2025</span><span class="blog-card__read-time"><i class="fas fa-clock"></i> 7 min read</span></div>
-        </div>
-      </a>
-    </div>
-
-    <!-- Newsletter -->
-    <div style="background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:48px;text-align:center;margin-top:64px;" class="reveal">
-      <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:12px;">Get Expert Tips in Your Inbox</h3>
-      <p style="color:var(--color-text-muted);font-size:0.9rem;margin-bottom:28px;">New articles on Data Science, academic tips, and web dev — delivered once a month. No spam, ever.</p>
-      <div style="display:flex;gap:12px;max-width:480px;margin:0 auto;flex-wrap:wrap;">
-        <input type="email" class="form-input" placeholder="your@email.com" style="flex:1;min-width:200px;" />
-        <button class="btn btn-primary" onclick="window.showToast && window.showToast('Subscribed!','Welcome to the NeuroDesk community.')">Subscribe</button>
-      </div>
-    </div>
   </div>
 </section>
 
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
-      <div class="footer__brand"><a href="../index.html" class="navbar__logo" style="margin-bottom:16px;display:inline-flex;"><div class="navbar__logo-icon">🧠</div><div class="navbar__logo-text">Neuro<span>Desk</span></div></a><p>Intelligence at Your Service.</p><div class="footer__socials"><a href="https://www.linkedin.com/in/stephen-muema-617339359" class="footer__social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://github.com/Kaks753" class="footer__social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a><a href="https://wa.me/254740624253" class="footer__social-link" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="mailto:musyokas753@gmail.com" class="footer__social-link" title="Email"><i class="fas fa-envelope"></i></a></div></div>
+      <div class="footer__brand">
+        <a href="../index.html" class="navbar__logo" style="margin-bottom:16px;display:inline-flex;"><div class="navbar__logo-icon">🧠</div><div class="navbar__logo-text">Neuro<span>Desk</span></div></a>
+        <p>Intelligence at Your Service.</p>
+        <div class="footer__socials">
+          <a href="https://www.linkedin.com/in/stephen-muema-617339359" class="footer__social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/Kaks753" class="footer__social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://wa.me/254740624253" class="footer__social-link" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:musyokas753@gmail.com" class="footer__social-link" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
       <div class="footer__col"><h4 class="footer__col-title">Services</h4><ul class="footer__col-links"><li><a href="../pages/data-science.html">Data Science</a></li><li><a href="../pages/academic-writing.html">Academic Writing</a></li><li><a href="../pages/web-development.html">Web Dev</a></li><li><a href="../pages/pricing.html">Pricing</a></li></ul></div>
       <div class="footer__col"><h4 class="footer__col-title">Company</h4><ul class="footer__col-links"><li><a href="../pages/about.html">About</a></li><li><a href="../pages/portfolio.html">Portfolio</a></li><li><a href="index.html">Blog</a></li><li><a href="../pages/faq.html">FAQ</a></li></ul></div>
-      <div class="footer__col"><h4 class="footer__col-title">Contact</h4><ul class="footer__col-links"><li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Email</a></li><li><a href="https://wa.me/254740624253" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li></ul></div>
+      <div class="footer__col"><h4 class="footer__col-title">Contact</h4><ul class="footer__col-links"><li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Email Us</a></li><li><a href="https://wa.me/254740624253" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li><li><a href="https://www.linkedin.com/in/stephen-muema-617339359" target="_blank"><i class="fab fa-linkedin-in" style="margin-right:6px;color:var(--color-accent-cyan)"></i>LinkedIn</a></li></ul></div>
     </div>
     <div class="footer__bottom"><p class="footer__copyright">© 2025 NeuroDesk. All rights reserved.</p><div class="footer__bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
   </div>
 </footer>
+
 <div class="whatsapp-float"><span class="whatsapp-float__tooltip">Chat with us!</span><a href="https://wa.me/254740624253" class="whatsapp-float__btn" target="_blank"><i class="fab fa-whatsapp"></i></a></div>
-<div class="toast" id="toast"><span class="toast__icon">✅</span><div class="toast__text"><strong>Subscribed!</strong><span>Welcome to the NeuroDesk community.</span></div></div>
+<div class="toast" id="toast"></div>
 <button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
-<style>@media(max-width:768px){div[style*="grid-template-columns:1fr 1.5fr"]{grid-template-columns:1fr!important}}</style>
+
+<script>
+  // Category filter
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.blog-card-v2[data-cat]');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.filter;
+      cards.forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.classList.remove('hidden');
+          card.style.display = 'flex';
+        } else {
+          card.classList.add('hidden');
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
 <script src="../js/main.js"></script>
 </body>
 </html>
