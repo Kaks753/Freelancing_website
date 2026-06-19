@@ -3,231 +3,508 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio – NeuroDesk | Data Science, Web Dev & Academic Projects</title>
-  <meta name="description" content="Browse NeuroDesk's portfolio of completed data science, machine learning, web development, and academic writing projects. Real results, real impact." />
+  <title>Portfolio – NeuroDesk | Real Data Science, Web Dev & Analytics Projects</title>
+  <meta name="description" content="Live projects by Stephen Muema — interactive ML dashboards, Streamlit apps, Tableau visualizations, web platforms, and academic writing samples. Real work, real results." />
+  <meta name="keywords" content="data science portfolio Kenya, machine learning projects, Streamlit dashboard, NSE stock analysis, Kenya economic dashboard, academic writing portfolio" />
   <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── Filter Tabs ── */
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 40px 0 48px;
+    }
+    .filter-btn {
+      padding: 9px 22px;
+      border-radius: 40px;
+      border: 1px solid var(--color-border);
+      background: transparent;
+      color: var(--color-text-secondary);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--color-accent-violet);
+      border-color: var(--color-accent-violet);
+      color: white;
+    }
+
+    /* ── Project Cards ── */
+    .project-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: var(--color-accent-violet);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(123,47,190,0.2);
+    }
+    .project-card.hidden { display: none; }
+
+    .project-card__thumb {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      background: var(--color-bg-secondary);
+    }
+    .project-card__thumb-placeholder {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+    }
+
+    .project-card__body {
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .project-card__cat {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .project-card__cat--ds { color: var(--color-accent-cyan); }
+    .project-card__cat--web { color: var(--color-accent-violet); }
+    .project-card__cat--academic { color: var(--color-accent-green); }
+    .project-card__cat--excel { color: #FF6B6B; }
+
+    .project-card__title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+      color: white;
+      line-height: 1.3;
+    }
+    .project-card__subtitle {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .project-card__desc {
+      font-size: 0.84rem;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+    .project-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .tag {
+      background: rgba(123,47,190,0.15);
+      border: 1px solid rgba(123,47,190,0.25);
+      color: var(--color-accent-violet);
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+    .project-card__links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .plink {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition);
+      border: 1px solid transparent;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .plink--primary {
+      background: linear-gradient(135deg, var(--color-accent-violet), var(--color-accent-cyan));
+      color: white;
+    }
+    .plink--primary:hover { opacity: 0.85; transform: translateY(-1px); }
+    .plink--ghost {
+      background: rgba(255,255,255,0.06);
+      border-color: var(--color-border);
+      color: var(--color-text-secondary);
+    }
+    .plink--ghost:hover {
+      border-color: var(--color-accent-violet);
+      color: white;
+    }
+
+    /* Competition badge */
+    .competition-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,107,107,0.12);
+      border: 1px solid rgba(255,107,107,0.3);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #FF6B6B;
+      margin-bottom: 12px;
+    }
+
+    /* Grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 1024px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .portfolio-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
 <div class="page-loader"><div class="page-loader__logo">NeuroDesk</div></div>
 
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
-    <a href="../index.html" class="navbar__logo"><div class="navbar__logo-icon">🧠</div><div class="navbar__logo-text">Neuro<span>Desk</span></div></a>
+    <a href="../index.html" class="navbar__logo">
+      <div class="navbar__logo-icon">🧠</div>
+      <div class="navbar__logo-text">Neuro<span>Desk</span></div>
+    </a>
     <div class="navbar__links">
-      <a href="../index.html">Home</a><a href="services.html">Services</a><a href="portfolio.html" class="active">Portfolio</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="../blog/index.html">Blog</a><a href="faq.html">FAQ</a>
+      <a href="../index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html" class="active">Portfolio</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="faq.html">FAQ</a>
     </div>
-    <div class="navbar__cta"><a href="contact.html" class="btn btn-primary btn-sm"><i class="fas fa-paper-plane"></i> Hire Me</a></div>
+    <div class="navbar__cta">
+      <a href="contact.html" class="btn btn-primary btn-sm"><i class="fas fa-paper-plane"></i> Hire Me</a>
+    </div>
     <div class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </div>
 </nav>
 <div class="navbar__mobile" id="mobile-menu">
-  <a href="../index.html"><i class="fas fa-home"></i> Home</a><a href="services.html"><i class="fas fa-layer-group"></i> Services</a><a href="portfolio.html" class="active"><i class="fas fa-briefcase"></i> Portfolio</a><a href="pricing.html"><i class="fas fa-tags"></i> Pricing</a><a href="about.html"><i class="fas fa-user"></i> About</a><a href="../blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
-  <div class="navbar__mobile-cta"><a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Hire Me Now</a><a href="https://wa.me/254700000000" class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="services.html"><i class="fas fa-layer-group"></i> Services</a>
+  <a href="portfolio.html" class="active"><i class="fas fa-briefcase"></i> Portfolio</a>
+  <a href="pricing.html"><i class="fas fa-tags"></i> Pricing</a>
+  <a href="about.html"><i class="fas fa-user"></i> About</a>
+  <a href="../blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a>
+  <a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+  <div class="navbar__mobile-cta">
+    <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Hire Me Now</a>
+    <a href="https://wa.me/254740624253" class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
 </div>
 
+<!-- HERO -->
 <section class="page-hero">
-  <div class="page-hero__bg"><div class="page-hero__bg-orb page-hero__bg-orb--1"></div><div class="page-hero__bg-orb page-hero__bg-orb--2"></div></div>
+  <div class="page-hero__bg">
+    <div class="page-hero__bg-orb page-hero__bg-orb--1"></div>
+    <div class="page-hero__bg-orb page-hero__bg-orb--2"></div>
+  </div>
   <div class="container">
     <div class="page-hero__content">
-      <div class="breadcrumb" style="justify-content:center;"><a href="../index.html">Home</a><span>/</span><span>Portfolio</span></div>
-      <div class="section-label" style="justify-content:center;">Our Work</div>
-      <h1 class="page-hero__title">Projects That <span style="background:linear-gradient(135deg,var(--color-accent-violet),var(--color-accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Delivered Results</span></h1>
-      <p class="page-hero__subtitle">A showcase of real-world data science, machine learning, web development, and academic writing projects — each built to solve a specific problem.</p>
+      <div class="section-label" style="justify-content:center;"><i class="fas fa-briefcase"></i> Real Work, Real Results</div>
+      <h1 class="page-hero__title">Projects <span style="background:linear-gradient(135deg,var(--color-accent-violet),var(--color-accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Portfolio</span></h1>
+      <p class="page-hero__subtitle">Live dashboards, deployed ML models, and published work — every project here is real, clickable, and delivered to a real standard.</p>
     </div>
   </div>
 </section>
 
-<section class="section">
+<!-- FILTER + GRID -->
+<section class="section" style="padding-top:32px;">
   <div class="container">
-    <!-- Filters -->
-    <div class="portfolio-filters reveal">
-      <button class="portfolio-filter active" data-filter="all">All Projects</button>
-      <button class="portfolio-filter" data-filter="data-science">Data Science & ML</button>
-      <button class="portfolio-filter" data-filter="academic">Academic Writing</button>
-      <button class="portfolio-filter" data-filter="web-dev">Web Development</button>
+
+    <div class="filter-bar" id="filterBar">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="ds">Data Science & ML</button>
+      <button class="filter-btn" data-filter="web">Web Development</button>
+      <button class="filter-btn" data-filter="excel">Excel & BI</button>
+      <button class="filter-btn" data-filter="academic">Academic Writing</button>
     </div>
 
-    <!-- Portfolio Grid -->
-    <div class="portfolio-grid">
+    <div class="portfolio-grid" id="portfolioGrid">
 
-      <div class="portfolio-item reveal reveal-delay-1" data-category="data-science">
-        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(123,47,190,0.4),rgba(26,26,46,0.9));">🤖</div>
-        <div class="portfolio-item__thumb-overlay">
-          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
-        </div>
-        <div class="portfolio-item__body">
-          <div class="portfolio-item__cat">Machine Learning</div>
-          <h3 class="portfolio-item__title">Customer Churn Prediction System</h3>
-          <p class="portfolio-item__desc">Built an XGBoost churn prediction model for a telecoms company. Reduced churn by 23% in the first quarter post-deployment.</p>
-          <div class="portfolio-item__tags">
-            <span class="portfolio-item__tag">Python</span>
-            <span class="portfolio-item__tag">XGBoost</span>
-            <span class="portfolio-item__tag">Scikit-Learn</span>
-            <span class="portfolio-item__tag">Pandas</span>
+      <!-- 1. Kenya Economic Pulse -->
+      <div class="project-card reveal" data-cat="ds">
+        <div class="project-card__thumb-placeholder" style="background:linear-gradient(135deg,#064e3b,#065f46);">📊</div>
+        <div class="project-card__body">
+          <div class="project-card__cat project-card__cat--ds">Data Science & ML</div>
+          <div class="project-card__title">Kenya Economic Pulse</div>
+          <div class="project-card__subtitle">10 Dashboards · 7 ML Models · 47 Counties</div>
+          <div class="project-card__desc">10-page Streamlit dashboard analysing Kenya's economy via World Bank API, KNBS census &amp; CBK data. Gradient Boosting (R²=0.904) proves M-Pesa reduced poverty 46.8%→33.5%. KMeans clusters 47 counties into 5 economic profiles. ARIMA + Holt-Winters forecasting with 95% CI. Includes Policy Simulator with 5 interactive levers.</div>
+          <div class="project-card__tags">
+            <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Prophet</span><span class="tag">ARIMA</span><span class="tag">KMeans</span><span class="tag">Plotly</span><span class="tag">Folium</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://kenyaeconomicpulse.streamlit.app/" target="_blank" class="plink plink--primary"><i class="fas fa-external-link-alt"></i> Live Dashboard</a>
+            <a href="https://drive.google.com/file/d/1Fu6FzqJ3rNm6zfYI733TPbz0zEzl0KUr/view?usp=sharing" target="_blank" class="plink plink--ghost"><i class="fas fa-file-pdf"></i> PDF Report</a>
+            <a href="https://github.com/Kaks753/KE_economic_pulse" target="_blank" class="plink plink--ghost"><i class="fab fa-github"></i> GitHub</a>
           </div>
         </div>
       </div>
 
-      <div class="portfolio-item reveal reveal-delay-2" data-category="data-science">
-        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(0,212,255,0.3),rgba(26,26,46,0.9));">📊</div>
-        <div class="portfolio-item__thumb-overlay">
-          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
-        </div>
-        <div class="portfolio-item__body">
-          <div class="portfolio-item__cat">Business Intelligence</div>
-          <h3 class="portfolio-item__title">Real-Time Sales KPI Dashboard</h3>
-          <p class="portfolio-item__desc">Interactive Power BI dashboard tracking 12 KPIs across 5 sales regions. Automated data refresh every 4 hours.</p>
-          <div class="portfolio-item__tags">
-            <span class="portfolio-item__tag">Power BI</span>
-            <span class="portfolio-item__tag">SQL</span>
-            <span class="portfolio-item__tag">DAX</span>
+      <!-- 2. NSE Stock Risk Clustering -->
+      <div class="project-card reveal" data-cat="ds">
+        <div class="project-card__thumb-placeholder" style="background:linear-gradient(135deg,#1e3a5f,#1e40af);">📈</div>
+        <div class="project-card__body">
+          <div class="project-card__cat project-card__cat--ds">Data Science & ML</div>
+          <div class="project-card__title">NSE Stock Risk Clustering</div>
+          <div class="project-card__subtitle">ML-Powered Risk Profiling · 124% Clustering Improvement</div>
+          <div class="project-card__desc">Interactive Streamlit dashboard clustering NSE stocks into 4 risk profiles using K-Means. Engineered 19 risk indicators across 4 categories. Silhouette score improved 124% (0.32→0.717) through advanced feature engineering. 4 analysis tabs: Cluster Overview, Stock Analysis, Trends, Methodology.</div>
+          <div class="project-card__tags">
+            <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">K-Means</span><span class="tag">Feature Engineering</span><span class="tag">Plotly</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://nsestockmarketanalysis.streamlit.app/" target="_blank" class="plink plink--primary"><i class="fas fa-external-link-alt"></i> Live Dashboard</a>
           </div>
         </div>
       </div>
 
-      <div class="portfolio-item reveal reveal-delay-3" data-category="data-science">
-        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(0,229,160,0.3),rgba(26,26,46,0.9));">💬</div>
-        <div class="portfolio-item__thumb-overlay">
-          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
-        </div>
-        <div class="portfolio-item__body">
-          <div class="portfolio-item__cat">NLP & Text Analysis</div>
-          <h3 class="portfolio-item__title">Twitter Sentiment Analyzer</h3>
-          <p class="portfolio-item__desc">NLP model analyzing brand sentiment from 50K+ tweets using BERT. Deployed as a Flask web API for real-time analysis.</p>
-          <div class="portfolio-item__tags">
-            <span class="portfolio-item__tag">BERT</span>
-            <span class="portfolio-item__tag">Python</span>
-            <span class="portfolio-item__tag">Flask</span>
-            <span class="portfolio-item__tag">NLP</span>
+      <!-- 3. Kenya Food Price Inflation Tracker -->
+      <div class="project-card reveal" data-cat="ds">
+        <div class="project-card__thumb-placeholder" style="background:linear-gradient(135deg,#78350f,#b45309);">🌽</div>
+        <div class="project-card__body">
+          <div class="project-card__cat project-card__cat--ds">Data Science & ML</div>
+          <div class="project-card__title">Kenya Food Price Inflation Tracker</div>
+          <div class="project-card__subtitle">15-Year Analysis · Ensemble ML · 6% MAPE</div>
+          <div class="project-card__desc">8,884 WFP records (2006–2021) across 45 Kenyan markets tracking 34 commodities. Ensemble model (Prophet + SARIMA + XGBoost) achieves 6% MAPE. Key finding: maize prices up 45% with 15–20 KES/kg seasonal swings. Regional analysis reveals 20–30 KES/kg gap between Nairobi and Rift Valley.</div>
+          <div class="project-card__tags">
+            <span class="tag">Prophet</span><span class="tag">XGBoost</span><span class="tag">SARIMA</span><span class="tag">LightGBM</span><span class="tag">Streamlit</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://kenyafoodinflationtracker.streamlit.app/" target="_blank" class="plink plink--primary"><i class="fas fa-external-link-alt"></i> Live Dashboard</a>
+            <a href="https://github.com/Kaks753/food-inflation" target="_blank" class="plink plink--ghost"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://youtu.be/o9elsxCpfWs" target="_blank" class="plink plink--ghost"><i class="fas fa-play"></i> Demo</a>
           </div>
         </div>
       </div>
 
-      <div class="portfolio-item reveal reveal-delay-1" data-category="data-science">
-        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(123,47,190,0.3),rgba(0,212,255,0.2));">📈</div>
-        <div class="portfolio-item__thumb-overlay">
-          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
-        </div>
-        <div class="portfolio-item__body">
-          <div class="portfolio-item__cat">Predictive Analytics</div>
-          <h3 class="portfolio-item__title">Retail Sales Forecasting Model</h3>
-          <p class="portfolio-item__desc">ARIMA + LSTM ensemble forecasting model for a retail chain — 91% accuracy on 6-month sales predictions.</p>
-          <div class="portfolio-item__tags">
-            <span class="portfolio-item__tag">ARIMA</span>
-            <span class="portfolio-item__tag">LSTM</span>
-            <span class="portfolio-item__tag">TensorFlow</span>
+      <!-- 4. Tanzanian Water Wells -->
+      <div class="project-card reveal" data-cat="ds">
+        <div class="project-card__thumb-placeholder" style="background:linear-gradient(135deg,#064e3b,#059669);">💧</div>
+        <div class="project-card__body">
+          <div class="project-card__cat project-card__cat--ds">Data Science & ML</div>
+          <div class="project-card__title">Tanzanian Water Wells Prediction</div>
+          <div class="project-card__subtitle">DrivenData Competition · Score: 0.8070 · Rank #4737</div>
+          <div class="competition-badge"><i class="fas fa-trophy"></i> Competition · Score 0.8070</div>
+          <div class="project-card__desc">LightGBM model predicting well functionality (59,400 samples) with 80.02% CV accuracy ±0.29%. Advanced geographic, temporal &amp; categorical feature engineering. 5-fold cross-validation with early stopping. Actionable insights for proactive maintenance planning.</div>
+          <div class="project-card__tags">
+            <span class="tag">Python</span><span class="tag">LightGBM</span><span class="tag">Feature Engineering</span><span class="tag">scikit-learn</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/" target="_blank" class="plink plink--primary"><i class="fas fa-trophy"></i> Leaderboard</a>
+            <a href="https://github.com/Kaks753/Tz-water-wells" target="_blank" class="plink plink--ghost"><i class="fab fa-github"></i> GitHub</a>
           </div>
         </div>
       </div>
 
-      <div class="portfolio-item reveal reveal-delay-2" data-category="academic">
-        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(0,212,255,0.4),rgba(26,26,46,0.9));">📜</div>
-        <div class="portfolio-item__thumb-overlay">
-          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
-        </div>
-        <div class="portfolio-item__body">
-          <div class="portfolio-item__cat">Dissertation</div>
-          <h3 class="portfolio-item__title">MBA Dissertation: AI in Supply Chain Optimization</h3>
-          <p class="portfolio-item__desc">85-page MBA dissertation with quantitative research, regression analysis, and literature review. Grade: Distinction.</p>
-          <div class="portfolio-item__tags">
-            <span class="portfolio-item__tag">SPSS</span>
-            <span class="portfolio-item__tag">APA 7</span>
-            <span class="portfolio-item__tag">Quantitative</span>
+      <!-- 5. Twitter Sentiment Analysis -->
+      <div class="project-card reveal" data-cat="ds">
+        <div class="project-card__thumb-placeholder" style="background:linear-gradient(135deg,#0c4a6e,#0369a1);">💬</div>
+        <div class="project-card__body">
+          <div class="project-card__cat project-card__cat--ds">NLP & ML</div>
+          <div class="project-card__title">Twitter/X Sentiment Analysis</div>
+          <div class="project-card__subtitle">Interactive Social Media Intelligence · Streamlit App</div>
+          <div class="project-card__desc">Upload CSV/Excel/TXT Twitter data with smart column detection. Advanced preprocessing including URL removal, mention handling, emoji sentiment. Train &amp; compare ML models. Word clouds, confusion matrices, confidence scores. Export results directly.</div>
+          <div class="project-card__tags">
+            <span class="tag">NLP</span><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">ML</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://prosentimentanalysis.streamlit.app/" target="_blank" class="plink plink--primary"><i class="fas fa-external-link-alt"></i> Launch App</a>
           </div>
         </div>
       </div>
 
-      <div class="portfolio-item reveal reveal-delay-3" data-category="academic">
-        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(255,107,107,0.3),rgba(26,26,46,0.9));">✍️</div>
-        <div class="portfolio-item__thumb-overlay">
-          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
-        </div>
-        <div class="portfolio-item__body">
-          <div class="portfolio-item__cat">Research Paper</div>
-          <h3 class="portfolio-item__title">Machine Learning in Healthcare: A Systematic Review</h3>
-          <p class="portfolio-item__desc">35-page systematic literature review across 80+ peer-reviewed sources. Published-ready quality with proper citation and structure.</p>
-          <div class="portfolio-item__tags">
-            <span class="portfolio-item__tag">Literature Review</span>
-            <span class="portfolio-item__tag">APA</span>
-            <span class="portfolio-item__tag">Healthcare</span>
+      <!-- 6. LexiGenius -->
+      <div class="project-card reveal" data-cat="ds">
+        <div class="project-card__thumb-placeholder" style="background:linear-gradient(135deg,#4c1d95,#7c3aed);">🔍</div>
+        <div class="project-card__body">
+          <div class="project-card__cat project-card__cat--ds">NLP & ML</div>
+          <div class="project-card__title">LexiGenius</div>
+          <div class="project-card__subtitle">Document Intelligence & Semantic Search · Streamlit App</div>
+          <div class="project-card__desc">Upload PDF/DOCX/TXT/CSV or fetch from URLs. Semantic search via TF-IDF vectorization. Auto-cluster documents by topic with K-Means + PCA visualizations. Keyword extraction, similarity heatmaps, 2D scatter plots of document relationships.</div>
+          <div class="project-card__tags">
+            <span class="tag">NLP</span><span class="tag">TF-IDF</span><span class="tag">K-Means</span><span class="tag">PCA</span><span class="tag">Streamlit</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://lexigenius-pro.streamlit.app/" target="_blank" class="plink plink--primary"><i class="fas fa-external-link-alt"></i> Launch App</a>
           </div>
         </div>
       </div>
 
-      <div class="portfolio-item reveal reveal-delay-1" data-category="academic">
-        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(123,47,190,0.3),rgba(0,229,160,0.2));">📊</div>
-        <div class="portfolio-item__thumb-overlay">
-          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
-        </div>
-        <div class="portfolio-item__body">
-          <div class="portfolio-item__cat">Statistical Analysis</div>
-          <h3 class="portfolio-item__title">PhD Data Analysis — Socioeconomic Factors Study</h3>
-          <p class="portfolio-item__desc">Full statistical analysis using SPSS for a PhD candidate: descriptive stats, regression, ANOVA, and interpretation chapter.</p>
-          <div class="portfolio-item__tags">
-            <span class="portfolio-item__tag">SPSS</span>
-            <span class="portfolio-item__tag">R</span>
-            <span class="portfolio-item__tag">Regression</span>
-            <span class="portfolio-item__tag">ANOVA</span>
+      <!-- 7. Movie Industry Analysis -->
+      <div class="project-card reveal" data-cat="ds">
+        <div class="project-card__thumb-placeholder" style="background:linear-gradient(135deg,#3b0764,#7e22ce);">🎬</div>
+        <div class="project-card__body">
+          <div class="project-card__cat project-card__cat--ds">Data Analysis</div>
+          <div class="project-card__title">Movie Industry Analysis</div>
+          <div class="project-card__subtitle">Box Office Performance · Genre Analysis · Tableau Dashboard</div>
+          <div class="project-card__desc">Linear regression model (R²=0.58) for worldwide gross prediction. Statistical hypothesis testing (t-tests, ANOVA). Multi-dataset integration (TMDB, IMDb, Box Office Mojo). Key insight: mid-budget films ($30M–$80M) yield optimal ROI. Interactive Tableau dashboard.</div>
+          <div class="project-card__tags">
+            <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Tableau</span><span class="tag">Statistics</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://public.tableau.com/app/profile/stephen.muema/viz/MovieIndustryAnalysis_17630239953860/MovieIndustryAnalysis" target="_blank" class="plink plink--primary"><i class="fas fa-chart-bar"></i> Tableau Dashboard</a>
+            <a href="https://github.com/Kaks753/Movie-Industry-Analysis_project" target="_blank" class="plink plink--ghost"><i class="fab fa-github"></i> GitHub</a>
           </div>
         </div>
       </div>
 
-      <div class="portfolio-item reveal reveal-delay-2" data-category="web-dev">
-        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(255,107,107,0.4),rgba(26,26,46,0.9));">🌐</div>
-        <div class="portfolio-item__thumb-overlay">
-          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
-        </div>
-        <div class="portfolio-item__body">
-          <div class="portfolio-item__cat">Web Development</div>
-          <h3 class="portfolio-item__title">Real Estate Analytics Platform</h3>
-          <p class="portfolio-item__desc">Full-stack web app with React frontend + Python FastAPI backend, connected to a property database with ML-powered pricing predictions.</p>
-          <div class="portfolio-item__tags">
-            <span class="portfolio-item__tag">React</span>
-            <span class="portfolio-item__tag">FastAPI</span>
-            <span class="portfolio-item__tag">PostgreSQL</span>
+      <!-- 8. NeuroDesk Website -->
+      <div class="project-card reveal" data-cat="web">
+        <div class="project-card__thumb-placeholder" style="background:linear-gradient(135deg,#0f0f1a,#7B2FBE);">🌐</div>
+        <div class="project-card__body">
+          <div class="project-card__cat project-card__cat--web">Web Development</div>
+          <div class="project-card__title">NeuroDesk — This Website</div>
+          <div class="project-card__subtitle">Full Multi-Page Freelance Brand · 15 Pages · Pure HTML/CSS/JS</div>
+          <div class="project-card__desc">Complete freelance business website with 15 pages, custom design system, vanilla JS interactivity (typing animation, scroll reveal, pricing calculator, portfolio filter), SEO schema markup, Vercel deployment, and mobile-first responsive design achieving Lighthouse 95+.</div>
+          <div class="project-card__tags">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Vanilla JS</span><span class="tag">SEO</span><span class="tag">Vercel</span>
+          </div>
+          <div class="project-card__links">
+            <a href="../index.html" class="plink plink--primary"><i class="fas fa-external-link-alt"></i> Live Site</a>
+            <a href="https://github.com/Kaks753/Freelancing_website" target="_blank" class="plink plink--ghost"><i class="fab fa-github"></i> GitHub</a>
           </div>
         </div>
       </div>
 
-      <div class="portfolio-item reveal reveal-delay-3" data-category="web-dev">
-        <div class="portfolio-item__thumb" style="background:linear-gradient(135deg,rgba(0,212,255,0.3),rgba(255,107,107,0.2));">🛒</div>
-        <div class="portfolio-item__thumb-overlay">
-          <a href="contact.html" class="btn btn-sm btn-primary">Similar Project</a>
-        </div>
-        <div class="portfolio-item__body">
-          <div class="portfolio-item__cat">Web Development</div>
-          <h3 class="portfolio-item__title">SME E-Commerce Store + Analytics</h3>
-          <p class="portfolio-item__desc">Built a complete online store for a Nairobi SME with integrated Google Analytics dashboard and inventory management system.</p>
-          <div class="portfolio-item__tags">
-            <span class="portfolio-item__tag">HTML/CSS/JS</span>
-            <span class="portfolio-item__tag">Node.js</span>
-            <span class="portfolio-item__tag">MongoDB</span>
+      <!-- 9. Pro Academic Hub -->
+      <div class="project-card reveal" data-cat="web">
+        <div class="project-card__thumb-placeholder" style="background:linear-gradient(135deg,#164e63,#0e7490);">✍️</div>
+        <div class="project-card__body">
+          <div class="project-card__cat project-card__cat--web">Web Development</div>
+          <div class="project-card__title">Pro Academic Hub</div>
+          <div class="project-card__subtitle">Professional Academic Writing Platform · Deployed on Netlify</div>
+          <div class="project-card__desc">Comprehensive academic writing platform with professional services showcase, integrated pricing, and modern responsive design. Clean UI optimised for conversion with streamlined client onboarding and service listing.</div>
+          <div class="project-card__tags">
+            <span class="tag">Web Design</span><span class="tag">Responsive</span><span class="tag">Netlify</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://proacademichub.netlify.app/" target="_blank" class="plink plink--primary"><i class="fas fa-external-link-alt"></i> Visit Website</a>
           </div>
         </div>
       </div>
-    </div>
 
+      <!-- 10. Excel Sales Dashboard -->
+      <div class="project-card reveal" data-cat="excel">
+        <div class="project-card__thumb-placeholder" style="background:linear-gradient(135deg,#14532d,#15803d);">📊</div>
+        <div class="project-card__body">
+          <div class="project-card__cat project-card__cat--excel">Excel & BI</div>
+          <div class="project-card__title">Excel Sales Dashboard</div>
+          <div class="project-card__subtitle">Advanced Analytics · Dynamic Filtering · Interactive Slicers</div>
+          <div class="project-card__desc">Interactive Excel dashboard with slicers for real-time data exploration, dynamic charts tied to user selections, KPI indicators with conditional formatting, sales trend analysis with forecasting, and regional/product performance comparisons.</div>
+          <div class="project-card__tags">
+            <span class="tag">Excel</span><span class="tag">Pivot Tables</span><span class="tag">Slicers</span><span class="tag">Charts</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://1drv.ms/x/c/48571a6b5f16be9f/Ef0NWH7Eu2RPnBJk8XGEHZsBX_H9-eGav9eQiK08wsGTHA?e=ss1vK0&nav=MTVfe0VEQTg4MjBGLTQwN0ItNDg3NC04OTExLTY5MDdERDhBNEQ2RH0" target="_blank" class="plink plink--primary"><i class="fas fa-external-link-alt"></i> View Dashboard</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Loan Amortization -->
+      <div class="project-card reveal" data-cat="excel">
+        <div class="project-card__thumb-placeholder" style="background:linear-gradient(135deg,#7c2d12,#c2410c);">💰</div>
+        <div class="project-card__body">
+          <div class="project-card__cat project-card__cat--excel">Excel & BI</div>
+          <div class="project-card__title">Loan Amortization Schedule</div>
+          <div class="project-card__subtitle">Advanced Financial Modeling · Payment Analysis</div>
+          <div class="project-card__desc">Complete amortization schedule with principal vs. interest breakdown, interactive charts showing payment progression over time, extra payment scenario modelling, and professional conditional highlighting for at-a-glance financial insight.</div>
+          <div class="project-card__tags">
+            <span class="tag">Excel</span><span class="tag">Financial Modeling</span><span class="tag">Data Analysis</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://1drv.ms/x/c/48571a6b5f16be9f/EbmHTsvlHRlFpr1uK7W2ET8B-NsmN7SqwW_EjBjAOO5nZA?e=7bsYtL&nav=MTVfe0FBMURGQTI3LUE5MEMtNEY2My04ODBCLTgwNEFBQTY4QTM0Qn0" target="_blank" class="plink plink--primary"><i class="fas fa-external-link-alt"></i> View Model</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. Gantt Chart -->
+      <div class="project-card reveal" data-cat="excel">
+        <div class="project-card__thumb-placeholder" style="background:linear-gradient(135deg,#831843,#be185d);">📅</div>
+        <div class="project-card__body">
+          <div class="project-card__cat project-card__cat--excel">Excel & BI</div>
+          <div class="project-card__title">Gantt Chart Project Manager</div>
+          <div class="project-card__subtitle">Visual Timeline · Resource Planning · Critical Path</div>
+          <div class="project-card__desc">Interactive Gantt chart with task dependencies, resource allocation, and timeline visualization. Progress tracking with completion percentage, critical path analysis, milestone tracking, and a professional project dashboard showing all key KPIs.</div>
+          <div class="project-card__tags">
+            <span class="tag">Excel</span><span class="tag">Project Management</span><span class="tag">Data Visualization</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://1drv.ms/x/c/48571a6b5f16be9f/EbmHTsvlHRlFpr1uK7W2ET8B-NsmN7SqwW_EjBjAOO5nZA?e=7bsYtL" target="_blank" class="plink plink--primary"><i class="fas fa-external-link-alt"></i> View Gantt</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13. Research Report Sample -->
+      <div class="project-card reveal" data-cat="academic">
+        <div class="project-card__thumb-placeholder" style="background:linear-gradient(135deg,#713f12,#a16207);">📄</div>
+        <div class="project-card__body">
+          <div class="project-card__cat project-card__cat--academic">Academic Writing</div>
+          <div class="project-card__title">Research Report Sample</div>
+          <div class="project-card__subtitle">Professional Business Research & Analysis</div>
+          <div class="project-card__desc">Sample professional research report showcasing market analysis with statistical insights, proper academic formatting and citations, strategic recommendations, and visual data representation — the kind of work delivered for academic and business clients.</div>
+          <div class="project-card__tags">
+            <span class="tag">Research</span><span class="tag">Analysis</span><span class="tag">Writing</span><span class="tag">APA</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://1drv.ms/w/c/48571a6b5f16be9f/EUuXcWj8f2VDghwkSk137UYBrowj6gUrJk0drRi55OwLqA?e=tmcuZs" target="_blank" class="plink plink--primary"><i class="fas fa-file-word"></i> View Report</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 14. Business Presentation -->
+      <div class="project-card reveal" data-cat="academic">
+        <div class="project-card__thumb-placeholder" style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);">📊</div>
+        <div class="project-card__body">
+          <div class="project-card__cat project-card__cat--academic">Academic Writing</div>
+          <div class="project-card__title">Business Presentation Slides</div>
+          <div class="project-card__subtitle">Professional PowerPoint · Data Storytelling · Executive-Ready</div>
+          <div class="project-card__desc">Professional PowerPoint presentation with consistent branding, data visualization and infographic elements, strategic narrative flow for stakeholder communication, and compelling visuals that translate complex data into clear executive insight.</div>
+          <div class="project-card__tags">
+            <span class="tag">PowerPoint</span><span class="tag">Design</span><span class="tag">Data Visualization</span>
+          </div>
+          <div class="project-card__links">
+            <a href="https://1drv.ms/p/c/48571a6b5f16be9f/Ef4bcMUoMhpDv85_p38CCFABvRCS3lBwWiHsM7g0lXmVFA?e=VtI53Q&nav=eyJzSWQiOjI3NCwiY0lkIjoyMzE0MTIxMDR9" target="_blank" class="plink plink--primary"><i class="fas fa-file-powerpoint"></i> View Slides</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /portfolio-grid -->
+
+    <!-- CTA -->
     <div style="text-align:center;margin-top:56px;" class="reveal">
-      <p style="font-size:0.9rem;color:var(--color-text-muted);margin-bottom:20px;">Have a project in mind? Let's discuss how we can build something similar for you.</p>
-      <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Start Your Project</a>
-    </div>
-  </div>
-</section>
-
-<section class="section--sm" style="background:var(--color-bg-secondary);">
-  <div class="container">
-    <div class="cta-banner reveal">
-      <div class="cta-banner__content">
-        <h2 class="cta-banner__title">Your Project Could Be Next</h2>
-        <p class="cta-banner__subtitle">Join our growing list of satisfied clients. Get expert work, fast delivery, and measurable results.</p>
-        <div class="cta-banner__actions">
-          <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Get a Free Quote</a>
-          <a href="https://wa.me/254700000000" class="btn btn-whatsapp btn-lg" target="_blank"><i class="fab fa-whatsapp"></i> Chat Now</a>
-        </div>
+      <p style="color:var(--color-text-secondary);margin-bottom:20px;">Like what you see? Let's discuss your project.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Start a Project</a>
+        <a href="https://wa.me/254740624253?text=Hi%20NeuroDesk!%20I%20saw%20your%20portfolio%20and%20I%20have%20a%20project." class="btn btn-whatsapp btn-lg" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
       </div>
     </div>
   </div>
@@ -236,16 +513,75 @@
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
-      <div class="footer__brand"><a href="../index.html" class="navbar__logo" style="margin-bottom:16px;display:inline-flex;"><div class="navbar__logo-icon">🧠</div><div class="navbar__logo-text">Neuro<span>Desk</span></div></a><p>Intelligence at Your Service.</p><div class="footer__socials"><a href="https://linkedin.com" class="footer__social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a><a href="https://github.com" class="footer__social-link" target="_blank"><i class="fab fa-github"></i></a><a href="https://wa.me/254700000000" class="footer__social-link" target="_blank"><i class="fab fa-whatsapp"></i></a><a href="mailto:hello@neurodesk.com" class="footer__social-link"><i class="fas fa-envelope"></i></a></div></div>
-      <div class="footer__col"><h4 class="footer__col-title">Services</h4><ul class="footer__col-links"><li><a href="data-science.html">Data Science</a></li><li><a href="academic-writing.html">Academic Writing</a></li><li><a href="web-development.html">Web Dev</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
-      <div class="footer__col"><h4 class="footer__col-title">Company</h4><ul class="footer__col-links"><li><a href="about.html">About</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="../blog/index.html">Blog</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
-      <div class="footer__col"><h4 class="footer__col-title">Contact</h4><ul class="footer__col-links"><li><a href="mailto:hello@neurodesk.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Email</a></li><li><a href="https://wa.me/254700000000" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li></ul></div>
+      <div class="footer__brand">
+        <a href="../index.html" class="navbar__logo" style="margin-bottom:16px;display:inline-flex;">
+          <div class="navbar__logo-icon">🧠</div>
+          <div class="navbar__logo-text">Neuro<span>Desk</span></div>
+        </a>
+        <p>Intelligence at Your Service.</p>
+        <div class="footer__socials">
+          <a href="https://www.linkedin.com/in/stephen-muema-617339359" class="footer__social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/Kaks753" class="footer__social-link" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://wa.me/254740624253" class="footer__social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:musyokas753@gmail.com" class="footer__social-link"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title">Services</h4>
+        <ul class="footer__col-links">
+          <li><a href="data-science.html">Data Science</a></li>
+          <li><a href="academic-writing.html">Academic Writing</a></li>
+          <li><a href="web-development.html">Web Dev</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title">Company</h4>
+        <ul class="footer__col-links">
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="../blog/index.html">Blog</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title">Contact</h4>
+        <ul class="footer__col-links">
+          <li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Email</a></li>
+          <li><a href="https://wa.me/254740624253" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer__bottom"><p class="footer__copyright">© 2025 NeuroDesk. All rights reserved.</p><div class="footer__bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2025 NeuroDesk. All rights reserved.</p>
+      <div class="footer__bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
   </div>
 </footer>
-<div class="whatsapp-float"><span class="whatsapp-float__tooltip">Chat with us!</span><a href="https://wa.me/254700000000" class="whatsapp-float__btn" target="_blank"><i class="fab fa-whatsapp"></i></a></div>
+
+<div class="whatsapp-float">
+  <span class="whatsapp-float__tooltip">Chat on WhatsApp</span>
+  <a href="https://wa.me/254740624253" class="whatsapp-float__btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+</div>
 <button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+  // Portfolio filter
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.project-card').forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
 <script src="../js/main.js"></script>
 </body>
 </html>

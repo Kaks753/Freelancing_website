@@ -228,11 +228,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ============================================================
-     CONTACT FORM
+     CONTACT FORM — Web3Forms (real delivery, free tier)
   ============================================================ */
   const contactForm = document.querySelector('#contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = contactForm.querySelector('[type="submit"]');
       const originalText = btn.innerHTML;
@@ -240,35 +240,64 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
       btn.disabled = true;
 
-      // Simulate send (in real app, you'd use EmailJS or Formspree)
-      setTimeout(() => {
-        btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-        btn.style.background = 'linear-gradient(135deg, #00E5A0, #00B87D)';
-        showToast('Message Sent!', 'We\'ll get back to you within 24 hours.');
-        contactForm.reset();
+      const formData = new FormData(contactForm);
+      // Web3Forms public key — free tier, no backend needed
+      // ⚠️ REPLACE THIS KEY: get your free key at https://web3forms.com (takes 1 minute)
+      formData.append('access_key', 'YOUR_WEB3FORMS_KEY_HERE');
+      formData.append('subject', 'New NeuroDesk Inquiry: ' + (formData.get('service') || 'General'));
+      formData.append('from_name', 'NeuroDesk Website');
 
-        setTimeout(() => {
-          btn.innerHTML = originalText;
-          btn.disabled = false;
-          btn.style.background = '';
-        }, 4000);
-      }, 1800);
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+          btn.style.background = 'linear-gradient(135deg, #00E5A0, #00B87D)';
+          showToast('✓ Message sent — we\'ll reply within 24 hours.');
+          contactForm.reset();
+        } else {
+          throw new Error('Send failed');
+        }
+      } catch {
+        btn.innerHTML = '<i class="fas fa-exclamation-circle"></i> Try WhatsApp';
+        btn.style.background = 'linear-gradient(135deg, #25D366, #128C7E)';
+        showToast('⚠ Form error — please WhatsApp us directly.');
+      }
+
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        btn.style.background = '';
+      }, 5000);
     });
   }
 
   /* ============================================================
-     TOAST NOTIFICATION
+     TOAST NOTIFICATION — compact, no heavy box
   ============================================================ */
-  function showToast(title, message) {
-    const toast = document.querySelector('.toast');
-    if (toast) {
-      const toastTitle = toast.querySelector('strong');
-      const toastMsg = toast.querySelector('span');
-      if (toastTitle) toastTitle.textContent = title;
-      if (toastMsg) toastMsg.textContent = message;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 4000);
-    }
+  function showToast(message) {
+    // Remove any existing toast
+    const existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    // Animate in
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => toast.classList.add('show'));
+    });
+
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 400);
+    }, 4000);
   }
   window.showToast = showToast;
 
@@ -428,7 +457,7 @@ function generateNavbar(activePage) {
       <a href="../pages/contact.html" class="btn btn-primary" style="width:100%;justify-content:center">
         <i class="fas fa-paper-plane"></i> Hire Me Now
       </a>
-      <a href="https://wa.me/254700000000?text=Hi%20NeuroDesk!%20I'd%20like%20to%20discuss%20a%20project." class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank">
+      <a href="https://wa.me/254740624253?text=Hi%20NeuroDesk!%20I'd%20like%20to%20discuss%20a%20project." class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank">
         <i class="fab fa-whatsapp"></i> WhatsApp
       </a>
     </div>

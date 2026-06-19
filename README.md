@@ -184,18 +184,18 @@ NeuroDesk/
 
 | Channel | Current (Placeholder) | Action Needed |
 |---------|----------------------|---------------|
-| WhatsApp | `254700000000` | Replace with real number |
-| Email | `hello@neurodesk.com` | Replace with real email |
+| WhatsApp | `254740624253` | Replace with real number |
+| Email | `musyokas753@gmail.com` | Replace with real email |
 | LinkedIn | `linkedin.com/in/stephenmuema` | Verify URL |
 | GitHub | (not linked) | Add GitHub profile URL |
 
 **To update contact info across all pages:**
 ```bash
 # Replace WhatsApp number (find all instances)
-grep -r "254700000000" . --include="*.html" -l
+grep -r "254740624253" . --include="*.html" -l
 
 # Replace email
-grep -r "hello@neurodesk.com" . --include="*.html" -l
+grep -r "musyokas753@gmail.com" . --include="*.html" -l
 ```
 
 ---
