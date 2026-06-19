@@ -259,3 +259,4 @@ Deadline multipliers: Rush 72h (×2.5), 1 week (×1.5), 2 weeks (×1.2), standar
 
 © 2025 NeuroDesk — Stephen Muema. All rights reserved.  
 This codebase is proprietary. Not for redistribution.
+
