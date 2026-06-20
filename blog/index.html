@@ -83,6 +83,39 @@
     .blog-card-v2__meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--color-text-muted); border-top: 1px solid var(--color-border); padding-top: 12px; margin-top: auto; }
     .blog-card-v2__read { color: var(--color-accent-cyan); font-weight: 600; font-size: 0.78rem; white-space: nowrap; }
 
+    /* ── Medium Badge ── */
+    .medium-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 20px;
+      padding: 3px 9px;
+      white-space: nowrap;
+    }
+    .medium-badge i { font-size: 0.8rem; }
+
+    /* ── Featured Medium Badge ── */
+    .featured-medium-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #fff;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 5px 13px;
+    }
+
     /* ── Newsletter ── */
     .newsletter-box {
       background: linear-gradient(135deg, rgba(123,47,190,0.12), rgba(0,212,255,0.06));
@@ -158,22 +191,26 @@
 <section class="section" style="padding-top:20px;">
   <div class="container">
 
-    <!-- ── Featured Article ── -->
-    <a href="freelancer-vs-agency.html" class="blog-featured reveal" style="display:grid;text-decoration:none;color:inherit;">
+    <!-- ── Featured Article → Medium ── -->
+    <a href="https://medium.com/@kaks2679/freelancer-vs-agency-who-should-handle-your-data-science-project-334e2983166e"
+       class="blog-featured reveal"
+       style="display:grid;text-decoration:none;color:inherit;"
+       target="_blank" rel="noopener noreferrer">
       <img src="../images/blog/cover-freelancer-vs-agency.jpg" alt="Freelancer vs Agency" class="blog-featured__img" loading="eager" />
       <div class="blog-featured__body">
         <div class="blog-featured__tags">
           <span class="tag tag--violet">Featured</span>
           <span class="tag tag--cyan">Data Science</span>
+          <span class="featured-medium-badge"><i class="fab fa-medium"></i> Read on Medium</span>
         </div>
         <h2 class="blog-featured__title">Freelancer vs Agency: Who Should Handle Your Data Science Project?</h2>
         <p class="blog-featured__excerpt">An honest breakdown of the tradeoffs between hiring a freelance data scientist and a full-service agency — based on budget, complexity, timeline, and trust.</p>
         <div class="blog-featured__meta">
           <div class="blog-featured__meta-info">
             <span><i class="fas fa-calendar" style="margin-right:5px;color:var(--color-accent-violet)"></i>June 2025</span>
-            <span><i class="fas fa-clock" style="margin-right:5px;color:var(--color-accent-cyan)"></i>6–8 min read</span>
+            <span><i class="fas fa-clock" style="margin-right:5px;color:var(--color-accent-cyan)"></i>5 min read</span>
           </div>
-          <span class="btn btn-primary btn-sm">Read Article <i class="fas fa-arrow-right"></i></span>
+          <span class="btn btn-primary btn-sm">Read on Medium <i class="fab fa-medium" style="margin-left:4px;"></i></span>
         </div>
       </div>
     </a>
@@ -187,58 +224,67 @@
       <button class="filter-btn" data-filter="freelance">Freelance Strategy</button>
     </div>
 
-    <!-- ── 6-Article Grid ── -->
+    <!-- ── 5-Article Grid ── -->
     <div class="blog-grid-6" id="blogGrid">
 
-      <!-- 1 Dissertation Guide -->
-      <a href="dissertation-guide.html" class="blog-card-v2 reveal reveal-delay-1" data-cat="academic">
+      <!-- 1 Dissertation Guide → Medium -->
+      <a href="https://medium.com/@kaks2679/the-ultimate-dissertation-survival-guide-from-topic-to-submission-503bb0e7c8a4"
+         class="blog-card-v2 reveal reveal-delay-1"
+         data-cat="academic"
+         target="_blank" rel="noopener noreferrer">
         <div class="blog-card-v2__img-wrap">
           <img src="../images/blog/cover-dissertation-guide.jpg" alt="Dissertation Survival Guide" class="blog-card-v2__img" loading="lazy" />
         </div>
         <div class="blog-card-v2__body">
-          <div class="blog-card-v2__cat blog-card-v2__cat--academic">Academic Writing</div>
+          <div class="blog-card-v2__cat blog-card-v2__cat--academic">Academic Writing &nbsp;<span class="medium-badge"><i class="fab fa-medium"></i> Medium</span></div>
           <h3 class="blog-card-v2__title">The Ultimate Dissertation Survival Guide: From Topic to Submission</h3>
           <p class="blog-card-v2__excerpt">A stage-by-stage roadmap for undergrad and postgraduate students — from choosing the right topic to nailing your viva defence.</p>
           <div class="blog-card-v2__meta">
             <span><i class="fas fa-calendar" style="margin-right:4px;"></i>May 2025</span>
-            <span class="blog-card-v2__read"><i class="fas fa-clock" style="margin-right:4px;"></i>10–12 min</span>
+            <span class="blog-card-v2__read"><i class="fas fa-clock" style="margin-right:4px;"></i>3 min</span>
           </div>
         </div>
       </a>
 
-      <!-- 2 Web Presence -->
-      <a href="web-presence.html" class="blog-card-v2 reveal reveal-delay-2" data-cat="web">
+      <!-- 2 Web Presence → Medium -->
+      <a href="https://medium.com/@kaks2679/why-your-business-needs-a-web-presence-in-2025-and-how-to-build-one-511ae8e7e62f"
+         class="blog-card-v2 reveal reveal-delay-2"
+         data-cat="web"
+         target="_blank" rel="noopener noreferrer">
         <div class="blog-card-v2__img-wrap">
           <img src="../images/blog/cover-web-presence.jpg" alt="Why Your Business Needs a Web Presence in 2025" class="blog-card-v2__img" loading="lazy" />
         </div>
         <div class="blog-card-v2__body">
-          <div class="blog-card-v2__cat blog-card-v2__cat--web">Web Development</div>
+          <div class="blog-card-v2__cat blog-card-v2__cat--web">Web Development &nbsp;<span class="medium-badge"><i class="fab fa-medium"></i> Medium</span></div>
           <h3 class="blog-card-v2__title">Why Your Business Needs a Web Presence in 2025 (And How to Build One)</h3>
           <p class="blog-card-v2__excerpt">Not having a website in 2025 is costing you customers every single day. Here's why it matters and how to fix it affordably.</p>
           <div class="blog-card-v2__meta">
             <span><i class="fas fa-calendar" style="margin-right:4px;"></i>April 2025</span>
-            <span class="blog-card-v2__read"><i class="fas fa-clock" style="margin-right:4px;"></i>6 min</span>
+            <span class="blog-card-v2__read"><i class="fas fa-clock" style="margin-right:4px;"></i>3 min</span>
           </div>
         </div>
       </a>
 
-      <!-- 3 AI vs Human -->
-      <a href="ai-vs-human.html" class="blog-card-v2 reveal reveal-delay-3" data-cat="data">
+      <!-- 3 AI vs Human → Medium -->
+      <a href="https://medium.com/@kaks2679/ai-vs-human-writers-what-ai-cant-do-yet-in-academic-data-work-b5410d8bc179"
+         class="blog-card-v2 reveal reveal-delay-3"
+         data-cat="data"
+         target="_blank" rel="noopener noreferrer">
         <div class="blog-card-v2__img-wrap">
           <img src="../images/blog/cover-ai-vs-human.jpg" alt="AI vs Human Writers" class="blog-card-v2__img" loading="lazy" />
         </div>
         <div class="blog-card-v2__body">
-          <div class="blog-card-v2__cat blog-card-v2__cat--data">Data Science &amp; AI</div>
+          <div class="blog-card-v2__cat blog-card-v2__cat--data">Data Science &amp; AI &nbsp;<span class="medium-badge"><i class="fab fa-medium"></i> Medium</span></div>
           <h3 class="blog-card-v2__title">AI vs Human Writers: What AI Can't Do (Yet) in Academic &amp; Data Work</h3>
           <p class="blog-card-v2__excerpt">ChatGPT is impressive — but it's not replacing expert human judgment in data science and academic writing anytime soon. Here's the honest truth.</p>
           <div class="blog-card-v2__meta">
             <span><i class="fas fa-calendar" style="margin-right:4px;"></i>March 2025</span>
-            <span class="blog-card-v2__read"><i class="fas fa-clock" style="margin-right:4px;"></i>7 min</span>
+            <span class="blog-card-v2__read"><i class="fas fa-clock" style="margin-right:4px;"></i>3 min</span>
           </div>
         </div>
       </a>
 
-      <!-- 4 Kenya Data Science -->
+      <!-- 4 Kenya Data Science → internal -->
       <a href="kenya-data-science.html" class="blog-card-v2 reveal reveal-delay-1" data-cat="data">
         <div class="blog-card-v2__img-wrap">
           <img src="../images/blog/cover-kenya-data-science.jpg" alt="Data Science in Kenya" class="blog-card-v2__img" loading="lazy" />
@@ -254,7 +300,7 @@
         </div>
       </a>
 
-      <!-- 5 Freelance Pricing -->
+      <!-- 5 Freelance Pricing → internal -->
       <a href="freelance-pricing.html" class="blog-card-v2 reveal reveal-delay-2" data-cat="freelance">
         <div class="blog-card-v2__img-wrap">
           <img src="../images/blog/cover-freelance-pricing.jpg" alt="How to Price Your Freelance Services in Kenya" class="blog-card-v2__img" loading="lazy" />
@@ -266,22 +312,6 @@
           <div class="blog-card-v2__meta">
             <span><i class="fas fa-calendar" style="margin-right:4px;"></i>June 2025</span>
             <span class="blog-card-v2__read"><i class="fas fa-clock" style="margin-right:4px;"></i>10 min</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- 6 Freelancer vs Agency (grid duplicate — smaller format) -->
-      <a href="freelancer-vs-agency.html" class="blog-card-v2 reveal reveal-delay-3" data-cat="data">
-        <div class="blog-card-v2__img-wrap">
-          <img src="../images/blog/cover-freelancer-vs-agency.jpg" alt="Freelancer vs Agency" class="blog-card-v2__img" loading="lazy" />
-        </div>
-        <div class="blog-card-v2__body">
-          <div class="blog-card-v2__cat blog-card-v2__cat--data">Data Science</div>
-          <h3 class="blog-card-v2__title">Freelancer vs Agency: Who Should Handle Your Data Science Project?</h3>
-          <p class="blog-card-v2__excerpt">Budget, speed, direct access to the expert doing the work — why a specialized freelancer wins for most data science projects.</p>
-          <div class="blog-card-v2__meta">
-            <span><i class="fas fa-calendar" style="margin-right:4px;"></i>June 2025</span>
-            <span class="blog-card-v2__read"><i class="fas fa-clock" style="margin-right:4px;"></i>6 min</span>
           </div>
         </div>
       </a>
