@@ -1131,7 +1131,7 @@ input, textarea, select {
   background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-card) 100%);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
-  padding: 44px 36px;
+  padding: 28px 36px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -1153,15 +1153,15 @@ input, textarea, select {
 
 .cta-banner__title {
   font-family: var(--font-heading);
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 700;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .cta-banner__subtitle {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: var(--color-text-secondary);
-  margin-bottom: 36px;
+  margin-bottom: 24px;
   max-width: 550px;
   margin-left: auto;
   margin-right: auto;
@@ -2278,7 +2278,7 @@ input, textarea, select {
   .about-grid { grid-template-columns: 1fr; }
 
   /* CTA Banner */
-  .cta-banner { padding: 32px 20px; }
+  .cta-banner { padding: 22px 20px; }
 
   /* Form */
   .form-row { grid-template-columns: 1fr; }

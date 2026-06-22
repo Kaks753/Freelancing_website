@@ -217,7 +217,7 @@
 
           <div class="hero__rating">
             <span class="hero__stars">★★★★★</span>
-            <span>5.0 · 40+ satisfied clients</span>
+            <span>5.0 · 50+ satisfied clients</span>
           </div>
         </div>
 
@@ -769,7 +769,7 @@
                 <optgroup label="Academic Writing">
                   <option value="dissertation">Dissertation / Thesis</option>
                   <option value="research-paper">Research Paper</option>
-                  <option value="assignment">Assignment / Essay</option>
+                  <option value="essay">Essay / Assignment</option>
                 </optgroup>
                 <optgroup label="Web Development">
                   <option value="website">Business Website</option>
@@ -777,12 +777,24 @@
                 </optgroup>
               </select>
             </div>
+
+            <!-- Pages field — shown only for essay/assignment -->
+            <div class="form-group" id="calc-pages-group" style="display:none;">
+              <label class="form-label">Number of Pages <span style="color:var(--color-text-muted);font-size:0.8rem;">(~275 words per page)</span></label>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <button type="button" class="calc-page-btn" id="calcPageMinus">−</button>
+                <input type="number" class="form-input" id="calc-pages" value="5" min="1" max="100" style="text-align:center;width:70px;padding:10px;" />
+                <button type="button" class="calc-page-btn" id="calcPagePlus">+</button>
+                <span style="font-size:0.8rem;color:var(--color-text-muted);">pages</span>
+              </div>
+            </div>
+
             <div class="form-group">
-              <label class="form-label">Complexity Level</label>
+              <label class="form-label">Quality Level</label>
               <select class="form-select" id="calc-complexity">
                 <option value="basic">Basic</option>
                 <option value="standard" selected>Standard</option>
-                <option value="premium">Premium / Advanced</option>
+                <option value="premium">Premium — Expert level</option>
               </select>
             </div>
             <div class="form-group">
@@ -794,8 +806,13 @@
                 <option value="rush">Rush (24–48 hrs)</option>
               </select>
             </div>
-            <div id="calc-result" style="display:none;margin-bottom:16px;">
+
+            <!-- Urgency warning banner -->
+            <div id="calc-urgency-notice" style="display:none;background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.3);border-radius:8px;padding:10px 14px;font-size:0.8rem;color:#FF6B6B;margin-bottom:12px;">
+              <i class="fas fa-bolt" style="margin-right:6px;"></i><span id="calc-urgency-text"></span>
             </div>
+
+            <div id="calc-result" style="display:none;margin-bottom:16px;"></div>
             <a href="pages/contact.html" class="btn btn-primary" style="width:100%;justify-content:center">
               <i class="fas fa-paper-plane"></i> Get Exact Quote — Free
             </a>
@@ -818,41 +835,41 @@
     </div>
 
     <div class="blog-grid">
-      <a href="blog/freelancer-vs-agency.html" class="blog-card reveal reveal-delay-1">
+      <a href="https://medium.com/@kaks2679/freelancer-vs-agency-who-should-handle-your-data-science-project-334e2983166e" class="blog-card reveal reveal-delay-1" target="_blank" rel="noopener noreferrer">
         <div class="blog-card__thumb" style="background:linear-gradient(135deg,rgba(123,47,190,0.3),rgba(26,26,46,0.8));">📊</div>
         <div class="blog-card__body">
           <div class="blog-card__cat">Data Science</div>
           <h3 class="blog-card__title">Freelancer vs Agency: Who Should Handle Your Data Project?</h3>
           <p class="blog-card__excerpt">Understand the tradeoffs between hiring a freelance data scientist and a full agency, and how to make the right choice for your budget.</p>
           <div class="blog-card__meta">
-            <span>June 2025</span>
+            <span>June 2026</span>
             <span class="blog-card__read-time"><i class="fas fa-clock"></i> 5 min read</span>
           </div>
         </div>
       </a>
 
-      <a href="blog/dissertation-guide.html" class="blog-card reveal reveal-delay-2">
+      <a href="https://medium.com/@kaks2679/the-ultimate-dissertation-survival-guide-from-topic-to-submission-503bb0e7c8a4" class="blog-card reveal reveal-delay-2" target="_blank" rel="noopener noreferrer">
         <div class="blog-card__thumb" style="background:linear-gradient(135deg,rgba(0,212,255,0.25),rgba(26,26,46,0.8));">✍️</div>
         <div class="blog-card__body">
           <div class="blog-card__cat">Academic Writing</div>
           <h3 class="blog-card__title">The Ultimate Dissertation Survival Guide: From Topic to Submission</h3>
           <p class="blog-card__excerpt">A complete roadmap for navigating your dissertation from choosing a topic to your final submission — with expert tips at every stage.</p>
           <div class="blog-card__meta">
-            <span>May 2025</span>
-            <span class="blog-card__read-time"><i class="fas fa-clock"></i> 8 min read</span>
+            <span>May 2026</span>
+            <span class="blog-card__read-time"><i class="fas fa-clock"></i> 3 min read</span>
           </div>
         </div>
       </a>
 
-      <a href="blog/web-presence.html" class="blog-card reveal reveal-delay-3">
-        <div class="blog-card__thumb" style="background:linear-gradient(135deg,rgba(255,107,107,0.25),rgba(26,26,46,0.8));">🌐</div>
+      <a href="https://medium.com/@kaks2679/data-science-in-kenya-a-practical-guide-to-breaking-in-39b797125828" class="blog-card reveal reveal-delay-3" target="_blank" rel="noopener noreferrer">
+        <div class="blog-card__thumb" style="background:linear-gradient(135deg,rgba(0,229,160,0.25),rgba(26,26,46,0.8));">🇰🇪</div>
         <div class="blog-card__body">
-          <div class="blog-card__cat">Web Development</div>
-          <h3 class="blog-card__title">Why Your Business Needs a Web Presence in 2025 (And How to Build One)</h3>
-          <p class="blog-card__excerpt">In 2025, not having a website is not an option. Here's why digital presence is crucial and exactly how to get started affordably.</p>
+          <div class="blog-card__cat">Data Science</div>
+          <h3 class="blog-card__title">Data Science in Kenya: A Practical Guide to Breaking In</h3>
+          <p class="blog-card__excerpt">From learning paths and local datasets to building a portfolio that actually gets you hired in the Kenyan and East African market.</p>
           <div class="blog-card__meta">
-            <span>April 2025</span>
-            <span class="blog-card__read-time"><i class="fas fa-clock"></i> 6 min read</span>
+            <span>June 2026</span>
+            <span class="blog-card__read-time"><i class="fas fa-clock"></i> 3 min read</span>
           </div>
         </div>
       </a>
@@ -938,7 +955,7 @@
     </div>
 
     <div class="footer__bottom">
-      <p class="footer__copyright">© 2025 NeuroDesk. All rights reserved. Intelligence at Your Service.</p>
+      <p class="footer__copyright">© 2026 NeuroDesk. All rights reserved. Intelligence at Your Service.</p>
       <div class="footer__bottom-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
@@ -998,6 +1015,20 @@
   color: var(--color-text-muted);
 }
 .text-cyan { color: var(--color-accent-cyan); }
+.calc-page-btn {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.calc-page-btn:hover { border-color: var(--color-accent-violet); background: rgba(123,47,190,0.15); }
 
 /* WHY section responsive */
 @media (max-width: 768px) {

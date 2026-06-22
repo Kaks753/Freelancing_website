@@ -324,56 +324,134 @@ document.addEventListener('DOMContentLoaded', () => {
   ============================================================ */
   const calcForm = document.querySelector('#price-calculator');
   if (calcForm) {
-    const serviceSelect = calcForm.querySelector('#calc-service');
-    const complexitySelect = calcForm.querySelector('#calc-complexity');
-    const deadlineSelect = calcForm.querySelector('#calc-deadline');
-    const resultDiv = calcForm.querySelector('#calc-result');
+    const serviceSelect   = calcForm.querySelector('#calc-service');
+    const complexitySelect= calcForm.querySelector('#calc-complexity');
+    const deadlineSelect  = calcForm.querySelector('#calc-deadline');
+    const resultDiv       = calcForm.querySelector('#calc-result');
+    const pagesGroup      = calcForm.querySelector('#calc-pages-group');
+    const pagesInput      = calcForm.querySelector('#calc-pages');
+    const urgencyNotice   = calcForm.querySelector('#calc-urgency-notice');
+    const urgencyText     = calcForm.querySelector('#calc-urgency-text');
+    const pageMinus       = calcForm.querySelector('#calcPageMinus');
+    const pagePlus        = calcForm.querySelector('#calcPagePlus');
 
+    // Per-page rates for essays/assignments: basic $5, standard $10, premium $15
+    const PAGE_RATES = { basic: 5, standard: 10, premium: 15 };
+
+    // Fixed base prices for non-page services
     const basePrices = {
-      'data-analysis':     { basic: 30, standard: 80, premium: 200 },
-      'ml-model':          { basic: 80, standard: 200, premium: 500 },
-      'dashboard':         { basic: 50, standard: 120, premium: 300 },
-      'dissertation':      { basic: 60, standard: 150, premium: 350 },
-      'assignment':        { basic: 15, standard: 30,  premium: 60  },
-      'research-paper':    { basic: 40, standard: 100, premium: 250 },
-      'website':           { basic: 80, standard: 200, premium: 500 },
-      'landing-page':      { basic: 40, standard: 100, premium: 200 },
+      'data-analysis':  { basic: 30,  standard: 80,  premium: 200 },
+      'ml-model':       { basic: 80,  standard: 200, premium: 500 },
+      'dashboard':      { basic: 50,  standard: 120, premium: 300 },
+      'dissertation':   { basic: 60,  standard: 150, premium: 350 },
+      'research-paper': { basic: 40,  standard: 100, premium: 250 },
+      'website':        { basic: 80,  standard: 200, premium: 500 },
+      'landing-page':   { basic: 40,  standard: 100, premium: 200 },
     };
 
     const deadlineMultiplier = {
-      'flexible': 1,
+      'flexible': 1.0,
       'standard': 1.2,
-      'urgent': 1.6,
-      'rush': 2.0,
+      'urgent':   1.6,
+      'rush':     2.0,
     };
 
+    // Show/hide pages field based on service selection
+    function togglePagesField() {
+      const isEssay = serviceSelect && serviceSelect.value === 'essay';
+      if (pagesGroup) pagesGroup.style.display = isEssay ? 'block' : 'none';
+    }
+
+    // Smart urgency: for rush/urgent on essays, auto-enforce minimum quality
+    function applyUrgencyLogic(service, deadline, complexityVal) {
+      if (service !== 'essay') {
+        if (urgencyNotice) urgencyNotice.style.display = 'none';
+        return complexityVal;
+      }
+      if (deadline === 'rush') {
+        if (urgencyNotice) {
+          urgencyNotice.style.display = 'block';
+          urgencyText.textContent = 'Rush orders (24–48 hrs) require at least Premium level to ensure quality and citations.';
+        }
+        if (complexitySelect && complexityVal !== 'premium') {
+          complexitySelect.value = 'premium';
+        }
+        return 'premium';
+      }
+      if (deadline === 'urgent') {
+        if (urgencyNotice) {
+          urgencyNotice.style.display = 'block';
+          urgencyText.textContent = 'Urgent orders (3–5 days) require at least Standard quality for proper research.';
+        }
+        if (complexitySelect && complexityVal === 'basic') {
+          complexitySelect.value = 'standard';
+        }
+        return complexitySelect ? complexitySelect.value : 'standard';
+      }
+      if (urgencyNotice) urgencyNotice.style.display = 'none';
+      return complexityVal;
+    }
+
     function calcEstimate() {
-      const service = serviceSelect ? serviceSelect.value : '';
-      const complexity = complexitySelect ? complexitySelect.value : 'basic';
-      const deadline = deadlineSelect ? deadlineSelect.value : 'standard';
+      const service    = serviceSelect  ? serviceSelect.value   : '';
+      const deadline   = deadlineSelect ? deadlineSelect.value  : 'standard';
+      let   complexity = complexitySelect ? complexitySelect.value : 'standard';
 
-      if (!service || !basePrices[service]) return;
+      if (!service) { if (resultDiv) resultDiv.style.display = 'none'; return; }
 
-      const base = basePrices[service][complexity] || basePrices[service]['basic'];
+      complexity = applyUrgencyLogic(service, deadline, complexity);
       const multiplier = deadlineMultiplier[deadline] || 1;
-      const estimate = Math.round(base * multiplier);
-      const estimateMax = Math.round(estimate * 1.4);
+
+      let estimate, estimateMax, priceLabel, noteExtra = '';
+
+      if (service === 'essay') {
+        const pages    = parseInt(pagesInput ? pagesInput.value : 5) || 5;
+        const perPage  = PAGE_RATES[complexity];
+        estimate       = Math.round(pages * perPage * multiplier);
+        estimateMax    = Math.round(estimate * 1.3);
+        priceLabel     = `$${estimate} – $${estimateMax}`;
+        noteExtra      = `${pages} page${pages>1?'s':''} × $${perPage}/page`;
+        if (multiplier > 1) noteExtra += ` + ${Math.round((multiplier-1)*100)}% urgency fee`;
+      } else {
+        const base = (basePrices[service] || {})[complexity] || (basePrices[service] || {})['basic'] || 50;
+        estimate     = Math.round(base * multiplier);
+        estimateMax  = Math.round(estimate * 1.4);
+        priceLabel   = `$${estimate} – $${estimateMax}`;
+      }
 
       if (resultDiv) {
         resultDiv.innerHTML = `
           <div class="calc-result-inner">
             <div class="calc-result-label">Estimated Range</div>
-            <div class="calc-result-price">$${estimate} – $${estimateMax}</div>
-            <div class="calc-result-note">Final price depends on specific requirements. <a href="contact.html" class="text-cyan">Get exact quote →</a></div>
+            <div class="calc-result-price">${priceLabel}</div>
+            ${noteExtra ? `<div class="calc-result-note" style="margin-bottom:4px;color:var(--color-accent-cyan);font-weight:600;">${noteExtra}</div>` : ''}
+            <div class="calc-result-note">Final price depends on specific requirements. <a href="pages/contact.html" class="text-cyan">Get exact quote →</a></div>
           </div>
         `;
         resultDiv.style.display = 'block';
       }
     }
 
-    [serviceSelect, complexitySelect, deadlineSelect].forEach(el => {
+    // Page counter buttons
+    if (pageMinus) pageMinus.addEventListener('click', () => {
+      const v = parseInt(pagesInput.value) || 1;
+      if (v > 1) { pagesInput.value = v - 1; calcEstimate(); }
+    });
+    if (pagePlus) pagePlus.addEventListener('click', () => {
+      const v = parseInt(pagesInput.value) || 1;
+      if (v < 100) { pagesInput.value = v + 1; calcEstimate(); }
+    });
+    if (pagesInput) pagesInput.addEventListener('input', calcEstimate);
+
+    if (serviceSelect) serviceSelect.addEventListener('change', () => {
+      togglePagesField();
+      calcEstimate();
+    });
+    [complexitySelect, deadlineSelect].forEach(el => {
       if (el) el.addEventListener('change', calcEstimate);
     });
+
+    togglePagesField();
   }
 
   /* ============================================================
