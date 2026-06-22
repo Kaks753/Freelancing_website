@@ -335,10 +335,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageMinus       = calcForm.querySelector('#calcPageMinus');
     const pagePlus        = calcForm.querySelector('#calcPagePlus');
 
-    // Per-page rates for essays/assignments: basic $5, standard $10, premium $15
-    const PAGE_RATES = { basic: 5, standard: 10, premium: 15 };
+    // Essay per-page rates:
+    //   Basic & Standard are ALWAYS fixed — no urgency surcharge.
+    //   Premium is $15 normally; rises to $17 for rush (24-48h) only.
+    const PAGE_RATES = { basic: 5, standard: 10, premium: 15, premium_rush: 17 };
 
-    // Fixed base prices for non-page services
+    // Fixed base prices for all other (non-essay) services
     const basePrices = {
       'data-analysis':  { basic: 30,  standard: 80,  premium: 200 },
       'ml-model':       { basic: 80,  standard: 200, premium: 500 },
@@ -349,6 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'landing-page':   { basic: 40,  standard: 100, premium: 200 },
     };
 
+    // Urgency multiplier applies to non-essay services only
     const deadlineMultiplier = {
       'flexible': 1.0,
       'standard': 1.2,
@@ -362,57 +365,50 @@ document.addEventListener('DOMContentLoaded', () => {
       if (pagesGroup) pagesGroup.style.display = isEssay ? 'block' : 'none';
     }
 
-    // Smart urgency: for rush/urgent on essays, auto-enforce minimum quality
-    function applyUrgencyLogic(service, deadline, complexityVal) {
+    // For essays: only show an informational banner on rush — no auto-escalation
+    function updateUrgencyNotice(service, deadline, complexity) {
+      if (!urgencyNotice) return;
       if (service !== 'essay') {
-        if (urgencyNotice) urgencyNotice.style.display = 'none';
-        return complexityVal;
+        urgencyNotice.style.display = 'none';
+        return;
       }
-      if (deadline === 'rush') {
-        if (urgencyNotice) {
-          urgencyNotice.style.display = 'block';
-          urgencyText.textContent = 'Rush orders (24–48 hrs) require at least Premium level to ensure quality and citations.';
-        }
-        if (complexitySelect && complexityVal !== 'premium') {
-          complexitySelect.value = 'premium';
-        }
-        return 'premium';
+      if (deadline === 'rush' && complexity === 'premium') {
+        urgencyNotice.style.display = 'block';
+        urgencyText.textContent = 'Rush (24–48 hrs): Premium rate increases to $17/page to prioritise your order.';
+      } else if (deadline === 'rush') {
+        urgencyNotice.style.display = 'block';
+        urgencyText.textContent = 'Rush (24–48 hrs): Basic & Standard rates stay fixed. Premium upgrades to $17/page.';
+      } else {
+        urgencyNotice.style.display = 'none';
       }
-      if (deadline === 'urgent') {
-        if (urgencyNotice) {
-          urgencyNotice.style.display = 'block';
-          urgencyText.textContent = 'Urgent orders (3–5 days) require at least Standard quality for proper research.';
-        }
-        if (complexitySelect && complexityVal === 'basic') {
-          complexitySelect.value = 'standard';
-        }
-        return complexitySelect ? complexitySelect.value : 'standard';
-      }
-      if (urgencyNotice) urgencyNotice.style.display = 'none';
-      return complexityVal;
     }
 
     function calcEstimate() {
-      const service    = serviceSelect  ? serviceSelect.value   : '';
-      const deadline   = deadlineSelect ? deadlineSelect.value  : 'standard';
-      let   complexity = complexitySelect ? complexitySelect.value : 'standard';
+      const service    = serviceSelect    ? serviceSelect.value    : '';
+      const deadline   = deadlineSelect   ? deadlineSelect.value   : 'standard';
+      const complexity = complexitySelect ? complexitySelect.value : 'standard';
 
       if (!service) { if (resultDiv) resultDiv.style.display = 'none'; return; }
 
-      complexity = applyUrgencyLogic(service, deadline, complexity);
-      const multiplier = deadlineMultiplier[deadline] || 1;
+      updateUrgencyNotice(service, deadline, complexity);
 
       let estimate, estimateMax, priceLabel, noteExtra = '';
 
       if (service === 'essay') {
-        const pages    = parseInt(pagesInput ? pagesInput.value : 5) || 5;
-        const perPage  = PAGE_RATES[complexity];
-        estimate       = Math.round(pages * perPage * multiplier);
-        estimateMax    = Math.round(estimate * 1.3);
-        priceLabel     = `$${estimate} – $${estimateMax}`;
-        noteExtra      = `${pages} page${pages>1?'s':''} × $${perPage}/page`;
-        if (multiplier > 1) noteExtra += ` + ${Math.round((multiplier-1)*100)}% urgency fee`;
+        const pages = parseInt(pagesInput ? pagesInput.value : 5) || 5;
+        // Basic & Standard: always flat. Premium: $17 on rush, $15 otherwise.
+        let perPage;
+        if (complexity === 'basic')         perPage = PAGE_RATES.basic;
+        else if (complexity === 'standard') perPage = PAGE_RATES.standard;
+        else                                perPage = (deadline === 'rush') ? PAGE_RATES.premium_rush : PAGE_RATES.premium;
+
+        estimate    = pages * perPage;
+        estimateMax = Math.round(estimate * 1.15); // tight ±15% band — keeps it affordable-looking
+        priceLabel  = `$${estimate} – $${estimateMax}`;
+        noteExtra   = `${pages} page${pages > 1 ? 's' : ''} × $${perPage}/page`;
+        if (complexity === 'premium' && deadline === 'rush') noteExtra += ' (rush rate)';
       } else {
+        const multiplier = deadlineMultiplier[deadline] || 1;
         const base = (basePrices[service] || {})[complexity] || (basePrices[service] || {})['basic'] || 50;
         estimate     = Math.round(base * multiplier);
         estimateMax  = Math.round(estimate * 1.4);
