@@ -461,19 +461,7 @@
       line-height: 1.5;
     }
 
-    /* ── Demo Banner ── */
-    .demo-notice {
-      background: rgba(255,107,107,0.08);
-      border: 1px solid rgba(255,107,107,0.25);
-      border-radius: var(--radius-md);
-      padding: 14px 20px;
-      font-size: 0.82rem;
-      color: var(--color-text-secondary);
-      text-align: center;
-      max-width: 580px;
-      margin: 0 auto 24px;
-    }
-    .demo-notice strong { color: #FF6B6B; }
+    /* demo CSS removed — live Google Sheet mode */
 
     @media (max-width: 640px) {
       .lookup-row { flex-direction: column; }
@@ -498,6 +486,7 @@
       <a href="about.html">About</a>
       <a href="../blog/index.html">Blog</a>
       <a href="faq.html">FAQ</a>
+      <a href="portal.html" class="nav-track-order active"><i class="fas fa-chart-line"></i> Track Order</a>
     </div>
     <div class="navbar__cta" style="display:flex;gap:8px;align-items:center;">
       <a href="order.html" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> Order Now</a>
@@ -513,6 +502,7 @@
   <a href="about.html"><i class="fas fa-user"></i> About</a>
   <a href="../blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a>
   <a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+  <a href="portal.html" style="color:var(--color-accent-cyan);font-weight:600;"><i class="fas fa-chart-line"></i> Track My Order</a>
   <div class="navbar__mobile-cta">
     <a href="order.html" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-rocket"></i> Order Now</a>
     <a href="https://wa.me/254740624253" class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
@@ -546,10 +536,6 @@
       <p class="lookup-hint">Don't have a reference? <a href="order.html">Place an order first</a> or <a href="https://wa.me/254740624253" target="_blank">WhatsApp us</a> for help.</p>
     </div>
 
-    <!-- Demo Notice -->
-    <div class="demo-notice reveal" id="demoNotice">
-      <strong>📋 Demo Mode:</strong> Try reference <strong>ND-2026-001</strong> with any email to see a live project preview. Real orders are managed via Google Sheets — see setup instructions below.
-    </div>
 
     <!-- Loading Spinner -->
     <div class="portal-loading" id="portalLoading" style="max-width:580px;margin:0 auto;">
@@ -689,7 +675,7 @@
       </ol>
       <div style="background:var(--color-bg-secondary);border-radius:var(--radius-sm);padding:16px;margin-top:16px;font-family:monospace;font-size:0.8rem;color:var(--color-accent-cyan);">
         // Replace this URL with your published Google Sheet CSV URL:<br>
-        const SHEET_URL = "https://docs.google.com/spreadsheets/d/<strong>YOUR_SHEET_ID</strong>/pub?output=csv";
+        const SHEET_URL = "https://docs.google.com/spreadsheets/d/1ytVRvxfhQ48lopNRANLqUnHykOUwLJxPc6laLXQDG8k/pub?output=csv";
       </div>
     </div>
 
@@ -731,40 +717,12 @@
 <script>
 (function () {
   // ─── CONFIG ─────────────────────────────────────────────────────────────────
-  // Stephen: replace this with your Google Sheet "Publish to web" CSV URL
-  // File → Share → Publish to web → Sheet1 → CSV → Publish → copy link
-  const SHEET_URL = 'https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/pub?output=csv';
-
-  // ─── DEMO DATA (shown when SHEET_URL is not configured or for testing) ──────
-  const DEMO_ORDERS = [
-    {
-      ref: 'ND-2026-001',
-      email: '', // matches any email in demo
-      clientName: 'Alex Kimani',
-      service: 'Data Science & Machine Learning',
-      serviceShort: 'Python + Power BI Dashboard',
-      deadline: 'July 5, 2026',
-      price: '$120',
-      status: 'In Progress',
-      updated: 'June 26, 2026',
-      message: "Hi Alex! I'm currently building your sales dashboard in Power BI and have finished the data cleaning phase. The visualisation layer is next — I'll have a draft ready by June 30. You'll get a preview link in your email. Excited about how this one is turning out! 🚀",
-      deliverables: [
-        { name: 'raw_data_cleaned.xlsx', locked: true },
-        { name: 'sales_dashboard_v1_preview.pdf', locked: true },
-        { name: 'Final Dashboard (Power BI)', locked: true }
-      ],
-      milestones: [
-        { label: 'Order Received & Confirmed', date: 'June 20, 2026', done: true, active: false },
-        { label: 'Data Collection & Cleaning', date: 'June 23, 2026', done: true, active: false },
-        { label: 'Analysis & Visualisation', date: 'June 30, 2026', done: false, active: true },
-        { label: 'Final Delivery', date: 'July 5, 2026', done: false, active: false }
-      ]
-    }
-  ];
+  // Google Sheet published as CSV (File → Share → Publish to web → Sheet1 → CSV)
+  const SHEET_ID = '1ytVRvxfhQ48lopNRANLqUnHykOUwLJxPc6laLXQDG8k';
+  const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/pub?output=csv`;
 
   // ─── STATE ───────────────────────────────────────────────────────────────────
   const $ = id => document.getElementById(id);
-  let isDemo = SHEET_URL.includes('YOUR_SHEET_ID');
 
   // ─── HELPERS ─────────────────────────────────────────────────────────────────
   function show(el) { el && el.classList.add('visible'); }
@@ -919,43 +877,44 @@
     // Reset UI
     hide($('projectCard'));
     hide($('portalEmpty'));
-    hideEl($('demoNotice'));
 
     // Show loading
     const loading = $('portalLoading');
     show(loading);
 
     try {
-      // Demo mode
-      if (isDemo) {
-        await new Promise(r => setTimeout(r, 800)); // simulate loading
-        const match = DEMO_ORDERS.find(o => o.ref === ref);
-        hide(loading);
-        if (match) {
-          renderProject(match);
-        } else {
-          show($('portalEmpty'));
-        }
-        showEl($('demoNotice'));
-        return;
-      }
+      // Try gviz/tq JSON endpoint (works when sheet is shared publicly)
+      const jsonUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Sheet1`;
+      let rows = [];
 
-      // Live Google Sheets fetch
-      const resp = await fetch(SHEET_URL, { mode: 'no-cors' });
-      // no-cors returns opaque, so we need a proxy or CORS-enabled publish
-      // Try direct JSON endpoint instead
-      const sheetId = SHEET_URL.match(/spreadsheets\/d\/([^/]+)/)?.[1];
-      const jsonUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=Sheet1`;
-      const jsonResp = await fetch(jsonUrl);
-      const text = await jsonResp.text();
-      // Strip Google's prefix
-      const json = JSON.parse(text.substring(47).slice(0, -2));
-      const headers = json.table.cols.map(c => c.label.trim());
-      const rows = json.table.rows.map(r => {
-        const obj = {};
-        r.c.forEach((cell, i) => { obj[headers[i]] = cell ? (cell.v ?? '') : ''; });
-        return obj;
-      });
+      try {
+        const jsonResp = await fetch(jsonUrl);
+        const text = await jsonResp.text();
+        // Strip Google's callback prefix (e.g. "google.visualization.Query.setResponse({...})";)
+        const stripped = text.replace(/^[^\[\{]*/, '').replace(/\);?\s*$/, '');
+        const json = JSON.parse(stripped);
+        const headers = json.table.cols.map(c => (c.label || c.id || '').trim());
+        rows = json.table.rows
+          .filter(r => r && r.c)
+          .map(r => {
+            const obj = {};
+            r.c.forEach((cell, i) => { obj[headers[i]] = cell ? String(cell.v ?? '').trim() : ''; });
+            return obj;
+          });
+      } catch (jsonErr) {
+        // Fall back to CSV (requires sheet published to web)
+        const csvResp = await fetch(SHEET_URL);
+        if (!csvResp.ok) throw new Error('Sheet not accessible');
+        const csvText = await csvResp.text();
+        const lines = csvText.trim().split('\n');
+        const headers = lines[0].split(',').map(h => h.trim().replace(/"/g,''));
+        rows = lines.slice(1).map(line => {
+          const vals = line.split(',').map(v => v.trim().replace(/^"|"$/g,''));
+          const obj = {};
+          headers.forEach((h, i) => { obj[h] = vals[i] || ''; });
+          return obj;
+        });
+      }
 
       const match = rows.find(r =>
         r.ref?.toUpperCase() === ref &&
@@ -987,14 +946,7 @@
     } catch (err) {
       console.error('Portal fetch error:', err);
       hide(loading);
-      // Fall back to demo if sheet isn't configured
-      const match = DEMO_ORDERS.find(o => o.ref === ref);
-      if (match) {
-        renderProject(match);
-        showEl($('demoNotice'));
-      } else {
-        show($('portalEmpty'));
-      }
+      show($('portalEmpty'));
     }
   };
 

@@ -705,6 +705,22 @@ input, textarea, select {
   border: 2px solid rgba(255,255,255,0.2);
 }
 
+/* Logo avatar variant — shows actual NeuroDesk logo image */
+.hero__avatar--logo {
+  background: var(--color-bg-card);
+  border: 2px solid rgba(0, 212, 255, 0.4);
+  padding: 6px;
+  border-radius: 14px;     /* squircle instead of circle */
+  box-shadow: 0 0 18px rgba(0, 212, 255, 0.25);
+  overflow: hidden;
+}
+.hero__avatar--logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 .hero__profile-info h3 {
   font-family: var(--font-heading);
   font-size: 1.1rem;
@@ -1298,12 +1314,50 @@ input, textarea, select {
 }
 
 /* ============================================================
+   NAV TRACK ORDER LINK — consistent styling across all pages
+   ============================================================ */
+.nav-track-order {
+  color: var(--color-accent-cyan) !important;
+  font-weight: 600 !important;
+  border: 1px solid rgba(0, 212, 255, 0.25) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 6px 12px !important;
+  font-size: 0.82rem !important;
+  transition: all var(--transition) !important;
+  background: rgba(0, 212, 255, 0.06) !important;
+  white-space: nowrap;
+}
+.nav-track-order:hover {
+  background: rgba(0, 212, 255, 0.15) !important;
+  border-color: var(--color-accent-cyan) !important;
+  color: white !important;
+}
+.nav-track-order i { margin-right: 4px; }
+
+/* Navbar inner: allow slight overflow for track order pill */
+.navbar__inner {
+  max-width: 100%;
+}
+.navbar__links {
+  flex-wrap: nowrap;
+  gap: 4px;
+}
+/* Scale down link font slightly on medium screens to prevent overflow */
+@media (max-width: 1100px) {
+  .navbar__links a { font-size: 0.82rem; padding: 6px 10px; }
+  .nav-track-order { font-size: 0.78rem !important; padding: 5px 9px !important; }
+}
+@media (max-width: 900px) {
+  .navbar__links a { font-size: 0.78rem; padding: 5px 8px; }
+}
+
+/* ============================================================
    FLOATING WHATSAPP BUTTON
    ============================================================ */
 .whatsapp-float {
   position: fixed;
   bottom: 28px;
-  right: 28px;
+  right: 90px;   /* shifted LEFT to not clash with Tawk.to chat button */
   z-index: 900;
   display: flex;
   flex-direction: column;
@@ -2302,8 +2356,8 @@ input, textarea, select {
   /* Contact */
   .contact-grid { grid-template-columns: 1fr; }
 
-  /* Floating WhatsApp */
-  .whatsapp-float { bottom: 20px; right: 20px; }
+  /* Floating WhatsApp — keep to the LEFT of Tawk.to on tablet too */
+  .whatsapp-float { bottom: 20px; right: 80px; }
 }
 
 /* ============================================================
@@ -2508,11 +2562,75 @@ a {
   }
   .whatsapp-float {
     bottom: 20px;
-    right: 20px;
+    right: 80px;  /* stay left of Tawk.to on mobile too */
   }
   .whatsapp-float__btn {
     width: 48px;
     height: 48px;
     font-size: 22px;
   }
+}
+
+/* ============================================================
+   RESPONSIVENESS IMPROVEMENTS
+   ============================================================ */
+
+/* Hero section mobile */
+@media (max-width: 768px) {
+  .hero { flex-direction: column; text-align: center; }
+  .hero__visual { margin-top: 32px; width: 100%; }
+  .hero__profile-card { max-width: 360px; margin: 0 auto; }
+  .hero__cta { justify-content: center; }
+  .hero__stats { justify-content: center; }
+
+  /* Order layout */
+  .order-layout { grid-template-columns: 1fr !important; }
+
+  /* Portal lookup row */
+  .lookup-row { flex-direction: column !important; }
+  .lookup-row input,
+  .lookup-row .btn { width: 100% !important; max-width: 100% !important; }
+
+  /* Project card header */
+  .project-card__header { flex-direction: column !important; align-items: flex-start !important; }
+  .project-details-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* How grid */
+  .how-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+@media (max-width: 480px) {
+  .project-details-grid { grid-template-columns: 1fr !important; }
+  .how-grid { grid-template-columns: 1fr !important; }
+  .project-cta-row { flex-direction: column !important; }
+  .project-cta-row .btn { width: 100%; justify-content: center; }
+  .lookup-card { padding: 24px 16px !important; }
+  .project-body { padding: 16px !important; }
+}
+
+/* ============================================================
+   HERO AVATAR — Logo card polish
+   ============================================================ */
+.hero__avatar--logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   GLOBAL — Smooth scrollbar & selection color
+   ============================================================ */
+::selection {
+  background: rgba(123, 47, 190, 0.35);
+  color: #fff;
+}
+
+/* ============================================================
+   MOBILE NAV — Track Order link highlight
+   ============================================================ */
+.navbar__mobile a[href*='portal'] {
+  background: rgba(0, 212, 255, 0.06);
+  border-radius: 6px;
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  margin: 2px 0;
 }

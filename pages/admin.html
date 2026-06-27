@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuroDesk Admin — Dashboard</title>
+  <!-- No index — keep out of search engines -->
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="../images/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0F0F1A;
+      --bg2:     #1A1A2E;
+      --card:    #16213E;
+      --violet:  #7B2FBE;
+      --cyan:    #00D4FF;
+      --green:   #00E5A0;
+      --pink:    #FF6B6B;
+      --border:  rgba(123,47,190,0.3);
+      --text:    #FFFFFF;
+      --muted:   #6B6B8A;
+      --sub:     #B8B8D0;
+      --radius:  12px;
+      --r-sm:    6px;
+      --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Login Screen ─────────────────────────────────────────────────────── */
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at 30% 20%, rgba(123,47,190,0.15) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 80%, rgba(0,212,255,0.08) 0%, transparent 50%),
+                  var(--bg);
+    }
+
+    .login-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .login-logo {
+      height: 72px;
+      width: auto;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 0 16px rgba(0,212,255,0.4));
+    }
+
+    .login-card h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .login-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .login-input {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      color: var(--text);
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 16px;
+      transition: border-color var(--transition);
+      letter-spacing: 0.1em;
+    }
+    .login-input:focus { outline: none; border-color: var(--cyan); }
+    .login-input.error { border-color: var(--pink); animation: shake 0.4s ease; }
+
+    @keyframes shake {
+      0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--violet), #5B21B6);
+      border: none;
+      border-radius: var(--r-sm);
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer;
+      transition: all var(--transition);
+      letter-spacing: 0.03em;
+    }
+    .login-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(123,47,190,0.5); }
+
+    .login-error {
+      color: var(--pink);
+      font-size: 0.82rem;
+      margin-top: 12px;
+      display: none;
+    }
+    .login-error.show { display: block; }
+
+    /* ── Admin Dashboard ──────────────────────────────────────────────────── */
+    #adminDash { display: none; }
+
+    .admin-header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .admin-header__brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .admin-header__brand img { height: 36px; filter: drop-shadow(0 0 8px rgba(0,212,255,0.3)); }
+    .admin-header__brand span {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+    .admin-header__brand span strong { color: var(--cyan); }
+
+    .admin-header__actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .admin-main {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* ── Stat Cards ───────────────────────────────────────────────────────── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: border-color var(--transition);
+    }
+    .stat-card:hover { border-color: var(--violet); }
+
+    .stat-icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .stat-icon--violet { background: rgba(123,47,190,0.2); color: var(--violet); }
+    .stat-icon--cyan   { background: rgba(0,212,255,0.12); color: var(--cyan); }
+    .stat-icon--green  { background: rgba(0,229,160,0.12); color: var(--green); }
+    .stat-icon--pink   { background: rgba(255,107,107,0.12); color: var(--pink); }
+
+    .stat-info__label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 4px; }
+    .stat-info__value { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 800; }
+    .stat-info__sub   { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+
+    /* ── Section Header ───────────────────────────────────────────────────── */
+    .section-hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .section-hdr h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-hdr h2 i { color: var(--violet); }
+
+    /* ── Search + Filter ──────────────────────────────────────────────────── */
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .toolbar input, .toolbar select {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      padding: 8px 14px;
+      transition: border-color var(--transition);
+    }
+    .toolbar input:focus, .toolbar select:focus { outline: none; border-color: var(--cyan); }
+    .toolbar input { min-width: 200px; }
+
+    /* ── Orders Table ─────────────────────────────────────────────────────── */
+    .table-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 32px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+
+    thead th {
+      background: rgba(123,47,190,0.12);
+      padding: 14px 18px;
+      text-align: left;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid rgba(123,47,190,0.1);
+      transition: background var(--transition);
+      cursor: pointer;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(123,47,190,0.06); }
+
+    td {
+      padding: 14px 18px;
+      font-size: 0.85rem;
+      vertical-align: middle;
+    }
+
+    .td-ref { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--cyan); }
+    .td-client { font-weight: 600; }
+    .td-service { color: var(--sub); font-size: 0.8rem; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .td-deadline { color: var(--sub); white-space: nowrap; }
+    .td-price { font-weight: 700; color: var(--green); }
+
+    /* Status pills */
+    .spill {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px; border-radius: 100px;
+      font-size: 0.72rem; font-weight: 700; white-space: nowrap;
+    }
+    .spill--received   { background:rgba(255,107,107,0.15); color:var(--pink); border:1px solid rgba(255,107,107,0.3); }
+    .spill--in-progress{ background:rgba(0,212,255,0.1);  color:var(--cyan); border:1px solid rgba(0,212,255,0.3); }
+    .spill--review     { background:rgba(123,47,190,0.15); color:#B066FF; border:1px solid rgba(123,47,190,0.4); }
+    .spill--done       { background:rgba(0,229,160,0.12); color:var(--green); border:1px solid rgba(0,229,160,0.35); }
+
+    .spill-dot { width:6px;height:6px;border-radius:50%;background:currentColor; }
+
+    /* ── Detail Drawer (slide-in panel) ──────────────────────────────────── */
+    .drawer-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 200;
+      display: none;
+      backdrop-filter: blur(4px);
+    }
+    .drawer-overlay.open { display: block; }
+
+    .drawer {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: min(520px, 100vw);
+      background: var(--card);
+      border-left: 1px solid var(--border);
+      z-index: 201;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .drawer.open { transform: translateX(0); }
+
+    .drawer-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .drawer-header h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .drawer-close {
+      background: none; border: none;
+      color: var(--muted); cursor: pointer;
+      font-size: 20px; transition: color var(--transition);
+    }
+    .drawer-close:hover { color: var(--pink); }
+
+    .drawer-body { padding: 24px; flex: 1; }
+
+    .drawer-field { margin-bottom: 20px; }
+    .drawer-field label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .drawer-field .val {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.6;
+      background: var(--bg2);
+      border-radius: var(--r-sm);
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      word-break: break-word;
+    }
+
+    .drawer-actions {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+
+    /* ── Buttons ──────────────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 18px; border-radius: var(--r-sm);
+      font-size: 0.85rem; font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer; border: none; text-decoration: none;
+      transition: all var(--transition); white-space: nowrap;
+    }
+    .btn-primary  { background: var(--violet); color: white; }
+    .btn-primary:hover { background: #6622AA; transform: translateY(-1px); }
+    .btn-cyan     { background: rgba(0,212,255,0.15); color: var(--cyan); border: 1px solid rgba(0,212,255,0.3); }
+    .btn-cyan:hover { background: rgba(0,212,255,0.25); }
+    .btn-green    { background: rgba(0,229,160,0.15); color: var(--green); border: 1px solid rgba(0,229,160,0.3); }
+    .btn-green:hover { background: rgba(0,229,160,0.25); }
+    .btn-ghost    { background: none; color: var(--muted); border: 1px solid var(--border); }
+    .btn-ghost:hover { color: var(--text); border-color: var(--sub); }
+    .btn-sm       { padding: 6px 12px; font-size: 0.78rem; }
+
+    /* ── Quick Update Status ──────────────────────────────────────────────── */
+    .status-btns {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;
+    }
+    .status-btn {
+      padding: 5px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 700;
+      cursor: pointer; border: 1px solid; background: none; transition: all 0.2s;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .status-btn--received   { color:var(--pink); border-color:rgba(255,107,107,0.4); }
+    .status-btn--received:hover   { background:rgba(255,107,107,0.15); }
+    .status-btn--in-progress{ color:var(--cyan); border-color:rgba(0,212,255,0.4); }
+    .status-btn--in-progress:hover{ background:rgba(0,212,255,0.12); }
+    .status-btn--review     { color:#B066FF; border-color:rgba(123,47,190,0.5); }
+    .status-btn--review:hover{ background:rgba(123,47,190,0.15); }
+    .status-btn--done       { color:var(--green); border-color:rgba(0,229,160,0.4); }
+    .status-btn--done:hover { background:rgba(0,229,160,0.12); }
+
+    /* ── Loading / Empty ──────────────────────────────────────────────────── */
+    .admin-spinner {
+      width: 36px; height: 36px;
+      border: 3px solid var(--border);
+      border-top-color: var(--violet);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 40px auto;
+    }
+    @keyframes spin { to{ transform:rotate(360deg); } }
+
+    .empty-state {
+      text-align: center; padding: 60px 24px;
+      color: var(--muted); font-size: 0.9rem;
+    }
+    .empty-state i { font-size: 3rem; margin-bottom: 16px; display: block; opacity: 0.3; }
+
+    /* ── Quick Actions Panel ──────────────────────────────────────────────── */
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .quick-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all var(--transition);
+    }
+    .quick-card:hover { border-color: var(--violet); transform: translateY(-2px); }
+    .quick-card i { font-size: 22px; color: var(--cyan); flex-shrink: 0; width: 28px; text-align: center; }
+    .quick-card__title { font-weight: 700; font-size: 0.9rem; margin-bottom: 2px; }
+    .quick-card__sub { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── Toast ────────────────────────────────────────────────────────────── */
+    #adminToast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 24px;
+      font-size: 0.88rem; font-weight: 600;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      z-index: 500; transition: transform 0.3s ease;
+      display: flex; align-items: center; gap: 10px;
+    }
+    #adminToast.show { transform: translateX(-50%) translateY(0); }
+    #adminToast i { color: var(--green); }
+
+    /* ── Responsive ───────────────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .admin-main { padding: 20px 12px; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .login-card { padding: 32px 24px; margin: 16px; }
+      .admin-header { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ LOGIN SCREEN ══════════════════════════════════════════════════════════ -->
+<div id="loginScreen">
+  <div class="login-card">
+    <img src="../images/neurodesk-logo.png" alt="NeuroDesk" class="login-logo" />
+    <h1>Admin Dashboard</h1>
+    <p>Enter your admin password to access the NeuroDesk control panel.</p>
+    <input type="password" id="pwdInput" class="login-input" placeholder="••••••••••" autocomplete="current-password" />
+    <button class="login-btn" onclick="doLogin()">
+      <i class="fas fa-unlock-alt" style="margin-right:8px;"></i> Access Dashboard
+    </button>
+    <p class="login-error" id="loginError"><i class="fas fa-exclamation-circle"></i> Incorrect password. Try again.</p>
+    <p style="margin-top:24px;font-size:0.75rem;color:var(--muted);">
+      <i class="fas fa-shield-alt" style="margin-right:4px;color:var(--violet);"></i>
+      This page is private. Not indexed by search engines.
+    </p>
+  </div>
+</div>
+
+<!-- ══ ADMIN DASHBOARD ═══════════════════════════════════════════════════════ -->
+<div id="adminDash">
+  <!-- Header -->
+  <header class="admin-header">
+    <div class="admin-header__brand">
+      <img src="../images/neurodesk-logo.png" alt="NeuroDesk" />
+      <span><strong>Admin</strong> · NeuroDesk</span>
+    </div>
+    <div class="admin-header__actions">
+      <button class="btn btn-cyan btn-sm" onclick="loadOrders()">
+        <i class="fas fa-sync-alt"></i> Refresh
+      </button>
+      <a href="../index.html" class="btn btn-ghost btn-sm" target="_blank">
+        <i class="fas fa-external-link-alt"></i> View Site
+      </a>
+      <button class="btn btn-ghost btn-sm" onclick="doLogout()">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <!-- Last refresh time -->
+    <p id="lastRefreshed" style="font-size:0.75rem;color:var(--muted);margin-bottom:16px;text-align:right;"></p>
+
+    <!-- Stat Cards -->
+    <div class="stat-grid" id="statGrid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));">
+      <div class="stat-card">
+        <div class="stat-icon stat-icon--violet"><i class="fas fa-file-invoice"></i></div>
+        <div class="stat-info">
+          <div class="stat-info__label">Total Orders</div>
+          <div class="stat-info__value" id="statTotal">—</div>
+          <div class="stat-info__sub">All time</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-icon--cyan"><i class="fas fa-spinner"></i></div>
+        <div class="stat-info">
+          <div class="stat-info__label">In Progress</div>
+          <div class="stat-info__value" id="statInProgress">—</div>
+          <div class="stat-info__sub">Active work</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-icon--green"><i class="fas fa-check-circle"></i></div>
+        <div class="stat-info">
+          <div class="stat-info__label">Completed</div>
+          <div class="stat-info__value" id="statDone">—</div>
+          <div class="stat-info__sub">Delivered</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-icon--pink"><i class="fas fa-clock"></i></div>
+        <div class="stat-info">
+          <div class="stat-info__label">New / Received</div>
+          <div class="stat-info__value" id="statNew">—</div>
+          <div class="stat-info__sub">Awaiting start</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(0,229,160,0.1);color:var(--green);"><i class="fas fa-dollar-sign"></i></div>
+        <div class="stat-info">
+          <div class="stat-info__label">Est. Revenue</div>
+          <div class="stat-info__value" id="statRevenue" style="font-size:1.3rem;">—</div>
+          <div class="stat-info__sub">From price column</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="section-hdr">
+      <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+    </div>
+    <div class="quick-grid" style="margin-bottom:32px;">
+      <a href="order.html" class="quick-card" target="_blank">
+        <i class="fas fa-plus-circle"></i>
+        <div><div class="quick-card__title">New Order</div><div class="quick-card__sub">Open order form</div></div>
+      </a>
+      <a href="https://docs.google.com/spreadsheets/d/1ytVRvxfhQ48lopNRANLqUnHykOUwLJxPc6laLXQDG8k/edit" class="quick-card" target="_blank">
+        <i class="fas fa-table"></i>
+        <div><div class="quick-card__title">Google Sheet</div><div class="quick-card__sub">Edit orders directly</div></div>
+      </a>
+      <a href="https://formspree.io/forms" class="quick-card" target="_blank">
+        <i class="fas fa-envelope-open-text"></i>
+        <div><div class="quick-card__title">Formspree</div><div class="quick-card__sub">View form submissions</div></div>
+      </a>
+      <a href="https://dashboard.tawk.to" class="quick-card" target="_blank">
+        <i class="fas fa-comments"></i>
+        <div><div class="quick-card__title">Live Chats</div><div class="quick-card__sub">Tawk.to dashboard</div></div>
+      </a>
+      <a href="https://wa.me/254740624253" class="quick-card" target="_blank">
+        <i class="fab fa-whatsapp" style="color:#25D366;"></i>
+        <div><div class="quick-card__title">WhatsApp</div><div class="quick-card__sub">Message clients</div></div>
+      </a>
+      <a href="mailto:musyokas753@gmail.com" class="quick-card">
+        <i class="fas fa-envelope" style="color:var(--violet);"></i>
+        <div><div class="quick-card__title">Email</div><div class="quick-card__sub">musyokas753@gmail.com</div></div>
+      </a>
+    </div>
+
+    <!-- Orders Table -->
+    <div class="section-hdr">
+      <h2><i class="fas fa-list"></i> Orders from Google Sheet</h2>
+      <div class="toolbar">
+        <input type="text" id="searchInput" placeholder="Search client, ref, service…" oninput="filterOrders()" />
+        <select id="statusFilter" onchange="filterOrders()">
+          <option value="">All Status</option>
+          <option value="Received">Received</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Review">Review</option>
+          <option value="Done">Done</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <div id="tableLoading" style="text-align:center;padding:40px;">
+        <div class="admin-spinner"></div>
+        <p style="color:var(--muted);font-size:0.85rem;">Loading orders from Google Sheet…</p>
+      </div>
+      <div id="tableError" style="display:none;" class="empty-state">
+        <i class="fas fa-exclamation-triangle" style="color:var(--pink);"></i>
+        <p id="tableErrorMsg">Could not load orders.</p>
+        <p style="font-size:0.8rem;margin-top:8px;">Make sure your Google Sheet is published to web (File → Share → Publish to web).</p>
+        <a href="https://docs.google.com/spreadsheets/d/1ytVRvxfhQ48lopNRANLqUnHykOUwLJxPc6laLXQDG8k/edit" class="btn btn-cyan" target="_blank" style="margin-top:16px;">
+          <i class="fas fa-external-link-alt"></i> Open Google Sheet
+        </a>
+      </div>
+      <table id="ordersTable" style="display:none;">
+        <thead>
+          <tr>
+            <th>Ref</th>
+            <th>Client</th>
+            <th>Service</th>
+            <th>Deadline</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Updated</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="ordersBody"></tbody>
+      </table>
+      <div id="emptyOrders" class="empty-state" style="display:none;">
+        <i class="fas fa-inbox"></i>
+        <p>No orders match your filter.</p>
+      </div>
+    </div>
+
+    <!-- Info + Column Guide -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;" id="infoGrid">
+      <!-- How it works -->
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;font-size:0.82rem;color:var(--muted);line-height:1.8;">
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text);margin-bottom:12px;"><i class="fas fa-info-circle" style="color:var(--cyan);margin-right:8px;"></i>How the Admin Panel Works</h4>
+        <ul style="padding-left:20px;">
+          <li>Orders are read from your <strong style="color:var(--text);">Google Sheet</strong> (published as CSV or via gviz/tq JSON).</li>
+          <li>Make sure it's published: <em>File → Share → Publish to web → Sheet1 → CSV → Publish</em>.</li>
+          <li>To update status: click any row → use quick status buttons → opens the Sheet.</li>
+          <li>Click <strong style="color:var(--text);">Refresh</strong> to reload after Sheet changes.</li>
+          <li>Change <code style="color:var(--cyan);">ADMIN_PASSWORD</code> in this file to something personal.</li>
+          <li>This page has <code style="color:var(--cyan);">noindex</code> — not in search engines.</li>
+        </ul>
+      </div>
+      <!-- Required Sheet Columns -->
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;font-size:0.82rem;color:var(--muted);line-height:1.8;">
+        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text);margin-bottom:12px;"><i class="fas fa-table" style="color:var(--violet);margin-right:8px;"></i>Required Sheet Columns (Row 1)</h4>
+        <p style="margin-bottom:10px;">Your Google Sheet must have these headers in <strong style="color:var(--text);">row 1</strong> (exact names):</p>
+        <div style="font-family:monospace;font-size:0.77rem;background:var(--bg2);padding:10px 14px;border-radius:var(--r-sm);border:1px solid var(--border);line-height:2;word-break:break-all;color:var(--cyan);">
+          ref &nbsp;|&nbsp; email &nbsp;|&nbsp; clientName &nbsp;|&nbsp; service &nbsp;|&nbsp; serviceShort &nbsp;|&nbsp; deadline &nbsp;|&nbsp; price &nbsp;|&nbsp; status &nbsp;|&nbsp; updated &nbsp;|&nbsp; message &nbsp;|&nbsp; file1Name &nbsp;|&nbsp; file1Url &nbsp;|&nbsp; file2Name &nbsp;|&nbsp; file2Url &nbsp;|&nbsp; milestone1 &nbsp;|&nbsp; milestone1Done &nbsp;|&nbsp; milestone2 &nbsp;|&nbsp; milestone2Done &nbsp;|&nbsp; milestone3 &nbsp;|&nbsp; milestone3Done &nbsp;|&nbsp; milestone4 &nbsp;|&nbsp; milestone4Done
+        </div>
+        <p style="margin-top:10px;">Status values: <span style="color:var(--pink);">Received</span> · <span style="color:var(--cyan);">In Progress</span> · <span style="color:#B066FF;">Review</span> · <span style="color:var(--green);">Done</span></p>
+        <p style="margin-top:6px;"><strong style="color:var(--text);">milestone1Done</strong> = TRUE or FALSE &nbsp;|&nbsp; <strong style="color:var(--text);">ref</strong> format: ND-2026-001</p>
+      </div>
+    </div>
+    <style>
+      @media (max-width: 768px) { #infoGrid { grid-template-columns: 1fr !important; } }
+    </style>
+  </main>
+</div>
+
+<!-- ══ DETAIL DRAWER ═════════════════════════════════════════════════════════ -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <h3 id="drawerTitle">Order Details</h3>
+    <button class="drawer-close" onclick="closeDrawer()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-actions" id="drawerActions"></div>
+</div>
+
+<!-- Toast -->
+<div id="adminToast"><i class="fas fa-check-circle"></i> <span id="toastMsg"></span></div>
+
+<!-- ══ SCRIPT ════════════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  // ─── CONFIG ──────────────────────────────────────────────────────────────────
+  // Change this to your own password! Use something strong.
+  const ADMIN_PASSWORD = 'NeuroDesk2026!';
+  const SHEET_ID = '1ytVRvxfhQ48lopNRANLqUnHykOUwLJxPc6laLXQDG8k';
+  const SESSION_KEY = 'nd_admin_auth';
+
+  // ─── AUTH ─────────────────────────────────────────────────────────────────────
+  window.doLogin = function () {
+    const pwd = document.getElementById('pwdInput').value;
+    if (pwd === ADMIN_PASSWORD) {
+      sessionStorage.setItem(SESSION_KEY, '1');
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('adminDash').style.display = 'block';
+      loadOrders();
+    } else {
+      const inp = document.getElementById('pwdInput');
+      inp.classList.add('error');
+      document.getElementById('loginError').classList.add('show');
+      setTimeout(() => inp.classList.remove('error'), 500);
+    }
+  };
+
+  window.doLogout = function () {
+    sessionStorage.removeItem(SESSION_KEY);
+    location.reload();
+  };
+
+  // Enter key on password
+  document.getElementById('pwdInput').addEventListener('keypress', e => {
+    if (e.key === 'Enter') doLogin();
+  });
+
+  // Auto-login if session exists
+  if (sessionStorage.getItem(SESSION_KEY)) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminDash').style.display = 'block';
+    loadOrders();
+  }
+
+  // ─── DATA ─────────────────────────────────────────────────────────────────────
+  let allOrders = [];
+
+  window.loadOrders = async function () {
+    document.getElementById('tableLoading').style.display = 'block';
+    document.getElementById('ordersTable').style.display = 'none';
+    document.getElementById('tableError').style.display = 'none';
+    document.getElementById('emptyOrders').style.display = 'none';
+
+    try {
+      const jsonUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Sheet1&t=${Date.now()}`;
+      const resp = await fetch(jsonUrl);
+      const text = await resp.text();
+      const stripped = text.replace(/^[^\[{]*/, '').replace(/\);?\s*$/, '');
+      const json = JSON.parse(stripped);
+
+      const headers = json.table.cols.map(c => (c.label || c.id || '').trim());
+      allOrders = json.table.rows
+        .filter(r => r && r.c)
+        .map(r => {
+          const obj = {};
+          r.c.forEach((cell, i) => { obj[headers[i]] = cell ? String(cell.v ?? '').trim() : ''; });
+          return obj;
+        })
+        .filter(r => r.ref); // skip empty rows
+
+      updateStats();
+      renderTable(allOrders);
+      document.getElementById('tableLoading').style.display = 'none';
+
+    } catch (err) {
+      console.error(err);
+      document.getElementById('tableLoading').style.display = 'none';
+      document.getElementById('tableError').style.display = 'block';
+      document.getElementById('tableErrorMsg').textContent = `Error: ${err.message}. Check that the sheet is published publicly.`;
+    }
+  };
+
+  function updateStats() {
+    const total = allOrders.length;
+    const inProg = allOrders.filter(o => o.status === 'In Progress').length;
+    const done   = allOrders.filter(o => o.status === 'Done').length;
+    const rec    = allOrders.filter(o => o.status === 'Received').length;
+    // Estimate revenue: parse numbers from price column
+    const revenue = allOrders.reduce((sum, o) => {
+      const num = parseFloat((o.price || '').replace(/[^0-9.]/g, ''));
+      return sum + (isNaN(num) ? 0 : num);
+    }, 0);
+    document.getElementById('statTotal').textContent = total;
+    document.getElementById('statInProgress').textContent = inProg;
+    document.getElementById('statDone').textContent = done;
+    document.getElementById('statNew').textContent = rec;
+    document.getElementById('statRevenue').textContent = revenue > 0 ? '$' + revenue.toLocaleString() : '—';
+    // Update last-refreshed timestamp
+    const now = new Date();
+    document.getElementById('lastRefreshed').textContent =
+      'Last refreshed: ' + now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  }
+
+  function statusPill(s) {
+    const map = {'Received':'received','In Progress':'in-progress','Review':'review','Done':'done'};
+    const cls = map[s] || 'received';
+    return `<span class="spill spill--${cls}"><span class="spill-dot"></span>${s || 'Received'}</span>`;
+  }
+
+  function renderTable(orders) {
+    const tbody = document.getElementById('ordersBody');
+    const table = document.getElementById('ordersTable');
+    const empty = document.getElementById('emptyOrders');
+
+    if (!orders.length) {
+      table.style.display = 'none';
+      empty.style.display = 'block';
+      return;
+    }
+
+    tbody.innerHTML = orders.map((o, i) => `
+      <tr onclick="openDrawer(${allOrders.indexOf(o)})">
+        <td class="td-ref">${o.ref || '—'}</td>
+        <td class="td-client">${o.clientName || o.email || '—'}</td>
+        <td class="td-service">${o.service || '—'}</td>
+        <td class="td-deadline">${o.deadline || '—'}</td>
+        <td class="td-price">${o.price || '—'}</td>
+        <td>${statusPill(o.status)}</td>
+        <td style="color:var(--muted);font-size:0.78rem;">${o.updated || '—'}</td>
+        <td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();openDrawer(${allOrders.indexOf(o)})"><i class="fas fa-eye"></i></button></td>
+      </tr>
+    `).join('');
+
+    table.style.display = 'table';
+    empty.style.display = 'none';
+  }
+
+  window.filterOrders = function () {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    const s = document.getElementById('statusFilter').value;
+    const filtered = allOrders.filter(o => {
+      const matchText = !q || [o.ref, o.clientName, o.email, o.service].some(v => v && v.toLowerCase().includes(q));
+      const matchStatus = !s || o.status === s;
+      return matchText && matchStatus;
+    });
+    renderTable(filtered);
+  };
+
+  // ─── DETAIL DRAWER ────────────────────────────────────────────────────────────
+  window.openDrawer = function (idx) {
+    const o = allOrders[idx];
+    if (!o) return;
+
+    document.getElementById('drawerTitle').textContent = `${o.ref || 'Order'} — ${o.clientName || o.email || 'Client'}`;
+
+    const fields = [
+      ['Reference', o.ref],
+      ['Client Name', o.clientName],
+      ['Email', o.email ? `<a href="mailto:${o.email}" style="color:var(--cyan);">${o.email}</a>` : '—'],
+      ['Service', o.service],
+      ['Sub-service', o.serviceShort],
+      ['Deadline', o.deadline],
+      ['Agreed Price', o.price],
+      ['Status', statusPill(o.status)],
+      ['Last Updated', o.updated],
+      ['Message to Client', o.message || '<span style="color:var(--muted)">No message set</span>'],
+    ];
+
+    document.getElementById('drawerBody').innerHTML = `
+      ${fields.map(([label, val]) => `
+        <div class="drawer-field">
+          <label>${label}</label>
+          <div class="val">${val || '—'}</div>
+        </div>
+      `).join('')}
+      <div class="drawer-field">
+        <label>Quick Status Update</label>
+        <p style="font-size:0.78rem;color:var(--muted);margin-bottom:8px;">Opens Google Sheet to update — changes appear after Refresh.</p>
+        <div class="status-btns">
+          ${['Received','In Progress','Review','Done'].map(s => `
+            <button class="status-btn status-btn--${s.toLowerCase().replace(' ','-')}" onclick="copyStatusGuide('${o.ref}','${s}')">${s}</button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    document.getElementById('drawerActions').innerHTML = `
+      <a href="https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit" class="btn btn-cyan" target="_blank">
+        <i class="fas fa-edit"></i> Edit in Sheet
+      </a>
+      ${o.email ? `<a href="mailto:${o.email}?subject=NeuroDesk Order ${o.ref}" class="btn btn-ghost">
+        <i class="fas fa-envelope"></i> Email Client
+      </a>` : ''}
+      ${o.email ? `<a href="https://wa.me/?text=Hi! Here's an update on your NeuroDesk order ${o.ref}..." class="btn btn-ghost" target="_blank">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>` : ''}
+      <a href="portal.html?ref=${encodeURIComponent(o.ref)}&email=${encodeURIComponent(o.email)}" class="btn btn-ghost" target="_blank">
+        <i class="fas fa-external-link-alt"></i> Client View
+      </a>
+    `;
+
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('drawerOverlay').classList.add('open');
+  };
+
+  window.closeDrawer = function () {
+    document.getElementById('drawer').classList.remove('open');
+    document.getElementById('drawerOverlay').classList.remove('open');
+  };
+
+  window.copyStatusGuide = function (ref, status) {
+    const msg = `To update ${ref} → "${status}": Open the Google Sheet, find this row, and change the "status" column to: ${status}`;
+    showToast(`Reminder: set status to "${status}" for ${ref} in the Google Sheet`);
+    window.open(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit`, '_blank');
+  };
+
+  // ─── TOAST ────────────────────────────────────────────────────────────────────
+  function showToast(msg) {
+    document.getElementById('toastMsg').textContent = msg;
+    const t = document.getElementById('adminToast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 4000);
+  }
+
+  // ESC closes drawer
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+})();
+</script>
+</body>
+</html>
