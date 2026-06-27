@@ -26,16 +26,16 @@ In your Formspree dashboard → Settings:
 - ✅ Enable **"Auto-Responses"** → clients get a confirmation email automatically
 
 ### Step 4: Update the Form ID in your site
-Find and replace `YOUR_FORM_ID` in these 2 files:
+Find and replace `mrewkzvz` in these 2 files:
 
 **`pages/order.html`** (line ~25):
 ```html
-<form ... action="https://formspree.io/f/YOUR_FORM_ID" ...>
+<form ... action="https://formspree.io/f/mrewkzvz" ...>
 ```
 
 **`pages/contact.html`** (line ~140):
 ```html
-<form ... action="https://formspree.io/f/YOUR_FORM_ID" ...>
+<form ... action="https://formspree.io/f/mrewkzvz" ...>
 ```
 
 Replace both with your real ID:
@@ -123,7 +123,7 @@ It appears in every HTML file. Replace with your real Tawk.to property ID.
 
 **Quick bash command** (run in your project folder):
 ```bash
-grep -rl "REPLACE_WITH_YOUR_TAWK_PROPERTY_ID" . | xargs sed -i 's|REPLACE_WITH_YOUR_TAWK_PROPERTY_ID/1i0000000|YOUR_REAL_TAWK_ID/YOUR_REAL_WIDGET_ID|g'
+grep -rl "REPLACE_WITH_YOUR_TAWK_PROPERTY_ID" . | xargs sed -i 's|6a3fed28762a271d4209ff8d/1js4rcqb9|YOUR_REAL_TAWK_ID/YOUR_REAL_WIDGET_ID|g'
 ```
 
 ### Step 5: Install Tawk.to App (Highly Recommended)

@@ -288,8 +288,24 @@ input, textarea, select {
   font-weight: 700;
   color: white;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
+/* Real logo image in navbar */
+.navbar__logo img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  /* Slight glow matching the logo's cyan accent */
+  filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.35));
+  transition: filter var(--transition);
+}
+.navbar__logo img:hover {
+  filter: drop-shadow(0 0 14px rgba(0, 212, 255, 0.6));
+}
+
+/* Legacy icon (kept for fallback, hidden when img present) */
 .navbar__logo-icon {
   width: 40px;
   height: 40px;
@@ -2352,11 +2368,20 @@ input, textarea, select {
   font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 700;
-  animation: pulse-dot 1.5s infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: loader-pulse 1.8s ease-in-out infinite;
   background: linear-gradient(135deg, var(--color-accent-violet), var(--color-accent-cyan));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+@keyframes loader-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.7; transform: scale(0.96); }
 }
 
 /* Scroll to top — deliberately on LEFT side, away from WhatsApp float (right) */
