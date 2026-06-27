@@ -25,8 +25,9 @@
       <a href="about.html">About</a>
       <a href="../blog/index.html">Blog</a>
       <a href="faq.html">FAQ</a>
+      <a href="portal.html" style="color:var(--color-accent-cyan);"><i class="fas fa-chart-line" style="margin-right:4px;"></i>Track Order</a>
     </div>
-    <div class="navbar__cta"><a href="contact.html" class="btn btn-primary btn-sm"><i class="fas fa-paper-plane"></i> Hire Me</a></div>
+    <div class="navbar__cta"><a href="order.html" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> Order Now</a></div>
     <div class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </div>
 </nav>
@@ -39,7 +40,7 @@
   <a href="../blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a>
   <a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
   <div class="navbar__mobile-cta">
-    <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> Hire Me Now</a>
+    <a href="order.html" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-rocket"></i> Order Now</a>
     <a href="https://wa.me/254740624253" class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
 </div>
@@ -135,7 +136,12 @@
         <h3>Send a Message</h3>
         <p class="contact-form__subtitle">Fill in your project details below. We'll review and respond with a tailored quote. Free. No commitment.</p>
 
-        <form id="contact-form">
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
+          <!-- Formspree hidden fields: auto-reply + subject -->
+          <input type="hidden" name="_subject" value="💬 New NeuroDesk Inquiry" />
+          <input type="hidden" name="_replyto" id="cf-replyto" />
+          <input type="hidden" name="_next" value="https://neurodesk.vercel.app/pages/contact.html?sent=1" />
+          <input type="hidden" name="_autoresponse" value="Thanks for reaching out to NeuroDesk! 🧠 I've received your message and will get back to you within 2-6 hours. In the meantime, feel free to WhatsApp me at +254 740 624 253 for a faster response. — Stephen, NeuroDesk" />
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="name">Full Name *</label>
@@ -206,6 +212,18 @@
             <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="+254 740 624 253 (for faster response)" />
           </div>
 
+          <!-- File Upload -->
+          <div class="form-group">
+            <label class="form-label">Attach Files (Optional)</label>
+            <div id="cf-dropzone" style="border:2px dashed var(--color-border);border-radius:var(--radius-md);padding:24px;text-align:center;cursor:pointer;transition:border-color 0.2s;background:var(--color-bg-secondary);">
+              <i class="fas fa-cloud-upload-alt" style="font-size:2rem;color:var(--color-accent-violet);margin-bottom:10px;display:block;"></i>
+              <p style="font-size:0.88rem;color:var(--color-text-muted);margin:0;">Drag &amp; drop files here, or <span style="color:var(--color-accent-cyan);text-decoration:underline;cursor:pointer;" onclick="document.getElementById('cf-files').click()">browse</span></p>
+              <p style="font-size:0.75rem;color:var(--color-text-muted);margin-top:6px;">PDF, Word, Images, ZIP · Max 10MB each</p>
+            </div>
+            <input type="file" id="cf-files" name="attachments" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif,.zip,.rar,.csv,.txt,.py,.ipynb" style="display:none;" />
+            <div id="cf-file-list" style="margin-top:12px;display:flex;flex-direction:column;gap:8px;"></div>
+          </div>
+
           <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:16px;">
             <i class="fas fa-paper-plane"></i> Send Message — Get Free Quote
           </button>
@@ -253,7 +271,90 @@
   <a href="https://wa.me/254740624253?text=Hi%20NeuroDesk!" class="whatsapp-float__btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
 </div>
 <div class="toast" id="toast"><span class="toast__icon">✅</span><div class="toast__text"><strong>Message Sent!</strong><span>We'll reply within 2–6 hours.</span></div></div>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/REPLACE_WITH_YOUR_TAWK_PROPERTY_ID/1i0000000';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 <button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
 <script src="../js/main.js"></script>
+<script>
+(function(){
+  const form = document.getElementById('contact-form');
+  const emailInput = document.getElementById('email');
+  const replyTo = document.getElementById('cf-replyto');
+  const fileInput = document.getElementById('cf-files');
+  const fileList = document.getElementById('cf-file-list');
+  const dropzone = document.getElementById('cf-dropzone');
+  let uploadedFiles = [];
+
+  if (emailInput && replyTo)
+    emailInput.addEventListener('input', () => { replyTo.value = emailInput.value; });
+
+  fileInput && fileInput.addEventListener('change', () => addFiles(fileInput.files));
+
+  if (dropzone) {
+    dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.style.borderColor='var(--color-accent-violet)'; });
+    dropzone.addEventListener('dragleave', () => { dropzone.style.borderColor='var(--color-border)'; });
+    dropzone.addEventListener('drop', e => { e.preventDefault(); dropzone.style.borderColor='var(--color-border)'; addFiles(e.dataTransfer.files); });
+    dropzone.addEventListener('click', () => fileInput && fileInput.click());
+  }
+
+  function addFiles(files) {
+    Array.from(files).forEach(f => {
+      if (f.size > 10*1024*1024) { alert(f.name+' exceeds 10MB.'); return; }
+      if (!uploadedFiles.find(x=>x.name===f.name&&x.size===f.size)) uploadedFiles.push(f);
+    });
+    renderList();
+  }
+
+  function renderList() {
+    if (!fileList) return;
+    fileList.innerHTML = uploadedFiles.map((f,i)=>`
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--color-bg-secondary);border-radius:var(--radius-sm);border:1px solid var(--color-border);">
+        <i class="fas fa-file" style="color:var(--color-accent-violet);"></i>
+        <span style="flex:1;font-size:0.82rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${f.name}</span>
+        <span style="font-size:0.75rem;color:var(--color-text-muted);white-space:nowrap;">${(f.size/1024).toFixed(0)}KB</span>
+        <button type="button" onclick="cfRemove(${i})" style="background:none;border:none;color:var(--color-text-muted);cursor:pointer;"><i class="fas fa-times"></i></button>
+      </div>`).join('');
+  }
+
+  window.cfRemove = i => { uploadedFiles.splice(i,1); renderList(); };
+
+  if (form) {
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = form.querySelector('[type="submit"]');
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+      btn.disabled = true;
+      const data = new FormData(form);
+      uploadedFiles.forEach(f => data.append('attachments', f));
+      try {
+        const r = await fetch(form.action,{method:'POST',headers:{'Accept':'application/json'},body:data});
+        if (r.ok) {
+          const t=document.getElementById('toast');
+          if(t){t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000);}
+          form.reset(); uploadedFiles=[]; renderList();
+        } else { alert('Something went wrong. Please WhatsApp or email us directly.'); }
+      } catch(_) { alert('Network error. Reach us on WhatsApp: +254 740 624 253.'); }
+      finally { btn.innerHTML=orig; btn.disabled=false; }
+    });
+  }
+
+  if (window.location.search.includes('sent=1')) {
+    const t=document.getElementById('toast');
+    if(t){setTimeout(()=>t.classList.add('show'),500);}
+  }
+})();
+</script>
 </body>
 </html>

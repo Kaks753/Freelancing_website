@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Place an Order – NeuroDesk | Start Your Project Today</title>
+  <meta name="description" content="Submit your project order to NeuroDesk. Upload documents, describe your task, set your deadline and we'll get back to you within 2 hours." />
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── Order page ── */
+    .order-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 40px;
+      align-items: start;
+    }
+    /* Steps indicator */
+    .order-steps {
+      display: flex;
+      gap: 0;
+      margin-bottom: 36px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+    }
+    .order-step {
+      flex: 1;
+      padding: 14px 8px;
+      text-align: center;
+      background: var(--color-bg-card);
+      border-right: 1px solid var(--color-border);
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .order-step:last-child { border-right: none; }
+    .order-step.active { background: rgba(123,47,190,0.15); border-color: transparent; }
+    .order-step.done { background: rgba(0,229,160,0.08); }
+    .order-step__num {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--color-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700;
+      margin: 0 auto 6px;
+      color: var(--color-text-muted);
+    }
+    .order-step.active .order-step__num { background: var(--color-accent-violet); color: white; }
+    .order-step.done .order-step__num { background: var(--color-accent-green); color: white; }
+    .order-step__label { font-size: 0.72rem; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .order-step.active .order-step__label { color: white; }
+
+    /* Form panels */
+    .order-panel { display: none; }
+    .order-panel.active { display: block; }
+
+    /* File drop zone */
+    .file-dropzone {
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 36px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--color-bg-card);
+      position: relative;
+    }
+    .file-dropzone:hover, .file-dropzone.dragover {
+      border-color: var(--color-accent-violet);
+      background: rgba(123,47,190,0.06);
+    }
+    .file-dropzone input[type="file"] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+    }
+    .file-dropzone__icon { font-size: 2.2rem; margin-bottom: 12px; color: var(--color-accent-violet); }
+    .file-dropzone__text { font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 6px; }
+    .file-dropzone__hint { font-size: 0.75rem; color: var(--color-text-muted); }
+    .file-list { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .file-item {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(0,229,160,0.07);
+      border: 1px solid rgba(0,229,160,0.2);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+    }
+    .file-item i { color: var(--color-accent-green); }
+    .file-item__name { flex: 1; color: white; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .file-item__size { color: var(--color-text-muted); white-space: nowrap; }
+    .file-item__remove { color: var(--color-accent-pink); cursor: pointer; background: none; border: none; font-size: 0.9rem; padding: 0; }
+
+    /* Order summary sidebar */
+    .order-summary {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      position: sticky;
+      top: 90px;
+    }
+    .order-summary__title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .order-summary__row { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--color-border); font-size: 0.83rem; }
+    .order-summary__row:last-of-type { border-bottom: none; }
+    .order-summary__label { color: var(--color-text-muted); }
+    .order-summary__value { color: white; font-weight: 600; text-align: right; }
+    .order-summary__estimate {
+      margin-top: 18px;
+      background: rgba(0,229,160,0.1);
+      border: 1px solid rgba(0,229,160,0.25);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      text-align: center;
+    }
+    .order-summary__est-label { font-size: 0.72rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px; }
+    .order-summary__est-price { font-family: 'Space Grotesk', sans-serif; font-size: 1.7rem; font-weight: 700; color: var(--color-accent-green); }
+    .order-summary__est-note { font-size: 0.72rem; color: var(--color-text-muted); margin-top: 4px; }
+
+    /* Trust badges */
+    .trust-row { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+    .trust-item { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: var(--color-text-muted); }
+    .trust-item i { color: var(--color-accent-violet); width: 16px; text-align: center; }
+
+    /* Nav buttons */
+    .order-nav { display: flex; gap: 12px; margin-top: 28px; }
+    .order-nav .btn { flex: 1; justify-content: center; }
+
+    /* Success screen */
+    .order-success {
+      text-align: center;
+      padding: 48px 24px;
+    }
+    .order-success__icon {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: rgba(0,229,160,0.15);
+      border: 2px solid var(--color-accent-green);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 24px;
+      color: var(--color-accent-green);
+    }
+
+    @media (max-width: 900px) {
+      .order-layout { grid-template-columns: 1fr; }
+      .order-summary { position: static; }
+    }
+    @media (max-width: 560px) {
+      .order-steps { flex-wrap: wrap; }
+      .order-step { flex: 0 0 50%; border-bottom: 1px solid var(--color-border); }
+    }
+  </style>
+</head>
+<body>
+<div class="page-loader"><div class="page-loader__logo">NeuroDesk</div></div>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__logo"><div class="navbar__logo-icon">🧠</div><div class="navbar__logo-text">Neuro<span>Desk</span></div></a>
+    <div class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="faq.html">FAQ</a>
+    </div>
+    <div class="navbar__cta"><a href="order.html" class="btn btn-primary btn-sm active"><i class="fas fa-bolt"></i> Order Now</a></div>
+    <div class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="navbar__mobile" id="mobile-menu">
+  <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="services.html"><i class="fas fa-layer-group"></i> Services</a>
+  <a href="portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a>
+  <a href="pricing.html"><i class="fas fa-tags"></i> Pricing</a>
+  <a href="about.html"><i class="fas fa-user"></i> About</a>
+  <a href="../blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a>
+  <a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+  <div class="navbar__mobile-cta">
+    <a href="order.html" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-bolt"></i> Order Now</a>
+    <a href="https://wa.me/254740624253" class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="page-hero" style="padding-bottom:20px;">
+  <div class="page-hero__bg"><div class="page-hero__bg-orb page-hero__bg-orb--1"></div><div class="page-hero__bg-orb page-hero__bg-orb--2"></div></div>
+  <div class="container">
+    <div class="page-hero__content">
+      <div class="section-label" style="justify-content:center;"><i class="fas fa-bolt" style="margin-right:6px;color:var(--color-accent-green);"></i> Start Your Project</div>
+      <h1 class="page-hero__title">Place Your <span style="background:linear-gradient(135deg,var(--color-accent-violet),var(--color-accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Order</span></h1>
+      <p class="page-hero__subtitle">Fill in your project details, upload your files, and we'll respond with a confirmation and timeline within 2 hours.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:16px;">
+  <div class="container">
+    <div class="order-layout">
+
+      <!-- ── Left: Form ── -->
+      <div>
+        <!-- Steps -->
+        <div class="order-steps" id="orderSteps">
+          <div class="order-step active" data-step="1">
+            <div class="order-step__num">1</div>
+            <div class="order-step__label">Service</div>
+          </div>
+          <div class="order-step" data-step="2">
+            <div class="order-step__num">2</div>
+            <div class="order-step__label">Details</div>
+          </div>
+          <div class="order-step" data-step="3">
+            <div class="order-step__num">3</div>
+            <div class="order-step__label">Files</div>
+          </div>
+          <div class="order-step" data-step="4">
+            <div class="order-step__num">4</div>
+            <div class="order-step__label">Confirm</div>
+          </div>
+        </div>
+
+        <!-- The actual form submitted to Formspree -->
+        <!-- ACTION: Replace YOUR_FORM_ID with your Formspree form ID from formspree.io -->
+        <form id="orderForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
+          <!-- Hidden fields for Formspree config -->
+          <input type="hidden" name="_subject" value="🚀 New NeuroDesk Order" />
+          <input type="hidden" name="_replyto" id="fsp-replyto" />
+          <input type="hidden" name="_next" value="https://neurodesk.vercel.app/pages/order-success.html" />
+
+          <!-- ── STEP 1: Service ── -->
+          <div class="order-panel active" id="panel1">
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:6px;">What do you need help with?</h3>
+            <p style="color:var(--color-text-muted);font-size:0.88rem;margin-bottom:24px;">Choose the service category that best matches your project.</p>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;" id="serviceCards">
+              <label class="service-pick-card" data-cat="data">
+                <input type="radio" name="service_category" value="Data Science & Machine Learning" required style="display:none;" />
+                <div class="spc-icon" style="background:rgba(0,212,255,0.12);color:var(--color-accent-cyan)"><i class="fas fa-brain"></i></div>
+                <div class="spc-title">Data Science & ML</div>
+                <div class="spc-desc">Analysis, models, dashboards, Python</div>
+              </label>
+              <label class="service-pick-card" data-cat="academic">
+                <input type="radio" name="service_category" value="Academic Writing" style="display:none;" />
+                <div class="spc-icon" style="background:rgba(123,47,190,0.12);color:var(--color-accent-violet)"><i class="fas fa-graduation-cap"></i></div>
+                <div class="spc-title">Academic Writing</div>
+                <div class="spc-desc">Essays, dissertations, research papers</div>
+              </label>
+              <label class="service-pick-card" data-cat="web">
+                <input type="radio" name="service_category" value="Web Development" style="display:none;" />
+                <div class="spc-icon" style="background:rgba(255,107,107,0.12);color:var(--color-accent-pink)"><i class="fas fa-code"></i></div>
+                <div class="spc-title">Web Development</div>
+                <div class="spc-desc">Websites, landing pages, web apps</div>
+              </label>
+              <label class="service-pick-card" data-cat="other">
+                <input type="radio" name="service_category" value="Other / Multiple Services" style="display:none;" />
+                <div class="spc-icon" style="background:rgba(0,229,160,0.12);color:var(--color-accent-green)"><i class="fas fa-layer-group"></i></div>
+                <div class="spc-title">Multiple / Other</div>
+                <div class="spc-desc">Combined services or custom need</div>
+              </label>
+            </div>
+
+            <!-- Sub-service dropdown — populated by JS -->
+            <div class="form-group" id="subServiceGroup" style="display:none;">
+              <label class="form-label">Specific Service <span style="color:var(--color-accent-pink)">*</span></label>
+              <select class="form-select" name="service_type" id="subServiceSelect" required>
+                <option value="">Select...</option>
+              </select>
+            </div>
+
+            <div class="order-nav">
+              <button type="button" class="btn btn-primary" id="step1Next">Continue <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- ── STEP 2: Project Details ── -->
+          <div class="order-panel" id="panel2">
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:6px;">Tell us about your project</h3>
+            <p style="color:var(--color-text-muted);font-size:0.88rem;margin-bottom:24px;">The more detail you give, the more accurate our quote and timeline will be.</p>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Your Full Name <span style="color:var(--color-accent-pink)">*</span></label>
+                <input type="text" name="client_name" class="form-input" placeholder="e.g. Jane Wanjiku" required id="inp-name" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address <span style="color:var(--color-accent-pink)">*</span></label>
+                <input type="email" name="client_email" class="form-input" placeholder="you@email.com" required id="inp-email" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">WhatsApp Number</label>
+                <input type="tel" name="whatsapp" class="form-input" placeholder="+254 740 624 253" id="inp-wa" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Deadline <span style="color:var(--color-accent-pink)">*</span></label>
+                <input type="date" name="deadline" class="form-input" required id="inp-deadline" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Urgency Level <span style="color:var(--color-accent-pink)">*</span></label>
+              <select class="form-select" name="urgency" required id="inp-urgency">
+                <option value="">Select urgency...</option>
+                <option value="Flexible (2+ weeks)">Flexible — 2+ weeks</option>
+                <option value="Standard (1 week)">Standard — ~1 week</option>
+                <option value="Urgent (3-5 days)">Urgent — 3–5 days</option>
+                <option value="Rush (24-48 hours)">Rush — 24–48 hours</option>
+              </select>
+            </div>
+
+            <!-- Essay-specific: pages -->
+            <div class="form-group" id="pagesFieldGroup" style="display:none;">
+              <label class="form-label">Number of Pages <span style="color:var(--color-text-muted);font-size:0.8rem;">(~275 words per page)</span></label>
+              <input type="number" name="pages" class="form-input" placeholder="e.g. 5" min="1" max="500" id="inp-pages" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Project Description <span style="color:var(--color-accent-pink)">*</span></label>
+              <textarea name="description" class="form-textarea" rows="5" placeholder="Describe your project clearly: topic, scope, requirements, any specific instructions, formatting style (APA/MLA etc.), data sources available, expected outputs…" required id="inp-desc"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Budget Range</label>
+              <select class="form-select" name="budget" id="inp-budget">
+                <option value="">Not sure yet</option>
+                <option value="Under $30">Under $30</option>
+                <option value="$30 – $100">$30 – $100</option>
+                <option value="$100 – $300">$100 – $300</option>
+                <option value="$300 – $600">$300 – $600</option>
+                <option value="$600+">$600+</option>
+                <option value="Flexible / Discuss">Flexible — let's discuss</option>
+              </select>
+            </div>
+
+            <div class="order-nav">
+              <button type="button" class="btn btn-secondary" id="step2Back"><i class="fas fa-arrow-left"></i> Back</button>
+              <button type="button" class="btn btn-primary" id="step2Next">Upload Files <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- ── STEP 3: File Upload ── -->
+          <div class="order-panel" id="panel3">
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:6px;">Upload your documents <span style="font-weight:400;color:var(--color-text-muted);font-size:0.9rem;">(optional)</span></h3>
+            <p style="color:var(--color-text-muted);font-size:0.88rem;margin-bottom:24px;">Share your assignment brief, dataset, reference materials, or any files relevant to your project. Accepted: PDF, Word, Excel, images, ZIP — up to 10 MB per file.</p>
+
+            <div class="file-dropzone" id="dropzone">
+              <input type="file" name="attachments" id="fileInput" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.jpg,.jpeg,.png,.gif,.zip,.rar" />
+              <div class="file-dropzone__icon"><i class="fas fa-cloud-upload-alt"></i></div>
+              <div class="file-dropzone__text"><strong>Click to browse</strong> or drag & drop your files here</div>
+              <div class="file-dropzone__hint">PDF · Word · Excel · CSV · Images · ZIP · Max 10 MB each</div>
+            </div>
+
+            <div class="file-list" id="fileList"></div>
+
+            <div style="margin-top:20px;background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.15);border-radius:var(--radius-md);padding:14px 16px;font-size:0.82rem;color:var(--color-text-muted);">
+              <i class="fas fa-lock" style="color:var(--color-accent-cyan);margin-right:8px;"></i>
+              Your files are sent <strong style="color:white;">directly and securely</strong> to Stephen. They are never stored on any third-party server or shared with anyone else.
+            </div>
+
+            <div class="order-nav">
+              <button type="button" class="btn btn-secondary" id="step3Back"><i class="fas fa-arrow-left"></i> Back</button>
+              <button type="button" class="btn btn-primary" id="step3Next">Review Order <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- ── STEP 4: Review & Submit ── -->
+          <div class="order-panel" id="panel4">
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:6px;">Review your order</h3>
+            <p style="color:var(--color-text-muted);font-size:0.88rem;margin-bottom:24px;">Double-check everything before submitting. We'll confirm within 2 hours.</p>
+
+            <div style="background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:24px;margin-bottom:24px;" id="reviewBlock">
+              <!-- Filled by JS -->
+            </div>
+
+            <div style="background:rgba(123,47,190,0.08);border:1px solid rgba(123,47,190,0.2);border-radius:var(--radius-md);padding:16px 20px;font-size:0.83rem;color:var(--color-text-secondary);margin-bottom:24px;">
+              <i class="fas fa-info-circle" style="color:var(--color-accent-violet);margin-right:8px;"></i>
+              By submitting this order you agree that all information provided is accurate. Stephen will review your request and respond with a confirmation, timeline, and payment link within <strong style="color:white;">2 hours</strong>.
+            </div>
+
+            <div class="order-nav">
+              <button type="button" class="btn btn-secondary" id="step4Back"><i class="fas fa-arrow-left"></i> Edit</button>
+              <button type="submit" class="btn btn-primary" id="submitBtn">
+                <i class="fas fa-paper-plane"></i> Submit Order
+              </button>
+            </div>
+          </div>
+
+          <!-- ── SUCCESS ── -->
+          <div class="order-panel" id="panelSuccess">
+            <div class="order-success">
+              <div class="order-success__icon"><i class="fas fa-check"></i></div>
+              <h2 style="font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;margin-bottom:12px;">Order Submitted! 🎉</h2>
+              <p style="color:var(--color-text-secondary);max-width:480px;margin:0 auto 28px;line-height:1.7;">
+                Stephen has received your order and will respond within <strong style="color:white;">2 hours</strong> with a confirmation, project timeline, and payment instructions. Check your inbox (and spam folder).
+              </p>
+              <div style="display:flex;flex-direction:column;gap:12px;max-width:340px;margin:0 auto;">
+                <a href="https://wa.me/254740624253?text=Hi%20Stephen!%20I%20just%20submitted%20an%20order%20on%20NeuroDesk." class="btn btn-whatsapp" style="justify-content:center;" target="_blank">
+                  <i class="fab fa-whatsapp"></i> Confirm on WhatsApp (faster)
+                </a>
+                <a href="portal.html" class="btn btn-secondary" style="justify-content:center;">
+                  <i class="fas fa-tachometer-alt"></i> Check Order Status
+                </a>
+                <a href="../index.html" class="btn" style="justify-content:center;background:transparent;border:1px solid var(--color-border);color:var(--color-text-muted);">
+                  <i class="fas fa-home"></i> Back to Home
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </form><!-- /orderForm -->
+      </div>
+
+      <!-- ── Right: Summary Sidebar ── -->
+      <div>
+        <div class="order-summary">
+          <div class="order-summary__title"><i class="fas fa-receipt" style="color:var(--color-accent-violet);"></i> Order Summary</div>
+
+          <div class="order-summary__row">
+            <span class="order-summary__label">Service</span>
+            <span class="order-summary__value" id="sum-service">—</span>
+          </div>
+          <div class="order-summary__row">
+            <span class="order-summary__label">Type</span>
+            <span class="order-summary__value" id="sum-type">—</span>
+          </div>
+          <div class="order-summary__row">
+            <span class="order-summary__label">Deadline</span>
+            <span class="order-summary__value" id="sum-deadline">—</span>
+          </div>
+          <div class="order-summary__row">
+            <span class="order-summary__label">Urgency</span>
+            <span class="order-summary__value" id="sum-urgency">—</span>
+          </div>
+          <div class="order-summary__row">
+            <span class="order-summary__label">Files</span>
+            <span class="order-summary__value" id="sum-files">None yet</span>
+          </div>
+
+          <div class="order-summary__estimate">
+            <div class="order-summary__est-label">Estimated Cost</div>
+            <div class="order-summary__est-price" id="sum-price">—</div>
+            <div class="order-summary__est-note">Final price confirmed after review</div>
+          </div>
+
+          <div class="trust-row">
+            <div class="trust-item"><i class="fas fa-shield-alt"></i> 100% Confidential</div>
+            <div class="trust-item"><i class="fas fa-redo"></i> Free Revisions Included</div>
+            <div class="trust-item"><i class="fas fa-clock"></i> Response within 2 hours</div>
+            <div class="trust-item"><i class="fas fa-star"></i> 5.0 Rated Service</div>
+            <div class="trust-item"><i class="fab fa-whatsapp" style="color:#25D366;"></i> WhatsApp Support Available</div>
+          </div>
+        </div>
+
+        <!-- Need help box -->
+        <div style="background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:20px;margin-top:20px;text-align:center;">
+          <p style="font-size:0.85rem;color:var(--color-text-muted);margin-bottom:14px;">Prefer to discuss first?</p>
+          <a href="https://wa.me/254740624253?text=Hi%20Stephen!%20I%20need%20help%20with%20a%20project." class="btn btn-whatsapp btn-sm" style="width:100%;justify-content:center;margin-bottom:8px;" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+          <a href="contact.html" class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;">
+            <i class="fas fa-envelope"></i> Send Email Instead
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /order-layout -->
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="../index.html" class="navbar__logo" style="margin-bottom:16px;display:inline-flex;"><div class="navbar__logo-icon">🧠</div><div class="navbar__logo-text">Neuro<span>Desk</span></div></a>
+        <p>Intelligence at Your Service.</p>
+        <div class="footer__socials">
+          <a href="https://www.linkedin.com/in/stephen-muema-617339359" class="footer__social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/Kaks753" class="footer__social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://wa.me/254740624253" class="footer__social-link" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:musyokas753@gmail.com" class="footer__social-link" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer__col"><h4 class="footer__col-title">Services</h4><ul class="footer__col-links"><li><a href="data-science.html">Data Science</a></li><li><a href="academic-writing.html">Academic Writing</a></li><li><a href="web-development.html">Web Dev</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+      <div class="footer__col"><h4 class="footer__col-title">Company</h4><ul class="footer__col-links"><li><a href="about.html">About</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="../blog/index.html">Blog</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+      <div class="footer__col"><h4 class="footer__col-title">Contact</h4><ul class="footer__col-links"><li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Email Us</a></li><li><a href="https://wa.me/254740624253" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li><li><a href="https://www.linkedin.com/in/stephen-muema-617339359" target="_blank"><i class="fab fa-linkedin-in" style="margin-right:6px;color:var(--color-accent-cyan)"></i>LinkedIn</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><p class="footer__copyright">© 2026 NeuroDesk. All rights reserved.</p><div class="footer__bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+
+<div class="whatsapp-float"><span class="whatsapp-float__tooltip">Chat with us!</span><a href="https://wa.me/254740624253" class="whatsapp-float__btn" target="_blank"><i class="fab fa-whatsapp"></i></a></div>
+<div class="toast" id="toast"></div>
+<button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
+
+<style>
+/* Service pick cards */
+.service-pick-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--color-bg-card);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.service-pick-card:hover { border-color: var(--color-accent-violet); }
+.service-pick-card.selected { border-color: var(--color-accent-violet); background: rgba(123,47,190,0.1); }
+.spc-icon { width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem; }
+.spc-title { font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.95rem;color:white; }
+.spc-desc { font-size:0.78rem;color:var(--color-text-muted); }
+</style>
+
+<script>
+/* ============================================================
+   NeuroDesk Order Form — Multi-step with live summary
+============================================================ */
+(function () {
+
+  // Sub-service options per category
+  const subServices = {
+    'Data Science & Machine Learning': [
+      'Data Analysis & EDA', 'Machine Learning Model', 'Deep Learning / Neural Network',
+      'BI Dashboard (Power BI / Tableau)', 'Data Visualization', 'NLP / Text Analysis',
+      'Time Series Forecasting', 'Customer Churn Prediction', 'Statistical Analysis',
+      'Python / R Scripting', 'SQL / Database Work'
+    ],
+    'Academic Writing': [
+      'Essay (1–5 pages)', 'Assignment (any length)', 'Research Paper',
+      'Literature Review', 'Dissertation / Thesis', 'Case Study',
+      'Lab Report', 'Annotated Bibliography', 'Proposal / Research Proposal',
+      'Proofreading & Editing', 'Statistical Analysis (SPSS/R)', 'Presentation Slides'
+    ],
+    'Web Development': [
+      'Business Website', 'Landing Page', 'Portfolio Website',
+      'E-Commerce Store', 'Web App / Dashboard', 'API Development',
+      'Website Redesign', 'SEO Optimization', 'WordPress Site'
+    ],
+    'Other / Multiple Services': ['Describe in the project description box']
+  };
+
+  // Rough price hints for summary sidebar
+  const priceHints = {
+    'Data Science & Machine Learning': { flexible: '$30–$80', standard: '$80–$200', urgent: '$100–$300', rush: '$150–$500' },
+    'Academic Writing':               { flexible: 'from $5/page', standard: 'from $8/page', urgent: 'from $10/page', rush: 'from $15/page' },
+    'Web Development':                { flexible: '$40–$100', standard: '$80–$200', urgent: '$120–$300', rush: 'Contact us' },
+    'Other / Multiple Services':      { flexible: 'TBD', standard: 'TBD', urgent: 'TBD', rush: 'TBD' },
+  };
+
+  let currentStep = 1;
+  let selectedCategory = '';
+  let uploadedFiles = [];
+
+  const steps = document.querySelectorAll('.order-step');
+  const panels = document.querySelectorAll('.order-panel');
+  const form   = document.getElementById('orderForm');
+
+  function goStep(n) {
+    currentStep = n;
+    steps.forEach((s, i) => {
+      s.classList.toggle('active', i + 1 === n);
+      s.classList.toggle('done', i + 1 < n);
+    });
+    panels.forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('panel' + n);
+    if (target) target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Step 1: Service category cards ──
+  document.querySelectorAll('.service-pick-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.service-pick-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      card.querySelector('input[type="radio"]').checked = true;
+      selectedCategory = card.querySelector('input').value;
+
+      // Populate sub-service dropdown
+      const grp = document.getElementById('subServiceGroup');
+      const sel = document.getElementById('subServiceSelect');
+      sel.innerHTML = '<option value="">Select specific service…</option>';
+      (subServices[selectedCategory] || []).forEach(s => {
+        const o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o);
+      });
+      grp.style.display = 'block';
+
+      // Update summary
+      document.getElementById('sum-service').textContent = selectedCategory.split(' ')[0] + '…';
+      updatePriceHint();
+    });
+  });
+
+  document.getElementById('subServiceSelect').addEventListener('change', function () {
+    document.getElementById('sum-type').textContent = this.value || '—';
+    // Show pages field for academic essays
+    const isEssay = selectedCategory === 'Academic Writing';
+    document.getElementById('pagesFieldGroup').style.display = isEssay ? 'block' : 'none';
+  });
+
+  document.getElementById('step1Next').addEventListener('click', () => {
+    if (!selectedCategory) { alert('Please select a service category.'); return; }
+    if (!document.getElementById('subServiceSelect').value) { alert('Please select the specific service type.'); return; }
+    goStep(2);
+  });
+
+  // ── Step 2: Details ──
+  document.getElementById('inp-urgency').addEventListener('change', function () {
+    document.getElementById('sum-urgency').textContent = this.value || '—';
+    updatePriceHint();
+  });
+  document.getElementById('inp-deadline').addEventListener('change', function () {
+    document.getElementById('sum-deadline').textContent = this.value || '—';
+  });
+  document.getElementById('inp-email').addEventListener('input', function () {
+    document.getElementById('fsp-replyto').value = this.value;
+  });
+
+  document.getElementById('step2Back').addEventListener('click', () => goStep(1));
+  document.getElementById('step2Next').addEventListener('click', () => {
+    const name     = document.getElementById('inp-name').value.trim();
+    const email    = document.getElementById('inp-email').value.trim();
+    const deadline = document.getElementById('inp-deadline').value;
+    const urgency  = document.getElementById('inp-urgency').value;
+    const desc     = document.getElementById('inp-desc').value.trim();
+    if (!name || !email || !deadline || !urgency || !desc) {
+      alert('Please fill in all required fields (marked with *).'); return;
+    }
+    goStep(3);
+  });
+
+  // ── Step 3: Files ──
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('fileInput');
+  const fileList  = document.getElementById('fileList');
+
+  function renderFiles() {
+    fileList.innerHTML = '';
+    uploadedFiles.forEach((f, i) => {
+      const item = document.createElement('div');
+      item.className = 'file-item';
+      item.innerHTML = `
+        <i class="fas fa-file-alt"></i>
+        <span class="file-item__name">${f.name}</span>
+        <span class="file-item__size">${(f.size / 1024).toFixed(0)} KB</span>
+        <button type="button" class="file-item__remove" data-idx="${i}" title="Remove"><i class="fas fa-times"></i></button>
+      `;
+      fileList.appendChild(item);
+    });
+    document.getElementById('sum-files').textContent = uploadedFiles.length > 0 ? `${uploadedFiles.length} file(s)` : 'None';
+  }
+
+  fileInput.addEventListener('change', () => {
+    Array.from(fileInput.files).forEach(f => {
+      if (f.size > 10 * 1024 * 1024) { alert(`${f.name} exceeds 10 MB limit.`); return; }
+      uploadedFiles.push(f);
+    });
+    // Re-assign files to input (can't do this directly, but Formspree handles enctype)
+    renderFiles();
+  });
+
+  fileList.addEventListener('click', e => {
+    const btn = e.target.closest('[data-idx]');
+    if (btn) { uploadedFiles.splice(parseInt(btn.dataset.idx), 1); renderFiles(); }
+  });
+
+  ['dragover', 'dragleave', 'drop'].forEach(evt => {
+    dropzone.addEventListener(evt, e => {
+      e.preventDefault();
+      if (evt === 'dragover') dropzone.classList.add('dragover');
+      else dropzone.classList.remove('dragover');
+      if (evt === 'drop') {
+        Array.from(e.dataTransfer.files).forEach(f => {
+          if (f.size > 10 * 1024 * 1024) { alert(`${f.name} too large (max 10 MB).`); return; }
+          uploadedFiles.push(f);
+        });
+        renderFiles();
+      }
+    });
+  });
+
+  document.getElementById('step3Back').addEventListener('click', () => goStep(2));
+  document.getElementById('step3Next').addEventListener('click', () => {
+    // Build review block
+    const r = document.getElementById('reviewBlock');
+    const rows = [
+      ['Service Category', selectedCategory],
+      ['Service Type',     document.getElementById('subServiceSelect').value],
+      ['Client Name',      document.getElementById('inp-name').value],
+      ['Email',            document.getElementById('inp-email').value],
+      ['WhatsApp',         document.getElementById('inp-wa').value || 'Not provided'],
+      ['Deadline',         document.getElementById('inp-deadline').value],
+      ['Urgency',          document.getElementById('inp-urgency').value],
+      ['Budget',           document.getElementById('inp-budget').value || 'Not specified'],
+      ['Files',            uploadedFiles.length ? uploadedFiles.map(f => f.name).join(', ') : 'None'],
+      ['Description',      document.getElementById('inp-desc').value.substring(0, 120) + (document.getElementById('inp-desc').value.length > 120 ? '…' : '')],
+    ];
+    r.innerHTML = rows.map(([l, v]) => `
+      <div style="display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid var(--color-border);font-size:0.83rem;">
+        <span style="color:var(--color-text-muted);flex-shrink:0;">${l}</span>
+        <span style="color:white;font-weight:600;text-align:right;">${v}</span>
+      </div>`).join('');
+    goStep(4);
+  });
+
+  document.getElementById('step4Back').addEventListener('click', () => goStep(3));
+
+  // ── Form Submit ──
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting…';
+
+    try {
+      const data = new FormData(form);
+      // Add files manually
+      uploadedFiles.forEach(f => data.append('attachments', f));
+
+      const resp = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      });
+
+      if (resp.ok) {
+        // Show success panel
+        steps.forEach(s => s.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        document.getElementById('panelSuccess').classList.add('active');
+        document.getElementById('orderSteps').style.display = 'none';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Order';
+      alert('Submission failed. Please try WhatsApp or email instead.');
+    }
+  });
+
+  function updatePriceHint() {
+    const urgRaw = document.getElementById('inp-urgency').value;
+    let urgKey = 'standard';
+    if (urgRaw.includes('Flexible')) urgKey = 'flexible';
+    else if (urgRaw.includes('Rush'))     urgKey = 'rush';
+    else if (urgRaw.includes('Urgent'))   urgKey = 'urgent';
+    const hints = priceHints[selectedCategory];
+    document.getElementById('sum-price').textContent = hints ? (hints[urgKey] || '—') : '—';
+  }
+
+})();
+</script>
+
+<script src="../js/main.js"></script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/REPLACE_WITH_YOUR_TAWK_PROPERTY_ID/1i0000000';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>
