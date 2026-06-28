@@ -291,34 +291,24 @@ input, textarea, select {
   flex-shrink: 0;
 }
 
-/* Real logo image in navbar */
+/* Real logo image in navbar — SVG is natively transparent, no blend needed */
 .navbar__logo img {
-  height: 52px;          /* was 44px — bumped for better visibility */
+  height: 52px;
   width: auto;
   object-fit: contain;
   display: block;
-  /*
-   * mix-blend-mode: screen — the white/light background of the PNG
-   * blends away against the dark navbar, making the logo look like
-   * a true transparent SVG logo. Works perfectly on dark backgrounds.
-   */
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.35))
-          brightness(1.08)
-          contrast(1.05);
+  filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.4));
   transition: filter var(--transition);
 }
 .navbar__logo img:hover {
-  filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.7))
-          brightness(1.15)
-          contrast(1.05);
+  filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.75));
 }
 
-/* Footer logo — same screen blend */
+/* Footer logo — SVG transparent, just a subtle glow */
 .footer .navbar__logo img,
 .footer__brand .navbar__logo img {
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.3)) brightness(1.05);
+  filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.3));
+  opacity: 0.9;
 }
 
 /* Legacy icon (kept for fallback, hidden when img present) */
@@ -462,11 +452,8 @@ input, textarea, select {
   /* Start off-screen to the right */
   transform: translateX(100%);
   transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow-y: auto;
-  overflow-x: hidden;
-  /* Smooth scrollbar */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(123,47,190,0.4) transparent;
+  /* Do NOT overflow-y on drawer itself — only inner links scroll */
+  overflow: hidden;
 }
 
 .navbar__mobile.open {
@@ -498,8 +485,7 @@ input, textarea, select {
 .navbar__mobile-header-logo img {
   height: 28px;
   width: auto;
-  mix-blend-mode: screen;
-  filter: brightness(1.1);
+  filter: drop-shadow(0 0 6px rgba(0,212,255,0.35));
 }
 
 .navbar__mobile-close {
@@ -523,13 +509,20 @@ input, textarea, select {
   color: var(--color-accent-pink);
 }
 
-/* Navigation links inside drawer */
+/* Navigation links inside drawer — fills remaining space, scrollable */
 .navbar__mobile-links {
   flex: 1;
-  padding: 10px 10px;
+  padding: 8px 10px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
+  /* If links fit, spread them out so drawer feels balanced */
+  justify-content: space-evenly;
+  /* If screen is tiny and links overflow, scroll only this section */
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(123,47,190,0.35) transparent;
 }
 
 .navbar__mobile a {
@@ -566,20 +559,21 @@ input, textarea, select {
   color: var(--color-accent-cyan);
 }
 
-/* CTA buttons at bottom of drawer */
+/* CTA buttons at bottom of drawer — always pinned to bottom */
 .navbar__mobile-cta {
-  padding: 12px 10px 16px;
+  padding: 14px 10px 20px;
   border-top: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
   gap: 8px;
-  flex-shrink: 0;
-  background: rgba(15, 15, 26, 0.4);
+  flex-shrink: 0;           /* NEVER shrink — always visible at bottom */
+  background: rgba(15, 15, 26, 0.6);
+  margin-top: auto;         /* push to very bottom if links don't fill */
 }
 
 .navbar__mobile-cta .btn {
   font-size: 0.85rem;
-  padding: 10px 16px;
+  padding: 11px 16px;
   justify-content: center;
   width: 100%;
 }
@@ -1478,8 +1472,8 @@ input, textarea, select {
    ============================================================ */
 .whatsapp-float {
   position: fixed;
-  bottom: 28px;
-  right: 90px;   /* shifted LEFT to not clash with Tawk.to chat button */
+  bottom: 90px;  /* desktop: stacked ABOVE Tawk.to bubble (which sits at ~60px) */
+  right: 20px;
   z-index: 900;
   display: flex;
   flex-direction: column;
@@ -2478,8 +2472,8 @@ input, textarea, select {
   /* Contact */
   .contact-grid { grid-template-columns: 1fr; }
 
-  /* Floating WhatsApp — keep to the LEFT of Tawk.to on tablet too */
-  .whatsapp-float { bottom: 20px; right: 80px; }
+  /* Floating WhatsApp — tablet: move to left side, away from Tawk.to */
+  .whatsapp-float { bottom: 20px; left: 20px; right: auto; }
 }
 
 /* ============================================================
@@ -2555,21 +2549,14 @@ input, textarea, select {
   background-clip: text;
 }
 
-/* Ensure the logo image inside loader is well sized */
+/* Ensure the logo image inside loader is well sized — SVG transparent natively */
 .page-loader__logo img {
   height: 100px !important;
   width: auto;
-  max-width: 220px;
+  max-width: 260px;
   object-fit: contain;
   display: block;
-  /*
-   * screen blend removes the white background of the PNG on the dark
-   * loader background, making the logo look like a real transparent logo.
-   */
-  mix-blend-mode: screen;
-  filter: drop-shadow(0 0 28px rgba(0, 212, 255, 0.65))
-          brightness(1.1)
-          contrast(1.05) !important;
+  filter: drop-shadow(0 0 28px rgba(0, 212, 255, 0.6)) !important;
 }
 
 @keyframes loader-pulse {
@@ -2690,23 +2677,25 @@ a {
   margin-bottom: 24px;
 }
 
-/* Responsive: mobile scroll-top & whatsapp side-by-side bottom */
+/* Responsive: small mobile — WhatsApp stays bottom-left, scroll-top above it */
 @media (max-width: 480px) {
   .scroll-top {
-    bottom: 20px;
-    left: 20px;
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
+    bottom: 78px !important;  /* above WhatsApp button */
+    left: 16px !important;
+    right: auto !important;
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
   }
   .whatsapp-float {
-    bottom: 20px;
-    right: 80px;  /* stay left of Tawk.to on mobile too */
+    bottom: 16px !important;
+    left: 14px !important;    /* bottom-LEFT corner — Tawk.to owns bottom-right */
+    right: auto !important;
   }
   .whatsapp-float__btn {
-    width: 48px;
-    height: 48px;
-    font-size: 22px;
+    width: 46px;
+    height: 46px;
+    font-size: 21px;
   }
 }
 
@@ -2919,50 +2908,60 @@ iframe[class*='tawk'] {
   visibility: visible !important;
 }
 
-/* On mobile, ensure nothing clips Tawk.to's chat panel */
+/* ============================================================
+   MOBILE — WhatsApp LEFT corner, Tawk.to RIGHT corner
+   Completely separate so they NEVER overlap.
+   ============================================================ */
 @media (max-width: 768px) {
   body {
-    overflow-x: hidden;  /* keep horizontal lock */
-    /* do NOT set overflow-y:hidden — that hides Tawk.to panel */
+    overflow-x: hidden;
   }
 
-  /* Keep the WhatsApp float below Tawk.to bubble so they don't collide */
+  /* WhatsApp: bottom-LEFT on mobile — completely away from Tawk.to */
   .whatsapp-float {
-    bottom: 20px;
-    right: 80px;
-    z-index: 900 !important; /* must be below Tawk.to (9990) */
+    bottom: 18px !important;
+    left: 16px !important;
+    right: auto !important;
+    z-index: 900 !important;
   }
 
-  /* Scroll-top also stays well below */
+  /* Shrink WhatsApp button slightly on mobile */
+  .whatsapp-float__btn {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 22px !important;
+  }
+
+  /* Scroll-to-top stays bottom-left above WhatsApp (or can stay hidden on mobile) */
   .scroll-top {
+    bottom: 80px !important;
+    left: 16px !important;
+    right: auto !important;
     z-index: 800 !important;
   }
 
   /*
-   * Constrain Tawk.to maximized chat window on mobile so it doesn't
-   * fill the entire screen. This targets the chat iframe that Tawk.to
-   * injects into the page body. Max-height prevents full-screen.
-   * Bottom offset keeps it above the WhatsApp float button.
+   * Tawk.to chat WINDOW: cap height so it doesn't fill full screen.
+   * Tawk injects its chat panel as an iframe positioned bottom-right.
+   * We cap it at 70vh and keep it away from the bottom edge.
    */
-  iframe[src*='tawk.to'],
-  iframe[class*='tawk'],
-  iframe[title*='chat'],
-  iframe[title*='Chat'] {
-    max-height: 72vh !important;
-    max-width: 96vw !important;
-    bottom: 70px !important;       /* keep above WhatsApp button area */
-    right: 8px !important;
-    border-radius: 14px !important;
-    overflow: hidden !important;
+  iframe[src*='tawk.to'][style*='height'],
+  iframe[class*='tawk'][style*='height'] {
+    max-height: 68vh !important;
+    max-width: 92vw !important;
   }
 
-  /* Tawk.to bubble/button — keep in bottom-right corner above WhatsApp */
-  .tawk-min-container,
-  div[class*='tawk-min'],
-  div[id*='tawk-bubble'] {
-    bottom: 70px !important;       /* pushed up so WhatsApp is below */
-    right: 10px !important;
-    z-index: 9990 !important;
+  /*
+   * Tawk.to BUBBLE (minimized icon): shrink it — Tawk renders its
+   * bubble as a fixed iframe at bottom-right. We scale it down.
+   * Tawk's bubble iframe has no class/id we can rely on, but it is
+   * always positioned at bottom:0/right:0 with a small fixed size.
+   * Reducing transform scale keeps it clickable but less intrusive.
+   */
+  [class*='tawk-min-container'],
+  div[style*='tawk'] {
+    transform: scale(0.82) !important;
+    transform-origin: bottom right !important;
   }
 }
 
