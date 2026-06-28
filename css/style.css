@@ -2549,14 +2549,15 @@ input, textarea, select {
   background-clip: text;
 }
 
-/* Real logo in page loader — transparent PNG, glow to match site accent */
+/* Real logo in page loader — bigger on load screen, dual glow */
 .page-loader__logo img {
-  height: 110px !important;
+  height: 140px !important;     /* bigger while page loading */
   width: auto;
-  max-width: 280px;
+  max-width: 320px;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 0 32px rgba(0, 212, 255, 0.55)) drop-shadow(0 0 60px rgba(123, 47, 190, 0.3)) !important;
+  filter: drop-shadow(0 0 36px rgba(0, 212, 255, 0.6)) drop-shadow(0 0 70px rgba(123, 47, 190, 0.35)) !important;
+  animation: loader-pulse 1.8s ease-in-out infinite;
 }
 
 @keyframes loader-pulse {
@@ -2677,25 +2678,25 @@ a {
   margin-bottom: 24px;
 }
 
-/* Responsive: small mobile — WhatsApp stays bottom-left, scroll-top above it */
+/* Small mobile (<=480px) — same corner logic, slightly tighter values */
 @media (max-width: 480px) {
   .scroll-top {
-    bottom: 78px !important;  /* above WhatsApp button */
-    left: 16px !important;
+    bottom: 18px !important;
+    left: 14px !important;
     right: auto !important;
-    width: 38px;
-    height: 38px;
-    font-size: 15px;
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 15px !important;
   }
   .whatsapp-float {
-    bottom: 16px !important;
-    left: 14px !important;    /* bottom-LEFT corner — Tawk.to owns bottom-right */
-    right: auto !important;
+    bottom: 72px !important;   /* above Tawk bubble */
+    right: 10px !important;
+    left: auto !important;
   }
   .whatsapp-float__btn {
-    width: 46px;
-    height: 46px;
-    font-size: 21px;
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 20px !important;
   }
 }
 
@@ -2909,58 +2910,72 @@ iframe[class*='tawk'] {
 }
 
 /* ============================================================
-   MOBILE — WhatsApp LEFT corner, Tawk.to RIGHT corner
-   Completely separate so they NEVER overlap.
+   MOBILE FLOATING BUTTONS — Clean layout, no overlaps
+   Strategy:
+     - Scroll-to-top: bottom-LEFT (its own corner, clear of everything)
+     - WhatsApp: bottom-RIGHT, stacked ABOVE Tawk.to bubble
+     - Tawk.to bubble: bottom-RIGHT corner, scaled smaller
    ============================================================ */
 @media (max-width: 768px) {
   body {
     overflow-x: hidden;
   }
 
-  /* WhatsApp: bottom-LEFT on mobile — completely away from Tawk.to */
-  .whatsapp-float {
-    bottom: 18px !important;
-    left: 16px !important;
-    right: auto !important;
-    z-index: 900 !important;
-  }
-
-  /* Shrink WhatsApp button slightly on mobile */
-  .whatsapp-float__btn {
-    width: 48px !important;
-    height: 48px !important;
-    font-size: 22px !important;
-  }
-
-  /* Scroll-to-top stays bottom-left above WhatsApp (or can stay hidden on mobile) */
+  /* Scroll-to-top: bottom-LEFT, its own space, no conflict */
   .scroll-top {
-    bottom: 80px !important;
+    bottom: 20px !important;
     left: 16px !important;
     right: auto !important;
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 16px !important;
     z-index: 800 !important;
   }
 
   /*
-   * Tawk.to chat WINDOW: cap height so it doesn't fill full screen.
-   * Tawk injects its chat panel as an iframe positioned bottom-right.
-   * We cap it at 70vh and keep it away from the bottom edge.
+   * WhatsApp: bottom-RIGHT, 80px from bottom so it sits
+   * above the Tawk.to bubble (~60px tall at native size).
+   * Right-aligned same side as Tawk keeps both visible cleanly.
+   */
+  .whatsapp-float {
+    bottom: 75px !important;
+    right: 12px !important;
+    left: auto !important;
+    z-index: 900 !important;
+  }
+
+  /* Shrink WhatsApp button on mobile */
+  .whatsapp-float__btn {
+    width: 46px !important;
+    height: 46px !important;
+    font-size: 20px !important;
+    box-shadow: 0 3px 14px rgba(37, 211, 102, 0.45) !important;
+  }
+
+  /* Hide tooltip on mobile (no hover) */
+  .whatsapp-float__tooltip {
+    display: none !important;
+  }
+
+  /*
+   * Tawk.to chat WINDOW cap: prevent full screen.
    */
   iframe[src*='tawk.to'][style*='height'],
   iframe[class*='tawk'][style*='height'] {
     max-height: 68vh !important;
-    max-width: 92vw !important;
+    max-width: 94vw !important;
   }
 
   /*
-   * Tawk.to BUBBLE (minimized icon): shrink it — Tawk renders its
-   * bubble as a fixed iframe at bottom-right. We scale it down.
-   * Tawk's bubble iframe has no class/id we can rely on, but it is
-   * always positioned at bottom:0/right:0 with a small fixed size.
-   * Reducing transform scale keeps it clickable but less intrusive.
+   * Tawk.to BUBBLE: scale it down to 75% so it's smaller
+   * and less intrusive, sitting at bottom-right corner.
+   * transform-origin bottom-right keeps it anchored to the corner.
    */
-  [class*='tawk-min-container'],
-  div[style*='tawk'] {
-    transform: scale(0.82) !important;
+  #tawk-bubble-container,
+  [id*='tawk-bubble'],
+  .tawk-min-container,
+  [class*='tawk-min-container'] {
+    transform: scale(0.75) !important;
     transform-origin: bottom right !important;
   }
 }
@@ -2973,4 +2988,113 @@ iframe[class*='tawk'] {
 /* Page elements that could accidentally trap Tawk.to */
 .hero, .section, .container, .footer {
   overflow: visible;
+}
+
+/* ============================================================
+   COMPREHENSIVE MOBILE RESPONSIVENESS IMPROVEMENTS
+   ============================================================ */
+
+/* ── Typography scaling ── */
+@media (max-width: 768px) {
+  .section-title { font-size: clamp(1.5rem, 5vw, 2rem); }
+  .hero__title   { font-size: clamp(1.8rem, 6vw, 2.6rem); }
+  .page-hero__title { font-size: clamp(1.6rem, 5.5vw, 2.2rem); }
+  .cta-banner__title { font-size: clamp(1.4rem, 5vw, 1.9rem); }
+
+  /* Section spacing tighter on mobile */
+  .section { padding: 48px 0; }
+  .section-subtitle { font-size: 0.92rem; }
+
+  /* Container padding */
+  .container { padding-left: 16px; padding-right: 16px; }
+}
+
+/* ── Hero section ── */
+@media (max-width: 768px) {
+  .hero__badge { font-size: 0.72rem; }
+  .hero__cta { flex-direction: column; gap: 10px; }
+  .hero__cta .btn { width: 100%; justify-content: center; }
+  .hero__stats { gap: 16px; }
+  .hero__stat-number { font-size: 1.6rem; }
+}
+
+/* ── Service / feature cards ── */
+@media (max-width: 768px) {
+  .services-grid,
+  .features-grid,
+  .pillars-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+
+  .service-card,
+  .feature-card { padding: 20px 18px; }
+}
+
+/* ── Trust badges grid ── */
+@media (max-width: 600px) {
+  .trust-badges-grid { grid-template-columns: 1fr; gap: 14px; }
+  .trust-badge { padding: 20px 16px; }
+}
+
+/* ── Testimonials ── */
+@media (max-width: 768px) {
+  .testimonials-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Pricing cards ── */
+@media (max-width: 768px) {
+  .pricing-grid { grid-template-columns: 1fr !important; max-width: 440px; margin: 0 auto; }
+}
+
+/* ── Portfolio grid ── */
+@media (max-width: 768px) {
+  .portfolio-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── CTA banner ── */
+@media (max-width: 768px) {
+  .cta-banner { padding: 28px 20px; }
+  .cta-banner__actions { flex-direction: column; gap: 10px; }
+  .cta-banner__actions .btn { width: 100%; justify-content: center; }
+}
+
+/* ── Footer ── */
+@media (max-width: 768px) {
+  .footer__grid { grid-template-columns: 1fr 1fr !important; gap: 28px 20px; }
+  .footer__brand { grid-column: 1 / -1; }
+  .footer__bottom { flex-direction: column; text-align: center; gap: 8px; }
+  .footer__copyright { font-size: 0.8rem; }
+}
+
+@media (max-width: 480px) {
+  .footer__grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Buttons on mobile ── */
+@media (max-width: 480px) {
+  .btn-lg { padding: 12px 20px; font-size: 0.9rem; }
+  .btn    { font-size: 0.85rem; }
+}
+
+/* ── Page hero ── */
+@media (max-width: 768px) {
+  .page-hero { padding: 100px 0 40px; }
+  .page-hero__content { text-align: center; }
+}
+
+/* ── Forms ── */
+@media (max-width: 768px) {
+  .form-group input,
+  .form-group select,
+  .form-group textarea { font-size: 16px; } /* prevent iOS zoom */
+}
+
+/* ── Tables (if any) ── */
+@media (max-width: 600px) {
+  table { display: block; overflow-x: auto; }
+}
+
+/* ── Navbar on small screens ── */
+@media (max-width: 380px) {
+  .navbar__inner { padding: 0 12px; }
+  .navbar__hamburger { width: 36px; height: 36px; }
+  .navbar__logo img { height: 40px; }
 }
