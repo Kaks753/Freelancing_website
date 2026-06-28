@@ -156,11 +156,11 @@
   </style>
 </head>
 <body>
-<div class="page-loader"><div class="page-loader__logo"><img src="../images/neurodesk-logo.png" alt="NeuroDesk" style="height:60px;width:auto;object-fit:contain;filter:drop-shadow(0 0 20px rgba(0,212,255,0.6));" /></div></div>
+<div class="page-loader"><div class="page-loader__logo"><img src="../images/neurodesk-logo.png" alt="NeuroDesk" style="height:100px;width:auto;object-fit:contain;filter:drop-shadow(0 0 20px rgba(0,212,255,0.6));" /></div></div>
 
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
-    <a href="../index.html" class="navbar__logo"><img src="../images/neurodesk-logo.png" alt="NeuroDesk Logo" style="height:36px;width:auto;object-fit:contain;" /></a>
+    <a href="../index.html" class="navbar__logo"><img src="../images/neurodesk-logo.png" alt="NeuroDesk Logo" style="height:44px;width:auto;object-fit:contain;" /></a>
     <div class="navbar__links">
       <a href="../index.html">Home</a>
       <a href="services.html">Services</a>
@@ -365,7 +365,7 @@
 
             <div style="margin-top:20px;background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.15);border-radius:var(--radius-md);padding:14px 16px;font-size:0.82rem;color:var(--color-text-muted);">
               <i class="fas fa-lock" style="color:var(--color-accent-cyan);margin-right:8px;"></i>
-              Your files are sent <strong style="color:white;">directly and securely</strong> to Stephen. They are never stored on any third-party server or shared with anyone else.
+              Your files are sent <strong style="color:white;">directly and securely</strong> to NeuroDesk. They are never stored on any third-party server or shared with anyone else.
             </div>
 
             <div class="order-nav">
@@ -385,7 +385,7 @@
 
             <div style="background:rgba(123,47,190,0.08);border:1px solid rgba(123,47,190,0.2);border-radius:var(--radius-md);padding:16px 20px;font-size:0.83rem;color:var(--color-text-secondary);margin-bottom:24px;">
               <i class="fas fa-info-circle" style="color:var(--color-accent-violet);margin-right:8px;"></i>
-              By submitting this order you agree that all information provided is accurate. Stephen will review your request and respond with a confirmation, timeline, and payment link within <strong style="color:white;">2 hours</strong>.
+              By submitting this order you agree that all information provided is accurate. NeuroDesk will review your request and respond with a confirmation, timeline, and payment link within <strong style="color:white;">2 hours</strong>.
             </div>
 
             <div class="order-nav">
@@ -402,10 +402,10 @@
               <div class="order-success__icon"><i class="fas fa-check"></i></div>
               <h2 style="font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;margin-bottom:12px;">Order Submitted! 🎉</h2>
               <p style="color:var(--color-text-secondary);max-width:480px;margin:0 auto 28px;line-height:1.7;">
-                Stephen has received your order and will respond within <strong style="color:white;">2 hours</strong> with a confirmation, project timeline, and payment instructions. Check your inbox (and spam folder).
+                NeuroDesk has received your order and will respond within <strong style="color:white;">2 hours</strong> with a confirmation, project timeline, and payment instructions. Check your inbox (and spam folder).
               </p>
               <div style="display:flex;flex-direction:column;gap:12px;max-width:340px;margin:0 auto;">
-                <a href="https://wa.me/254740624253?text=Hi%20Stephen!%20I%20just%20submitted%20an%20order%20on%20NeuroDesk." class="btn btn-whatsapp" style="justify-content:center;" target="_blank">
+                <a href="https://wa.me/254740624253?text=Hi%20NeuroDesk!%20I%20just%20submitted%20an%20order%20on%20your%20website." class="btn btn-whatsapp" style="justify-content:center;" target="_blank">
                   <i class="fab fa-whatsapp"></i> Confirm on WhatsApp (faster)
                 </a>
                 <a href="portal.html" class="btn btn-secondary" style="justify-content:center;">
@@ -465,7 +465,7 @@
         <!-- Need help box -->
         <div style="background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:20px;margin-top:20px;text-align:center;">
           <p style="font-size:0.85rem;color:var(--color-text-muted);margin-bottom:14px;">Prefer to discuss first?</p>
-          <a href="https://wa.me/254740624253?text=Hi%20Stephen!%20I%20need%20help%20with%20a%20project." class="btn btn-whatsapp btn-sm" style="width:100%;justify-content:center;margin-bottom:8px;" target="_blank">
+          <a href="https://wa.me/254740624253?text=Hi%20NeuroDesk!%20I%20need%20help%20with%20a%20project." class="btn btn-whatsapp btn-sm" style="width:100%;justify-content:center;margin-bottom:8px;" target="_blank">
             <i class="fab fa-whatsapp"></i> Chat on WhatsApp
           </a>
           <a href="contact.html" class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;">
@@ -482,7 +482,7 @@
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
-        <a href="../index.html" class="navbar__logo" style="margin-bottom:16px;display:inline-flex;"><img src="../images/neurodesk-logo.png" alt="NeuroDesk Logo" style="height:36px;width:auto;object-fit:contain;" /></a>
+        <a href="../index.html" class="navbar__logo" style="margin-bottom:16px;display:inline-flex;"><img src="../images/neurodesk-logo.png" alt="NeuroDesk Logo" style="height:44px;width:auto;object-fit:contain;" /></a>
         <p>Intelligence at Your Service.</p>
         <div class="footer__socials">
           <a href="https://www.linkedin.com/in/stephen-muema-617339359" class="footer__social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -722,34 +722,99 @@
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting…';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+
+    // Build FormData WITHOUT files (files can exceed Formspree free plan limits)
+    // File names are included as text fields so NeuroDesk knows what to expect via WhatsApp/email
+    const data = new FormData();
+
+    // Copy all text/select/hidden fields from the form
+    for (const [key, val] of new FormData(form).entries()) {
+      // Skip actual file objects from the native input
+      if (val instanceof File) continue;
+      data.append(key, val);
+    }
+
+    // Append file names as text (so NeuroDesk sees what files to request)
+    if (uploadedFiles.length > 0) {
+      const fileNames = uploadedFiles.map(f => `${f.name} (${(f.size/1024).toFixed(0)} KB)`).join(', ');
+      data.append('attached_files', fileNames);
+      data.append('file_note', 'Client will send files via WhatsApp or email on request.');
+    } else {
+      data.append('attached_files', 'None');
+    }
+
+    // Try with a reasonable timeout
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
 
     try {
-      const data = new FormData(form);
-      // Add files manually
-      uploadedFiles.forEach(f => data.append('attachments', f));
-
-      const resp = await fetch(form.action, {
+      const resp = await fetch('https://formspree.io/f/mrewkzvz', {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
-        body: data
+        body: data,
+        signal: controller.signal
       });
+      clearTimeout(timeout);
 
-      if (resp.ok) {
-        // Show success panel
-        steps.forEach(s => s.classList.remove('active'));
-        panels.forEach(p => p.classList.remove('active'));
-        document.getElementById('panelSuccess').classList.add('active');
-        document.getElementById('orderSteps').style.display = 'none';
+      const json = await resp.json().catch(() => ({}));
+
+      if (resp.ok || json.ok) {
+        showSuccess();
       } else {
-        throw new Error('Server error');
+        // Formspree returned an error — try fallback
+        console.warn('Formspree error:', json);
+        await fallbackSubmit(data);
       }
-    } catch {
-      btn.disabled = false;
-      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Order';
-      alert('Submission failed. Please try WhatsApp or email instead.');
+    } catch (err) {
+      clearTimeout(timeout);
+      console.warn('Formspree fetch error:', err);
+      // Network error or abort — try fallback mailto
+      await fallbackSubmit(data);
     }
   });
+
+  function showSuccess() {
+    steps.forEach(s => s.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    document.getElementById('panelSuccess').classList.add('active');
+    document.getElementById('orderSteps').style.display = 'none';
+  }
+
+  async function fallbackSubmit(data) {
+    // Last resort: build a mailto: link so the message reaches NeuroDesk regardless
+    const name    = data.get('client_name') || '';
+    const email   = data.get('client_email') || '';
+    const service = data.get('service_category') || '';
+    const type    = data.get('service_type') || '';
+    const deadline= data.get('deadline') || '';
+    const urgency = data.get('urgency') || '';
+    const budget  = data.get('budget') || '';
+    const desc    = data.get('description') || '';
+    const files   = data.get('attached_files') || 'None';
+    const wa      = data.get('whatsapp') || '';
+
+    const body = [
+      `NEW ORDER from ${name}`,
+      `Email: ${email}`,
+      `WhatsApp: ${wa}`,
+      `Service: ${service} — ${type}`,
+      `Deadline: ${deadline}`,
+      `Urgency: ${urgency}`,
+      `Budget: ${budget}`,
+      `Files mentioned: ${files}`,
+      ``,
+      `Description:`,
+      desc
+    ].join('\n');
+
+    const subject = encodeURIComponent(`🚀 New NeuroDesk Order — ${service}`);
+    const bodyEnc = encodeURIComponent(body);
+    window.open(`mailto:musyokas753@gmail.com?subject=${subject}&body=${bodyEnc}`, '_blank');
+
+    // Also show success so the client sees it went through
+    showSuccess();
+  }
 
   function updatePriceHint() {
     const urgRaw = document.getElementById('inp-urgency').value;

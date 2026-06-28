@@ -293,16 +293,16 @@ input, textarea, select {
 
 /* Real logo image in navbar */
 .navbar__logo img {
-  height: 44px;
+  height: 52px;          /* was 44px — bumped for better visibility */
   width: auto;
   object-fit: contain;
   display: block;
   /* Slight glow matching the logo's cyan accent */
-  filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.35));
+  filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.4));
   transition: filter var(--transition);
 }
 .navbar__logo img:hover {
-  filter: drop-shadow(0 0 14px rgba(0, 212, 255, 0.6));
+  filter: drop-shadow(0 0 18px rgba(0, 212, 255, 0.7));
 }
 
 /* Legacy icon (kept for fallback, hidden when img present) */
@@ -2425,7 +2425,7 @@ input, textarea, select {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
   animation: loader-pulse 1.8s ease-in-out infinite;
   background: linear-gradient(135deg, var(--color-accent-violet), var(--color-accent-cyan));
   -webkit-background-clip: text;
@@ -2433,9 +2433,19 @@ input, textarea, select {
   background-clip: text;
 }
 
+/* Ensure the logo image inside loader is well sized */
+.page-loader__logo img {
+  height: 100px !important;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 28px rgba(0, 212, 255, 0.65)) !important;
+  display: block;
+}
+
 @keyframes loader-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.7; transform: scale(0.96); }
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%       { opacity: 0.75; transform: scale(0.97); }
 }
 
 /* Scroll to top — deliberately on LEFT side, away from WhatsApp float (right) */
@@ -2633,4 +2643,65 @@ a {
   border-radius: 6px;
   border: 1px solid rgba(0, 212, 255, 0.15);
   margin: 2px 0;
+}
+
+/* ============================================================
+   TAWK.TO — Mobile z-index & visibility fix
+   The Tawk.to bubble/widget can vanish on mobile if our elements
+   have higher z-index or overflow:hidden catches it.
+   Force both the bubble and the chat window to always show.
+   ============================================================ */
+
+/* Tawk.to main widget container */
+#fc_widget,
+div[id^='fc_widget'],
+.tawk-min-container,
+.tawk-bubble,
+.tawk-button,
+[class*='tawk-'],
+iframe[src*='tawk.to'],
+iframe[title*='chat widget'],
+iframe[title*='Chat Widget'] {
+  z-index: 9990 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* The open chat window iframe (Tawk.to injects this as a sibling) */
+iframe[src*='tawk.to'],
+iframe[class*='tawk'] {
+  z-index: 9990 !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* On mobile, ensure nothing clips Tawk.to's chat panel */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;  /* keep horizontal lock */
+    /* do NOT set overflow-y:hidden — that hides Tawk.to panel */
+  }
+
+  /* Keep the WhatsApp float below Tawk.to bubble so they don't collide */
+  .whatsapp-float {
+    bottom: 20px;
+    right: 80px;
+    z-index: 900 !important; /* must be below Tawk.to (9990) */
+  }
+
+  /* Scroll-top also stays well below */
+  .scroll-top {
+    z-index: 800 !important;
+  }
+}
+
+/* Navbar must never clip Tawk.to */
+.navbar {
+  overflow: visible !important;
+}
+
+/* Page elements that could accidentally trap Tawk.to */
+.hero, .section, .container, .footer {
+  overflow: visible;
 }
