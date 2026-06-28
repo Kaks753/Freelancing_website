@@ -253,6 +253,7 @@ Deadline multipliers: Rush 72h (×2.5), 1 week (×1.5), 2 weeks (×1.2), standar
 7. **Set up EmailJS or Formspree** — connect the contact form to actually send emails
 8. **Add real testimonials** — replace placeholder testimonials with actual client reviews
 
+
 ---
 
 ## 📄 License
