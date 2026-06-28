@@ -291,24 +291,24 @@ input, textarea, select {
   flex-shrink: 0;
 }
 
-/* Real logo image in navbar — SVG is natively transparent, no blend needed */
+/* Real logo — transparent PNG, real brand logo. Just add a subtle cyan glow. */
 .navbar__logo img {
   height: 52px;
   width: auto;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.4));
+  filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.35));
   transition: filter var(--transition);
 }
 .navbar__logo img:hover {
-  filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.75));
+  filter: drop-shadow(0 0 18px rgba(0, 212, 255, 0.65)) brightness(1.1);
 }
 
-/* Footer logo — SVG transparent, just a subtle glow */
+/* Footer logo — slightly smaller, subtle glow */
 .footer .navbar__logo img,
 .footer__brand .navbar__logo img {
-  filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.3));
-  opacity: 0.9;
+  filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.25));
+  opacity: 0.85;
 }
 
 /* Legacy icon (kept for fallback, hidden when img present) */
@@ -483,9 +483,9 @@ input, textarea, select {
 }
 
 .navbar__mobile-header-logo img {
-  height: 28px;
+  height: 32px;
   width: auto;
-  filter: drop-shadow(0 0 6px rgba(0,212,255,0.35));
+  filter: drop-shadow(0 0 6px rgba(0,212,255,0.4));
 }
 
 .navbar__mobile-close {
@@ -2549,14 +2549,14 @@ input, textarea, select {
   background-clip: text;
 }
 
-/* Ensure the logo image inside loader is well sized — SVG transparent natively */
+/* Real logo in page loader — transparent PNG, glow to match site accent */
 .page-loader__logo img {
-  height: 100px !important;
+  height: 110px !important;
   width: auto;
-  max-width: 260px;
+  max-width: 280px;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 0 28px rgba(0, 212, 255, 0.6)) !important;
+  filter: drop-shadow(0 0 32px rgba(0, 212, 255, 0.55)) drop-shadow(0 0 60px rgba(123, 47, 190, 0.3)) !important;
 }
 
 @keyframes loader-pulse {
