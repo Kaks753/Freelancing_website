@@ -297,12 +297,28 @@ input, textarea, select {
   width: auto;
   object-fit: contain;
   display: block;
-  /* Slight glow matching the logo's cyan accent */
-  filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.4));
+  /*
+   * mix-blend-mode: screen — the white/light background of the PNG
+   * blends away against the dark navbar, making the logo look like
+   * a true transparent SVG logo. Works perfectly on dark backgrounds.
+   */
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.35))
+          brightness(1.08)
+          contrast(1.05);
   transition: filter var(--transition);
 }
 .navbar__logo img:hover {
-  filter: drop-shadow(0 0 18px rgba(0, 212, 255, 0.7));
+  filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.7))
+          brightness(1.15)
+          contrast(1.05);
+}
+
+/* Footer logo — same screen blend */
+.footer .navbar__logo img,
+.footer__brand .navbar__logo img {
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.3)) brightness(1.05);
 }
 
 /* Legacy icon (kept for fallback, hidden when img present) */
@@ -408,58 +424,164 @@ input, textarea, select {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Mobile Menu */
-.navbar__mobile {
+/* ============================================================
+   MOBILE MENU — Right-side half-width slide-in drawer
+   ============================================================ */
+
+/* Dark backdrop overlay — covers left side when menu is open */
+.navbar__mobile-overlay {
   display: none;
   position: fixed;
-  top: var(--nav-height);
-  left: 0;
-  right: 0;
-  background: rgba(15, 15, 26, 0.98);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--color-border);
-  padding: 24px;
-  flex-direction: column;
-  gap: 8px;
-  z-index: 999;
-  transform: translateY(-10px);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  z-index: 998;
   opacity: 0;
-  transition: all var(--transition);
+  transition: opacity 0.3s ease;
 }
-
-.navbar__mobile.open {
-  display: flex;
-  transform: translateY(0);
+.navbar__mobile-overlay.open {
+  display: block;
   opacity: 1;
 }
 
+/* Drawer panel */
+.navbar__mobile {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(78vw, 300px);   /* half-ish width — max 300px */
+  background: rgba(13, 13, 22, 0.98);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-left: 1px solid var(--color-border);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  /* Start off-screen to the right */
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Smooth scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(123,47,190,0.4) transparent;
+}
+
+.navbar__mobile.open {
+  transform: translateX(0);
+}
+
+/* Drawer header bar */
+.navbar__mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+  background: rgba(15, 15, 26, 0.6);
+}
+
+.navbar__mobile-header-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar__mobile-header-logo img {
+  height: 28px;
+  width: auto;
+  mix-blend-mode: screen;
+  filter: brightness(1.1);
+}
+
+.navbar__mobile-close {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+.navbar__mobile-close:hover {
+  background: rgba(255,107,107,0.15);
+  border-color: rgba(255,107,107,0.3);
+  color: var(--color-accent-pink);
+}
+
+/* Navigation links inside drawer */
+.navbar__mobile-links {
+  flex: 1;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .navbar__mobile a {
-  font-size: 1rem;
+  font-size: 0.88rem;
   font-weight: 500;
   color: var(--color-text-secondary);
-  padding: 14px 16px;
-  border-radius: var(--radius-md);
+  padding: 10px 13px;
+  border-radius: var(--radius-sm);
   border: 1px solid transparent;
   transition: all var(--transition);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.navbar__mobile a i {
+  width: 16px;
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  flex-shrink: 0;
 }
 
 .navbar__mobile a:hover,
 .navbar__mobile a.active {
   color: white;
-  background: rgba(123, 47, 190, 0.15);
-  border-color: var(--color-border);
+  background: rgba(123, 47, 190, 0.14);
+  border-color: rgba(123, 47, 190, 0.2);
 }
 
+.navbar__mobile a.active i {
+  opacity: 1;
+  color: var(--color-accent-cyan);
+}
+
+/* CTA buttons at bottom of drawer */
 .navbar__mobile-cta {
-  margin-top: 16px;
-  padding-top: 16px;
+  padding: 12px 10px 16px;
   border-top: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
+  flex-shrink: 0;
+  background: rgba(15, 15, 26, 0.4);
+}
+
+.navbar__mobile-cta .btn {
+  font-size: 0.85rem;
+  padding: 10px 16px;
+  justify-content: center;
+  width: 100%;
 }
 
 /* ============================================================
@@ -2439,8 +2561,15 @@ input, textarea, select {
   width: auto;
   max-width: 220px;
   object-fit: contain;
-  filter: drop-shadow(0 0 28px rgba(0, 212, 255, 0.65)) !important;
   display: block;
+  /*
+   * screen blend removes the white background of the PNG on the dark
+   * loader background, making the logo look like a real transparent logo.
+   */
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 28px rgba(0, 212, 255, 0.65))
+          brightness(1.1)
+          contrast(1.05) !important;
 }
 
 @keyframes loader-pulse {
@@ -2646,6 +2775,120 @@ a {
 }
 
 /* ============================================================
+   TRUST & GUARANTEE BADGES SECTION
+   ============================================================ */
+.trust-section {
+  background: var(--color-bg-secondary);
+}
+
+.trust-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.trust-badge {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.trust-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 60%, rgba(255,255,255,0.02));
+  pointer-events: none;
+}
+
+.trust-badge:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.trust-badge__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.trust-badge__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+  width: fit-content;
+}
+
+.trust-badge__tag--students {
+  background: rgba(0, 229, 160, 0.12);
+  color: var(--color-accent-green);
+  border: 1px solid rgba(0, 229, 160, 0.25);
+}
+
+.trust-badge__tag--business {
+  background: rgba(123, 47, 190, 0.12);
+  color: var(--color-accent-violet);
+  border: 1px solid rgba(123, 47, 190, 0.25);
+}
+
+.trust-badge__tag--both {
+  background: rgba(0, 212, 255, 0.1);
+  color: var(--color-accent-cyan);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.trust-badge__title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.trust-badge__desc {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.trust-badge__check {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-accent-green);
+  padding-top: 6px;
+  border-top: 1px solid var(--color-border);
+}
+
+.trust-badge__check i {
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+/* ============================================================
    TAWK.TO — Mobile z-index & visibility fix
    The Tawk.to bubble/widget can vanish on mobile if our elements
    have higher z-index or overflow:hidden catches it.
@@ -2693,6 +2936,33 @@ iframe[class*='tawk'] {
   /* Scroll-top also stays well below */
   .scroll-top {
     z-index: 800 !important;
+  }
+
+  /*
+   * Constrain Tawk.to maximized chat window on mobile so it doesn't
+   * fill the entire screen. This targets the chat iframe that Tawk.to
+   * injects into the page body. Max-height prevents full-screen.
+   * Bottom offset keeps it above the WhatsApp float button.
+   */
+  iframe[src*='tawk.to'],
+  iframe[class*='tawk'],
+  iframe[title*='chat'],
+  iframe[title*='Chat'] {
+    max-height: 72vh !important;
+    max-width: 96vw !important;
+    bottom: 70px !important;       /* keep above WhatsApp button area */
+    right: 8px !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+  }
+
+  /* Tawk.to bubble/button — keep in bottom-right corner above WhatsApp */
+  .tawk-min-container,
+  div[class*='tawk-min'],
+  div[id*='tawk-bubble'] {
+    bottom: 70px !important;       /* pushed up so WhatsApp is below */
+    right: 10px !important;
+    z-index: 9990 !important;
   }
 }
 

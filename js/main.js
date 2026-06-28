@@ -34,29 +34,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // Hamburger menu toggle
+  // Hamburger menu toggle — right-side drawer
+  const mobileOverlay = document.getElementById('mobile-overlay');
+  const mobileClose   = document.getElementById('mobile-close');
+
+  function openMenu() {
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    if (mobileOverlay) mobileOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    if (mobileOverlay) mobileOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
   if (hamburger && mobileMenu) {
     hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+      mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
     });
 
-    // Close on link click
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
+    // Close button inside the drawer header
+    if (mobileClose) {
+      mobileClose.addEventListener('click', closeMenu);
+    }
+
+    // Overlay click closes drawer
+    if (mobileOverlay) {
+      mobileOverlay.addEventListener('click', closeMenu);
+    }
+
+    // Close on nav link click (not on CTA buttons, those navigate anyway)
+    mobileMenu.querySelectorAll('.navbar__mobile-links a').forEach(link => {
+      link.addEventListener('click', closeMenu);
     });
 
-    // Close on outside click
+    // Close on outside click (safety net)
     document.addEventListener('click', (e) => {
-      if (!navbar.contains(e.target) && mobileMenu.classList.contains('open')) {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
+      if (
+        mobileMenu.classList.contains('open') &&
+        !mobileMenu.contains(e.target) &&
+        !hamburger.contains(e.target)
+      ) {
+        closeMenu();
       }
     });
   }
@@ -75,36 +98,45 @@ document.addEventListener('DOMContentLoaded', () => {
   ============================================================ */
   const typingEl = document.querySelector('.hero__typing');
   if (typingEl) {
-    const words = ['Data Scientist', 'ML Engineer', 'Web Developer', 'Academic Writer', 'Research Expert'];
+    const words = ['Data Scientist', 'ML Engineer', 'Web Developer', 'Academic Writer', 'Research Expert', 'Data Analyst'];
     let wordIndex = 0;
-    let charIndex = 0;
+    let charIndex  = words[0].length; // start fully typed
     let isDeleting = false;
+    let isPaused   = false;
+
+    typingEl.textContent = words[0]; // show first word immediately
 
     function type() {
+      if (isPaused) return;
       const current = words[wordIndex];
+
       if (isDeleting) {
-        typingEl.textContent = current.substring(0, charIndex - 1);
         charIndex--;
+        typingEl.textContent = current.substring(0, charIndex);
       } else {
-        typingEl.textContent = current.substring(0, charIndex + 1);
         charIndex++;
+        typingEl.textContent = current.substring(0, charIndex);
       }
 
-      let speed = isDeleting ? 60 : 100;
+      let speed = isDeleting ? 55 : 95;
 
       if (!isDeleting && charIndex === current.length) {
-        speed = 2000;
-        isDeleting = true;
+        // Fully typed — pause then start deleting
+        isPaused = true;
+        setTimeout(() => { isPaused = false; isDeleting = true; setTimeout(type, speed); }, 2200);
+        return;
       } else if (isDeleting && charIndex === 0) {
+        // Fully deleted — move to next word
         isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-        speed = 300;
+        wordIndex  = (wordIndex + 1) % words.length;
+        speed      = 320;
       }
 
       setTimeout(type, speed);
     }
 
-    type();
+    // Start the cycle after a short initial pause
+    setTimeout(type, 2200);
   }
 
   /* ============================================================

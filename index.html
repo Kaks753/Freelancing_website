@@ -79,13 +79,13 @@
 <body>
 
 <!-- Page Loader -->
-<div class="page-loader"><div class="page-loader__logo"><img src="images/neurodesk-logo.png" alt="NeuroDesk" style="height:100px;width:auto;object-fit:contain;filter:drop-shadow(0 0 20px rgba(0,212,255,0.6));" /></div></div>
+<div class="page-loader"><div class="page-loader__logo"><img src="images/neurodesk-logo.png" alt="NeuroDesk" style="height:100px;width:auto;object-fit:contain;mix-blend-mode:screen;filter:drop-shadow(0 0 28px rgba(0,212,255,0.65)) brightness(1.1);" /></div></div>
 
 <!-- Navbar -->
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
     <a href="index.html" class="navbar__logo">
-      <img src="images/neurodesk-logo.png" alt="NeuroDesk Logo" style="height:36px;width:auto;object-fit:contain;" />
+      <img src="images/neurodesk-logo.png" alt="NeuroDesk Logo" style="height:44px;width:auto;object-fit:contain;mix-blend-mode:screen;" />
     </a>
     <div class="navbar__links">
       <a href="index.html" class="active">Home</a>
@@ -104,19 +104,38 @@
   </div>
 </nav>
 
-<!-- Mobile Menu -->
+<!-- Mobile Menu Overlay (dark backdrop) -->
+<div class="navbar__mobile-overlay" id="mobile-overlay"></div>
+
+<!-- Mobile Menu Drawer (right-side panel) -->
 <div class="navbar__mobile" id="mobile-menu">
-  <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
-  <a href="pages/services.html"><i class="fas fa-layer-group"></i> Services</a>
-  <a href="pages/portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a>
-  <a href="pages/pricing.html"><i class="fas fa-tags"></i> Pricing</a>
-  <a href="pages/about.html"><i class="fas fa-user"></i> About</a>
-  <a href="blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a>
-  <a href="pages/faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
-  <a href="pages/portal.html" style="color:var(--color-accent-cyan);font-weight:600;"><i class="fas fa-chart-line"></i> Track My Order</a>
+  <!-- Drawer header -->
+  <div class="navbar__mobile-header">
+    <a href="index.html" class="navbar__mobile-header-logo">
+      <img src="images/neurodesk-logo.png" alt="NeuroDesk" />
+      <span>NeuroDesk</span>
+    </a>
+    <button class="navbar__mobile-close" id="mobile-close" aria-label="Close menu">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <!-- Nav links -->
+  <div class="navbar__mobile-links">
+    <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
+    <a href="pages/services.html"><i class="fas fa-layer-group"></i> Services</a>
+    <a href="pages/portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a>
+    <a href="pages/pricing.html"><i class="fas fa-tags"></i> Pricing</a>
+    <a href="pages/about.html"><i class="fas fa-user"></i> About</a>
+    <a href="blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a>
+    <a href="pages/faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+    <a href="pages/portal.html" style="color:var(--color-accent-cyan);font-weight:600;border-color:rgba(0,212,255,0.15);background:rgba(0,212,255,0.06);"><i class="fas fa-chart-line"></i> Track My Order</a>
+  </div>
+
+  <!-- CTA buttons -->
   <div class="navbar__mobile-cta">
-    <a href="pages/order.html" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-rocket"></i> Order Now</a>
-    <a href="https://wa.me/254740624253?text=Hi%20NeuroDesk!%20I'd%20like%20to%20discuss%20a%20project." class="btn btn-whatsapp" style="width:100%;justify-content:center" target="_blank">
+    <a href="pages/order.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Order Now</a>
+    <a href="https://wa.me/254740624253?text=Hi%20NeuroDesk!%20I'd%20like%20to%20discuss%20a%20project." class="btn btn-whatsapp" target="_blank" rel="noopener">
       <i class="fab fa-whatsapp"></i> WhatsApp
     </a>
   </div>
@@ -882,6 +901,66 @@
 </section>
 
 <!-- ============================================================
+     TRUST & GUARANTEE BADGES
+============================================================ -->
+<section class="section trust-section">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:44px;">
+      <div class="section-label">Our Commitment</div>
+      <h2 class="section-title">Built on <span style="background:linear-gradient(135deg,var(--color-accent-violet),var(--color-accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Integrity & Privacy</span></h2>
+      <p class="section-subtitle">Every project delivered with professional standards — whether you're a student or a business.</p>
+    </div>
+    <div class="trust-badges-grid reveal">
+
+      <!-- Badge 1: Plagiarism Free -->
+      <div class="trust-badge">
+        <div class="trust-badge__icon" style="background:linear-gradient(135deg,rgba(0,229,160,0.2),rgba(0,229,160,0.05));border-color:rgba(0,229,160,0.3);">
+          <i class="fas fa-shield-alt" style="color:var(--color-accent-green);"></i>
+        </div>
+        <div class="trust-badge__tag trust-badge__tag--students"><i class="fas fa-graduation-cap"></i> For Students</div>
+        <h3 class="trust-badge__title">100% Original Work</h3>
+        <p class="trust-badge__desc">Every paper, thesis, or assignment is written from scratch. Zero plagiarism, zero recycled content — guaranteed.</p>
+        <div class="trust-badge__check"><i class="fas fa-check-circle"></i> Plagiarism-Free Certificate Available</div>
+      </div>
+
+      <!-- Badge 2: AI-Detector Safe -->
+      <div class="trust-badge">
+        <div class="trust-badge__icon" style="background:linear-gradient(135deg,rgba(0,212,255,0.2),rgba(0,212,255,0.05));border-color:rgba(0,212,255,0.3);">
+          <i class="fas fa-robot" style="color:var(--color-accent-cyan);"></i>
+        </div>
+        <div class="trust-badge__tag trust-badge__tag--students"><i class="fas fa-graduation-cap"></i> For Students</div>
+        <h3 class="trust-badge__title">AI-Detector Safe</h3>
+        <p class="trust-badge__desc">All academic content passes Turnitin, Grammarly, and AI detection tools. 100% human-written, every time.</p>
+        <div class="trust-badge__check"><i class="fas fa-check-circle"></i> Passes GPTZero &amp; Turnitin AI Check</div>
+      </div>
+
+      <!-- Badge 3: NDA / Data Privacy -->
+      <div class="trust-badge">
+        <div class="trust-badge__icon" style="background:linear-gradient(135deg,rgba(123,47,190,0.2),rgba(123,47,190,0.05));border-color:rgba(123,47,190,0.3);">
+          <i class="fas fa-user-secret" style="color:var(--color-accent-violet);"></i>
+        </div>
+        <div class="trust-badge__tag trust-badge__tag--business"><i class="fas fa-briefcase"></i> For Businesses</div>
+        <h3 class="trust-badge__title">NDA &amp; Data Privacy</h3>
+        <p class="trust-badge__desc">We sign NDAs on request. Your business data, code, and proprietary information stay strictly confidential.</p>
+        <div class="trust-badge__check"><i class="fas fa-check-circle"></i> NDA Signed on Request</div>
+      </div>
+
+      <!-- Badge 4: On-Time Delivery -->
+      <div class="trust-badge">
+        <div class="trust-badge__icon" style="background:linear-gradient(135deg,rgba(255,107,107,0.2),rgba(255,107,107,0.05));border-color:rgba(255,107,107,0.3);">
+          <i class="fas fa-clock" style="color:var(--color-accent-pink);"></i>
+        </div>
+        <div class="trust-badge__tag trust-badge__tag--both"><i class="fas fa-star"></i> For Everyone</div>
+        <h3 class="trust-badge__title">On-Time, Every Time</h3>
+        <p class="trust-badge__desc">Deadlines are sacred. We commit to your timeline — if we miss it, you get a full revision or refund, no questions.</p>
+        <div class="trust-badge__check"><i class="fas fa-check-circle"></i> Deadline Guarantee + Free Revision</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      FINAL CTA
 ============================================================ -->
 <section class="section">
@@ -910,7 +989,7 @@
     <div class="footer__grid">
       <div class="footer__brand">
         <a href="index.html" class="navbar__logo" style="margin-bottom:16px;display:inline-flex;">
-          <img src="images/neurodesk-logo.png" alt="NeuroDesk Logo" style="height:36px;width:auto;object-fit:contain;" />
+          <img src="images/neurodesk-logo.png" alt="NeuroDesk Logo" style="height:36px;width:auto;object-fit:contain;mix-blend-mode:screen;" />
         </a>
         <p>Intelligence at Your Service. Expert Data Science, Academic Writing, and Web Development — delivered with precision.</p>
         <div class="footer__socials"><a href="https://www.linkedin.com/in/stephen-muema-617339359" class="footer__social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="https://github.com/Kaks753" class="footer__social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a><a href="https://wa.me/254740624253" class="footer__social-link" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="mailto:musyokas753@gmail.com" class="footer__social-link" title="Email"><i class="fas fa-envelope"></i></a></div>
@@ -1036,16 +1115,38 @@
 </style>
 
 <script src="js/main.js"></script>
-<!--Start of Tawk.to Script-->
+<!--Start of Tawk.to Script — enhanced with mobile constraints-->
 <script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+var Tawk_API = Tawk_API || {};
+var Tawk_LoadStart = new Date();
+
+// Mobile: constrain chat window so it never takes full screen
+// and never overlaps the WhatsApp floating button.
+Tawk_API.onLoad = function() {
+  if (window.innerWidth <= 768) {
+    // Tawk.to exposes customStyle to constrain the chat window iframe
+    Tawk_API.customStyle = {
+      zIndex: 9990
+    };
+  }
+};
+
+// When chat is maximized on mobile, use Tawk.to API to minimize back
+// if user is on a very small screen (prevents full-screen takeover).
+// Note: Tawk.to v6 does not natively cap height, but we can minimize
+// immediately and let our CSS max-height handle the visual constraint.
+Tawk_API.onChatMaximized = function() {
+  // intentionally empty — CSS handles max-height constraint
+};
+
 (function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6a3fed28762a271d4209ff8d/1js4rcqb9';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
+  var s1 = document.createElement("script"),
+      s0 = document.getElementsByTagName("script")[0];
+  s1.async = true;
+  s1.src = 'https://embed.tawk.to/6a3fed28762a271d4209ff8d/1js4rcqb9';
+  s1.charset = 'UTF-8';
+  s1.setAttribute('crossorigin', '*');
+  s0.parentNode.insertBefore(s1, s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
