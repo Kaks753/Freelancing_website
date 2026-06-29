@@ -528,51 +528,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ============================================================
-     AUTH STATE — Navbar user pill (reads sessionStorage set by Firebase)
-     Shows user avatar/name when logged in; shows "Sign In" when not.
+     AUTH STATE — handled by js/firebase-nav.js (type="module")
+     That script uses onAuthStateChanged for real-time auth state.
+     No action needed here.
   ============================================================ */
-  (function initNavAuth() {
-    const userWrap   = document.getElementById('navUserWrap');
-    const signinLink = document.getElementById('navSigninLink');
-    if (!userWrap && !signinLink) return; // page doesn't have auth nav elements
-
-    // Determine the right prefix for auth page link
-    const isRoot = !window.location.pathname.includes('/pages/') &&
-                   !window.location.pathname.includes('/blog/');
-    const authLink = isRoot ? 'pages/auth.html' : 'auth.html';
-    const homeLink = isRoot ? 'index.html' : '../index.html';
-
-    try {
-      const raw = sessionStorage.getItem('nd_user');
-      if (raw) {
-        const u = JSON.parse(raw);
-        if (!userWrap) return;
-        const initial = (u.name || u.email || '?').charAt(0).toUpperCase();
-        const avatarHtml = u.photoURL
-          ? `<img src="${u.photoURL}" alt="${initial}" />`
-          : initial;
-        const displayName = (u.name || u.email || 'Account').split(' ')[0];
-
-        userWrap.style.display = 'flex';
-        userWrap.innerHTML = `
-          <a href="${authLink}" class="navbar__user-btn" title="My Account">
-            <div class="navbar__user-avatar">${avatarHtml}</div>
-            <span class="navbar__user-name">${displayName}</span>
-          </a>
-        `;
-        if (signinLink) signinLink.style.display = 'none';
-      } else {
-        // Not logged in — show "Sign In" link
-        if (signinLink) {
-          signinLink.style.display = 'flex';
-          signinLink.href = authLink;
-        }
-        if (userWrap) userWrap.style.display = 'none';
-      }
-    } catch (_) {
-      if (signinLink) { signinLink.style.display = 'flex'; signinLink.href = authLink; }
-    }
-  })();
 
 });
 

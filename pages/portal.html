@@ -484,6 +484,302 @@
       .project-details-grid { grid-template-columns: 1fr; }
       .how-grid { grid-template-columns: 1fr; }
     }
+
+    /* ══════════════════════════════════════════
+       PORTAL AUTH GATE STYLES
+    ══════════════════════════════════════════ */
+    .portal-auth-gate {
+      min-height: calc(100vh - var(--nav-height));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--nav-height) + 24px) 16px 48px;
+      background: linear-gradient(135deg, rgba(123,47,190,0.06) 0%, rgba(0,212,255,0.04) 100%);
+    }
+    .portal-auth-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 420px;
+      padding: 36px 32px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      position: relative;
+    }
+    .portal-auth-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-accent-violet), var(--color-accent-cyan));
+      border-radius: 20px 20px 0 0;
+    }
+    .portal-auth-logo {
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .portal-auth-logo img {
+      height: 48px;
+      width: auto;
+      filter: drop-shadow(0 0 10px rgba(0,212,255,0.4));
+    }
+    .portal-auth-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 4px;
+      color: var(--color-text-primary);
+    }
+    .portal-auth-sub {
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+      text-align: center;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    /* Tab switcher */
+    .portal-auth-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--color-bg-secondary);
+      border-radius: 10px;
+      padding: 3px;
+      margin-bottom: 22px;
+    }
+    .portal-auth-tab {
+      padding: 9px;
+      text-align: center;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: all 0.22s ease;
+      border: none;
+      background: transparent;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .portal-auth-tab.active {
+      background: var(--color-accent-violet);
+      color: white;
+      box-shadow: 0 2px 10px rgba(123,47,190,0.4);
+    }
+
+    /* Google button */
+    .portal-btn-google {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 11px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      color: white;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 16px;
+    }
+    .portal-btn-google:hover {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-1px);
+    }
+    .portal-btn-google img { width: 18px; height: 18px; }
+
+    /* Divider */
+    .portal-auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .portal-auth-divider::before,
+    .portal-auth-divider::after { content:''; flex:1; height:1px; background:var(--color-border); }
+    .portal-auth-divider span { font-size:0.72rem; color:var(--color-text-muted); white-space:nowrap; }
+
+    /* Form groups */
+    .portal-auth-group { margin-bottom: 14px; }
+    .portal-auth-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      margin-bottom: 5px;
+    }
+    .portal-auth-input-wrap { position: relative; }
+    .portal-auth-input-wrap i {
+      position: absolute;
+      left: 12px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-muted);
+      font-size: 13px;
+      pointer-events: none;
+    }
+    .portal-auth-input {
+      width: 100%;
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: 9px;
+      padding: 10px 12px 10px 36px;
+      color: var(--color-text-primary);
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+    }
+    .portal-auth-input:focus {
+      outline: none;
+      border-color: var(--color-accent-violet);
+      box-shadow: 0 0 0 3px rgba(123,47,190,0.14);
+    }
+    .portal-auth-toggle-pw {
+      position: absolute;
+      right: 11px; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none;
+      color: var(--color-text-muted);
+      cursor: pointer; padding: 0; font-size: 13px;
+      transition: color 0.2s;
+    }
+    .portal-auth-toggle-pw:hover { color: var(--color-text-primary); }
+
+    /* Strength bar */
+    .portal-strength-wrap { margin-top: 6px; display:none; }
+    .portal-strength-wrap.on { display:block; }
+    .portal-strength-track { height:3px; background:var(--color-bg-primary); border-radius:2px; overflow:hidden; margin-bottom:3px; }
+    .portal-strength-fill { height:100%; width:0%; border-radius:2px; transition:width 0.3s, background 0.3s; }
+    .portal-strength-label { font-size:0.7rem; font-weight:600; color:var(--color-text-muted); }
+
+    /* Forgot link */
+    .portal-auth-forgot { text-align:right; margin-bottom:3px; }
+    .portal-auth-forgot a { font-size:0.75rem; color:var(--color-text-muted); text-decoration:none; transition:color 0.2s; }
+    .portal-auth-forgot a:hover { color:var(--color-accent-cyan); }
+
+    /* Terms */
+    .portal-terms-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 16px;
+      margin-top: 2px;
+    }
+    .portal-terms-row input[type="checkbox"] {
+      margin-top: 2px; accent-color: var(--color-accent-violet);
+      width:15px; height:15px; flex-shrink:0; cursor:pointer;
+    }
+    .portal-terms-row label { font-size:0.75rem; color:var(--color-text-muted); line-height:1.5; cursor:pointer; }
+    .portal-terms-row a { color:var(--color-accent-cyan); text-decoration:underline; text-underline-offset:2px; }
+
+    /* Submit button */
+    .portal-auth-submit {
+      width: 100%;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, var(--color-accent-violet), #9B59B6);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 0.92rem;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer;
+      transition: all 0.22s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+    .portal-auth-submit:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(123,47,190,0.4);
+    }
+    .portal-auth-submit:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+
+    /* Auth message */
+    .portal-auth-msg {
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      margin-bottom: 14px;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+    .portal-auth-msg.on { display:flex; }
+    .portal-auth-msg.err { background:rgba(255,107,107,0.1); border:1px solid rgba(255,107,107,0.25); color:var(--color-accent-pink); }
+    .portal-auth-msg.ok  { background:rgba(0,229,160,0.1); border:1px solid rgba(0,229,160,0.25); color:var(--color-accent-green); }
+    .portal-auth-msg.inf { background:rgba(0,212,255,0.08); border:1px solid rgba(0,212,255,0.2); color:var(--color-accent-cyan); }
+
+    /* Footer note */
+    .portal-auth-footnote { text-align:center; font-size:0.75rem; color:var(--color-text-muted); margin-top:4px; }
+    .portal-auth-footnote a { color:var(--color-accent-cyan); }
+
+    /* Spinner */
+    .p-spin { width:15px; height:15px; border:2px solid rgba(255,255,255,0.3); border-top-color:white; border-radius:50%; animation:spin 0.7s linear infinite; display:none; }
+    .p-spin.on { display:block; }
+
+    /* Dashboard header inside portal */
+    .portal-user-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 14px 20px;
+      background: rgba(123,47,190,0.08);
+      border: 1px solid rgba(123,47,190,0.18);
+      border-radius: 12px;
+      margin-bottom: 28px;
+    }
+    .portal-user-bar__left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .portal-user-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-accent-violet), var(--color-accent-cyan));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: white;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .portal-user-avatar img { width:100%; height:100%; object-fit:cover; }
+    .portal-user-name { font-weight:700; font-size:0.92rem; color:var(--color-text-primary); }
+    .portal-user-email { font-size:0.75rem; color:var(--color-text-muted); }
+    .portal-signout-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      background: rgba(255,107,107,0.08);
+      border: 1px solid rgba(255,107,107,0.2);
+      border-radius: 8px;
+      color: var(--color-accent-pink);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .portal-signout-btn:hover { background:rgba(255,107,107,0.15); border-color:rgba(255,107,107,0.35); }
+
+    @media (max-width: 480px) {
+      .portal-auth-card { padding: 24px 16px; }
+    }
   </style>
 </head>
 <body>
@@ -505,8 +801,8 @@
     <div class="navbar__cta" style="display:flex;gap:8px;align-items:center;">
       <!-- Auth user pill (shown when logged in) -->
       <div id="navUserWrap" style="display:none;"></div>
-      <!-- Sign in link -->
-      <a href="auth.html" class="navbar__signin-link" id="navSigninLink" title="Sign in"><i class="fas fa-user-circle"></i> Sign In</a>
+      <!-- Sign in link (scrolls to auth gate on this page) -->
+      <a href="#portalAuthGate" class="navbar__signin-link" id="navSigninLink" title="Sign in" onclick="document.getElementById('portalAuthGate').scrollIntoView({behavior:'smooth'});return false;"><i class="fas fa-user-circle"></i> Sign In</a>
       <a href="order.html" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> Get a Quote</a>
     </div>
     <div class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></div>
@@ -547,18 +843,128 @@
   </div>
 </div>
 
+<!-- ══════════════════════════════════════════════════════
+     AUTH GATE — shown when user is NOT signed in
+     Replaced entirely by portal content after login
+══════════════════════════════════════════════════════ -->
+<div id="portalAuthGate" class="portal-auth-gate">
+  <div class="portal-auth-card">
+    <div class="portal-auth-logo"><img src="../images/neurodesk-logo.png" alt="NeuroDesk" /></div>
+    <h2 class="portal-auth-title">Client Portal</h2>
+    <p class="portal-auth-sub">Sign in to track your orders, view milestones, and download deliverables.</p>
+
+    <!-- Tab switcher -->
+    <div class="portal-auth-tabs">
+      <button class="portal-auth-tab active" id="ptab-login" onclick="pSwitchTab('login')">Sign In</button>
+      <button class="portal-auth-tab" id="ptab-register" onclick="pSwitchTab('register')">Create Account</button>
+    </div>
+
+    <!-- Message area -->
+    <div class="portal-auth-msg" id="pAuthMsg"><i class="fas fa-exclamation-circle"></i><span id="pAuthMsgText"></span></div>
+
+    <!-- Google -->
+    <button class="portal-btn-google" id="pGoogleBtn" onclick="pGoogleSignIn()">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
+      Continue with Google
+    </button>
+
+    <div class="portal-auth-divider"><span>or use email</span></div>
+
+    <!-- ── LOGIN FORM ── -->
+    <form id="pLoginForm" onsubmit="pEmailLogin(event)" novalidate>
+      <div class="portal-auth-group">
+        <label for="pLoginEmail">Email</label>
+        <div class="portal-auth-input-wrap">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="pLoginEmail" class="portal-auth-input" placeholder="you@example.com" autocomplete="email" required />
+        </div>
+      </div>
+      <div class="portal-auth-group">
+        <label for="pLoginPw">Password</label>
+        <div class="portal-auth-forgot"><a href="#" onclick="pForgotPw(event)">Forgot password?</a></div>
+        <div class="portal-auth-input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="pLoginPw" class="portal-auth-input" placeholder="Your password" autocomplete="current-password" required />
+          <button type="button" class="portal-auth-toggle-pw" onclick="pTogglePw('pLoginPw',this)"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+      <button type="submit" class="portal-auth-submit" id="pLoginBtn">
+        <span class="p-spin" id="pLoginSpinner"></span>
+        <span id="pLoginBtnTxt"><i class="fas fa-sign-in-alt"></i> Sign In</span>
+      </button>
+    </form>
+
+    <!-- ── REGISTER FORM ── -->
+    <form id="pRegisterForm" style="display:none;" onsubmit="pEmailRegister(event)" novalidate>
+      <div class="portal-auth-group">
+        <label for="pRegName">Full Name <span style="color:var(--color-accent-pink)">*</span></label>
+        <div class="portal-auth-input-wrap">
+          <i class="fas fa-user"></i>
+          <input type="text" id="pRegName" class="portal-auth-input" placeholder="e.g. Alex Johnson" autocomplete="name" required />
+        </div>
+      </div>
+      <div class="portal-auth-group">
+        <label for="pRegEmail">Email <span style="color:var(--color-accent-pink)">*</span></label>
+        <div class="portal-auth-input-wrap">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="pRegEmail" class="portal-auth-input" placeholder="you@example.com" autocomplete="email" required />
+        </div>
+      </div>
+      <div class="portal-auth-group">
+        <label for="pRegPw">Password <span style="color:var(--color-accent-pink)">*</span></label>
+        <div class="portal-auth-input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="pRegPw" class="portal-auth-input" placeholder="Min 8 characters" autocomplete="new-password" required oninput="pCheckStrength(this.value)" />
+          <button type="button" class="portal-auth-toggle-pw" onclick="pTogglePw('pRegPw',this)"><i class="fas fa-eye"></i></button>
+        </div>
+        <div class="portal-strength-wrap" id="pStrengthWrap">
+          <div class="portal-strength-track"><div class="portal-strength-fill" id="pStrengthFill"></div></div>
+          <div class="portal-strength-label" id="pStrengthLabel">—</div>
+        </div>
+      </div>
+      <div class="portal-terms-row">
+        <input type="checkbox" id="pTermsCheck" required />
+        <label for="pTermsCheck">I agree to the <a href="auth.html#terms" target="_blank">Terms &amp; Conditions</a> and understand my account is optional.</label>
+      </div>
+      <button type="submit" class="portal-auth-submit" id="pRegBtn">
+        <span class="p-spin" id="pRegSpinner"></span>
+        <span id="pRegBtnTxt"><i class="fas fa-user-plus"></i> Create Account</span>
+      </button>
+    </form>
+
+    <p class="portal-auth-footnote">No account? <a href="order.html">Order directly</a> — tracking reference sent via email.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PORTAL CONTENT — shown only when signed in
+══════════════════════════════════════════════════════ -->
+<div id="portalContent" style="display:none;">
+
 <!-- Hero -->
 <section class="portal-hero">
   <div class="container">
     <div class="portal-hero__label"><i class="fas fa-shield-alt"></i> Secure Client Portal</div>
     <h1 class="portal-hero__title">Track Your <span>Project Status</span></h1>
-    <p class="portal-hero__sub">Enter your email and order reference to instantly see your project status, milestones, and download your deliverables.</p>
+    <p class="portal-hero__sub">You're signed in. Enter your order reference below to see your project status, milestones, and deliverables.</p>
   </div>
 </section>
 
 <!-- Main Content -->
 <section class="section">
   <div class="container">
+
+    <!-- Signed-in user bar -->
+    <div class="portal-user-bar reveal" id="portalUserBar">
+      <div class="portal-user-bar__left">
+        <div class="portal-user-avatar" id="puAvatar"><span id="puInitial">?</span></div>
+        <div>
+          <div class="portal-user-name" id="puName">Loading…</div>
+          <div class="portal-user-email" id="puEmail"></div>
+        </div>
+      </div>
+      <button class="portal-signout-btn" onclick="pSignOut()"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+    </div>
 
     <!-- Lookup Card -->
     <div class="lookup-card reveal">
@@ -720,6 +1126,8 @@
   </div>
 </section>
 
+</div><!-- /portalContent -->
+
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
@@ -745,6 +1153,252 @@
   <a href="https://wa.me/254740624253?text=Hi%20NeuroDesk!" class="whatsapp-float__btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
 </div>
 <button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
+
+<!-- ══════════════════════════════════════════════════════
+     FIREBASE AUTH — Portal Gate
+     Modular SDK v10 (ESM)
+══════════════════════════════════════════════════════ -->
+<script type="module">
+import { initializeApp }         from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
+         signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail,
+         onAuthStateChanged, updateProfile, signOut }
+  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { getFirestore, doc, setDoc, getDoc, serverTimestamp }
+  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey:            "AIzaSyAKcYrxurk5mFdZ-bXnogmcBm-_lros39s",
+  authDomain:        "neurodesk-6ce1c.firebaseapp.com",
+  projectId:         "neurodesk-6ce1c",
+  storageBucket:     "neurodesk-6ce1c.firebasestorage.app",
+  messagingSenderId: "542956863300",
+  appId:             "1:542956863300:web:f39b2ff82ab0a3221f6111"
+};
+
+const fbApp  = initializeApp(firebaseConfig);
+const auth   = getAuth(fbApp);
+const db     = getFirestore(fbApp);
+const gprov  = new GoogleAuthProvider();
+
+// ── Gate / Portal content toggle ────────────────────────────
+function showPortal(user) {
+  document.getElementById('portalAuthGate').style.display = 'none';
+  document.getElementById('portalContent').style.display  = 'block';
+  renderUserBar(user);
+  // Pre-fill portal email from Firebase user email
+  const emailInput = document.getElementById('portalEmail');
+  if (emailInput && user.email) emailInput.value = user.email;
+  // Store in sessionStorage for navbar awareness
+  sessionStorage.setItem('nd_user', JSON.stringify({
+    name: user.displayName || user.email,
+    email: user.email,
+    photoURL: user.photoURL || ''
+  }));
+}
+
+function showGate() {
+  document.getElementById('portalAuthGate').style.display = 'flex';
+  document.getElementById('portalContent').style.display  = 'none';
+  sessionStorage.removeItem('nd_user');
+}
+
+function renderUserBar(user) {
+  const name  = user.displayName || user.email || 'Client';
+  const email = user.email || '';
+  const photo = user.photoURL || '';
+  const init  = name.charAt(0).toUpperCase();
+
+  document.getElementById('puName').textContent  = name;
+  document.getElementById('puEmail').textContent = email;
+  document.getElementById('puInitial').textContent = init;
+
+  if (photo) {
+    const avatar = document.getElementById('puAvatar');
+    avatar.innerHTML = `<img src="${photo}" alt="${init}" />`;
+  }
+
+  // Also update navbar pill
+  const wrap = document.getElementById('navUserWrap');
+  const link = document.getElementById('navSigninLink');
+  if (wrap) {
+    const first = name.split(' ')[0];
+    const avatarHtml = photo ? `<img src="${photo}" alt="${init}" />` : init;
+    wrap.style.display = 'flex';
+    wrap.innerHTML = `<span class="navbar__user-btn">
+      <span class="navbar__user-avatar">${avatarHtml}</span>
+      <span class="navbar__user-name">${first}</span>
+    </span>`;
+  }
+  if (link) link.style.display = 'none';
+}
+
+// ── Auth state observer (runs on every page load) ────────────
+onAuthStateChanged(auth, (user) => {
+  if (user) { showPortal(user); }
+  else       { showGate(); }
+});
+
+// ── Tab switch ───────────────────────────────────────────────
+window.pSwitchTab = function(tab) {
+  const isLogin = tab === 'login';
+  document.getElementById('ptab-login').classList.toggle('active', isLogin);
+  document.getElementById('ptab-register').classList.toggle('active', !isLogin);
+  document.getElementById('pLoginForm').style.display    = isLogin ? '' : 'none';
+  document.getElementById('pRegisterForm').style.display = isLogin ? 'none' : '';
+  pClearMsg();
+};
+
+// ── Google sign-in ───────────────────────────────────────────
+window.pGoogleSignIn = async function() {
+  pClearMsg();
+  const btn = document.getElementById('pGoogleBtn');
+  btn.disabled = true;
+  try {
+    const result = await signInWithPopup(auth, gprov);
+    const user   = result.user;
+    // Save to Firestore if first login
+    const snap = await getDoc(doc(db, 'users', user.uid));
+    if (!snap.exists()) {
+      await setDoc(doc(db, 'users', user.uid), {
+        uid: user.uid, name: user.displayName || '', email: user.email,
+        phone: '', country: '', serviceInterest: '',
+        photoURL: user.photoURL || '', provider: 'google',
+        createdAt: serverTimestamp()
+      });
+    }
+    // onAuthStateChanged fires and calls showPortal
+  } catch (err) {
+    pShowMsg('err', pFriendlyErr(err));
+    btn.disabled = false;
+  }
+};
+
+// ── Email login ──────────────────────────────────────────────
+window.pEmailLogin = async function(e) {
+  e.preventDefault();
+  pClearMsg();
+  const email = document.getElementById('pLoginEmail').value.trim();
+  const pw    = document.getElementById('pLoginPw').value;
+  if (!email || !pw) { pShowMsg('err', 'Please enter your email and password.'); return; }
+  pSetLoading('login', true);
+  try {
+    await signInWithEmailAndPassword(auth, email, pw);
+    // onAuthStateChanged fires → showPortal
+  } catch (err) {
+    pShowMsg('err', pFriendlyErr(err));
+    pSetLoading('login', false);
+  }
+};
+
+// ── Email register ───────────────────────────────────────────
+window.pEmailRegister = async function(e) {
+  e.preventDefault();
+  pClearMsg();
+  const name  = document.getElementById('pRegName').value.trim();
+  const email = document.getElementById('pRegEmail').value.trim();
+  const pw    = document.getElementById('pRegPw').value;
+  const terms = document.getElementById('pTermsCheck').checked;
+  if (!name)  { pShowMsg('err', 'Please enter your full name.'); return; }
+  if (!email) { pShowMsg('err', 'Please enter a valid email.'); return; }
+  if (pw.length < 8) { pShowMsg('err', 'Password must be at least 8 characters.'); return; }
+  if (!terms) { pShowMsg('err', 'Please accept the Terms & Conditions.'); return; }
+  pSetLoading('reg', true);
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, pw);
+    await updateProfile(cred.user, { displayName: name });
+    await setDoc(doc(db, 'users', cred.user.uid), {
+      uid: cred.user.uid, name, email,
+      phone: '', country: '', serviceInterest: '',
+      photoURL: '', provider: 'email',
+      createdAt: serverTimestamp()
+    });
+    // onAuthStateChanged fires → showPortal
+  } catch (err) {
+    pShowMsg('err', pFriendlyErr(err));
+    pSetLoading('reg', false);
+  }
+};
+
+// ── Forgot password ──────────────────────────────────────────
+window.pForgotPw = async function(e) {
+  e.preventDefault();
+  const email = document.getElementById('pLoginEmail').value.trim();
+  if (!email) { pShowMsg('inf', 'Enter your email above first, then click Forgot password.'); return; }
+  try {
+    await sendPasswordResetEmail(auth, email);
+    pShowMsg('ok', '📧 Reset email sent — check your inbox!');
+  } catch (err) { pShowMsg('err', pFriendlyErr(err)); }
+};
+
+// ── Sign out ─────────────────────────────────────────────────
+window.pSignOut = async function() {
+  await signOut(auth);
+  // onAuthStateChanged fires → showGate
+};
+
+// ── Helpers ──────────────────────────────────────────────────
+function pShowMsg(type, text) {
+  const el = document.getElementById('pAuthMsg');
+  el.className = `portal-auth-msg on ${type}`;
+  const icons = { err:'fa-exclamation-circle', ok:'fa-check-circle', inf:'fa-info-circle' };
+  el.querySelector('i').className = `fas ${icons[type] || icons.err}`;
+  document.getElementById('pAuthMsgText').textContent = text;
+}
+function pClearMsg() {
+  document.getElementById('pAuthMsg').classList.remove('on');
+}
+function pSetLoading(which, on) {
+  const isLogin = which === 'login';
+  const btn  = document.getElementById(isLogin ? 'pLoginBtn'    : 'pRegBtn');
+  const spin = document.getElementById(isLogin ? 'pLoginSpinner': 'pRegSpinner');
+  const txt  = document.getElementById(isLogin ? 'pLoginBtnTxt' : 'pRegBtnTxt');
+  btn.disabled = on;
+  spin.classList.toggle('on', on);
+  txt.style.opacity = on ? '0.5' : '1';
+}
+function pFriendlyErr(err) {
+  const m = {
+    'auth/email-already-in-use':   'This email is already registered. Sign in instead.',
+    'auth/invalid-email':          'That email address doesn\'t look right.',
+    'auth/weak-password':          'Password too weak. Use 8+ characters with letters & numbers.',
+    'auth/wrong-password':         'Incorrect password. Try again or reset it.',
+    'auth/user-not-found':         'No account with that email. Create one above.',
+    'auth/invalid-credential':     'Wrong email or password.',
+    'auth/too-many-requests':      'Too many attempts — wait a moment and try again.',
+    'auth/network-request-failed': 'Network error. Check your connection.',
+    'auth/popup-closed-by-user':   'Google sign-in was cancelled.',
+  };
+  return m[err.code] || `Error: ${err.message}`;
+}
+
+window.pTogglePw = function(id, btn) {
+  const inp = document.getElementById(id);
+  const ic  = btn.querySelector('i');
+  if (inp.type === 'password') { inp.type = 'text';     ic.className = 'fas fa-eye-slash'; }
+  else                          { inp.type = 'password'; ic.className = 'fas fa-eye'; }
+};
+
+window.pCheckStrength = function(pw) {
+  const wrap  = document.getElementById('pStrengthWrap');
+  const fill  = document.getElementById('pStrengthFill');
+  const label = document.getElementById('pStrengthLabel');
+  wrap.classList.add('on');
+  if (!pw) { fill.style.width='0%'; label.textContent='—'; return; }
+  let s = 0;
+  if (pw.length >= 8)  s++;
+  if (pw.length >= 12) s++;
+  if (/[A-Z]/.test(pw)) s++;
+  if (/[0-9]/.test(pw)) s++;
+  if (/[^A-Za-z0-9]/.test(pw)) s++;
+  const lv = [{c:'#FF6B6B',t:'Very Weak'},{c:'#FFB347',t:'Weak'},{c:'#FFD700',t:'Fair'},{c:'#00D4FF',t:'Strong'},{c:'#00E5A0',t:'Very Strong 💪'}];
+  const l  = lv[Math.min(s-1,4)] || lv[0];
+  fill.style.width = `${(s/5)*100}%`;
+  fill.style.background = l.c;
+  label.textContent = l.t;
+  label.style.color = l.c;
+};
+</script>
 
 <!-- ══════════════════════════════════════════════════════
      PORTAL JAVASCRIPT
