@@ -84,6 +84,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ── Inject Sign In link into mobile menu if not already present ──────────
+  const mobileLinks = document.querySelector('.navbar__mobile-links');
+  if (mobileLinks && !mobileLinks.querySelector('.mobile-signin-link')) {
+    const inPages = window.location.pathname.includes('/pages/');
+    const inBlog  = window.location.pathname.includes('/blog/');
+    const authPath = inPages ? 'auth.html' : inBlog ? '../pages/auth.html' : 'pages/auth.html';
+    const signinLi = document.createElement('a');
+    signinLi.className = 'mobile-signin-link';
+    signinLi.href = authPath;
+    signinLi.setAttribute('id', 'mobileSigninLink');
+    signinLi.innerHTML = '<i class="fas fa-user-circle"></i> Sign In / Account';
+    signinLi.style.cssText = 'color:var(--color-accent-violet);font-weight:600;border-color:rgba(123,47,190,0.15);background:rgba(123,47,190,0.06);';
+    mobileLinks.appendChild(signinLi);
+  }
+
   // Set active nav link
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.navbar__links a, .navbar__mobile a').forEach(link => {

@@ -1135,8 +1135,14 @@ function friendlyError(err) {
     'auth/network-request-failed':  'Network error. Check your internet connection.',
     'auth/popup-closed-by-user':    'Google sign-in was cancelled.',
     'auth/cancelled-popup-request': 'Google sign-in was cancelled.',
+    'auth/api-key-not-valid.-please-pass-a-valid-api-key.': '⚠️ API key restriction error. The site owner needs to add this domain to their Google Cloud Console → API key restrictions. Please try again later or contact NeuroDesk via WhatsApp.',
+    'auth/invalid-api-key':         '⚠️ Firebase configuration error. Please contact NeuroDesk for support.',
   };
-  return map[err.code] || `Error: ${err.message}`;
+  // Also catch api-key errors by message text
+  if (err.code && err.code.includes('api-key')) {
+    return '⚠️ API key error: The Firebase API key needs to allow this domain. Contact NeuroDesk via WhatsApp at +254 740 624 253 — we\'ll fix this ASAP.';
+  }
+  return map[err.code] || `Sign-in error: ${err.message || 'Unknown error. Please try again.'}`;
 }
 
 // ─── EXPOSE non-firebase helpers to window ────────────────────────────────

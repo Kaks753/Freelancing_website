@@ -1626,9 +1626,10 @@ input, textarea, select {
    PAGE HERO (inner pages)
    ============================================================ */
 .page-hero {
-  padding: 84px 0 24px;
+  padding: 100px 0 56px;
   position: relative;
   overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .page-hero__bg {
@@ -1669,18 +1670,36 @@ input, textarea, select {
 .page-hero__title {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 4.5vw, 3rem);
-  font-weight: 700;
-  margin-bottom: 14px;
+  font-weight: 800;
+  margin-bottom: 16px;
   line-height: 1.1;
 }
 
 .page-hero__subtitle {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--color-text-secondary);
   max-width: 620px;
-  margin: 0 auto;
-  line-height: 1.7;
+  margin: 0 auto 24px;
+  line-height: 1.75;
 }
+
+/* Page hero breadcrumb / meta row */
+.page-hero__meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+}
+.page-hero__meta a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.page-hero__meta a:hover { color: var(--color-accent-cyan); }
+.page-hero__meta i { font-size: 10px; opacity: 0.5; }
 
 /* ============================================================
    CARDS - GENERIC
@@ -2549,9 +2568,10 @@ input, textarea, select {
   .footer__grid { grid-template-columns: 1fr; gap: 32px; }
   .footer__bottom { flex-direction: column; align-items: flex-start; }
 
-  /* Hero */
-  .hero__visual { display: none; }
-  .hero__float-badge { display: none; }
+  /* Hero — show visual on mobile, stacked below text */
+  .hero__visual { display: flex; justify-content: center; margin-top: 16px; }
+  .hero__card-stack { max-width: 340px; width: 100%; }
+  .hero__float-badge { font-size: 0.78rem; }
   .hero__stats { gap: 20px; }
 
   /* About */
@@ -3371,6 +3391,24 @@ iframe[class*='tawk'] {
   .hero__cta .btn { width: 100%; justify-content: center; }
   .hero__stats { gap: 16px; }
   .hero__stat-number { font-size: 1.6rem; }
+
+  /* Hero profile card — visible and scaled for mobile */
+  .hero__visual { display: flex !important; justify-content: center; margin-top: 24px; }
+  .hero__card-stack { max-width: 320px; width: 100%; position: relative; }
+  .hero__profile-card { padding: 20px 18px; }
+  .hero__float-badge {
+    display: flex !important;
+    font-size: 0.75rem;
+    padding: 7px 10px;
+    gap: 7px;
+    white-space: nowrap;
+  }
+  .hero__float-badge--1 { top: -16px; right: -8px; }
+  .hero__float-badge--2 { bottom: 60px; left: -8px; }
+  .hero__float-badge--3 { bottom: -8px; right: 10px; }
+  .hero__float-icon { width: 28px; height: 28px; font-size: 14px; }
+  .hero__skills-tags { gap: 6px; }
+  .hero__skill-tag { font-size: 0.72rem; padding: 4px 10px; }
 }
 
 /* ── Service / feature cards ── */
@@ -3462,8 +3500,12 @@ iframe[class*='tawk'] {
 @media (max-width: 860px) {
   .navbar__links,
   .navbar__cta { display: none !important; }
-  .navbar__hamburger { display: flex !important; }
-  .navbar { padding: 0 16px; }
+  .navbar__hamburger {
+    display: flex !important;
+    position: relative;
+    z-index: 1100;  /* above any page content */
+  }
+  .navbar { padding: 0 16px; background: rgba(15,15,26,0.92) !important; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
 }
 
 /* ── Navbar: ensure logo never gets cut ── */
@@ -3613,4 +3655,86 @@ iframe[class*='tawk'] {
   .footer__col-title { font-size: 0.85rem; }
   .footer__col-links li { font-size: 0.82rem; }
   .footer__socials { gap: 10px; }
+}
+
+/* ============================================================
+   PAGE HERO ENHANCEMENTS — Breadcrumb + Border
+   ============================================================ */
+.page-hero__bg-orb--1 {
+  opacity: 0.25;
+}
+.page-hero__bg-orb--2 {
+  opacity: 0.15;
+}
+
+/* Page hero bottom line — gradient accent */
+.page-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent-violet), var(--color-accent-cyan));
+  border-radius: 2px;
+}
+
+/* ── Mobile: Sign In in mobile nav link styling ── */
+.mobile-signin-link {
+  color: var(--color-accent-violet) !important;
+  font-weight: 600 !important;
+}
+
+/* ── Mobile hero section: ensure proper vertical stacking ── */
+@media (max-width: 768px) {
+  .hero {
+    padding-bottom: 48px;
+    min-height: auto;
+    padding-top: calc(var(--nav-height) + 20px);
+  }
+  .hero__content {
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+    padding: 0 16px;
+  }
+  .hero__left {
+    text-align: center;
+  }
+  .hero__actions {
+    justify-content: center;
+  }
+  .hero__trust-line {
+    justify-content: center;
+    gap: 12px;
+  }
+  .hero__stats {
+    justify-content: center;
+    gap: 16px;
+  }
+}
+
+/* ── Navbar on mobile: always show background for visibility ── */
+@media (max-width: 860px) {
+  .navbar {
+    background: rgba(15, 15, 26, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+  }
+}
+
+/* ── Page hero: sub-page padding on mobile ── */
+@media (max-width: 768px) {
+  .page-hero { padding: 92px 0 44px; }
+  .page-hero__subtitle { margin-bottom: 20px; }
+  .page-hero__meta { font-size: 0.72rem; }
+}
+
+/* ── Hero card on very small screens ── */
+@media (max-width: 380px) {
+  .hero__card-stack { max-width: 280px; }
+  .hero__profile-card { padding: 16px 14px; }
+  .hero__float-badge--1 { right: -4px; }
+  .hero__float-badge--2 { left: -4px; }
 }

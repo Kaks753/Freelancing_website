@@ -1368,8 +1368,13 @@ function pFriendlyErr(err) {
     'auth/too-many-requests':      'Too many attempts — wait a moment and try again.',
     'auth/network-request-failed': 'Network error. Check your connection.',
     'auth/popup-closed-by-user':   'Google sign-in was cancelled.',
+    'auth/api-key-not-valid.-please-pass-a-valid-api-key.': '⚠️ API key restriction error. Please contact NeuroDesk via WhatsApp: +254 740 624 253',
+    'auth/invalid-api-key':        '⚠️ Firebase configuration error. Contact NeuroDesk for support.',
   };
-  return m[err.code] || `Error: ${err.message}`;
+  if (err.code && err.code.includes('api-key')) {
+    return '⚠️ API key domain restriction. Contact NeuroDesk at +254 740 624 253 via WhatsApp.';
+  }
+  return m[err.code] || `Error: ${err.message || 'Unknown error — please try again.'}`;
 }
 
 window.pTogglePw = function(id, btn) {
