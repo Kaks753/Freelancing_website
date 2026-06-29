@@ -1,7 +1,8 @@
 /**
  * NeuroDesk — Firebase Navbar Auth State
- * Loaded as type="module" on every page except portal.html and auth.html.
- * Shows user pill when signed in, "Sign In" link when logged out.
+ * Uses the DEFAULT Firebase app so auth state is shared across
+ * ALL pages (auth.html, portal.html, every other page).
+ * Loaded as type="module" on every page.
  */
 import { initializeApp, getApps, getApp }
   from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
@@ -17,66 +18,76 @@ const firebaseConfig = {
   appId:             "1:542956863300:web:f39b2ff82ab0a3221f6111"
 };
 
-// Safe init: if already initialized under this name use existing app
-const APP_NAME = 'neurodesk-nav';
-const fbApp = getApps().find(a => a.name === APP_NAME)
-  ? getApp(APP_NAME)
-  : initializeApp(firebaseConfig, APP_NAME);
-
-const auth = getAuth(fbApp);
+// Use DEFAULT app — same instance as auth.html & portal.html
+// so Firebase Auth persistence works across all pages.
+const fbApp = getApps().length ? getApp() : initializeApp(firebaseConfig);
+const auth  = getAuth(fbApp);
 
 // ── Path helpers ───────────────────────────────────────────────────────────
-const inPages = window.location.pathname.includes('/pages/');
-const inBlog  = window.location.pathname.includes('/blog/');
-const authHref = inPages ? 'auth.html'
-               : inBlog  ? '../pages/auth.html'
-               :            'pages/auth.html';
-const homeHref = (inPages || inBlog) ? '../index.html' : 'index.html';
+const inPages  = window.location.pathname.includes('/pages/');
+const inBlog   = window.location.pathname.includes('/blog/');
+const authHref    = inPages ? 'auth.html'
+                 : inBlog  ? '../pages/auth.html'
+                 :            'pages/auth.html';
+const profileHref = inPages ? 'profile.html'
+                 : inBlog  ? '../pages/profile.html'
+                 :            'pages/profile.html';
+const homeHref    = (inPages || inBlog) ? '../index.html' : 'index.html';
 
 // ── Auth state observer ────────────────────────────────────────────────────
 onAuthStateChanged(auth, (user) => {
   const wrap = document.getElementById('navUserWrap');
   const link = document.getElementById('navSigninLink');
+  // Also update mobile menu sign-in link if it exists
+  const mobileSigninLink = document.getElementById('mobileSigninLink');
 
   if (user) {
-    // Persist minimal profile in sessionStorage for instant reads
-    sessionStorage.setItem('nd_user', JSON.stringify({
-      name:     user.displayName || user.email,
-      email:    user.email,
-      photoURL: user.photoURL || ''
-    }));
-
     const name   = user.displayName || user.email || 'Account';
     const first  = name.split(' ')[0];
     const init   = first.charAt(0).toUpperCase();
     const photo  = user.photoURL || '';
     const avatar = photo
-      ? `<img src="${photo}" alt="${init}" style="width:100%;height:100%;object-fit:cover;" />`
+      ? `<img src="${photo}" alt="${init}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />`
       : init;
 
+    // Desktop: replace Sign In with user avatar pill → links to profile page
     if (wrap) {
       wrap.style.display = 'flex';
       wrap.innerHTML = `
-        <a href="${authHref}" class="navbar__user-btn" title="${name}">
+        <a href="${profileHref}" class="navbar__user-btn" title="View profile — ${name}">
           <span class="navbar__user-avatar">${avatar}</span>
           <span class="navbar__user-name">${first}</span>
         </a>`;
     }
     if (link) link.style.display = 'none';
 
+    // Mobile: update the injected sign-in link to show profile
+    if (mobileSigninLink) {
+      mobileSigninLink.href = profileHref;
+      mobileSigninLink.innerHTML = `<i class="fas fa-user-circle"></i> My Profile (${first})`;
+      mobileSigninLink.style.color = 'var(--color-accent-cyan)';
+    }
+
   } else {
-    sessionStorage.removeItem('nd_user');
     if (wrap) wrap.style.display = 'none';
     if (link) {
       link.style.display = 'flex';
       link.href = authHref;
     }
+    if (mobileSigninLink) {
+      mobileSigninLink.href = authHref;
+      mobileSigninLink.innerHTML = '<i class="fas fa-user-circle"></i> Sign In / Register';
+      mobileSigninLink.style.color = 'var(--color-accent-violet)';
+    }
   }
 });
 
-// ── Global sign-out (callable via onclick="ndSignOut()") ───────────────────
+// ── Global sign-out ────────────────────────────────────────────────────────
 window.ndSignOut = async function () {
-  await signOut(auth);
-  sessionStorage.removeItem('nd_user');
-  window.location.href = homeHref;
+  try {
+    await signOut(auth);
+    window.location.href = homeHref;
+  } catch (e) {
+    console.error('Sign out error:', e);
+  }
 };

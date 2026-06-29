@@ -938,7 +938,7 @@ const firebaseConfig = {
 };
 
 // ─── IMPORTS ───────────────────────────────────────────────────────────────
-import { initializeApp }                  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { initializeApp, getApps, getApp }  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
          signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail,
          onAuthStateChanged, updateProfile, signOut }
@@ -948,12 +948,19 @@ import { getFirestore, doc, setDoc, getDoc, serverTimestamp }
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL }
   from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js';
 
-// ─── INIT ──────────────────────────────────────────────────────────────────
-const app       = initializeApp(firebaseConfig);
+// ─── INIT — DEFAULT app so auth state persists across all pages ──────────
+const app       = getApps().length ? getApp() : initializeApp(firebaseConfig);
 const auth      = getAuth(app);
 const db        = getFirestore(app);
 const storage   = getStorage(app);
 const provider  = new GoogleAuthProvider();
+
+// ─── WHERE TO SEND AFTER LOGIN ────────────────────────────────────────────
+// Go back to wherever they came from, or home if direct visit
+const referrer = document.referrer;
+const afterLoginHref = (referrer && !referrer.includes('auth.html'))
+  ? referrer
+  : '../index.html';
 
 // ─── EXPOSE GLOBALS (called by inline onclick handlers) ───────────────────
 let avatarFile = null;
@@ -985,7 +992,7 @@ window.signInWithGoogle = async function() {
       });
     }
     showMessage('success', '✅ Signed in with Google! Redirecting…');
-    setTimeout(() => { window.location.href = 'portal.html'; }, 1400);
+    setTimeout(() => { window.location.href = afterLoginHref; }, 1400);
   } catch (err) {
     showMessage('error', friendlyError(err));
   }
@@ -1002,7 +1009,7 @@ window.handleLogin = async function(e) {
   try {
     await signInWithEmailAndPassword(auth, email, pw);
     showMessage('success', '✅ Welcome back! Redirecting…');
-    setTimeout(() => { window.location.href = 'portal.html'; }, 1200);
+    setTimeout(() => { window.location.href = afterLoginHref; }, 1200);
   } catch (err) {
     showMessage('error', friendlyError(err));
     setLoading('login', false);
@@ -1056,7 +1063,7 @@ window.handleSignup = async function(e) {
     });
 
     showMessage('success', '🎉 Account created! Welcome to NeuroDesk. Redirecting…');
-    setTimeout(() => { window.location.href = 'portal.html'; }, 1600);
+    setTimeout(() => { window.location.href = afterLoginHref; }, 1600);
   } catch (err) {
     showMessage('error', friendlyError(err));
     setLoading('signup', false);
@@ -1079,18 +1086,11 @@ window.showForgotPassword = async function(e) {
   }
 };
 
-// Auth state — if already logged in, redirect
+// Auth state — if already signed in when landing on auth page, go home
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // Store minimal user info in sessionStorage for navbar use
-    sessionStorage.setItem('nd_user', JSON.stringify({
-      name: user.displayName || user.email,
-      email: user.email,
-      photoURL: user.photoURL || ''
-    }));
-    // Don't auto-redirect here; let user manually navigate
-  } else {
-    sessionStorage.removeItem('nd_user');
+    // Already logged in — quietly redirect away from auth page
+    window.location.href = afterLoginHref;
   }
 });
 
