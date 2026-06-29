@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In / Sign Up – NeuroDesk</title>
+  <meta name="description" content="Create your NeuroDesk account or sign in to track orders, manage projects, and connect with our team." />
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
+  <link rel="icon" type="image/png" href="../images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ══════════════════════════════════════════
+       AUTH PAGE STYLES
+    ══════════════════════════════════════════ */
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: calc(var(--nav-height) + 32px) 16px 48px;
+      background: var(--color-bg-primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auth-page::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(123,47,190,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .auth-page::after {
+      content: '';
+      position: absolute;
+      bottom: -200px;
+      right: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Card */
+    .auth-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 460px;
+      padding: 40px 36px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+    }
+
+    /* Logo */
+    .auth-card__logo {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .auth-card__logo img {
+      height: 54px;
+      width: auto;
+      filter: drop-shadow(0 0 12px rgba(0,212,255,0.4));
+    }
+    .auth-card__brand {
+      text-align: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: white;
+      margin-bottom: 4px;
+    }
+    .auth-card__tagline {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      margin-bottom: 28px;
+      letter-spacing: 0.04em;
+    }
+
+    /* Tab switcher */
+    .auth-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--color-bg-secondary);
+      border-radius: 10px;
+      padding: 4px;
+      margin-bottom: 28px;
+    }
+    .auth-tab {
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: none;
+      background: transparent;
+    }
+    .auth-tab.active {
+      background: var(--color-accent-violet);
+      color: white;
+      box-shadow: 0 2px 12px rgba(123,47,190,0.4);
+    }
+
+    /* Social button */
+    .btn-google {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 20px;
+    }
+    .btn-google:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.22);
+      transform: translateY(-1px);
+    }
+    .btn-google img {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Divider */
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .auth-divider::before,
+    .auth-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--color-border);
+    }
+    .auth-divider span {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      white-space: nowrap;
+    }
+
+    /* Form */
+    .auth-form-group {
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .auth-form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+    .auth-input-wrap {
+      position: relative;
+    }
+    .auth-input-wrap i {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-muted);
+      font-size: 14px;
+      pointer-events: none;
+    }
+    .auth-input {
+      width: 100%;
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 11px 13px 11px 38px;
+      color: var(--color-text-primary);
+      font-size: 0.92rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+    }
+    .auth-input:focus {
+      outline: none;
+      border-color: var(--color-accent-violet);
+      box-shadow: 0 0 0 3px rgba(123,47,190,0.15);
+    }
+    .auth-input.error {
+      border-color: var(--color-accent-pink);
+    }
+    .auth-input.success {
+      border-color: var(--color-accent-green);
+    }
+
+    /* Password toggle */
+    .auth-input-wrap .toggle-pw {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      padding: 0;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .auth-input-wrap .toggle-pw:hover { color: var(--color-text-primary); }
+
+    /* Password strength */
+    .strength-bar-wrap {
+      margin-top: 8px;
+      display: none;
+    }
+    .strength-bar-wrap.visible { display: block; }
+    .strength-bar-track {
+      height: 4px;
+      background: var(--color-bg-secondary);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+    .strength-bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 2px;
+      transition: width 0.35s ease, background 0.35s ease;
+    }
+    .strength-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      transition: color 0.3s;
+    }
+
+    /* Field validation hints */
+    .field-hint {
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+      margin-top: 4px;
+      display: none;
+    }
+    .field-hint.visible { display: block; }
+    .field-hint.error { color: var(--color-accent-pink); }
+    .field-hint.success { color: var(--color-accent-green); }
+
+    /* Profile extra fields */
+    .signup-extra {
+      display: none;
+    }
+    .signup-extra.visible { display: block; }
+
+    /* Phone row */
+    .phone-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 8px;
+    }
+
+    /* Country select */
+    .auth-select {
+      width: 100%;
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 11px 13px 11px 38px;
+      color: var(--color-text-primary);
+      font-size: 0.92rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
+    .auth-select:focus {
+      outline: none;
+      border-color: var(--color-accent-violet);
+      box-shadow: 0 0 0 3px rgba(123,47,190,0.15);
+    }
+
+    /* Terms checkbox */
+    .terms-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 20px;
+      margin-top: 4px;
+    }
+    .terms-group input[type="checkbox"] {
+      margin-top: 2px;
+      accent-color: var(--color-accent-violet);
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .terms-group label {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+      cursor: pointer;
+    }
+    .terms-group a {
+      color: var(--color-accent-cyan);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* Submit button */
+    .auth-submit {
+      width: 100%;
+      padding: 13px 20px;
+      background: linear-gradient(135deg, var(--color-accent-violet), #9B59B6);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .auth-submit:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(123,47,190,0.45);
+    }
+    .auth-submit:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Auth message */
+    .auth-message {
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      margin-bottom: 16px;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+    .auth-message.visible { display: flex; }
+    .auth-message.error {
+      background: rgba(255,107,107,0.1);
+      border: 1px solid rgba(255,107,107,0.25);
+      color: var(--color-accent-pink);
+    }
+    .auth-message.success {
+      background: rgba(0,229,160,0.1);
+      border: 1px solid rgba(0,229,160,0.25);
+      color: var(--color-accent-green);
+    }
+    .auth-message.info {
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      color: var(--color-accent-cyan);
+    }
+
+    /* Forgot password */
+    .auth-forgot {
+      text-align: right;
+      margin-bottom: 4px;
+    }
+    .auth-forgot a {
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .auth-forgot a:hover { color: var(--color-accent-cyan); }
+
+    /* Footer note */
+    .auth-footer-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      margin-top: 8px;
+    }
+    .auth-footer-note a {
+      color: var(--color-accent-cyan);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* Optional badge */
+    .auth-optional-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,229,160,0.1);
+      border: 1px solid rgba(0,229,160,0.2);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--color-accent-green);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* Loading spinner in button */
+    .btn-spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    .btn-spinner.visible { display: block; }
+
+    /* Terms modal */
+    .terms-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 9000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .terms-modal-overlay.open { display: flex; }
+    .terms-modal {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 620px;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    }
+    .terms-modal__header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .terms-modal__title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .terms-modal__close {
+      width: 30px; height: 30px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .terms-modal__close:hover { background: rgba(255,107,107,0.15); color: var(--color-accent-pink); }
+    .terms-modal__body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: var(--color-text-secondary);
+    }
+    .terms-modal__body h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin: 20px 0 8px;
+    }
+    .terms-modal__body h3:first-child { margin-top: 0; }
+    .terms-modal__body p { margin-bottom: 10px; }
+    .terms-modal__body ul { padding-left: 18px; margin-bottom: 10px; }
+    .terms-modal__body ul li { margin-bottom: 4px; }
+    .terms-modal__footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Profile picture upload */
+    .avatar-upload-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .avatar-preview {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-accent-violet), var(--color-accent-cyan));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: white;
+      flex-shrink: 0;
+      overflow: hidden;
+      border: 2px solid var(--color-border);
+    }
+    .avatar-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+    .avatar-upload-label {
+      flex: 1;
+    }
+    .avatar-upload-label span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      margin-top: 3px;
+    }
+    .avatar-upload-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      background: rgba(123,47,190,0.12);
+      border: 1px solid rgba(123,47,190,0.25);
+      border-radius: 7px;
+      color: var(--color-accent-violet);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .avatar-upload-btn:hover {
+      background: rgba(123,47,190,0.2);
+    }
+
+    @media (max-width: 480px) {
+      .auth-card { padding: 28px 20px; }
+      .phone-row { grid-template-columns: 80px 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-loader"><div class="page-loader__logo"><img src="../images/neurodesk-logo.png" alt="NeuroDesk" /></div></div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__logo"><img src="../images/neurodesk-logo.png" alt="NeuroDesk Logo" style="height:44px;width:auto;object-fit:contain;" /></a>
+    <div class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">About</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="portal.html" class="nav-track-order"><i class="fas fa-chart-line"></i> Track Order</a>
+    </div>
+    <div class="navbar__cta" style="display:flex;gap:8px;align-items:center;">
+      <a href="order.html" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> Get a Quote</a>
+    </div>
+    <div class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="navbar__mobile-overlay" id="mobile-overlay"></div>
+<div class="navbar__mobile" id="mobile-menu">
+  <div class="navbar__mobile-header">
+    <a href="../index.html" class="navbar__mobile-header-logo">
+      <img src="../images/neurodesk-logo.png" alt="NeuroDesk" />
+      <span>NeuroDesk</span>
+    </a>
+    <button class="navbar__mobile-close" id="mobile-close" aria-label="Close menu">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="navbar__mobile-links">
+    <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="services.html"><i class="fas fa-layer-group"></i> Services</a>
+    <a href="portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a>
+    <a href="pricing.html"><i class="fas fa-tags"></i> Pricing</a>
+    <a href="about.html"><i class="fas fa-user"></i> About</a>
+    <a href="../blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a>
+    <a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+    <a href="portal.html"><i class="fas fa-chart-line"></i> Track Order</a>
+  </div>
+  <div class="navbar__mobile-cta">
+    <a href="order.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Order Now</a>
+    <a href="https://wa.me/254740624253" class="btn btn-whatsapp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  </div>
+</div>
+
+<!-- Auth Page -->
+<main class="auth-page">
+  <div class="auth-card" id="authCard">
+
+    <!-- Logo -->
+    <div class="auth-card__logo">
+      <img src="../images/neurodesk-logo.png" alt="NeuroDesk" />
+    </div>
+    <div class="auth-card__brand">NeuroDesk</div>
+    <div class="auth-card__tagline">Intelligence · Execution</div>
+
+    <!-- Optional badge -->
+    <div style="text-align:center;">
+      <div class="auth-optional-badge"><i class="fas fa-check-circle"></i> Account is Optional — Site works without login</div>
+    </div>
+
+    <!-- Tab switcher -->
+    <div class="auth-tabs" role="tablist">
+      <button class="auth-tab active" id="tab-login" onclick="switchTab('login')" role="tab" aria-selected="true">Sign In</button>
+      <button class="auth-tab" id="tab-signup" onclick="switchTab('signup')" role="tab" aria-selected="false">Create Account</button>
+    </div>
+
+    <!-- Auth message area -->
+    <div class="auth-message" id="authMessage" role="alert">
+      <i class="fas fa-exclamation-circle"></i>
+      <span id="authMessageText"></span>
+    </div>
+
+    <!-- Google sign in -->
+    <button class="btn-google" onclick="signInWithGoogle()">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
+      Continue with Google
+    </button>
+
+    <div class="auth-divider"><span>or continue with email</span></div>
+
+    <!-- ── LOGIN FORM ── -->
+    <form id="loginForm" onsubmit="handleLogin(event)" novalidate>
+      <div class="auth-form-group">
+        <label for="loginEmail">Email address</label>
+        <div class="auth-input-wrap">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="loginEmail" class="auth-input" placeholder="you@example.com" autocomplete="email" required />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label for="loginPassword">Password</label>
+        <div class="auth-forgot"><a href="#" onclick="showForgotPassword(event)">Forgot password?</a></div>
+        <div class="auth-input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="loginPassword" class="auth-input" placeholder="Your password" autocomplete="current-password" required />
+          <button type="button" class="toggle-pw" onclick="togglePw('loginPassword', this)" aria-label="Show/hide password">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="auth-submit" id="loginBtn">
+        <span class="btn-spinner" id="loginSpinner"></span>
+        <span id="loginBtnText"><i class="fas fa-sign-in-alt"></i> Sign In</span>
+      </button>
+    </form>
+
+    <!-- ── SIGNUP FORM ── -->
+    <form id="signupForm" style="display:none;" onsubmit="handleSignup(event)" novalidate>
+
+      <!-- Avatar -->
+      <div class="avatar-upload-group">
+        <div class="avatar-preview" id="avatarPreview">
+          <span id="avatarInitial">?</span>
+          <img id="avatarImg" src="" alt="Avatar" />
+        </div>
+        <div class="avatar-upload-label">
+          <label class="avatar-upload-btn" for="avatarInput">
+            <i class="fas fa-camera"></i> Upload Photo
+          </label>
+          <span>Optional — JPG or PNG, max 2 MB</span>
+          <input type="file" id="avatarInput" accept="image/jpeg,image/png,image/webp" style="display:none;" onchange="previewAvatar(event)" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label for="signupName">Full Name <span style="color:var(--color-accent-pink)">*</span></label>
+        <div class="auth-input-wrap">
+          <i class="fas fa-user"></i>
+          <input type="text" id="signupName" class="auth-input" placeholder="e.g. Alex Johnson" autocomplete="name" required oninput="updateAvatarInitial()" />
+        </div>
+        <div class="field-hint" id="nameHint"></div>
+      </div>
+
+      <div class="auth-form-group">
+        <label for="signupEmail">Email address <span style="color:var(--color-accent-pink)">*</span></label>
+        <div class="auth-input-wrap">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="signupEmail" class="auth-input" placeholder="you@example.com" autocomplete="email" required />
+        </div>
+        <div class="field-hint" id="emailHint"></div>
+      </div>
+
+      <div class="auth-form-group">
+        <label for="signupPhone">Phone Number</label>
+        <div class="phone-row">
+          <div class="auth-input-wrap">
+            <i class="fas fa-globe" style="font-size:12px;left:10px;"></i>
+            <input type="text" id="phoneCode" class="auth-input" placeholder="+254" style="padding-left:30px;" value="+254" />
+          </div>
+          <div class="auth-input-wrap">
+            <i class="fas fa-phone"></i>
+            <input type="tel" id="signupPhone" class="auth-input" placeholder="740 624 253" autocomplete="tel" />
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label for="signupCountry">Country</label>
+        <div class="auth-input-wrap">
+          <i class="fas fa-map-marker-alt"></i>
+          <select id="signupCountry" class="auth-select">
+            <option value="">Select your country…</option>
+            <option value="KE">🇰🇪 Kenya</option>
+            <option value="NG">🇳🇬 Nigeria</option>
+            <option value="GH">🇬🇭 Ghana</option>
+            <option value="ZA">🇿🇦 South Africa</option>
+            <option value="UG">🇺🇬 Uganda</option>
+            <option value="TZ">🇹🇿 Tanzania</option>
+            <option value="ET">🇪🇹 Ethiopia</option>
+            <option value="US">🇺🇸 United States</option>
+            <option value="GB">🇬🇧 United Kingdom</option>
+            <option value="CA">🇨🇦 Canada</option>
+            <option value="AU">🇦🇺 Australia</option>
+            <option value="IN">🇮🇳 India</option>
+            <option value="DE">🇩🇪 Germany</option>
+            <option value="FR">🇫🇷 France</option>
+            <option value="AE">🇦🇪 UAE</option>
+            <option value="SA">🇸🇦 Saudi Arabia</option>
+            <option value="SG">🇸🇬 Singapore</option>
+            <option value="OTHER">🌍 Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label for="signupService">I'm interested in</label>
+        <div class="auth-input-wrap">
+          <i class="fas fa-layer-group"></i>
+          <select id="signupService" class="auth-select">
+            <option value="">Select a service…</option>
+            <option value="data-science">📊 Data Science & Machine Learning</option>
+            <option value="academic">📝 Academic Writing & Research</option>
+            <option value="web-dev">💻 Web Development</option>
+            <option value="multiple">⚡ Multiple Services</option>
+            <option value="not-sure">🤔 Not sure yet</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label for="signupPassword">Password <span style="color:var(--color-accent-pink)">*</span></label>
+        <div class="auth-input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="signupPassword" class="auth-input" placeholder="Min 8 characters" autocomplete="new-password" required oninput="checkStrength(this.value)" />
+          <button type="button" class="toggle-pw" onclick="togglePw('signupPassword', this)" aria-label="Show/hide password">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+        <!-- Strength meter -->
+        <div class="strength-bar-wrap" id="strengthWrap">
+          <div class="strength-bar-track">
+            <div class="strength-bar-fill" id="strengthFill"></div>
+          </div>
+          <div class="strength-label" id="strengthLabel">Enter a password</div>
+        </div>
+        <div class="field-hint" id="pwHint"></div>
+      </div>
+
+      <div class="auth-form-group">
+        <label for="signupConfirmPw">Confirm Password <span style="color:var(--color-accent-pink)">*</span></label>
+        <div class="auth-input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="signupConfirmPw" class="auth-input" placeholder="Repeat password" autocomplete="new-password" required oninput="checkConfirm()" />
+          <button type="button" class="toggle-pw" onclick="togglePw('signupConfirmPw', this)" aria-label="Show/hide password">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+        <div class="field-hint" id="confirmHint"></div>
+      </div>
+
+      <!-- Terms & Conditions -->
+      <div class="terms-group">
+        <input type="checkbox" id="termsCheck" required />
+        <label for="termsCheck">
+          I have read and agree to the <a href="#" onclick="openTerms(event)">Terms &amp; Conditions</a> and <a href="#" onclick="openTerms(event)">Privacy Policy</a> of NeuroDesk.
+        </label>
+      </div>
+
+      <button type="submit" class="auth-submit" id="signupBtn">
+        <span class="btn-spinner" id="signupSpinner"></span>
+        <span id="signupBtnText"><i class="fas fa-user-plus"></i> Create Account</span>
+      </button>
+    </form>
+
+    <p class="auth-footer-note">
+      By using NeuroDesk, you agree to our <a href="#" onclick="openTerms(event)">Terms &amp; Conditions</a>.
+      <br>No account? <a href="order.html">Order directly</a> — no sign-in needed.
+    </p>
+
+  </div>
+</main>
+
+<!-- ══════════════════════════════════
+     TERMS & CONDITIONS MODAL
+══════════════════════════════════ -->
+<div class="terms-modal-overlay" id="termsModalOverlay">
+  <div class="terms-modal" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle">
+    <div class="terms-modal__header">
+      <div class="terms-modal__title" id="termsModalTitle"><i class="fas fa-file-contract" style="color:var(--color-accent-violet);margin-right:8px;"></i>Terms &amp; Conditions</div>
+      <button class="terms-modal__close" onclick="closeTerms()" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="terms-modal__body">
+      <p><strong>Effective Date: January 1, 2026 | Last Updated: June 2026</strong></p>
+      <p>Welcome to NeuroDesk ("we", "our", "the Company"). By creating an account or placing an order, you agree to the following terms. Please read them carefully.</p>
+
+      <h3>1. Services & Scope</h3>
+      <p>NeuroDesk provides professional freelance services including Data Science &amp; Machine Learning, Academic Writing &amp; Research, and Web Development. All work is carried out by qualified professionals and delivered electronically.</p>
+      <ul>
+        <li>Projects are accepted at NeuroDesk's sole discretion.</li>
+        <li>Scope of work is defined at the time of order and confirmed via email or WhatsApp.</li>
+        <li>Revisions are included as specified in your selected pricing plan. Additional revisions may incur charges.</li>
+      </ul>
+
+      <h3>2. Academic Integrity</h3>
+      <p>All academic writing services are provided for research, reference, and learning purposes only. Clients are responsible for ensuring their use of delivered content complies with their institution's academic integrity policies. NeuroDesk does not encourage or endorse academic dishonesty.</p>
+
+      <h3>3. Payments & Refunds</h3>
+      <ul>
+        <li>Payment is typically required before work commences. Flexible arrangements may be made for returning clients.</li>
+        <li>Refunds are considered on a case-by-case basis if work does not meet the agreed specifications.</li>
+        <li>No refunds are issued after final delivery has been accepted by the client.</li>
+        <li>Disputed amounts must be raised within 7 days of delivery.</li>
+      </ul>
+
+      <h3>4. Deadlines & Delivery</h3>
+      <ul>
+        <li>Deadlines are agreed upon at the time of order. Late submissions due to incomplete client information are not NeuroDesk's responsibility.</li>
+        <li>Rush orders (under 24 hours) may attract an additional fee.</li>
+        <li>NeuroDesk will notify clients promptly of any delays.</li>
+      </ul>
+
+      <h3>5. Intellectual Property</h3>
+      <p>Upon full payment, all rights to the delivered work transfer to the client. NeuroDesk may retain anonymised samples for portfolio display unless the client requests a Non-Disclosure Agreement (NDA).</p>
+      <ul>
+        <li>Clients must not misrepresent NeuroDesk's work as entirely their own in contexts where original authorship is material (e.g., publications submitted under your name to journals without disclosure).</li>
+      </ul>
+
+      <h3>6. Confidentiality & Privacy</h3>
+      <ul>
+        <li>All client information, project details, and communications are treated as strictly confidential.</li>
+        <li>We collect only the information necessary to deliver services and improve your experience (name, email, phone, country, service interest).</li>
+        <li>We do not sell, rent, or share your data with third parties for marketing purposes.</li>
+        <li>Account data is stored securely via Firebase (Google) with industry-standard encryption.</li>
+      </ul>
+
+      <h3>7. User Accounts</h3>
+      <ul>
+        <li>Creating an account is optional. You may order services without an account.</li>
+        <li>You are responsible for maintaining the confidentiality of your account credentials.</li>
+        <li>NeuroDesk reserves the right to suspend accounts found to be abusive, fraudulent, or in violation of these terms.</li>
+      </ul>
+
+      <h3>8. Limitation of Liability</h3>
+      <p>NeuroDesk shall not be liable for indirect, incidental, or consequential damages arising from the use of our services. Our total liability shall not exceed the amount paid for the specific project in question.</p>
+
+      <h3>9. Governing Law</h3>
+      <p>These Terms are governed by the laws of Kenya. Any disputes shall be resolved through good-faith negotiation. If unresolved, they shall be subject to mediation in Nairobi, Kenya.</p>
+
+      <h3>10. Amendments</h3>
+      <p>NeuroDesk reserves the right to update these Terms at any time. Continued use of services after changes constitutes acceptance of the revised Terms.</p>
+
+      <h3>11. Contact</h3>
+      <p>For questions about these Terms, contact us at <a href="mailto:musyokas753@gmail.com" style="color:var(--color-accent-cyan);">musyokas753@gmail.com</a> or via WhatsApp at +254 740 624 253.</p>
+    </div>
+    <div class="terms-modal__footer">
+      <button class="btn btn-secondary btn-sm" onclick="closeTerms()">Close</button>
+      <button class="btn btn-primary btn-sm" onclick="acceptTerms()"><i class="fas fa-check"></i> I Agree</button>
+    </div>
+  </div>
+</div>
+
+<button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
+
+<!-- ══════════════════════════════════════════════════════
+     FIREBASE SDK (Modular v10)
+══════════════════════════════════════════════════════ -->
+<script type="module">
+// ─── FIREBASE CONFIG ───────────────────────────────────────────────────────
+// ACTION REQUIRED: Replace with your actual Firebase project config.
+// Get it from: Firebase Console → Project Settings → Your apps → Web
+// Instructions: See SETUP.md for detailed steps.
+const firebaseConfig = {
+  apiKey:            "YOUR_API_KEY",
+  authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId:         "YOUR_PROJECT_ID",
+  storageBucket:     "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId:             "YOUR_APP_ID"
+};
+
+// ─── IMPORTS ───────────────────────────────────────────────────────────────
+import { initializeApp }                  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+         signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail,
+         onAuthStateChanged, updateProfile, signOut }
+  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { getFirestore, doc, setDoc, getDoc, serverTimestamp }
+  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL }
+  from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js';
+
+// ─── INIT ──────────────────────────────────────────────────────────────────
+const app       = initializeApp(firebaseConfig);
+const auth      = getAuth(app);
+const db        = getFirestore(app);
+const storage   = getStorage(app);
+const provider  = new GoogleAuthProvider();
+
+// ─── EXPOSE GLOBALS (called by inline onclick handlers) ───────────────────
+let avatarFile = null;
+
+// Tab switcher
+window.switchTab = function(tab) {
+  const isLogin = tab === 'login';
+  document.getElementById('tab-login').classList.toggle('active', isLogin);
+  document.getElementById('tab-signup').classList.toggle('active', !isLogin);
+  document.getElementById('loginForm').style.display  = isLogin ? '' : 'none';
+  document.getElementById('signupForm').style.display = isLogin ? 'none' : '';
+  clearMessage();
+};
+
+// Google sign in
+window.signInWithGoogle = async function() {
+  clearMessage();
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const user   = result.user;
+    // Save profile to Firestore if first time
+    const snap = await getDoc(doc(db, 'users', user.uid));
+    if (!snap.exists()) {
+      await setDoc(doc(db, 'users', user.uid), {
+        uid: user.uid, name: user.displayName || '', email: user.email,
+        phone: '', country: '', serviceInterest: '',
+        photoURL: user.photoURL || '', provider: 'google',
+        createdAt: serverTimestamp()
+      });
+    }
+    showMessage('success', '✅ Signed in with Google! Redirecting…');
+    setTimeout(() => { window.location.href = 'portal.html'; }, 1400);
+  } catch (err) {
+    showMessage('error', friendlyError(err));
+  }
+};
+
+// Login
+window.handleLogin = async function(e) {
+  e.preventDefault();
+  clearMessage();
+  const email = document.getElementById('loginEmail').value.trim();
+  const pw    = document.getElementById('loginPassword').value;
+  if (!email || !pw) { showMessage('error', 'Please enter your email and password.'); return; }
+  setLoading('login', true);
+  try {
+    await signInWithEmailAndPassword(auth, email, pw);
+    showMessage('success', '✅ Welcome back! Redirecting…');
+    setTimeout(() => { window.location.href = 'portal.html'; }, 1200);
+  } catch (err) {
+    showMessage('error', friendlyError(err));
+    setLoading('login', false);
+  }
+};
+
+// Signup
+window.handleSignup = async function(e) {
+  e.preventDefault();
+  clearMessage();
+  const name    = document.getElementById('signupName').value.trim();
+  const email   = document.getElementById('signupEmail').value.trim();
+  const phone   = (document.getElementById('phoneCode').value.trim() + ' ' + document.getElementById('signupPhone').value.trim()).trim();
+  const country = document.getElementById('signupCountry').value;
+  const service = document.getElementById('signupService').value;
+  const pw      = document.getElementById('signupPassword').value;
+  const pwc     = document.getElementById('signupConfirmPw').value;
+  const terms   = document.getElementById('termsCheck').checked;
+
+  if (!name)  { showMessage('error', 'Please enter your full name.');            return; }
+  if (!email) { showMessage('error', 'Please enter a valid email address.');     return; }
+  if (!pw)    { showMessage('error', 'Please choose a password.');               return; }
+  if (pw.length < 8) { showMessage('error', 'Password must be at least 8 characters.'); return; }
+  if (pw !== pwc) { showMessage('error', 'Passwords do not match.');             return; }
+  if (!terms) { showMessage('error', 'Please accept the Terms & Conditions.');  return; }
+
+  setLoading('signup', true);
+  try {
+    // Create auth user
+    const cred = await createUserWithEmailAndPassword(auth, email, pw);
+    const user = cred.user;
+
+    // Upload avatar if chosen
+    let photoURL = '';
+    if (avatarFile) {
+      try {
+        const imgRef = storageRef(storage, `avatars/${user.uid}`);
+        await uploadBytes(imgRef, avatarFile);
+        photoURL = await getDownloadURL(imgRef);
+      } catch (_) { /* storage may not be configured yet — skip silently */ }
+    }
+
+    // Update display name
+    await updateProfile(user, { displayName: name, photoURL });
+
+    // Save profile to Firestore
+    await setDoc(doc(db, 'users', user.uid), {
+      uid: user.uid, name, email, phone, country, serviceInterest: service,
+      photoURL, provider: 'email',
+      createdAt: serverTimestamp()
+    });
+
+    showMessage('success', '🎉 Account created! Welcome to NeuroDesk. Redirecting…');
+    setTimeout(() => { window.location.href = 'portal.html'; }, 1600);
+  } catch (err) {
+    showMessage('error', friendlyError(err));
+    setLoading('signup', false);
+  }
+};
+
+// Forgot password
+window.showForgotPassword = async function(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim();
+  if (!email) {
+    showMessage('info', 'Enter your email above, then click "Forgot password?" again.');
+    return;
+  }
+  try {
+    await sendPasswordResetEmail(auth, email);
+    showMessage('success', '📧 Password reset email sent! Check your inbox.');
+  } catch (err) {
+    showMessage('error', friendlyError(err));
+  }
+};
+
+// Auth state — if already logged in, redirect
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // Store minimal user info in sessionStorage for navbar use
+    sessionStorage.setItem('nd_user', JSON.stringify({
+      name: user.displayName || user.email,
+      email: user.email,
+      photoURL: user.photoURL || ''
+    }));
+    // Don't auto-redirect here; let user manually navigate
+  } else {
+    sessionStorage.removeItem('nd_user');
+  }
+});
+
+// Helper: sign out (exposed globally)
+window.ndSignOut = async function() {
+  await signOut(auth);
+  sessionStorage.removeItem('nd_user');
+  window.location.href = '../index.html';
+};
+
+// ─── UI HELPERS ───────────────────────────────────────────────────────────
+function showMessage(type, text) {
+  const el   = document.getElementById('authMessage');
+  const span = document.getElementById('authMessageText');
+  el.className = `auth-message visible ${type}`;
+  const icon = type === 'error' ? 'fa-exclamation-circle' : type === 'success' ? 'fa-check-circle' : 'fa-info-circle';
+  el.querySelector('i').className = `fas ${icon}`;
+  span.textContent = text;
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+function clearMessage() {
+  document.getElementById('authMessage').classList.remove('visible');
+}
+function setLoading(form, isLoading) {
+  const btn = document.getElementById(form + 'Btn');
+  const spinner = document.getElementById(form + 'Spinner');
+  const text    = document.getElementById(form + 'BtnText');
+  btn.disabled = isLoading;
+  spinner.classList.toggle('visible', isLoading);
+  text.style.opacity = isLoading ? '0.5' : '1';
+}
+
+function friendlyError(err) {
+  const map = {
+    'auth/email-already-in-use':    'This email is already registered. Try signing in instead.',
+    'auth/invalid-email':           'That doesn\'t look like a valid email address.',
+    'auth/weak-password':           'Password is too weak. Use at least 8 characters with letters and numbers.',
+    'auth/wrong-password':          'Incorrect password. Check your credentials or reset your password.',
+    'auth/user-not-found':          'No account found with that email. Create one above.',
+    'auth/invalid-credential':      'Incorrect email or password. Please try again.',
+    'auth/too-many-requests':       'Too many attempts. Please wait a few minutes and try again.',
+    'auth/network-request-failed':  'Network error. Check your internet connection.',
+    'auth/popup-closed-by-user':    'Google sign-in was cancelled.',
+    'auth/cancelled-popup-request': 'Google sign-in was cancelled.',
+  };
+  return map[err.code] || `Error: ${err.message}`;
+}
+
+// ─── EXPOSE non-firebase helpers to window ────────────────────────────────
+window.togglePw = function(id, btn) {
+  const inp = document.getElementById(id);
+  const icon = btn.querySelector('i');
+  if (inp.type === 'password') { inp.type = 'text'; icon.className = 'fas fa-eye-slash'; }
+  else                          { inp.type = 'password'; icon.className = 'fas fa-eye'; }
+};
+
+window.checkStrength = function(pw) {
+  const wrap  = document.getElementById('strengthWrap');
+  const fill  = document.getElementById('strengthFill');
+  const label = document.getElementById('strengthLabel');
+  wrap.classList.add('visible');
+  if (!pw) { fill.style.width = '0%'; label.textContent = '—'; return; }
+  let score = 0;
+  if (pw.length >= 8)  score++;
+  if (pw.length >= 12) score++;
+  if (/[A-Z]/.test(pw)) score++;
+  if (/[0-9]/.test(pw)) score++;
+  if (/[^A-Za-z0-9]/.test(pw)) score++;
+  const levels = [
+    { max: 1, color: '#FF6B6B', label: 'Very Weak' },
+    { max: 2, color: '#FFB347', label: 'Weak' },
+    { max: 3, color: '#FFD700', label: 'Fair' },
+    { max: 4, color: '#00D4FF', label: 'Strong' },
+    { max: 5, color: '#00E5A0', label: 'Very Strong 💪' },
+  ];
+  const lv = levels[Math.min(score - 1, 4)] || levels[0];
+  fill.style.width    = `${(score / 5) * 100}%`;
+  fill.style.background = lv.color;
+  label.textContent   = lv.label;
+  label.style.color   = lv.color;
+};
+
+window.checkConfirm = function() {
+  const pw  = document.getElementById('signupPassword').value;
+  const cpw = document.getElementById('signupConfirmPw').value;
+  const hint = document.getElementById('confirmHint');
+  const input = document.getElementById('signupConfirmPw');
+  if (!cpw) { hint.className = 'field-hint'; return; }
+  if (pw === cpw) {
+    hint.className = 'field-hint visible success'; hint.textContent = '✓ Passwords match';
+    input.classList.add('success'); input.classList.remove('error');
+  } else {
+    hint.className = 'field-hint visible error'; hint.textContent = '✗ Passwords do not match';
+    input.classList.add('error'); input.classList.remove('success');
+  }
+};
+
+window.updateAvatarInitial = function() {
+  const name = document.getElementById('signupName').value.trim();
+  const span = document.getElementById('avatarInitial');
+  if (name) { span.textContent = name.charAt(0).toUpperCase(); }
+  else       { span.textContent = '?'; }
+};
+
+window.previewAvatar = function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) {
+    alert('Image too large. Please choose one under 2 MB.'); return;
+  }
+  avatarFile = file;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    const img = document.getElementById('avatarImg');
+    const span = document.getElementById('avatarInitial');
+    img.src = ev.target.result;
+    img.style.display = 'block';
+    span.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+};
+
+window.openTerms = function(e) { e.preventDefault(); document.getElementById('termsModalOverlay').classList.add('open'); };
+window.closeTerms = function() { document.getElementById('termsModalOverlay').classList.remove('open'); };
+window.acceptTerms = function() {
+  document.getElementById('termsCheck').checked = true;
+  closeTerms();
+};
+
+// Close terms on overlay click
+document.getElementById('termsModalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeTerms();
+});
+</script>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

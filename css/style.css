@@ -380,6 +380,70 @@ input, textarea, select {
   gap: 12px;
 }
 
+/* ── Auth User Avatar in Navbar ── */
+.navbar__user-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 5px;
+  background: rgba(123,47,190,0.1);
+  border: 1px solid rgba(123,47,190,0.25);
+  border-radius: 100px;
+  color: white;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition);
+}
+.navbar__user-btn:hover {
+  background: rgba(123,47,190,0.2);
+  border-color: rgba(123,47,190,0.4);
+}
+.navbar__user-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-accent-violet), var(--color-accent-cyan));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: white;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.navbar__user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.navbar__user-name {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Sign in link in navbar (shown when not logged in) */
+.navbar__signin-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  padding: 5px 8px;
+  border-radius: 6px;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.navbar__signin-link:hover {
+  color: white;
+  background: rgba(255,255,255,0.05);
+}
+
 /* Hamburger */
 .navbar__hamburger {
   display: none;
@@ -3388,4 +3452,165 @@ iframe[class*='tawk'] {
   .navbar__inner { padding: 0 12px; }
   .navbar__hamburger { width: 36px; height: 36px; }
   .navbar__logo img { height: 40px; }
+}
+
+/* ============================================================
+   MOBILE RESPONSIVENESS — COMPREHENSIVE FIXES (Session E)
+   ============================================================ */
+
+/* ── Navbar: force hamburger to show at 860px to prevent link overflow ── */
+@media (max-width: 860px) {
+  .navbar__links,
+  .navbar__cta { display: none !important; }
+  .navbar__hamburger { display: flex !important; }
+  .navbar { padding: 0 16px; }
+}
+
+/* ── Navbar: ensure logo never gets cut ── */
+.navbar__logo {
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+/* ── Portal page ── */
+@media (max-width: 640px) {
+  .portal-hero { padding: 85px 0 40px; }
+  .portal-hero__title { font-size: clamp(1.5rem, 6vw, 2rem); }
+  .lookup-card { padding: 24px 16px; margin-bottom: 32px; }
+  .lookup-card h2 { font-size: 1.1rem; }
+  .lookup-row { flex-direction: column; gap: 10px; }
+  .lookup-row input { max-width: 100% !important; }
+  .lookup-row .btn { width: 100%; justify-content: center; }
+  .project-body { padding: 16px; }
+  .project-card__header { padding: 18px 16px; flex-direction: column; align-items: flex-start; }
+  .project-card__title { font-size: 1.1rem; }
+  .project-details-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .detail-item { padding: 12px 14px; }
+  .how-section { padding: 24px 16px; }
+  .how-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .project-cta-row { flex-direction: column; gap: 10px; }
+  .project-cta-row .btn { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 400px) {
+  .project-details-grid { grid-template-columns: 1fr; }
+  .how-grid { grid-template-columns: 1fr; }
+}
+
+/* ── About page ── */
+@media (max-width: 640px) {
+  .about-stats-grid { grid-template-columns: 1fr 1fr !important; }
+  .about-skills-grid { grid-template-columns: 1fr !important; }
+  .team-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Services page ── */
+@media (max-width: 640px) {
+  .services-detail-grid { grid-template-columns: 1fr !important; }
+  .pillar-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── Pricing page ── */
+@media (max-width: 640px) {
+  .pricing-card { padding: 24px 18px !important; }
+  .pricing-card__price { font-size: 2rem !important; }
+  .pricing-toggle { flex-direction: row; gap: 8px; flex-wrap: wrap; justify-content: center; }
+}
+
+/* ── Order page ── */
+@media (max-width: 640px) {
+  .order-form-card { padding: 20px 16px !important; }
+  .form-row-2 { grid-template-columns: 1fr !important; }
+  .upload-area { padding: 24px 16px !important; }
+}
+
+/* ── Blog page ── */
+@media (max-width: 640px) {
+  .blog-grid { grid-template-columns: 1fr !important; }
+  .blog-hero { padding: 90px 0 40px; }
+  .blog-filters { gap: 8px; flex-wrap: wrap; }
+  .blog-filter-btn { font-size: 0.78rem; padding: 6px 12px; }
+}
+
+/* ── FAQ page ── */
+@media (max-width: 640px) {
+  .faq-hero { padding: 90px 0 40px; }
+  .faq-categories { flex-direction: column; gap: 8px; }
+  .accordion-header { padding: 14px 16px; font-size: 0.9rem; }
+  .accordion-body { padding: 0 16px 16px; }
+}
+
+/* ── Data Science / Academic Writing / Web Dev pages ── */
+@media (max-width: 640px) {
+  .ds-features-grid,
+  .aw-features-grid,
+  .wd-features-grid { grid-template-columns: 1fr !important; }
+  .tech-stack-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .process-grid { grid-template-columns: 1fr !important; }
+  .sub-hero__title { font-size: clamp(1.4rem, 5.5vw, 1.9rem) !important; }
+  .sub-hero { padding: 90px 0 44px !important; }
+}
+
+/* ── Contact page ── */
+@media (max-width: 640px) {
+  .contact-info-grid { grid-template-columns: 1fr !important; }
+  .contact-form-card { padding: 20px 16px !important; }
+}
+
+/* ── Catalog grid (home page services) ── */
+@media (max-width: 640px) {
+  .catalog-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .catalog-card { padding: 20px 16px !important; }
+}
+
+/* ── Comparison table ── */
+@media (max-width: 560px) {
+  .comparison-table { font-size: 0.8rem; }
+  .comparison-table__header,
+  .comparison-table__row { grid-template-columns: 1.8fr 1fr 1fr; gap: 4px; }
+  .comparison-table__header > span,
+  .comparison-table__row > span { padding: 10px 8px; }
+  .comparison-table__feature { font-size: 0.78rem; }
+}
+
+/* ── Catalog / trust badges ── */
+@media (max-width: 480px) {
+  .trust-badges-grid { grid-template-columns: 1fr 1fr; }
+  .trust-badge { padding: 16px 12px; }
+  .trust-badge__title { font-size: 0.85rem; }
+  .trust-badge__text { font-size: 0.72rem; }
+}
+
+/* ── General page hero on sub-pages ── */
+@media (max-width: 640px) {
+  .page-hero { padding: 90px 0 40px; }
+  .page-hero__title { font-size: clamp(1.4rem, 5.5vw, 2rem) !important; }
+  .page-hero__sub { font-size: 0.9rem; }
+}
+
+/* ── Section header on mobile ── */
+@media (max-width: 640px) {
+  .section-header { margin-bottom: 28px; }
+  .section-title { font-size: clamp(1.4rem, 5vw, 1.9rem); }
+  .section-subtitle { font-size: 0.88rem; }
+}
+
+/* ── Portfolio filter buttons ── */
+@media (max-width: 640px) {
+  .portfolio-filters { flex-wrap: wrap; gap: 6px; }
+  .filter-btn { font-size: 0.78rem; padding: 6px 12px; }
+}
+
+/* ── Admin page ── */
+@media (max-width: 640px) {
+  .admin-stats-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .admin-table { font-size: 0.78rem; }
+}
+
+/* ── Footer improvements ── */
+@media (max-width: 480px) {
+  .footer__grid { grid-template-columns: 1fr !important; }
+  .footer__col-title { font-size: 0.85rem; }
+  .footer__col-links li { font-size: 0.82rem; }
+  .footer__socials { gap: 10px; }
 }

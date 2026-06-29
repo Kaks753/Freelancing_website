@@ -97,7 +97,10 @@
       <a href="pages/portal.html" class="nav-track-order"><i class="fas fa-chart-line"></i> Track Order</a>
     </div>
     <div class="navbar__cta" style="display:flex;gap:8px;align-items:center;">
-      <a href="pages/pricing.html" class="btn btn-secondary btn-sm" style="display:none;">Pricing</a>
+      <!-- Auth user pill (shown when logged in via Firebase) -->
+      <div id="navUserWrap" style="display:none;"></div>
+      <!-- Sign in link (shown when not logged in) -->
+      <a href="pages/auth.html" class="navbar__signin-link" id="navSigninLink" title="Sign in"><i class="fas fa-user-circle"></i> Sign In</a>
       <a href="pages/order.html" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> Get a Quote</a>
     </div>
     <div class="navbar__hamburger" id="hamburger">

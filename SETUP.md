@@ -160,7 +160,87 @@ I'll get started right away and keep you updated. Feel free to WhatsApp me if yo
 
 ---
 
-## 5. Cal.com Scheduling (Optional — Free)
+## 5. Firebase Auth Setup (For Client Accounts — Free)
+
+The site now has an optional sign-in/signup system at `/pages/auth.html`. Clients can create accounts to track orders or sign in with Google. **It is 100% optional — the site works perfectly without it.**
+
+### What you need from Firebase:
+
+1. **Go to** → https://console.firebase.google.com
+2. Click **"Create a project"** → Name it `neurodesk-app` → Continue
+3. Disable Google Analytics for now → Click "Create project"
+
+### Enable Authentication:
+4. In left sidebar → **Authentication** → **Get Started**
+5. Under **Sign-in method**, enable:
+   - ✅ **Email/Password**
+   - ✅ **Google** (click it, enable it, save with your Support email)
+
+### Enable Firestore (user profiles):
+6. Left sidebar → **Firestore Database** → **Create database**
+7. Choose **"Start in production mode"** → Select closest region → Done
+8. Go to **Rules** tab → Replace with:
+   ```
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
+       match /users/{userId} {
+         allow read, write: if request.auth != null && request.auth.uid == userId;
+       }
+     }
+   }
+   ```
+9. Click **Publish**
+
+### Enable Storage (profile photos):
+10. Left sidebar → **Storage** → **Get Started** → Start in production mode → Done
+11. Go to **Rules** → Replace with:
+    ```
+    rules_version = '2';
+    service firebase.storage {
+      match /b/{bucket}/o {
+        match /avatars/{userId} {
+          allow read: if true;
+          allow write: if request.auth != null && request.auth.uid == userId
+                       && request.resource.size < 2 * 1024 * 1024;
+        }
+      }
+    }
+    ```
+12. Click **Publish**
+
+### Add your domain to Auth:
+13. Authentication → **Settings** → **Authorized domains** → Add:
+    - `neurodesk.vercel.app`
+    - `localhost`
+
+### Get your Firebase config keys:
+14. Left sidebar → **Project Settings** (gear icon) → **Your apps** → Click `</>` (Web)
+15. Register app name: `neurodesk-web`
+16. Copy the `firebaseConfig` object — it looks like:
+    ```javascript
+    const firebaseConfig = {
+      apiKey: "AIzaSy...",
+      authDomain: "neurodesk-app.firebaseapp.com",
+      projectId: "neurodesk-app",
+      storageBucket: "neurodesk-app.appspot.com",
+      messagingSenderId: "12345...",
+      appId: "1:12345:web:abc123"
+    };
+    ```
+
+### Update the site:
+17. Open `pages/auth.html` → Find the `firebaseConfig` object (around line 285) → Replace all `"YOUR_..."` values with your real values.
+
+**That's it!** The auth page will now work. Free Firebase plan allows:
+- 10,000 auth users/month
+- 1GB Firestore storage
+- 5GB/month Firebase Storage
+- All free, no credit card needed
+
+---
+
+## 6. Cal.com Scheduling (Optional — Free)
 
 Add a free scheduling link so clients can book a discovery call:
 
@@ -179,10 +259,12 @@ Add a free scheduling link so clients can book a discovery call:
 | Formspree Dashboard | https://formspree.io/forms |
 | Google Sheets | https://sheets.google.com |
 | Tawk.to Dashboard | https://dashboard.tawk.to |
+| Firebase Console | https://console.firebase.google.com |
 | Cal.com | https://cal.com |
 | Your Site | https://neurodesk.vercel.app |
 | Client Portal | https://neurodesk.vercel.app/pages/portal.html |
 | Order Form | https://neurodesk.vercel.app/pages/order.html |
+| Auth / Login Page | https://neurodesk.vercel.app/pages/auth.html |
 
 ---
 

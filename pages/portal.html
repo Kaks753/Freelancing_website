@@ -464,11 +464,25 @@
     /* demo CSS removed — live Google Sheet mode */
 
     @media (max-width: 640px) {
-      .lookup-row { flex-direction: column; }
-      .project-card__header { flex-direction: column; align-items: flex-start; }
-      .project-body { padding: 20px; }
+      .portal-hero { padding: 85px 0 36px; }
+      .lookup-card { padding: 20px 16px; margin-bottom: 28px; }
+      .lookup-row { flex-direction: column; gap: 10px; }
+      .lookup-row input { max-width: 100% !important; }
+      .lookup-row .btn { width: 100%; justify-content: center; }
+      .project-card__header { flex-direction: column; align-items: flex-start; padding: 18px 16px; }
+      .project-card__title { font-size: 1.1rem; }
+      .project-body { padding: 16px; }
+      .project-details-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .project-cta-row { flex-direction: column; }
-      .project-cta-row .btn { justify-content: center; }
+      .project-cta-row .btn { width: 100%; justify-content: center; }
+      .how-section { padding: 24px 16px; border-radius: 12px; }
+      .how-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .portal-hero__title { font-size: clamp(1.5rem, 6vw, 2rem); }
+    }
+
+    @media (max-width: 400px) {
+      .project-details-grid { grid-template-columns: 1fr; }
+      .how-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -489,7 +503,11 @@
       <a href="portal.html" class="nav-track-order active"><i class="fas fa-chart-line"></i> Track Order</a>
     </div>
     <div class="navbar__cta" style="display:flex;gap:8px;align-items:center;">
-      <a href="order.html" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> Order Now</a>
+      <!-- Auth user pill (shown when logged in) -->
+      <div id="navUserWrap" style="display:none;"></div>
+      <!-- Sign in link -->
+      <a href="auth.html" class="navbar__signin-link" id="navSigninLink" title="Sign in"><i class="fas fa-user-circle"></i> Sign In</a>
+      <a href="order.html" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> Get a Quote</a>
     </div>
     <div class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></div>
   </div>
@@ -527,8 +545,6 @@
     <a href="order.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Order Now</a>
     <a href="https://wa.me/254740624253?text=Hi%20NeuroDesk!%20I'd%20like%20to%20discuss%20a%20project." class="btn btn-whatsapp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
   </div>
-</div>
-
 </div>
 
 <!-- Hero -->
