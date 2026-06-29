@@ -90,14 +90,16 @@
     <div class="navbar__links">
       <a href="index.html" class="active">Home</a>
       <a href="pages/services.html">Services</a>
-      <a href="pages/portfolio.html">Portfolio</a>
       <a href="pages/pricing.html">Pricing</a>
+      <a href="pages/portfolio.html">Portfolio</a>
       <a href="pages/about.html">About</a>
       <a href="blog/index.html">Blog</a>
-      <a href="pages/faq.html">FAQ</a>
       <a href="pages/portal.html" class="nav-track-order"><i class="fas fa-chart-line"></i> Track Order</a>
     </div>
-    <div class="navbar__cta" style="display:flex;gap:8px;align-items:center;"><a href="pages/order.html" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> Order Now</a></div>
+    <div class="navbar__cta" style="display:flex;gap:8px;align-items:center;">
+      <a href="pages/pricing.html" class="btn btn-secondary btn-sm" style="display:none;">Pricing</a>
+      <a href="pages/order.html" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> Get a Quote</a>
+    </div>
     <div class="navbar__hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
@@ -157,7 +159,7 @@
     <div class="hero__left">
       <div class="hero__badge">
         <span class="hero__badge-dot"></span>
-        Available for Projects · Worldwide
+        Open for New Projects · Worldwide · Est. 2022
       </div>
 
       <h1 class="hero__title">
@@ -174,15 +176,17 @@
       </p>
 
       <div class="hero__actions">
-        <a href="pages/services.html" class="btn btn-primary btn-lg">
-          <i class="fas fa-rocket"></i> Explore Services
+        <a href="pages/order.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-rocket"></i> Start a Project
         </a>
-        <a href="pages/portfolio.html" class="btn btn-secondary btn-lg">
-          <i class="fas fa-eye"></i> View Portfolio
+        <a href="pages/services.html" class="btn btn-secondary btn-lg">
+          <i class="fas fa-th-large"></i> Browse Services
         </a>
-        <a href="https://wa.me/254740624253?text=Hi%20NeuroDesk!%20I'd%20like%20to%20discuss%20a%20project." class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
+      </div>
+      <div class="hero__trust-line">
+        <span><i class="fas fa-shield-alt" style="color:var(--color-accent-green)"></i> 100% satisfaction guarantee</span>
+        <span><i class="fas fa-clock" style="color:var(--color-accent-cyan)"></i> Reply within 2 hrs</span>
+        <span><i class="fas fa-lock" style="color:var(--color-accent-violet)"></i> NDA on request</span>
       </div>
 
       <div class="hero__stats">
@@ -725,6 +729,196 @@
 </script>
 
 <!-- ============================================================
+     SERVICES CATALOG — Marketplace-style browse
+============================================================ -->
+<section class="section" id="catalog" style="background:var(--color-bg-secondary);">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:44px;">
+      <div class="section-label">Service Catalog</div>
+      <h2 class="section-title">Browse by <span>What You Need</span></h2>
+      <p class="section-subtitle">Select a category and get matched with the right service instantly — no guessing, no back-and-forth.</p>
+    </div>
+
+    <div class="catalog-grid reveal">
+
+      <!-- Data Science & ML -->
+      <a href="pages/data-science.html" class="catalog-card">
+        <div class="catalog-card__icon" style="background:linear-gradient(135deg,rgba(123,47,190,0.25),rgba(123,47,190,0.08));border-color:rgba(123,47,190,0.3);">
+          <i class="fas fa-brain" style="color:var(--color-accent-violet);font-size:28px;"></i>
+        </div>
+        <h3 class="catalog-card__title">Data Science & ML</h3>
+        <p class="catalog-card__desc">Predictive models, data pipelines, visualizations, and business intelligence dashboards.</p>
+        <div class="catalog-card__tags">
+          <span>Python</span><span>TensorFlow</span><span>Power BI</span><span>SQL</span>
+        </div>
+        <div class="catalog-card__footer">
+          <span class="catalog-card__from">From <strong>$49</strong></span>
+          <span class="catalog-card__cta">Explore <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+      <!-- Academic Writing -->
+      <a href="pages/academic-writing.html" class="catalog-card">
+        <div class="catalog-card__icon" style="background:linear-gradient(135deg,rgba(0,212,255,0.2),rgba(0,212,255,0.05));border-color:rgba(0,212,255,0.3);">
+          <i class="fas fa-graduation-cap" style="color:var(--color-accent-cyan);font-size:28px;"></i>
+        </div>
+        <h3 class="catalog-card__title">Academic Writing</h3>
+        <p class="catalog-card__desc">Dissertations, theses, research papers, essays, and statistical analysis — all grades, all fields.</p>
+        <div class="catalog-card__tags">
+          <span>Dissertation</span><span>SPSS</span><span>APA/Harvard</span><span>Turnitin-safe</span>
+        </div>
+        <div class="catalog-card__footer">
+          <span class="catalog-card__from">From <strong>$25</strong></span>
+          <span class="catalog-card__cta">Explore <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+      <!-- Web Development -->
+      <a href="pages/web-development.html" class="catalog-card">
+        <div class="catalog-card__icon" style="background:linear-gradient(135deg,rgba(255,107,107,0.2),rgba(255,107,107,0.05));border-color:rgba(255,107,107,0.3);">
+          <i class="fas fa-code" style="color:var(--color-accent-pink);font-size:28px;"></i>
+        </div>
+        <h3 class="catalog-card__title">Web Development</h3>
+        <p class="catalog-card__desc">Modern, fast websites and web apps — from landing pages to full business platforms and dashboards.</p>
+        <div class="catalog-card__tags">
+          <span>React</span><span>Node.js</span><span>SEO</span><span>Mobile-first</span>
+        </div>
+        <div class="catalog-card__footer">
+          <span class="catalog-card__from">From <strong>$89</strong></span>
+          <span class="catalog-card__cta">Explore <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+      <!-- Data Analysis -->
+      <a href="pages/data-science.html" class="catalog-card">
+        <div class="catalog-card__icon" style="background:linear-gradient(135deg,rgba(0,229,160,0.2),rgba(0,229,160,0.05));border-color:rgba(0,229,160,0.3);">
+          <i class="fas fa-chart-bar" style="color:var(--color-accent-green);font-size:28px;"></i>
+        </div>
+        <h3 class="catalog-card__title">Data Analysis</h3>
+        <p class="catalog-card__desc">Statistical analysis, SPSS, R, Excel dashboards, and quantitative research interpretation.</p>
+        <div class="catalog-card__tags">
+          <span>SPSS</span><span>R</span><span>Excel</span><span>Tableau</span>
+        </div>
+        <div class="catalog-card__footer">
+          <span class="catalog-card__from">From <strong>$35</strong></span>
+          <span class="catalog-card__cta">Explore <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+      <!-- Research & Proposals -->
+      <a href="pages/academic-writing.html" class="catalog-card">
+        <div class="catalog-card__icon" style="background:linear-gradient(135deg,rgba(123,47,190,0.15),rgba(0,212,255,0.08));border-color:rgba(123,47,190,0.25);">
+          <i class="fas fa-microscope" style="color:var(--color-accent-violet);font-size:28px;"></i>
+        </div>
+        <h3 class="catalog-card__title">Research & Proposals</h3>
+        <p class="catalog-card__desc">Literature reviews, research proposals, systematic reviews, and grant writing across disciplines.</p>
+        <div class="catalog-card__tags">
+          <span>Literature Review</span><span>Grant Writing</span><span>Proposals</span>
+        </div>
+        <div class="catalog-card__footer">
+          <span class="catalog-card__from">From <strong>$30</strong></span>
+          <span class="catalog-card__cta">Explore <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+      <!-- Custom Projects -->
+      <a href="pages/order.html" class="catalog-card catalog-card--special">
+        <div class="catalog-card__icon" style="background:linear-gradient(135deg,rgba(255,200,0,0.2),rgba(255,200,0,0.05));border-color:rgba(255,200,0,0.3);">
+          <i class="fas fa-wand-magic-sparkles" style="color:#FFD700;font-size:28px;"></i>
+        </div>
+        <h3 class="catalog-card__title">Custom Project</h3>
+        <p class="catalog-card__desc">Have something unique? Describe your project and get a custom quote within 2 hours — no commitment needed.</p>
+        <div class="catalog-card__tags">
+          <span>Any Scope</span><span>Any Budget</span><span>Free Quote</span>
+        </div>
+        <div class="catalog-card__footer">
+          <span class="catalog-card__from" style="color:#FFD700;"><strong>Get a Free Quote</strong></span>
+          <span class="catalog-card__cta">Start <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="text-center reveal" style="margin-top:36px;">
+      <a href="pages/pricing.html" class="btn btn-secondary btn-lg"><i class="fas fa-tags"></i> View All Pricing</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     VS COMPARISON — NeuroDesk vs Fiverr/Upwork
+============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center reveal" style="margin-bottom:44px;">
+      <div class="section-label">Platform Comparison</div>
+      <h2 class="section-title">Why Not Just Use <span>Fiverr or Upwork?</span></h2>
+      <p class="section-subtitle">We're not a generic marketplace. Here's why professionals choose NeuroDesk over the big platforms.</p>
+    </div>
+
+    <div class="comparison-table reveal">
+      <div class="comparison-table__header">
+        <div class="comparison-table__col-label"></div>
+        <div class="comparison-table__col comparison-table__col--neurodesk">
+          <img src="images/neurodesk-logo.png" alt="NeuroDesk" style="height:32px;object-fit:contain;margin-bottom:6px;" />
+          <div class="comparison-table__col-name">NeuroDesk</div>
+          <div class="comparison-table__col-tag">Recommended</div>
+        </div>
+        <div class="comparison-table__col comparison-table__col--other">
+          <div style="font-size:22px;margin-bottom:6px;">🌐</div>
+          <div class="comparison-table__col-name">Fiverr / Upwork</div>
+          <div class="comparison-table__col-tag comparison-table__col-tag--muted">Generic Platforms</div>
+        </div>
+      </div>
+
+      <div class="comparison-table__row">
+        <div class="comparison-table__feature">Vetted specialist — not random freelancers</div>
+        <div class="comparison-table__val comparison-table__val--yes"><i class="fas fa-check-circle"></i> Always</div>
+        <div class="comparison-table__val comparison-table__val--no"><i class="fas fa-times-circle"></i> Hit or miss</div>
+      </div>
+      <div class="comparison-table__row">
+        <div class="comparison-table__feature">Response time</div>
+        <div class="comparison-table__val comparison-table__val--yes"><i class="fas fa-check-circle"></i> Within 2 hours</div>
+        <div class="comparison-table__val comparison-table__val--no"><i class="fas fa-times-circle"></i> Days of bidding</div>
+      </div>
+      <div class="comparison-table__row">
+        <div class="comparison-table__feature">Price transparency</div>
+        <div class="comparison-table__val comparison-table__val--yes"><i class="fas fa-check-circle"></i> Fixed, upfront</div>
+        <div class="comparison-table__val comparison-table__val--no"><i class="fas fa-times-circle"></i> Variable + platform fees</div>
+      </div>
+      <div class="comparison-table__row">
+        <div class="comparison-table__feature">NDA & data privacy</div>
+        <div class="comparison-table__val comparison-table__val--yes"><i class="fas fa-check-circle"></i> Always available</div>
+        <div class="comparison-table__val comparison-table__val--no"><i class="fas fa-minus-circle"></i> Optional/extra</div>
+      </div>
+      <div class="comparison-table__row">
+        <div class="comparison-table__feature">Academic integrity guarantee</div>
+        <div class="comparison-table__val comparison-table__val--yes"><i class="fas fa-check-circle"></i> Plagiarism + AI-safe</div>
+        <div class="comparison-table__val comparison-table__val--no"><i class="fas fa-times-circle"></i> Not guaranteed</div>
+      </div>
+      <div class="comparison-table__row">
+        <div class="comparison-table__feature">Dedicated support during project</div>
+        <div class="comparison-table__val comparison-table__val--yes"><i class="fas fa-check-circle"></i> Direct WhatsApp/email</div>
+        <div class="comparison-table__val comparison-table__val--no"><i class="fas fa-times-circle"></i> Platform chat only</div>
+      </div>
+      <div class="comparison-table__row">
+        <div class="comparison-table__feature">Free revisions</div>
+        <div class="comparison-table__val comparison-table__val--yes"><i class="fas fa-check-circle"></i> Until satisfied</div>
+        <div class="comparison-table__val comparison-table__val--no"><i class="fas fa-minus-circle"></i> Limited by gig</div>
+      </div>
+
+      <div class="comparison-table__footer">
+        <div></div>
+        <div style="text-align:center;padding:16px 0;">
+          <a href="pages/order.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Start with NeuroDesk</a>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      SPECIALTIES HIGHLIGHT
 ============================================================ -->
 <section class="section">
@@ -732,8 +926,8 @@
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
       <div class="reveal">
         <div class="section-label">Why NeuroDesk</div>
-        <h2 class="section-title">A Smarter Way to Get <span>Expert Help</span></h2>
-        <p class="section-subtitle" style="margin-bottom:32px;">Not a marketplace. Not an agency. A dedicated expert who knows your project personally and delivers like it's their own.</p>
+        <h2 class="section-title">Expert Help, <span>Without the Hassle</span></h2>
+        <p class="section-subtitle" style="margin-bottom:32px;">Unlike generic platforms where you scroll through hundreds of unknown freelancers, NeuroDesk is a vetted expert service — direct access to a specialist who delivers like it's their own business.</p>
         <div style="display:flex;flex-direction:column;gap:16px;">
           <div style="display:flex;gap:16px;align-items:flex-start;">
             <div style="width:44px;height:44px;border-radius:10px;background:rgba(123,47,190,0.2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">⚡</div>

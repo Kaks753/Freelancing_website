@@ -169,9 +169,23 @@ document.addEventListener('DOMContentLoaded', () => {
           animateCounter(entry.target);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.1, rootMargin: '0px 0px 0px 0px' });
 
     counters.forEach(el => counterObserver.observe(el));
+
+    // Fallback: if counters are already in viewport on load (above fold),
+    // fire them after a short delay so the reveal animation plays first
+    setTimeout(() => {
+      counters.forEach(el => {
+        if (!el.classList.contains('counted')) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('counted');
+            animateCounter(el);
+          }
+        }
+      });
+    }, 600);
   }
 
   /* ============================================================
