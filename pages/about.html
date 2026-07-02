@@ -89,8 +89,8 @@
       <h1 class="page-hero__title">Behind <span style="">NeuroDesk</span></h1>
       <p class="page-hero__subtitle">Intelligence at Your Service is more than a tagline. It's a promise built from years of academic rigor, practical experience, and a relentless passion for solving complex problems.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-        <a href="contact.html" class="btn btn-primary btn-sm"><i class="fas fa-envelope"></i> Get in Touch</a>
-        <a href="portfolio.html" class="btn btn-secondary btn-sm"><i class="fas fa-briefcase"></i> See Our Work</a>
+        <a href="contact.html" class="btn btn-quote btn-sm"><i class="fas fa-envelope"></i> Get in Touch</a>
+        <a href="portfolio.html" class="btn btn-portfolio btn-sm"><i class="fas fa-briefcase"></i> See Our Work</a>
       </div>
     </div>
   </div>
@@ -251,7 +251,7 @@
       <div class="footer__col"><h4 class="footer__col-title">Company</h4><ul class="footer__col-links"><li><a href="about.html">About</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="../blog/index.html">Blog</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
       <div class="footer__col"><h4 class="footer__col-title">Contact</h4><ul class="footer__col-links"><li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent)"></i>Email</a></li><li><a href="https://wa.me/254740624253" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li></ul></div>
     </div>
-    <div class="footer__bottom"><p class="footer__copyright">© 2026 NeuroDesk. All rights reserved.</p><div class="footer__bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+    <div class="footer__bottom"><p class="footer__copyright">© 2026 NeuroDesk. All rights reserved.</p><div class="footer__bottom-links"><a href="#" onclick="event.preventDefault();openLegal('privacy')">Privacy Policy</a><a href="#" onclick="event.preventDefault();openLegal('terms')">Terms of Service</a></div></div>
   </div>
 </footer>
 
@@ -263,6 +263,7 @@
   .about-grid,.skills-list+div[style*="grid-template-columns:1fr 1fr"],div[style*="grid-template-columns:repeat(4,1fr)"],div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
 }
 </style>
+<script src="../js/legal-modals.js"></script>
 <script src="../js/main.js"></script>
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">

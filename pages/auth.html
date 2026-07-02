@@ -833,7 +833,7 @@
       <div class="terms-group">
         <input type="checkbox" id="termsCheck" required />
         <label for="termsCheck">
-          I have read and agree to the <a href="#" onclick="openTerms(event)">Terms &amp; Conditions</a> and <a href="#" onclick="openTerms(event)">Privacy Policy</a> of NeuroDesk.
+          I have read and agree to the <a href="#" onclick="event.preventDefault();openLegal('terms')">Terms &amp; Conditions</a> and <a href="#" onclick="event.preventDefault();openLegal('privacy')">Privacy Policy</a> of NeuroDesk.
         </label>
       </div>
 
@@ -844,7 +844,7 @@
     </form>
 
     <p class="auth-footer-note">
-      By using NeuroDesk, you agree to our <a href="#" onclick="openTerms(event)">Terms &amp; Conditions</a>.
+      By using NeuroDesk, you agree to our <a href="#" onclick="event.preventDefault();openLegal('terms')">Terms &amp; Conditions</a>.
       <br>No account? <a href="order.html">Order directly</a> — no sign-in needed.
     </p>
 
@@ -1241,6 +1241,7 @@ document.getElementById('termsModalOverlay').addEventListener('click', function(
 });
 </script>
 
+<script src="../js/legal-modals.js"></script>
 <script src="../js/main.js"></script>
 </body>
 </html>

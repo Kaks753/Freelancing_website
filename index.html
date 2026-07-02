@@ -1224,8 +1224,8 @@
     <div class="footer__bottom">
       <p class="footer__copyright">© 2026 NeuroDesk. All rights reserved. Intelligence at Your Service.</p>
       <div class="footer__bottom-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
+        <a href="#" onclick="event.preventDefault();openLegal('privacy')">Privacy Policy</a>
+        <a href="#" onclick="event.preventDefault();openLegal('terms')">Terms of Service</a>
       </div>
     </div>
   </div>
@@ -1305,6 +1305,7 @@
 }
 </style>
 
+<script src="js/legal-modals.js"></script>
 <script src="js/main.js"></script>
 <!--Start of Tawk.to Script — enhanced with mobile constraints-->
 <script type="text/javascript">

@@ -391,6 +391,37 @@ input, textarea, select {
   color: white;
 }
 
+/* "See Our Work" — outlined with animated gradient border on hover */
+.btn-portfolio {
+  background: transparent;
+  color: var(--color-accent);
+  border: 1.5px solid var(--color-accent);
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.btn-portfolio::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(24,168,255,0.10), rgba(29,191,115,0.10));
+  opacity: 0;
+  transition: opacity var(--transition);
+  z-index: -1;
+}
+
+.btn-portfolio:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(24,168,255,0.18);
+}
+
+.btn-portfolio:hover::before {
+  opacity: 1;
+}
+
 /* ============================================================
    NAVBAR
    ============================================================ */
@@ -770,6 +801,40 @@ input, textarea, select {
   padding: 12px 16px;
   justify-content: center;
   width: 100%;
+}
+
+/* Mobile Log Out button (injected by firebase-nav.js) */
+.mobile-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid rgba(240, 106, 106, 0.2);
+  border-radius: var(--radius-md);
+  background: rgba(240, 106, 106, 0.06);
+  color: #e05555;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition);
+  margin-top: 4px;
+}
+
+.mobile-logout-btn i {
+  width: 16px;
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.mobile-logout-btn:hover {
+  background: rgba(240, 106, 106, 0.14);
+  border-color: rgba(240, 106, 106, 0.35);
+  color: #c0392b;
 }
 
 /* ============================================================

@@ -60,11 +60,21 @@ onAuthStateChanged(auth, (user) => {
     }
     if (link) link.style.display = 'none';
 
-    // Mobile: update the injected sign-in link to show profile
+    // Mobile: update the injected sign-in link to show "Profile" (clean, short)
     if (mobileSigninLink) {
       mobileSigninLink.href = profileHref;
-      mobileSigninLink.innerHTML = `<i class="fas fa-user-circle"></i> My Profile (${first})`;
-      mobileSigninLink.style.color = 'var(--color-accent)';
+      mobileSigninLink.innerHTML = `<i class="fas fa-user-circle"></i> Profile`;
+      mobileSigninLink.style.cssText = 'color:var(--color-accent);font-weight:600;border-color:rgba(24,168,255,0.15);background:rgba(24,168,255,0.06);';
+
+      // Inject "Log Out" button right after the profile link (only once)
+      if (!document.getElementById('mobileLogoutBtn')) {
+        const logoutBtn = document.createElement('button');
+        logoutBtn.id = 'mobileLogoutBtn';
+        logoutBtn.className = 'mobile-logout-btn';
+        logoutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Log Out';
+        logoutBtn.onclick = () => window.ndSignOut();
+        mobileSigninLink.parentNode.insertBefore(logoutBtn, mobileSigninLink.nextSibling);
+      }
     }
 
   } else {
@@ -75,9 +85,12 @@ onAuthStateChanged(auth, (user) => {
     }
     if (mobileSigninLink) {
       mobileSigninLink.href = authHref;
-      mobileSigninLink.innerHTML = '<i class="fas fa-user-circle"></i> Sign In / Register';
-      mobileSigninLink.style.color = 'var(--color-accent-violet)';
+      mobileSigninLink.innerHTML = '<i class="fas fa-user-circle"></i> Sign In';
+      mobileSigninLink.style.cssText = 'color:var(--color-accent-violet);font-weight:600;border-color:rgba(123,47,190,0.15);background:rgba(123,47,190,0.06);';
     }
+    // Remove logout button if user signed out
+    const existingLogout = document.getElementById('mobileLogoutBtn');
+    if (existingLogout) existingLogout.remove();
   }
 });
 

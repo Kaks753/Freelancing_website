@@ -1159,7 +1159,7 @@
     </div>
     <div class="footer__bottom">
       <p class="footer__copyright">© 2026 NeuroDesk. All rights reserved.</p>
-      <div class="footer__bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+      <div class="footer__bottom-links"><a href="#" onclick="event.preventDefault();openLegal('privacy')">Privacy Policy</a><a href="#" onclick="event.preventDefault();openLegal('terms')">Terms of Service</a></div>
     </div>
   </div>
 </footer>
@@ -1687,6 +1687,7 @@ window.pCheckStrength = function(pw) {
 })();
 </script>
 
+<script src="../js/legal-modals.js"></script>
 <script src="../js/main.js"></script>
 
 <!--Start of Tawk.to Script-->

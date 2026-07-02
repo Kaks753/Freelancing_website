@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     signinLi.className = 'mobile-signin-link';
     signinLi.href = authPath;
     signinLi.setAttribute('id', 'mobileSigninLink');
-    signinLi.innerHTML = '<i class="fas fa-user-circle"></i> Sign In / Account';
+    signinLi.innerHTML = '<i class="fas fa-user-circle"></i> Sign In';
     signinLi.style.cssText = 'color:var(--color-accent-violet);font-weight:600;border-color:rgba(123,47,190,0.15);background:rgba(123,47,190,0.06);';
     mobileLinks.appendChild(signinLi);
   }
