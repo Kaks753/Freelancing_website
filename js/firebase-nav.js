@@ -56,7 +56,6 @@ onAuthStateChanged(auth, (user) => {
       wrap.innerHTML = `
         <a href="${profileHref}" class="navbar__user-btn" title="View profile — ${name}">
           <span class="navbar__user-avatar">${avatar}</span>
-          <span class="navbar__user-name">${first}</span>
         </a>`;
     }
     if (link) link.style.display = 'none';
@@ -65,7 +64,7 @@ onAuthStateChanged(auth, (user) => {
     if (mobileSigninLink) {
       mobileSigninLink.href = profileHref;
       mobileSigninLink.innerHTML = `<i class="fas fa-user-circle"></i> My Profile (${first})`;
-      mobileSigninLink.style.color = 'var(--color-accent-cyan)';
+      mobileSigninLink.style.color = 'var(--color-accent)';
     }
 
   } else {
