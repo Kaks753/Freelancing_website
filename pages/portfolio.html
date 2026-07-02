@@ -9,7 +9,10 @@
   <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
   <link rel="icon" type="image/png" href="../images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
@@ -27,7 +30,7 @@
       border: 1px solid var(--color-border);
       background: transparent;
       color: var(--color-text-secondary);
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-size: 0.88rem;
       font-weight: 600;
       cursor: pointer;
@@ -36,7 +39,7 @@
     .filter-btn:hover,
     .filter-btn.active {
       background: var(--color-accent-violet);
-      border-color: var(--color-accent-violet);
+      border-color: var(--color-accent);
       color: white;
     }
 
@@ -51,9 +54,9 @@
       flex-direction: column;
     }
     .project-card:hover {
-      border-color: var(--color-accent-violet);
+      border-color: var(--color-accent);
       transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(123,47,190,0.2);
+      box-shadow: 0 12px 40px rgba(24,168,255,0.12);
     }
     .project-card.hidden { display: none; }
 
@@ -86,13 +89,13 @@
       letter-spacing: 0.08em;
       margin-bottom: 8px;
     }
-    .project-card__cat--ds { color: var(--color-accent-cyan); }
-    .project-card__cat--web { color: var(--color-accent-violet); }
-    .project-card__cat--academic { color: var(--color-accent-green); }
+    .project-card__cat--ds { color: var(--color-accent); }
+    .project-card__cat--web { color: var(--color-accent); }
+    .project-card__cat--academic { color: #00c48c; }
     .project-card__cat--excel { color: #FF6B6B; }
 
     .project-card__title {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-weight: 700;
       font-size: 1.05rem;
       margin-bottom: 6px;
@@ -119,9 +122,9 @@
       margin-bottom: 18px;
     }
     .tag {
-      background: rgba(123,47,190,0.15);
+      background: rgba(24,168,255,0.15);
       border: 1px solid rgba(123,47,190,0.25);
-      color: var(--color-accent-violet);
+      color: var(--color-accent);
       border-radius: 20px;
       padding: 3px 10px;
       font-size: 0.72rem;
@@ -143,7 +146,7 @@
       text-decoration: none;
       transition: all var(--transition);
       border: 1px solid transparent;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
     }
     .plink--primary {
       background: linear-gradient(135deg, var(--color-accent-violet), var(--color-accent-cyan));
@@ -156,7 +159,7 @@
       color: var(--color-text-secondary);
     }
     .plink--ghost:hover {
-      border-color: var(--color-accent-violet);
+      border-color: var(--color-accent);
       color: white;
     }
 
@@ -238,7 +241,7 @@
     <a href="about.html"><i class="fas fa-user"></i> About</a>
     <a href="../blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a>
     <a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
-    <a href="portal.html" style="color:var(--color-accent-cyan);font-weight:600;border-color:rgba(0,212,255,0.15);background:rgba(0,212,255,0.06);"><i class="fas fa-chart-line"></i> Track My Order</a>
+    <a href="portal.html" style="color:var(--color-accent);font-weight:600;border-color:rgba(0,212,255,0.15);background:rgba(24,168,255,0.06);"><i class="fas fa-chart-line"></i> Track My Order</a>
   </div>
 
   <!-- CTA -->
@@ -262,7 +265,7 @@
         <span>Portfolio</span>
       </div>
       <div class="section-label" style="justify-content:center;"><i class="fas fa-briefcase"></i> Real Work, Real Results</div>
-      <h1 class="page-hero__title">Projects <span style="background:linear-gradient(135deg,var(--color-accent-violet),var(--color-accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Portfolio</span></h1>
+      <h1 class="page-hero__title">Projects <span style="">Portfolio</span></h1>
       <p class="page-hero__subtitle">Live dashboards, deployed ML models, and published work — every project here is real, clickable, and delivered to a real standard.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
         <a href="order.html" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> Start Your Project</a>
@@ -576,7 +579,7 @@
       <div class="footer__col">
         <h4 class="footer__col-title">Contact</h4>
         <ul class="footer__col-links">
-          <li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Email</a></li>
+          <li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent)"></i>Email</a></li>
           <li><a href="https://wa.me/254740624253" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li>
         </ul>
       </div>

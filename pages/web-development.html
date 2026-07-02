@@ -12,7 +12,10 @@
   <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
   <link rel="icon" type="image/png" href="../images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
@@ -24,13 +27,13 @@
       transition: all var(--transition);
     }
     .service-card:hover {
-      border-color: var(--color-accent-cyan);
+      border-color: var(--color-accent);
       transform: translateY(-4px);
     }
     .service-card__price {
       margin-top: 16px;
       font-size: 0.82rem;
-      color: var(--color-accent-cyan);
+      color: var(--color-accent);
       font-weight: 600;
     }
     .services-grid {
@@ -58,10 +61,10 @@
       padding: 20px;
     }
     .tech-category__label {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-weight: 700;
       font-size: 0.85rem;
-      color: var(--color-accent-violet);
+      color: var(--color-accent);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 14px;
@@ -73,7 +76,7 @@
     .tech-pill {
       background: rgba(0,212,255,0.1);
       border: 1px solid rgba(0,212,255,0.2);
-      color: var(--color-accent-cyan);
+      color: var(--color-accent);
       border-radius: 16px;
       padding: 4px 12px;
       font-size: 0.78rem;
@@ -102,12 +105,12 @@
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 16px;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-weight: 700;
       font-size: 1.1rem;
       color: #fff;
     }
-    .process-step__title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; margin-bottom: 8px; font-size: 0.95rem; }
+    .process-step__title { font-family: 'Satoshi', 'Inter', sans-serif; font-weight: 700; margin-bottom: 8px; font-size: 0.95rem; }
     .process-step__text { font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.6; }
 
     .feature-row {
@@ -129,13 +132,13 @@
     }
     .feature-icon {
       width: 40px; height: 40px;
-      background: linear-gradient(135deg, rgba(123,47,190,0.2), rgba(0,212,255,0.2));
+      background: linear-gradient(135deg, rgba(24,168,255,0.12), rgba(0,212,255,0.2));
       border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
       font-size: 18px;
       flex-shrink: 0;
     }
-    .feature-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 6px; }
+    .feature-title { font-family: 'Satoshi', 'Inter', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 6px; }
     .feature-text { font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.6; }
   </style>
 </head>
@@ -193,7 +196,7 @@
     <a href="about.html"><i class="fas fa-user"></i> About</a>
     <a href="../blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a>
     <a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
-    <a href="portal.html" style="color:var(--color-accent-cyan);font-weight:600;border-color:rgba(0,212,255,0.15);background:rgba(0,212,255,0.06);"><i class="fas fa-chart-line"></i> Track My Order</a>
+    <a href="portal.html" style="color:var(--color-accent);font-weight:600;border-color:rgba(0,212,255,0.15);background:rgba(24,168,255,0.06);"><i class="fas fa-chart-line"></i> Track My Order</a>
   </div>
 
   <!-- CTA -->
@@ -242,12 +245,12 @@
       <!-- Landing Pages -->
       <div class="service-card reveal reveal-delay-1">
         <div style="font-size:36px;margin-bottom:16px;">🚀</div>
-        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Landing Pages & Microsites</h4>
+        <h4 style="font-family:'Satoshi','Inter',sans-serif;font-weight:700;margin-bottom:10px;">Landing Pages & Microsites</h4>
         <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Conversion-focused landing pages for products, campaigns, and lead generation. Mobile-first, lightning-fast, and built for results. Includes basic SEO setup.</p>
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">HTML/CSS/JS</span>
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">CRO Optimized</span>
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Fast Delivery</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">HTML/CSS/JS</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">CRO Optimized</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Fast Delivery</span>
         </div>
         <div class="service-card__price">Starting from $40</div>
       </div>
@@ -255,12 +258,12 @@
       <!-- Business Websites -->
       <div class="service-card reveal reveal-delay-2">
         <div style="font-size:36px;margin-bottom:16px;">🌐</div>
-        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Business Websites</h4>
+        <h4 style="font-family:'Satoshi','Inter',sans-serif;font-weight:700;margin-bottom:10px;">Business Websites</h4>
         <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Multi-page business websites with custom design, contact forms, service pages, SEO metadata, Google Analytics integration, and social proof sections.</p>
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Multi-page</span>
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">SEO-Ready</span>
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Analytics</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Multi-page</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">SEO-Ready</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Analytics</span>
         </div>
         <div class="service-card__price">Starting from $80</div>
       </div>
@@ -268,11 +271,11 @@
       <!-- Portfolio & Personal Brand -->
       <div class="service-card reveal reveal-delay-3">
         <div style="font-size:36px;margin-bottom:16px;">🎨</div>
-        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Portfolio & Personal Brand Sites</h4>
+        <h4 style="font-family:'Satoshi','Inter',sans-serif;font-weight:700;margin-bottom:10px;">Portfolio & Personal Brand Sites</h4>
         <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Stunning portfolio sites for creatives, developers, designers, and freelancers. Custom animations, project showcases, and personal branding that makes you unforgettable.</p>
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Custom Animations</span>
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Mobile-First</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Custom Animations</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Mobile-First</span>
         </div>
         <div class="service-card__price">Starting from $60</div>
       </div>
@@ -280,12 +283,12 @@
       <!-- E-Commerce -->
       <div class="service-card reveal reveal-delay-1">
         <div style="font-size:36px;margin-bottom:16px;">🛒</div>
-        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">E-Commerce Stores</h4>
+        <h4 style="font-family:'Satoshi','Inter',sans-serif;font-weight:700;margin-bottom:10px;">E-Commerce Stores</h4>
         <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Full-featured online stores with product catalogs, cart functionality, payment gateway integration (M-Pesa, Stripe, PayPal), order tracking, and admin dashboards.</p>
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">M-Pesa Ready</span>
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Admin Panel</span>
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Inventory</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">M-Pesa Ready</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Admin Panel</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Inventory</span>
         </div>
         <div class="service-card__price">Starting from $200</div>
       </div>
@@ -293,12 +296,12 @@
       <!-- Web Apps & Dashboards -->
       <div class="service-card reveal reveal-delay-2">
         <div style="font-size:36px;margin-bottom:16px;">📊</div>
-        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Web Apps & Data Dashboards</h4>
+        <h4 style="font-family:'Satoshi','Inter',sans-serif;font-weight:700;margin-bottom:10px;">Web Apps & Data Dashboards</h4>
         <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Interactive web apps and data dashboards that connect to APIs, databases, and live data sources — perfect for business intelligence, KPI tracking, and reporting.</p>
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Charts.js / D3</span>
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">REST APIs</span>
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Real-Time</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Charts.js / D3</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">REST APIs</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Real-Time</span>
         </div>
         <div class="service-card__price">Starting from $150</div>
       </div>
@@ -306,12 +309,12 @@
       <!-- Maintenance & Optimization -->
       <div class="service-card reveal reveal-delay-3">
         <div style="font-size:36px;margin-bottom:16px;">⚡</div>
-        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Speed & SEO Optimization</h4>
+        <h4 style="font-family:'Satoshi','Inter',sans-serif;font-weight:700;margin-bottom:10px;">Speed & SEO Optimization</h4>
         <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Audit and optimize existing websites — Lighthouse score improvement, Core Web Vitals fixes, image compression, lazy loading, caching, and on-page SEO improvements.</p>
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Lighthouse 95+</span>
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Core Web Vitals</span>
-          <span style="background:rgba(123,47,190,0.15);border:1px solid rgba(123,47,190,0.3);color:var(--color-accent-violet);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">On-Page SEO</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Lighthouse 95+</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">Core Web Vitals</span>
+          <span style="background:rgba(24,168,255,0.15);border:1px solid rgba(24,168,255,0.2);color:var(--color-accent);border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:500;">On-Page SEO</span>
         </div>
         <div class="service-card__price">Starting from $35</div>
       </div>
@@ -520,7 +523,7 @@
       <div class="footer__col">
         <h4 class="footer__col-title">Contact</h4>
         <ul class="footer__col-links">
-          <li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Email</a></li>
+          <li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent)"></i>Email</a></li>
           <li><a href="https://wa.me/254740624253" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li>
         </ul>
       </div>

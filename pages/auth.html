@@ -8,7 +8,10 @@
   <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
   <link rel="icon" type="image/png" href="../images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
@@ -72,7 +75,7 @@
     }
     .auth-card__brand {
       text-align: center;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-weight: 800;
       font-size: 1.4rem;
       color: white;
@@ -201,14 +204,14 @@
     }
     .auth-input:focus {
       outline: none;
-      border-color: var(--color-accent-violet);
-      box-shadow: 0 0 0 3px rgba(123,47,190,0.15);
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(24,168,255,0.1);
     }
     .auth-input.error {
       border-color: var(--color-accent-pink);
     }
     .auth-input.success {
-      border-color: var(--color-accent-green);
+      border-color: #00c48c;
     }
 
     /* Password toggle */
@@ -262,7 +265,7 @@
     }
     .field-hint.visible { display: block; }
     .field-hint.error { color: var(--color-accent-pink); }
-    .field-hint.success { color: var(--color-accent-green); }
+    .field-hint.success { color: #00c48c; }
 
     /* Profile extra fields */
     .signup-extra {
@@ -297,8 +300,8 @@
     }
     .auth-select:focus {
       outline: none;
-      border-color: var(--color-accent-violet);
-      box-shadow: 0 0 0 3px rgba(123,47,190,0.15);
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(24,168,255,0.1);
     }
 
     /* Terms checkbox */
@@ -311,7 +314,7 @@
     }
     .terms-group input[type="checkbox"] {
       margin-top: 2px;
-      accent-color: var(--color-accent-violet);
+      accent-color: var(--color-accent);
       width: 16px;
       height: 16px;
       flex-shrink: 0;
@@ -324,7 +327,7 @@
       cursor: pointer;
     }
     .terms-group a {
-      color: var(--color-accent-cyan);
+      color: var(--color-accent);
       text-decoration: underline;
       text-underline-offset: 2px;
     }
@@ -339,7 +342,7 @@
       color: white;
       font-size: 0.95rem;
       font-weight: 700;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       cursor: pointer;
       transition: all 0.25s ease;
       display: flex;
@@ -378,12 +381,12 @@
     .auth-message.success {
       background: rgba(0,229,160,0.1);
       border: 1px solid rgba(0,229,160,0.25);
-      color: var(--color-accent-green);
+      color: #00c48c;
     }
     .auth-message.info {
       background: rgba(0,212,255,0.08);
       border: 1px solid rgba(0,212,255,0.2);
-      color: var(--color-accent-cyan);
+      color: var(--color-accent);
     }
 
     /* Forgot password */
@@ -397,7 +400,7 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-    .auth-forgot a:hover { color: var(--color-accent-cyan); }
+    .auth-forgot a:hover { color: var(--color-accent); }
 
     /* Footer note */
     .auth-footer-note {
@@ -407,7 +410,7 @@
       margin-top: 8px;
     }
     .auth-footer-note a {
-      color: var(--color-accent-cyan);
+      color: var(--color-accent);
       text-decoration: underline;
       text-underline-offset: 2px;
     }
@@ -423,7 +426,7 @@
       padding: 4px 12px;
       font-size: 0.72rem;
       font-weight: 700;
-      color: var(--color-accent-green);
+      color: #00c48c;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       margin-bottom: 16px;
@@ -474,7 +477,7 @@
       flex-shrink: 0;
     }
     .terms-modal__title {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-weight: 700;
       font-size: 1.1rem;
     }
@@ -501,7 +504,7 @@
       color: var(--color-text-secondary);
     }
     .terms-modal__body h3 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-size: 0.95rem;
       font-weight: 700;
       color: var(--color-text-primary);
@@ -562,17 +565,17 @@
       align-items: center;
       gap: 6px;
       padding: 7px 12px;
-      background: rgba(123,47,190,0.12);
+      background: rgba(24,168,255,0.12);
       border: 1px solid rgba(123,47,190,0.25);
       border-radius: 7px;
-      color: var(--color-accent-violet);
+      color: var(--color-accent);
       font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
     }
     .avatar-upload-btn:hover {
-      background: rgba(123,47,190,0.2);
+      background: rgba(24,168,255,0.2);
     }
 
     @media (max-width: 480px) {
@@ -715,7 +718,7 @@
       </div>
 
       <div class="auth-form-group">
-        <label for="signupName">Full Name <span style="color:var(--color-accent-pink)">*</span></label>
+        <label for="signupName">Full Name <span style="color:var(--color-accent)">*</span></label>
         <div class="auth-input-wrap">
           <i class="fas fa-user"></i>
           <input type="text" id="signupName" class="auth-input" placeholder="e.g. Alex Johnson" autocomplete="name" required oninput="updateAvatarInitial()" />
@@ -724,7 +727,7 @@
       </div>
 
       <div class="auth-form-group">
-        <label for="signupEmail">Email address <span style="color:var(--color-accent-pink)">*</span></label>
+        <label for="signupEmail">Email address <span style="color:var(--color-accent)">*</span></label>
         <div class="auth-input-wrap">
           <i class="fas fa-envelope"></i>
           <input type="email" id="signupEmail" class="auth-input" placeholder="you@example.com" autocomplete="email" required />
@@ -790,7 +793,7 @@
       </div>
 
       <div class="auth-form-group">
-        <label for="signupPassword">Password <span style="color:var(--color-accent-pink)">*</span></label>
+        <label for="signupPassword">Password <span style="color:var(--color-accent)">*</span></label>
         <div class="auth-input-wrap">
           <i class="fas fa-lock"></i>
           <input type="password" id="signupPassword" class="auth-input" placeholder="Min 8 characters" autocomplete="new-password" required oninput="checkStrength(this.value)" />
@@ -809,7 +812,7 @@
       </div>
 
       <div class="auth-form-group">
-        <label for="signupConfirmPw">Confirm Password <span style="color:var(--color-accent-pink)">*</span></label>
+        <label for="signupConfirmPw">Confirm Password <span style="color:var(--color-accent)">*</span></label>
         <div class="auth-input-wrap">
           <i class="fas fa-lock"></i>
           <input type="password" id="signupConfirmPw" class="auth-input" placeholder="Repeat password" autocomplete="new-password" required oninput="checkConfirm()" />
@@ -848,7 +851,7 @@
 <div class="terms-modal-overlay" id="termsModalOverlay">
   <div class="terms-modal" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle">
     <div class="terms-modal__header">
-      <div class="terms-modal__title" id="termsModalTitle"><i class="fas fa-file-contract" style="color:var(--color-accent-violet);margin-right:8px;"></i>Terms &amp; Conditions</div>
+      <div class="terms-modal__title" id="termsModalTitle"><i class="fas fa-file-contract" style="color:var(--color-accent);margin-right:8px;"></i>Terms &amp; Conditions</div>
       <button class="terms-modal__close" onclick="closeTerms()" aria-label="Close"><i class="fas fa-times"></i></button>
     </div>
     <div class="terms-modal__body">
@@ -912,7 +915,7 @@
       <p>NeuroDesk reserves the right to update these Terms at any time. Continued use of services after changes constitutes acceptance of the revised Terms.</p>
 
       <h3>11. Contact</h3>
-      <p>For questions about these Terms, contact us at <a href="mailto:musyokas753@gmail.com" style="color:var(--color-accent-cyan);">musyokas753@gmail.com</a> or via WhatsApp at +254 740 624 253.</p>
+      <p>For questions about these Terms, contact us at <a href="mailto:musyokas753@gmail.com" style="color:var(--color-accent);">musyokas753@gmail.com</a> or via WhatsApp at +254 740 624 253.</p>
     </div>
     <div class="terms-modal__footer">
       <button class="btn btn-secondary btn-sm" onclick="closeTerms()">Close</button>
@@ -1169,7 +1172,7 @@ window.checkStrength = function(pw) {
     { max: 1, color: '#FF6B6B', label: 'Very Weak' },
     { max: 2, color: '#FFB347', label: 'Weak' },
     { max: 3, color: '#FFD700', label: 'Fair' },
-    { max: 4, color: '#00D4FF', label: 'Strong' },
+    { max: 4, color: '#18a8ff', label: 'Strong' },
     { max: 5, color: '#00E5A0', label: 'Very Strong 💪' },
   ];
   const lv = levels[Math.min(score - 1, 4)] || levels[0];

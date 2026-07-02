@@ -12,7 +12,10 @@
   <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
   <link rel="icon" type="image/png" href="../images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
@@ -24,14 +27,14 @@
       transition: all var(--transition);
     }
     .service-card:hover {
-      border-color: var(--color-accent-violet);
+      border-color: var(--color-accent);
       transform: translateY(-4px);
     }
     .service-card__icon { font-size: 36px; margin-bottom: 16px; }
     .service-card__price {
       margin-top: 16px;
       font-size: 0.82rem;
-      color: var(--color-accent-cyan);
+      color: var(--color-accent);
       font-weight: 600;
     }
     .services-grid {
@@ -60,7 +63,7 @@
       text-align: center;
     }
     .guarantee-card__icon { font-size: 32px; margin-bottom: 12px; }
-    .guarantee-card__title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; margin-bottom: 8px; }
+    .guarantee-card__title { font-family: 'Satoshi', 'Inter', sans-serif; font-weight: 700; margin-bottom: 8px; }
     .guarantee-card__text { font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.6; }
 
     .tools-list {
@@ -70,9 +73,9 @@
       margin-top: 20px;
     }
     .tool-chip {
-      background: rgba(123,47,190,0.15);
-      border: 1px solid rgba(123,47,190,0.3);
-      color: var(--color-accent-violet);
+      background: rgba(24,168,255,0.15);
+      border: 1px solid rgba(24,168,255,0.2);
+      color: var(--color-accent);
       border-radius: 20px;
       padding: 5px 14px;
       font-size: 0.8rem;
@@ -101,12 +104,12 @@
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 16px;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-weight: 700;
       font-size: 1.1rem;
       color: #fff;
     }
-    .process-step__title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; margin-bottom: 8px; }
+    .process-step__title { font-family: 'Satoshi', 'Inter', sans-serif; font-weight: 700; margin-bottom: 8px; }
     .process-step__text { font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.6; }
 
     .subjects-grid {
@@ -128,7 +131,7 @@
       font-size: 0.9rem;
       font-weight: 500;
     }
-    .subject-item i { color: var(--color-accent-cyan); width: 18px; text-align: center; }
+    .subject-item i { color: var(--color-accent); width: 18px; text-align: center; }
   </style>
 </head>
 <body>
@@ -185,7 +188,7 @@
     <a href="about.html"><i class="fas fa-user"></i> About</a>
     <a href="../blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a>
     <a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
-    <a href="portal.html" style="color:var(--color-accent-cyan);font-weight:600;border-color:rgba(0,212,255,0.15);background:rgba(0,212,255,0.06);"><i class="fas fa-chart-line"></i> Track My Order</a>
+    <a href="portal.html" style="color:var(--color-accent);font-weight:600;border-color:rgba(0,212,255,0.15);background:rgba(24,168,255,0.06);"><i class="fas fa-chart-line"></i> Track My Order</a>
   </div>
 
   <!-- CTA -->
@@ -211,7 +214,7 @@
         <span>Academic Writing</span>
       </div>
       <div class="section-label" style="justify-content:center;"><i class="fas fa-graduation-cap"></i> Pillar 02</div>
-      <h1 class="page-hero__title">Academic <span style="background:linear-gradient(135deg,var(--color-accent-violet),var(--color-accent-cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Writing</span> Services</h1>
+      <h1 class="page-hero__title">Academic <span style="">Writing</span> Services</h1>
       <p class="page-hero__subtitle">From dissertations to research papers — expert academic support grounded in rigorous research, proper methodology, and on-time delivery. Every piece is original, cited, and built to impress.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px;">
         <a href="order.html" class="btn btn-primary btn-sm"><i class="fas fa-rocket"></i> Get a Free Quote</a>
@@ -234,7 +237,7 @@
       <!-- Dissertations & Theses -->
       <div class="service-card reveal reveal-delay-1">
         <div class="service-card__icon">🎓</div>
-        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Dissertation & Thesis Writing</h4>
+        <h4 style="font-family:'Satoshi','Inter',sans-serif;font-weight:700;margin-bottom:10px;">Dissertation & Thesis Writing</h4>
         <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Full dissertation support from proposal to final chapter — literature review, methodology, data collection, analysis, and discussion. Undergraduate through PhD level.</p>
         <div class="tools-list">
           <span class="tool-chip">Chapter-by-Chapter</span>
@@ -247,7 +250,7 @@
       <!-- Research Papers -->
       <div class="service-card reveal reveal-delay-2">
         <div class="service-card__icon">📄</div>
-        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Research Paper Writing</h4>
+        <h4 style="font-family:'Satoshi','Inter',sans-serif;font-weight:700;margin-bottom:10px;">Research Paper Writing</h4>
         <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Peer-review-ready research papers with strong argumentation, up-to-date citations, correct structure (IMRaD or custom), and plagiarism-free guarantee.</p>
         <div class="tools-list">
           <span class="tool-chip">IMRaD Format</span>
@@ -260,7 +263,7 @@
       <!-- Literature Review -->
       <div class="service-card reveal reveal-delay-3">
         <div class="service-card__icon">📚</div>
-        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Literature Review</h4>
+        <h4 style="font-family:'Satoshi','Inter',sans-serif;font-weight:700;margin-bottom:10px;">Literature Review</h4>
         <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Comprehensive, critically evaluated literature reviews synthesizing peer-reviewed sources. Thematic, chronological, or methodological structures — your choice.</p>
         <div class="tools-list">
           <span class="tool-chip">50+ Sources</span>
@@ -273,7 +276,7 @@
       <!-- Essays & Coursework -->
       <div class="service-card reveal reveal-delay-1">
         <div class="service-card__icon">✍️</div>
-        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Essays & Coursework</h4>
+        <h4 style="font-family:'Satoshi','Inter',sans-serif;font-weight:700;margin-bottom:10px;">Essays & Coursework</h4>
         <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Well-structured, thoroughly researched essays across all academic levels. Analytical, argumentative, comparative, reflective — every type handled with care.</p>
         <div class="tools-list">
           <span class="tool-chip">All Essay Types</span>
@@ -286,7 +289,7 @@
       <!-- Proofreading & Editing -->
       <div class="service-card reveal reveal-delay-2">
         <div class="service-card__icon">🔍</div>
-        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Proofreading & Editing</h4>
+        <h4 style="font-family:'Satoshi','Inter',sans-serif;font-weight:700;margin-bottom:10px;">Proofreading & Editing</h4>
         <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">Grammar, clarity, flow, argument consistency, citation formatting, and academic register polishing. Transform a good paper into a publishable one.</p>
         <div class="tools-list">
           <span class="tool-chip">Grammar & Style</span>
@@ -299,7 +302,7 @@
       <!-- Statistical Analysis -->
       <div class="service-card reveal reveal-delay-3">
         <div class="service-card__icon">📊</div>
-        <h4 style="font-family:'Space Grotesk',sans-serif;font-weight:700;margin-bottom:10px;">Statistical Data Analysis</h4>
+        <h4 style="font-family:'Satoshi','Inter',sans-serif;font-weight:700;margin-bottom:10px;">Statistical Data Analysis</h4>
         <p style="font-size:0.85rem;color:var(--color-text-secondary);line-height:1.7;">SPSS, R, or Excel-based quantitative analysis for academic research — hypothesis testing, regression, ANOVA, factor analysis, and interpretation write-up.</p>
         <div class="tools-list">
           <span class="tool-chip">SPSS</span>
@@ -325,14 +328,14 @@
       <p class="section-subtitle">No matter what your university or journal requires — we format it correctly, every time.</p>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:18px;" class="reveal">
-      <span style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent-cyan);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Space Grotesk',sans-serif;">APA 7th Edition</span>
-      <span style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent-cyan);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Space Grotesk',sans-serif;">MLA 9th Edition</span>
-      <span style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent-cyan);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Space Grotesk',sans-serif;">Harvard Referencing</span>
-      <span style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent-cyan);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Space Grotesk',sans-serif;">Chicago / Turabian</span>
-      <span style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent-cyan);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Space Grotesk',sans-serif;">IEEE</span>
-      <span style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent-cyan);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Space Grotesk',sans-serif;">Vancouver</span>
-      <span style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent-cyan);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Space Grotesk',sans-serif;">Oxford OSCOLA</span>
-      <span style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent-cyan);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Space Grotesk',sans-serif;">Custom Style</span>
+      <span style="background:rgba(24,168,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Satoshi','Inter',sans-serif;">APA 7th Edition</span>
+      <span style="background:rgba(24,168,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Satoshi','Inter',sans-serif;">MLA 9th Edition</span>
+      <span style="background:rgba(24,168,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Satoshi','Inter',sans-serif;">Harvard Referencing</span>
+      <span style="background:rgba(24,168,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Satoshi','Inter',sans-serif;">Chicago / Turabian</span>
+      <span style="background:rgba(24,168,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Satoshi','Inter',sans-serif;">IEEE</span>
+      <span style="background:rgba(24,168,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Satoshi','Inter',sans-serif;">Vancouver</span>
+      <span style="background:rgba(24,168,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Satoshi','Inter',sans-serif;">Oxford OSCOLA</span>
+      <span style="background:rgba(24,168,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--color-accent);border-radius:8px;padding:10px 20px;font-size:0.9rem;font-weight:600;font-family:'Satoshi','Inter',sans-serif;">Custom Style</span>
     </div>
   </div>
 </section>
@@ -475,7 +478,7 @@
       <div class="footer__col">
         <h4 class="footer__col-title">Contact</h4>
         <ul class="footer__col-links">
-          <li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Email</a></li>
+          <li><a href="mailto:musyokas753@gmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent)"></i>Email</a></li>
           <li><a href="https://wa.me/254740624253" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li>
         </ul>
       </div>

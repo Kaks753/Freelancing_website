@@ -8,7 +8,10 @@
   <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
   <link rel="icon" type="image/png" href="../images/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
@@ -23,19 +26,19 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(123,47,190,0.12);
-      border: 1px solid rgba(123,47,190,0.3);
+      background: rgba(24,168,255,0.12);
+      border: 1px solid rgba(24,168,255,0.2);
       border-radius: 100px;
       padding: 6px 16px;
       font-size: 0.78rem;
       font-weight: 600;
-      color: var(--color-accent-violet);
+      color: var(--color-accent);
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 20px;
     }
     .portal-hero__title {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-size: clamp(2rem, 5vw, 3.2rem);
       font-weight: 800;
       line-height: 1.15;
@@ -66,7 +69,7 @@
       margin: 0 auto 60px;
     }
     .lookup-card h2 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-size: 1.3rem;
       font-weight: 700;
       margin-bottom: 8px;
@@ -94,7 +97,7 @@
       text-align: center;
     }
     .lookup-hint a {
-      color: var(--color-accent-cyan);
+      color: var(--color-accent);
       text-decoration: none;
     }
 
@@ -110,7 +113,7 @@
     .project-card.visible { display: block; }
 
     .project-card__header {
-      background: linear-gradient(135deg, rgba(123,47,190,0.15), rgba(0,212,255,0.1));
+      background: linear-gradient(135deg, rgba(24,168,255,0.1), rgba(0,212,255,0.1));
       padding: 28px 32px;
       border-bottom: 1px solid var(--color-border);
       display: flex;
@@ -120,16 +123,16 @@
       gap: 16px;
     }
     .project-card__id {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--color-accent-cyan);
+      color: var(--color-accent);
       margin-bottom: 6px;
     }
     .project-card__title {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-size: 1.4rem;
       font-weight: 700;
     }
@@ -151,9 +154,9 @@
       white-space: nowrap;
     }
     .status-badge--received   { background: rgba(255,107,107,0.15); color: #FF6B6B; border: 1px solid rgba(255,107,107,0.3); }
-    .status-badge--in-progress { background: rgba(0,212,255,0.12); color: var(--color-accent-cyan); border: 1px solid rgba(0,212,255,0.3); }
-    .status-badge--review     { background: rgba(123,47,190,0.12); color: var(--color-accent-violet); border: 1px solid rgba(123,47,190,0.3); }
-    .status-badge--done       { background: rgba(0,229,160,0.12); color: var(--color-accent-green); border: 1px solid rgba(0,229,160,0.3); }
+    .status-badge--in-progress { background: rgba(0,212,255,0.12); color: var(--color-accent); border: 1px solid rgba(0,212,255,0.3); }
+    .status-badge--review     { background: rgba(24,168,255,0.12); color: var(--color-accent); border: 1px solid rgba(24,168,255,0.2); }
+    .status-badge--done       { background: rgba(0,229,160,0.12); color: #00c48c; border: 1px solid rgba(0,229,160,0.3); }
     .status-dot {
       width: 8px; height: 8px;
       border-radius: 50%;
@@ -184,7 +187,7 @@
       margin-bottom: 6px;
     }
     .detail-item__value {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-size: 1rem;
       font-weight: 600;
       color: var(--color-text-primary);
@@ -192,7 +195,7 @@
 
     /* ── Progress Timeline ── */
     .timeline-section h3 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-size: 1rem;
       font-weight: 700;
       margin-bottom: 20px;
@@ -234,11 +237,11 @@
     }
     .timeline-item--done .timeline-item__dot {
       background: var(--color-accent-green);
-      border-color: var(--color-accent-green);
+      border-color: #00c48c;
     }
     .timeline-item--active .timeline-item__dot {
       background: var(--color-accent-cyan);
-      border-color: var(--color-accent-cyan);
+      border-color: var(--color-accent);
       box-shadow: 0 0 0 4px rgba(0,212,255,0.2);
     }
     .timeline-item__dot i { font-size: 8px; color: white; }
@@ -249,7 +252,7 @@
     }
     .timeline-item--done .timeline-item__label { color: var(--color-text-primary); }
     .timeline-item--pending .timeline-item__label { color: var(--color-text-muted); }
-    .timeline-item--active .timeline-item__label { color: var(--color-accent-cyan); }
+    .timeline-item--active .timeline-item__label { color: var(--color-accent); }
     .timeline-item__date {
       font-size: 0.78rem;
       color: var(--color-text-muted);
@@ -260,7 +263,7 @@
       margin-bottom: 32px;
     }
     .deliverables-section h3 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-size: 1rem;
       font-weight: 700;
       margin-bottom: 16px;
@@ -279,16 +282,16 @@
       border: 1px solid var(--color-border);
       transition: border-color 0.2s;
     }
-    .deliverable-file:hover { border-color: var(--color-accent-violet); }
+    .deliverable-file:hover { border-color: var(--color-accent); }
     .deliverable-file__icon {
       width: 40px; height: 40px;
       border-radius: var(--radius-sm);
-      background: rgba(123,47,190,0.15);
+      background: rgba(24,168,255,0.15);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 18px;
-      color: var(--color-accent-violet);
+      color: var(--color-accent);
       flex-shrink: 0;
     }
     .deliverable-file__info { flex: 1; }
@@ -325,7 +328,7 @@
     /* ── Message from NeuroDesk ── */
     .message-box {
       background: linear-gradient(135deg, rgba(123,47,190,0.08), rgba(0,212,255,0.05));
-      border: 1px solid rgba(123,47,190,0.2);
+      border: 1px solid rgba(24,168,255,0.12);
       border-radius: var(--radius-md);
       padding: 22px 24px;
       margin-bottom: 32px;
@@ -385,7 +388,7 @@
       opacity: 0.4;
     }
     .portal-empty__title {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-size: 1.3rem;
       font-weight: 700;
       margin-bottom: 8px;
@@ -407,7 +410,7 @@
     .portal-spinner {
       width: 40px; height: 40px;
       border: 3px solid var(--color-border);
-      border-top-color: var(--color-accent-violet);
+      border-top-color: var(--color-accent);
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
       margin: 0 auto 16px;
@@ -423,7 +426,7 @@
       margin: 0 auto 60px;
     }
     .how-section h2 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-size: 1.3rem;
       font-weight: 700;
       margin-bottom: 24px;
@@ -444,7 +447,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-weight: 800;
       font-size: 1.2rem;
       color: white;
@@ -531,7 +534,7 @@
       filter: drop-shadow(0 0 10px rgba(0,212,255,0.4));
     }
     .portal-auth-title {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       font-size: 1.35rem;
       font-weight: 800;
       text-align: center;
@@ -566,7 +569,7 @@
       transition: all 0.22s ease;
       border: none;
       background: transparent;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
     }
     .portal-auth-tab.active {
       background: var(--color-accent-violet);
@@ -643,7 +646,7 @@
     }
     .portal-auth-input:focus {
       outline: none;
-      border-color: var(--color-accent-violet);
+      border-color: var(--color-accent);
       box-shadow: 0 0 0 3px rgba(123,47,190,0.14);
     }
     .portal-auth-toggle-pw {
@@ -667,7 +670,7 @@
     /* Forgot link */
     .portal-auth-forgot { text-align:right; margin-bottom:3px; }
     .portal-auth-forgot a { font-size:0.75rem; color:var(--color-text-muted); text-decoration:none; transition:color 0.2s; }
-    .portal-auth-forgot a:hover { color:var(--color-accent-cyan); }
+    .portal-auth-forgot a:hover { color:var(--color-accent); }
 
     /* Terms */
     .portal-terms-row {
@@ -678,11 +681,11 @@
       margin-top: 2px;
     }
     .portal-terms-row input[type="checkbox"] {
-      margin-top: 2px; accent-color: var(--color-accent-violet);
+      margin-top: 2px; accent-color: var(--color-accent);
       width:15px; height:15px; flex-shrink:0; cursor:pointer;
     }
     .portal-terms-row label { font-size:0.75rem; color:var(--color-text-muted); line-height:1.5; cursor:pointer; }
-    .portal-terms-row a { color:var(--color-accent-cyan); text-decoration:underline; text-underline-offset:2px; }
+    .portal-terms-row a { color:var(--color-accent); text-decoration:underline; text-underline-offset:2px; }
 
     /* Submit button */
     .portal-auth-submit {
@@ -694,7 +697,7 @@
       color: white;
       font-size: 0.92rem;
       font-weight: 700;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
       cursor: pointer;
       transition: all 0.22s;
       display: flex;
@@ -721,13 +724,13 @@
       gap: 8px;
     }
     .portal-auth-msg.on { display:flex; }
-    .portal-auth-msg.err { background:rgba(255,107,107,0.1); border:1px solid rgba(255,107,107,0.25); color:var(--color-accent-pink); }
-    .portal-auth-msg.ok  { background:rgba(0,229,160,0.1); border:1px solid rgba(0,229,160,0.25); color:var(--color-accent-green); }
-    .portal-auth-msg.inf { background:rgba(0,212,255,0.08); border:1px solid rgba(0,212,255,0.2); color:var(--color-accent-cyan); }
+    .portal-auth-msg.err { background:rgba(255,107,107,0.1); border:1px solid rgba(255,107,107,0.25); color:var(--color-accent); }
+    .portal-auth-msg.ok  { background:rgba(0,229,160,0.1); border:1px solid rgba(0,229,160,0.25); color:#00c48c; }
+    .portal-auth-msg.inf { background:rgba(24,168,255,0.08); border:1px solid rgba(0,212,255,0.2); color:var(--color-accent); }
 
     /* Footer note */
     .portal-auth-footnote { text-align:center; font-size:0.75rem; color:var(--color-text-muted); margin-top:4px; }
-    .portal-auth-footnote a { color:var(--color-accent-cyan); }
+    .portal-auth-footnote a { color:var(--color-accent); }
 
     /* Spinner */
     .p-spin { width:15px; height:15px; border:2px solid rgba(255,255,255,0.3); border-top-color:white; border-radius:50%; animation:spin 0.7s linear infinite; display:none; }
@@ -741,7 +744,7 @@
       flex-wrap: wrap;
       gap: 12px;
       padding: 14px 20px;
-      background: rgba(123,47,190,0.08);
+      background: rgba(24,168,255,0.08);
       border: 1px solid rgba(123,47,190,0.18);
       border-radius: 12px;
       margin-bottom: 28px;
@@ -780,7 +783,7 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Satoshi', 'Inter', sans-serif;
     }
     .portal-signout-btn:hover { background:rgba(255,107,107,0.15); border-color:rgba(255,107,107,0.35); }
 
@@ -840,7 +843,7 @@
     <a href="about.html"><i class="fas fa-user"></i> About</a>
     <a href="../blog/index.html"><i class="fas fa-pen-nib"></i> Blog</a>
     <a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
-    <a href="portal.html" style="color:var(--color-accent-cyan);font-weight:600;border-color:rgba(0,212,255,0.15);background:rgba(0,212,255,0.06);"><i class="fas fa-chart-line"></i> Track My Order</a>
+    <a href="portal.html" style="color:var(--color-accent);font-weight:600;border-color:rgba(0,212,255,0.15);background:rgba(24,168,255,0.06);"><i class="fas fa-chart-line"></i> Track My Order</a>
   </div>
 
   <!-- CTA -->
@@ -904,21 +907,21 @@
     <!-- ── REGISTER FORM ── -->
     <form id="pRegisterForm" style="display:none;" onsubmit="pEmailRegister(event)" novalidate>
       <div class="portal-auth-group">
-        <label for="pRegName">Full Name <span style="color:var(--color-accent-pink)">*</span></label>
+        <label for="pRegName">Full Name <span style="color:var(--color-accent)">*</span></label>
         <div class="portal-auth-input-wrap">
           <i class="fas fa-user"></i>
           <input type="text" id="pRegName" class="portal-auth-input" placeholder="e.g. Alex Johnson" autocomplete="name" required />
         </div>
       </div>
       <div class="portal-auth-group">
-        <label for="pRegEmail">Email <span style="color:var(--color-accent-pink)">*</span></label>
+        <label for="pRegEmail">Email <span style="color:var(--color-accent)">*</span></label>
         <div class="portal-auth-input-wrap">
           <i class="fas fa-envelope"></i>
           <input type="email" id="pRegEmail" class="portal-auth-input" placeholder="you@example.com" autocomplete="email" required />
         </div>
       </div>
       <div class="portal-auth-group">
-        <label for="pRegPw">Password <span style="color:var(--color-accent-pink)">*</span></label>
+        <label for="pRegPw">Password <span style="color:var(--color-accent)">*</span></label>
         <div class="portal-auth-input-wrap">
           <i class="fas fa-lock"></i>
           <input type="password" id="pRegPw" class="portal-auth-input" placeholder="Min 8 characters" autocomplete="new-password" required oninput="pCheckStrength(this.value)" />
@@ -975,7 +978,7 @@
 
     <!-- Lookup Card -->
     <div class="lookup-card reveal">
-      <h2><i class="fas fa-search" style="color:var(--color-accent-violet);margin-right:10px;"></i> Look Up Your Order</h2>
+      <h2><i class="fas fa-search" style="color:var(--color-accent);margin-right:10px;"></i> Look Up Your Order</h2>
       <p>Enter the email you used to place the order, plus your order reference (e.g. <strong>ND-2026-001</strong>). Both fields are required.</p>
       <div class="lookup-row">
         <input type="email" id="portalEmail" class="form-input" placeholder="your@email.com" />
@@ -1054,7 +1057,7 @@
 
         <!-- Progress Timeline -->
         <div class="timeline-section">
-          <h3><i class="fas fa-list-check" style="color:var(--color-accent-violet);"></i> Project Milestones</h3>
+          <h3><i class="fas fa-list-check" style="color:var(--color-accent);"></i> Project Milestones</h3>
           <div class="timeline" id="pc-timeline">
             <!-- filled by JS -->
           </div>
@@ -1062,7 +1065,7 @@
 
         <!-- Deliverables -->
         <div class="deliverables-section">
-          <h3><i class="fas fa-download" style="color:var(--color-accent-green);"></i> Deliverables</h3>
+          <h3><i class="fas fa-download" style="color:#00c48c;"></i> Deliverables</h3>
           <div id="pc-deliverables">
             <!-- filled by JS -->
           </div>
@@ -1112,19 +1115,19 @@
 
     <!-- Setup Instructions (visible only in admin view, hidden on client side) -->
     <div style="background:var(--color-bg-card);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:32px;max-width:860px;margin:0 auto 60px;" class="reveal">
-      <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:16px;display:flex;align-items:center;gap:10px;">
-        <i class="fas fa-cog" style="color:var(--color-accent-violet);"></i> NeuroDesk Setup Instructions
+      <h3 style="font-family:'Satoshi','Inter',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:16px;display:flex;align-items:center;gap:10px;">
+        <i class="fas fa-cog" style="color:var(--color-accent);"></i> NeuroDesk Setup Instructions
       </h3>
       <p style="font-size:0.85rem;color:var(--color-text-muted);margin-bottom:20px;">One-time Google Sheets setup to power the portal. Takes 5 minutes.</p>
       <ol style="font-size:0.85rem;line-height:2;color:var(--color-text-secondary);padding-left:20px;">
-        <li>Go to <strong><a href="https://sheets.google.com" target="_blank" style="color:var(--color-accent-cyan);">Google Sheets</a></strong> → Create a new sheet called <strong>"NeuroDesk Orders"</strong></li>
+        <li>Go to <strong><a href="https://sheets.google.com" target="_blank" style="color:var(--color-accent);">Google Sheets</a></strong> → Create a new sheet called <strong>"NeuroDesk Orders"</strong></li>
         <li>Create columns in row 1: <code>ref | email | clientName | service | serviceShort | deadline | price | status | updated | message | file1Name | file1Url | file2Name | file2Url | milestone1 | milestone1Done | milestone2 | milestone2Done | milestone3 | milestone3Done | milestone4 | milestone4Done</code></li>
         <li>Go to <strong>File → Share → Publish to web</strong> → Choose "Sheet1" → Format: <strong>CSV</strong> → Click "Publish"</li>
         <li>Copy the published CSV URL and update the <code>SHEET_URL</code> constant in the JavaScript below</li>
         <li>Add orders row by row. Status values: <code>Received</code> / <code>In Progress</code> / <code>Review</code> / <code>Done</code></li>
         <li>To share a deliverable file: upload to Google Drive, copy the shareable link, paste in <code>file1Url</code></li>
       </ol>
-      <div style="background:var(--color-bg-secondary);border-radius:var(--radius-sm);padding:16px;margin-top:16px;font-family:monospace;font-size:0.8rem;color:var(--color-accent-cyan);">
+      <div style="background:var(--color-bg-secondary);border-radius:var(--radius-sm);padding:16px;margin-top:16px;font-family:monospace;font-size:0.8rem;color:var(--color-accent);">
         // Replace this URL with your published Google Sheet CSV URL:<br>
         const SHEET_URL = "https://docs.google.com/spreadsheets/d/1ytVRvxfhQ48lopNRANLqUnHykOUwLJxPc6laLXQDG8k/pub?output=csv";
       </div>
@@ -1146,7 +1149,7 @@
       </div>
       <div class="footer__col"><h4 class="footer__col-title">Services</h4><ul class="footer__col-links"><li><a href="data-science.html">Data Science & ML</a></li><li><a href="academic-writing.html">Academic Writing</a></li><li><a href="web-development.html">Web Development</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
       <div class="footer__col"><h4 class="footer__col-title">Company</h4><ul class="footer__col-links"><li><a href="about.html">About</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="../blog/index.html">Blog</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
-      <div class="footer__col"><h4 class="footer__col-title">Order</h4><ul class="footer__col-links"><li><a href="order.html"><i class="fas fa-rocket" style="margin-right:6px;color:var(--color-accent-violet)"></i>Place Order</a></li><li><a href="portal.html"><i class="fas fa-chart-line" style="margin-right:6px;color:var(--color-accent-cyan)"></i>Track Order</a></li><li><a href="contact.html"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent-violet)"></i>Contact Us</a></li><li><a href="https://wa.me/254740624253" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li></ul></div>
+      <div class="footer__col"><h4 class="footer__col-title">Order</h4><ul class="footer__col-links"><li><a href="order.html"><i class="fas fa-rocket" style="margin-right:6px;color:var(--color-accent)"></i>Place Order</a></li><li><a href="portal.html"><i class="fas fa-chart-line" style="margin-right:6px;color:var(--color-accent)"></i>Track Order</a></li><li><a href="contact.html"><i class="fas fa-envelope" style="margin-right:6px;color:var(--color-accent)"></i>Contact Us</a></li><li><a href="https://wa.me/254740624253" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;color:#25D366"></i>WhatsApp</a></li></ul></div>
     </div>
     <div class="footer__bottom">
       <p class="footer__copyright">© 2026 NeuroDesk. All rights reserved.</p>
@@ -1412,7 +1415,7 @@ window.pCheckStrength = function(pw) {
   if (/[A-Z]/.test(pw)) s++;
   if (/[0-9]/.test(pw)) s++;
   if (/[^A-Za-z0-9]/.test(pw)) s++;
-  const lv = [{c:'#FF6B6B',t:'Very Weak'},{c:'#FFB347',t:'Weak'},{c:'#FFD700',t:'Fair'},{c:'#00D4FF',t:'Strong'},{c:'#00E5A0',t:'Very Strong 💪'}];
+  const lv = [{c:'#FF6B6B',t:'Very Weak'},{c:'#FFB347',t:'Weak'},{c:'#FFD700',t:'Fair'},{c:'#18a8ff',t:'Strong'},{c:'#00E5A0',t:'Very Strong 💪'}];
   const l  = lv[Math.min(s-1,4)] || lv[0];
   fill.style.width = `${(s/5)*100}%`;
   fill.style.background = l.c;
