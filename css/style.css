@@ -391,6 +391,38 @@ input, textarea, select {
   color: white;
 }
 
+/* Accent-outline: blue outlined button for secondary CTAs like Browse/View All Services */
+.btn-accent-outline {
+  background: transparent;
+  color: var(--color-accent);
+  border: 1.5px solid var(--color-accent);
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.btn-accent-outline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(24,168,255,0.08), rgba(14,144,224,0.12));
+  opacity: 0;
+  transition: opacity var(--transition);
+  z-index: -1;
+}
+
+.btn-accent-outline:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 18px rgba(24,168,255,0.22);
+}
+
+.btn-accent-outline:hover::before {
+  opacity: 1;
+}
+
 /* "See Our Work" — outlined with animated gradient border on hover */
 .btn-portfolio {
   background: transparent;
@@ -3183,19 +3215,41 @@ input, textarea, select {
   .navbar__links { display: none; }
   .navbar__hamburger { display: flex; }
 
-  /* Mobile navbar CTA: show only the green quote button, hide sign in text */
+  /* Mobile navbar CTA: icon-only sign-in + compact green quote button */
   .navbar__cta {
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  /* Show Sign In as icon-only circle — no text, no wrap */
+  .navbar__signin-link {
+    padding: 6px;
+    width: 34px;
+    height: 34px;
+    justify-content: center;
+    border: 1.5px solid var(--color-border);
+    border-radius: 50%;
+    background: var(--color-bg-card);
+    color: var(--color-text-secondary);
+  }
+  .navbar__signin-link span,
+  .navbar__signin-link .signin-text { display: none; }
+  .navbar__signin-link i { font-size: 15px; margin: 0; }
+
+  /* Compact green quote button — icon + short text */
+  .navbar__cta .btn-quote,
+  .navbar__cta .btn-quote.btn-sm {
+    padding: 7px 12px;
+    font-size: 0.75rem;
+    gap: 4px;
+    white-space: nowrap;
+  }
+  .navbar__cta .btn-quote i { font-size: 0.7rem; }
+
+  /* Prevent inner text overflow entirely */
+  .navbar__inner {
     gap: 6px;
   }
-  .navbar__signin-link {
-    display: none;
-  }
-  .navbar__cta .btn-quote {
-    padding: 8px 14px;
-    font-size: 0.78rem;
-    gap: 5px;
-  }
-  .navbar__cta .btn-quote i { font-size: 0.72rem; }
 
   .hero__content { grid-template-columns: 1fr; padding: 48px 20px 56px; }
   .hero__visual { display: none; }

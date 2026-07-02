@@ -115,14 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typingEl) {
     const words = ['Data Scientist', 'ML Engineer', 'Web Developer', 'Academic Writer', 'Research Expert', 'Data Analyst'];
     let wordIndex = 0;
-    let charIndex  = words[0].length; // start fully typed
+    let charIndex  = 0;      // start from 0 — types in immediately
     let isDeleting = false;
-    let isPaused   = false;
+    let timer      = null;
 
-    typingEl.textContent = words[0]; // show first word immediately
+    typingEl.textContent = '';
 
     function type() {
-      if (isPaused) return;
       const current = words[wordIndex];
 
       if (isDeleting) {
@@ -133,25 +132,25 @@ document.addEventListener('DOMContentLoaded', () => {
         typingEl.textContent = current.substring(0, charIndex);
       }
 
-      let speed = isDeleting ? 55 : 95;
+      // Typing: faster when deleting, natural pause between chars
+      let speed = isDeleting ? 48 : 90;
 
       if (!isDeleting && charIndex === current.length) {
-        // Fully typed — pause then start deleting
-        isPaused = true;
-        setTimeout(() => { isPaused = false; isDeleting = true; setTimeout(type, speed); }, 2200);
-        return;
+        // Word fully typed — hold 2.4s then start deleting
+        speed = 2400;
+        isDeleting = true;
       } else if (isDeleting && charIndex === 0) {
-        // Fully deleted — move to next word
+        // Word fully deleted — brief pause then type next word
         isDeleting = false;
         wordIndex  = (wordIndex + 1) % words.length;
-        speed      = 320;
+        speed      = 380;
       }
 
-      setTimeout(type, speed);
+      timer = setTimeout(type, speed);
     }
 
-    // Start the cycle after a short initial pause
-    setTimeout(type, 2200);
+    // Kick off immediately with a small natural delay
+    timer = setTimeout(type, 600);
   }
 
   /* ============================================================
